@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="com.mendix.widget.custom.mxtreetable.MxTreeTable" needsEntityContext="true" offlineCapable="true"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>TreeTable</name>
+    <description>Mendix TreeTable</description>
+    <icon></icon>
+    <properties>
+
+        <!-- ****************
+                DATA
+        *********************-->
+        <property key="nodeEntity" type="entity" required="true" allowNonPersistableEntities="true">
+            <caption>Node Entity</caption>
+            <category>Data</category>
+            <description>Entity for the Node that is displayed in the widget.</description>
+        </property>
+        <property key="dataSource" type="enumeration" defaultValue="xpath">
+            <caption>Data Source</caption>
+            <category>Data</category>
+            <description>Choose how you retrieve the top-level data</description>
+            <enumerationValues>
+                <enumerationValue key="xpath">XPath</enumerationValue>
+                <enumerationValue key="mf">Microflow</enumerationValue>
+                <enumerationValue key="nf">Nanoflow</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="constraint" required="false" type="entityConstraint" entityProperty="nodeEntity">
+            <caption>Node constraint</caption>
+            <category>Data</category>
+            <description>The xpath constraint on the entity.</description>
+        </property>
+        <property key="getDataMf" type="microflow" required="false">
+            <caption>Microflow</caption>
+            <category>Data</category>
+            <description>Choose 'Microflow' in Data Source and choose a microflow here</description>
+            <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+        </property>
+        <property key="getDataNf" type="nanoflow" required="false">
+            <caption>Nanoflow</caption>
+            <category>Data</category>
+            <description>Choose 'Nanoflow' in Data Source and choose a nanoflow here.
+
+NOTE: Non-persistent entities are discouraged as they have unpredictable behavior combined with Nanoflows.
+            </description>
+            <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+        </property>
+
+        <!-- ****************
+                CHILDREN
+        *********************-->
+
+        <property key="childMethod" type="enumeration" defaultValue="disabled">
+                <caption>Child Method</caption>
+                <category>Data Children</category>
+                <description>Method how to get the child elements</description>
+                <enumerationValues>
+                    <enumerationValue key="disabled">Disabled</enumerationValue>
+                    <enumerationValue key="reference">Reference</enumerationValue>
+                    <enumerationValue key="microflow">Microflow</enumerationValue>
+                    <enumerationValue key="nanoflow">Nanoflow</enumerationValue>
+                </enumerationValues>
+        </property>
+        <property key="childReference" type="entity" required="false" allowNonPersistableEntities="true" isPath="yes" pathType="referenceSet" entityProperty="nodeEntity">
+            <caption>Child reference</caption>
+            <category>Data Children</category>
+            <description>Set method: 'Reference'. Scenario 1: Child reference entity. Choose this and it will get the data over reference, through a normal mx.data.get call. This needs a complete tree-structure</description>
+        </property>
+        <property key="childBoolean" type="attribute" entityProperty="nodeEntity" required="false" isPath="optional" pathType="reference">
+            <caption>Has child attr</caption>
+            <category>Data Children</category>
+            <description>Set method: 'Microflow/Nanoflow'. Scenario 2/3: Has child attribute. Choose this if you do not have a complete tree-structure available. This will mean you will need to get the data through the getChildren microflow/nanoflow. Make sure the 'Child reference' attribute is NOT set.</description>
+            <attributeTypes>
+                <attributeType name="Boolean" />
+            </attributeTypes>
+        </property>
+        <property key="getChildMf" type="microflow" required="false" entityProperty="nodeEntity">
+            <caption>Get child Microflow</caption>
+            <category>Data Children</category>
+            <description>Set method: 'Microflow'. Scenario 2: Get children through a microflow. Make sure you set the 'Has child attr'. If it detects it has children, it will get the children using this microflow.</description>
+            <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+        </property>
+        <property key="getChildNf" type="nanoflow" required="false" entityProperty="nodeEntity">
+            <caption>Get child Nanoflow</caption>
+            <category>Data Children</category>
+            <description>Set method: 'Nanoflow'. Scenario 3: Get children through a nanoflow. Make sure you set the 'Has child attr'. If it detects it has children, it will get the children using this nanoflow.
+
+NOTE: Non-persistent entities are discouraged as they have unpredictable behavior combined with Nanoflows.
+            </description>
+            <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+        </property>
+
+        <!-- ****************
+                COLUMNS
+        *********************-->
+
+        <property key="columnMethod" type="enumeration" defaultValue="static">
+            <caption>Definition</caption>
+            <category>Columns</category>
+            <description>How you define the columns.
+- You will need to take care of your own sorting when getting columns dynamically.</description>
+            <enumerationValues>
+                <enumerationValue key="static">List</enumerationValue>
+                <enumerationValue key="microflow">Microflow (Dynamic)</enumerationValue>
+                <!-- Disabled nanoflows, as this results in weird behavior -->
+                <!-- <enumerationValue key="nanoflow">Nanoflow (Dynamic)</enumerationValue> -->
+            </enumerationValues>
+        </property>
+        <property key="columnList" type="object" isList="true" required="false">
+            <caption>List</caption>
+            <category>Columns</category>
+            <description>Define the columns in the Tree Table</description>
+            <properties>
+                <!-- ****************
+                        COLUMN DATA
+                *********************-->
+                <property key="columnHeader" type="string" required="false" defaultValue="">
+                    <caption>Caption</caption>
+                    <category>Column Data</category>
+                    <description>Title that is above the column</description>
+                </property>
+                <property key="columnAttr" type="attribute" entityProperty="../nodeEntity" required="true">
+                    <caption>Attribute</caption>
+                    <category>Column Data</category>
+                    <description>Attribute that holds the value</description>
+                    <attributeTypes>
+                        <attributeType name="AutoNumber" />
+                        <attributeType name="Boolean" />
+                        <attributeType name="DateTime" />
+                        <attributeType name="Decimal" />
+                        <attributeType name="Enum" />
+                        <attributeType name="HashString" />
+                        <attributeType name="Integer" />
+                        <attributeType name="Long" />
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="transformNanoflow" type="nanoflow" required="false" entityProperty="../nodeEntity">
+                    <caption>Transform Nanoflow</caption>
+                    <category>Column Data</category>
+                    <description>Use this nanoflow to transform the data to a string</description>
+                    <returnType type="String" />
+                </property>
+                <!-- ****************
+                        COLUMN STYLING
+                *********************-->
+                <property key="columnWidth" type="string" required="false" defaultValue="">
+                    <caption>Width</caption>
+                    <category>Column UI</category>
+                    <description>Set this to either a number (like '100' for 100px) or a string ('50%')</description>
+                </property>
+                <property key="columnClassName" type="string" required="false" defaultValue="">
+                    <caption>ClassName</caption>
+                    <category>Column UI</category>
+                    <description>Set a classname for this column. This is preferred over setting a certain width</description>
+                </property>
+            </properties>
+        </property>
+
+        <!-- ****************
+                DYNAMIC COLUMNS
+        *********************-->
+
+        <property key="columnHeaderEntity" type="entity" required="false" allowNonPersistableEntities="true">
+            <caption>Column entity</caption>
+            <category>Dynamic Columns</category>
+            <description>Used when you set the column definition (See Column) to Microflow/Nanoflow</description>
+        </property>
+        <property key="columnHeaderLabelAttribute" type="attribute" entityProperty="columnHeaderEntity" required="false">
+            <caption>Label</caption>
+            <category>Dynamic Columns</category>
+            <description>Attribute that holds the label</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="columnHeaderAttrAttribute" type="attribute" entityProperty="columnHeaderEntity" required="false">
+            <caption>Attribute</caption>
+            <category>Dynamic Columns</category>
+            <description>Attribute that holds the attribute name</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="columnHeaderClassAttribute" type="attribute" entityProperty="columnHeaderEntity" required="false">
+            <caption>Class</caption>
+            <category>Dynamic Columns</category>
+            <description>Attribute that holds the class name</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="columnHeaderMicroflow" type="microflow" required="false">
+            <caption>Microflow</caption>
+            <category>Dynamic Columns</category>
+            <description>Choose 'Microflow' in 'Definition' and choose a microflow here</description>
+            <returnType type="Object" isList="true" entityProperty="columnHeaderEntity" />
+        </property>
+        <!-- <property key="columnHeaderNanoflow" type="nanoflow" required="false">
+            <caption>Nanoflow</caption>
+            <category>Dynamic Columns</category>
+            <description>Choose 'Nanoflow' in 'Definition' and choose a nnanoflow here</description>
+            <returnType type="Object" isList="true" entityProperty="columnHeaderEntity" />
+        </property> -->
+
+        <!-- ****************
+                BEHAVIOR
+        *********************-->
+
+        <property key="onClickAction" type="enumeration" defaultValue="nothing">
+            <caption>Single click action</caption>
+            <category>Events</category>
+            <description></description>
+            <enumerationValues>
+                    <enumerationValue key="nothing">Nothing</enumerationValue>
+                    <enumerationValue key="mf">Microflow</enumerationValue>
+                    <enumerationValue key="nf">Nanoflow</enumerationValue>
+                    <enumerationValue key="open">Open page</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="onClickMf" type="microflow" required="false" entityProperty="nodeEntity">
+            <caption>Single click Microflow</caption>
+            <category>Events</category>
+            <description></description>
+            <returnType type="Void" />
+        </property>
+        <property key="onClickNf" type="nanoflow" required="false" entityProperty="nodeEntity">
+            <caption>Single click Nanoflow</caption>
+            <category>Events</category>
+            <description></description>
+            <returnType type="Void" />
+        </property>
+        <property key="onClickForm" type="form" required="false">
+            <caption>Single click page</caption>
+            <category>Events</category>
+            <description>The page to open when an image is clicked</description>
+        </property>
+        <property key="onClickOpenPageAs" type="enumeration" defaultValue="content">
+            <caption>Single click open page as</caption>
+            <category>Events</category>
+            <description/>
+            <enumerationValues>
+                <enumerationValue key="content">Full page</enumerationValue>
+                <enumerationValue key="popup">Popup</enumerationValue>
+                <enumerationValue key="modal">Blocking popup</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="onDblClickAction" type="enumeration" defaultValue="nothing">
+            <caption>Double click action</caption>
+            <category>Events</category>
+            <description></description>
+            <enumerationValues>
+                    <enumerationValue key="nothing">Nothing</enumerationValue>
+                    <enumerationValue key="mf">Microflow</enumerationValue>
+                    <enumerationValue key="nf">Nanoflow</enumerationValue>
+                    <enumerationValue key="open">Open page</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="onDblClickMf" type="microflow" required="false" entityProperty="nodeEntity">
+            <caption>Double click Microflow</caption>
+            <category>Events</category>
+            <description></description>
+            <returnType type="Void" />
+        </property>
+        <property key="onDblClickNf" type="nanoflow" required="false" entityProperty="nodeEntity">
+            <caption>Double click Nanoflow</caption>
+            <category>Events</category>
+            <description></description>
+            <returnType type="Void" />
+        </property>
+        <property key="onDblClickForm" type="form" required="false">
+            <caption>Double click page</caption>
+            <category>Events</category>
+            <description>The page to open when an image is clicked</description>
+        </property>
+        <property key="onDblClickOpenPageAs" type="enumeration" defaultValue="content">
+            <caption>Double click open page as</caption>
+            <category>Events</category>
+            <description/>
+            <enumerationValues>
+                <enumerationValue key="content">Full page</enumerationValue>
+                <enumerationValue key="popup">Popup</enumerationValue>
+                <enumerationValue key="modal">Blocking popup</enumerationValue>
+            </enumerationValues>
+        </property>
+
+        <!-- ****************
+                UI
+        *********************-->
+
+        <property key="uiSize" type="enumeration" defaultValue="small">
+            <caption>Size</caption>
+            <category>UI</category>
+            <description>Set size of table, affects paddings and some styling</description>
+            <enumerationValues>
+                <enumerationValue key="default">Big</enumerationValue>
+                <enumerationValue key="middle">Middle</enumerationValue>
+                <enumerationValue key="small">Small</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="uiShowHeader" type="boolean" defaultValue="true">
+            <caption>Show header</caption>
+            <category>UI</category>
+            <description>Make header row visible/invisible</description>
+        </property>
+        <property key="uiRowClassAttr" type="attribute" entityProperty="nodeEntity" required="false">
+            <caption>Row Class Attribute</caption>
+            <category>UI</category>
+            <description>Attribute that will set an extra class on a row. This attribute should contain a valid css className, like 'mx-treeview-row'. This className can also be used in styling, where you would define a couple of classNames to set certain statuses and give each a color. This can be a calculated attribute, but keep in mind that performance might go down if you use that too much.</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="uiRowIconAttr" type="attribute" entityProperty="nodeEntity" required="false">
+            <caption>Icon Attribute</caption>
+            <category>UI</category>
+            <description>Attribute that will determine which icon to show in the first column of the row. Can be prefixed (see next)</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="uiIconPrefix" type="string" required="false" defaultValue="glyphicon glyphicon-">
+            <caption>Icon class prefix</caption>
+            <category>UI</category>
+            <description>When using icons in a row, it will use an &lt;i&gt; element with this className. When empty, it will use the standard 'glyphicon glyphicon-' prefix to use Bootstrap style elements. You can set your own icon prefixes here.</description>
+        </property>
+
+        <!-- ****************
+                SELECTION
+        *********************-->
+
+        <property key="selectMode" type="enumeration" defaultValue="none">
+            <caption>Select Mode</caption>
+            <category>Selection</category>
+            <description></description>
+            <enumerationValues>
+                <enumerationValue key="none">None</enumerationValue>
+                <enumerationValue key="single">Single</enumerationValue>
+                <enumerationValue key="multi">Multi</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="selectClickSelect" type="boolean" defaultValue="true">
+            <caption>Click to select</caption>
+            <category>Selection</category>
+            <description>If enabled, you can select a row by simply clicking on it. If disabled, you will need to click the checkbox.</description>
+        </property>
+        <property key="selectActionButtons" type="object" isList="true" required="false">
+            <caption>Buttons</caption>
+            <category>Selection</category>
+            <description>Buttons that can be triggered when you have selected something. If no buttons are configured, Select Mode will be ignored.</description>
+            <properties>
+                <property key="selectABLabel" type="string" required="true" defaultValue="">
+                    <caption>Caption</caption>
+                    <category>Button</category>
+                    <description></description>
+                </property>
+                <property key="selectABClass" type="string" required="false" defaultValue="">
+                    <caption>Class</caption>
+                    <category>Button</category>
+                    <description>Extra class names</description>
+                </property>
+                <property key="selectABMicroflowMulti" type="microflow" required="false" entityProperty="../nodeEntity" parameterIsList="true">
+                    <caption>Multi Microflow</caption>
+                    <category>Button</category>
+                    <description>Only applies to Select Mode = 'Multi'</description>
+                    <returnType type="Void" />
+                </property>
+                <property key="selectABMicroflowSingle" type="microflow" required="false" entityProperty="../nodeEntity">
+                    <caption>Single Microflow</caption>
+                    <category>Button</category>
+                    <description>Only applies to Select Mode = 'Single'</description>
+                    <returnType type="Void" />
+                </property>
+            </properties>
+        </property>
+    </properties>
+</widget>

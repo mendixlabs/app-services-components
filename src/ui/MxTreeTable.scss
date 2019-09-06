@@ -1,0 +1,45 @@
+@import "~antd/es/table/style/index.css";
+@import "~antd/es/empty/style/index.css";
+@import "~antd/es/radio/style/index.css";
+@import "~antd/es/checkbox/style/index.css";
+@import "~antd/es/dropdown/style/index.css";
+@import "~antd/es/spin/style/index.css";
+@import "~antd/es/pagination/style/index.css";
+
+.ant-table-tbody {
+    .ant-table-selection-column {
+        .ant-radio-input {
+            display:none;
+        }
+        .ant-checkbox-input {
+            display:none;
+        }
+    }
+}
+
+.ant-table-thead {
+    .ant-table-selection-column {
+        .ant-checkbox-input {
+            display:none;
+        }
+    }
+}
+
+.ant-table-row-expand-icon {
+    line-height: 16px;
+}
+
+.ant-table-cell-with-icon {
+    display: inline-block;
+    position: relative;
+    padding-left: 18px;
+    .ant-table-cell-icon.glyphicon {
+        position: absolute;
+        left: 0;
+        top: 4px;
+    }
+}
+
+.widget-treetable-buttonbar {
+    margin-bottom: 6px;
+}

@@ -1,0 +1,60 @@
+{
+  "name": "mxtreetable",
+  "widgetName": "MxTreeTable",
+  "version": "1.0.0",
+  "description": "TreeTable widget",
+  "copyright": "Mendix 2019",
+  "author": "Jelte Lagendijk",
+  "config": {
+    "widgetPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/widgets",
+    "projectPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/",
+    "mendixHost": "http://10.211.55.3:8080",
+    "developmentPort": "3000"
+  },
+  "packagePath": "com.mendix.widget.custom",
+  "scripts": {
+    "start": "concurrently \"pluggable-widgets-tools start:server --open\" \"npm:dev\"",
+    "dev": "pluggable-widgets-tools start:js",
+    "build": "pluggable-widgets-tools build:js",
+    "lint": "pluggable-widgets-tools lint",
+    "lint:fix": "pluggable-widgets-tools lint:fix",
+    "pretest": "npm run lint && npm run build",
+    "test-old": "pluggable-widgets-tools test:unit --no-cache --ci && npm run test:e2e",
+    "test": "npm run test:unit --no-cache --ci && npm run test:e2e",
+    "test:unit": "jest --projects ./jest.config.js",
+    "test:e2e": "export URL=https://reacttreeview-sandbox.mxapps.io/ || set URL=https://reacttreeview-sandbox.mxapps.io/ && pluggable-widgets-tools test:e2e:ts",
+    "test:e2e:dev": "export DEBUG=true || set DEBUG=true && pluggable-widgets-tools test:e2e:ts",
+    "test:e2e:mac": "export URL=http://10.211.55.3:8080/ && export DEBUG=true || set DEBUG=true && pluggable-widgets-tools test:e2e:ts",
+    "prerelease": "npm run lint",
+    "release": "pluggable-widgets-tools release:js"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@mendix/pluggable-widgets-tools": "^8.0.4",
+    "@types/big.js": "^4.0.5",
+    "@types/camelcase": "^5.2.0",
+    "@types/classnames": "^2.2.4",
+    "@types/enzyme": "^3.1.10",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/jest": "^24.0.0",
+    "@types/lodash": "^4.14.138",
+    "@types/promise-queue": "^2.2.0",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-test-renderer": "^16.8.1",
+    "@types/webdriverio": "^4.13.3",
+    "identity-obj-proxy": "^3.0.0",
+    "mendix-client": "^7.15.7",
+    "webpack-bundle-analyzer": "^3.4.1"
+  },
+  "dependencies": {
+    "@thi.ng/strings": "^1.2.3",
+    "antd": "^3.23.0",
+    "array-to-tree": "^3.3.0",
+    "big.js": "^5.2.2",
+    "classnames": "^2.2.6",
+    "core-js": "^2.6.9",
+    "lodash": "^4.17.15",
+    "promise-queue": "^2.2.5"
+  }
+}
