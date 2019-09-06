@@ -24,6 +24,7 @@
     "test-old": "pluggable-widgets-tools test:unit --no-cache --ci && npm run test:e2e",
     "test": "npm run test:unit --no-cache --ci && npm run test:e2e",
     "test:unit": "jest --projects ./jest.config.js",
+    "test:travis": "jest --projects ./jest.config.js && cat ./dist/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./dist/coverage",
     "test:e2e": "export URL=https://reacttreeview-sandbox.mxapps.io/ || set URL=https://reacttreeview-sandbox.mxapps.io/ && pluggable-widgets-tools test:e2e:ts",
     "test:e2e:dev": "export DEBUG=true || set DEBUG=true && pluggable-widgets-tools test:e2e:ts",
     "test:e2e:mac": "export URL=http://10.211.55.3:8080/ && export DEBUG=true || set DEBUG=true && pluggable-widgets-tools test:e2e:ts",
