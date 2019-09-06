@@ -1,4 +1,4 @@
-## Mendix Tree Table
+## Mendix Tree Table [![Build Status](https://travis-ci.org/JelteMX/mendix-tree-table.svg?branch=master)](https://travis-ci.org/JelteMX/mendix-tree-table)
 
 Tree Table using [Ant Design Table](https://ant.design/components/table/) (MIT License).
 
