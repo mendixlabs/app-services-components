@@ -24,10 +24,10 @@ const columns = (): TreeColumnProps[] => {
 
 const rows = (): RowObject[] => {
     return [
-        { key: "0001", id: "001", title: "lvl0", text: "HASTEXT" },
+        { key: "0001", id: "001", title: "lvl0", text: "HASTEXT", _className: "row-class-awesome" },
         { key: "0002", id: "002", title: "lvl1", text: "HASTEXT", _parent: "0001" },
         { key: "0003", id: "003", title: "lvl1", text: "HASTEXT", _parent: "0001" },
-        { key: "0004", id: "004", title: "lvl0", text: "HASTEXT" }
+        { key: "0004", id: "004", title: "lvl0", text: "HASTEXT", _icon: "test" }
     ];
 };
 
@@ -43,9 +43,10 @@ const getTableProps = (): TreeTableProps => {
     };
 };
 
-const wait = (num: number) => new Promise((resolve) => {
-    setTimeout(resolve, num);
-});
+const wait = (num: number): Promise<void> =>
+    new Promise(resolve => {
+        setTimeout(resolve, num);
+    });
 
 describe("TreeTable", () => {
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -87,22 +88,29 @@ describe("TreeTable", () => {
             rows: rows()
         };
         const table = createFullTable(tableProps);
-        const expandButton = table.find(".ant-table-tbody tr").first().find(".ant-table-row-expand-icon").first();
+        const expandButton = table
+            .find(".ant-table-tbody tr")
+            .first()
+            .find(".ant-table-row-expand-icon")
+            .first();
 
         expandButton.simulate("click");
         expect(table.find(".ant-table-tbody tr")).toHaveLength(4);
 
-        const expandButton2 = table.find(".ant-table-tbody tr").first().find(".ant-table-row-expand-icon").first();
+        const expandButton2 = table
+            .find(".ant-table-tbody tr")
+            .first()
+            .find(".ant-table-row-expand-icon")
+            .first();
         expandButton2.simulate("click");
         let visible = 0;
-        table.find('.ant-table-tbody tr').forEach(tr => {
+        table.find(".ant-table-tbody tr").forEach(tr => {
             if (tr.html().indexOf("display: none") === -1) {
                 visible += 1;
             }
         });
 
         expect(visible).toEqual(2);
-
     });
 
     it("should execute a click on rows", async () => {
@@ -117,12 +125,15 @@ describe("TreeTable", () => {
         };
         const table = createFullTable(tableProps);
         const row = table.find(".ant-table-tbody tr").first();
+        const row2 = table.find(".ant-table-tbody tr").at(1);
         row.simulate("click");
         row.simulate("click");
         await wait(500);
+        row2.simulate("click");
+        await wait(500);
 
-        expect(tableProps.onClick).toHaveBeenCalledTimes(1);
-        expect(tableProps.onSelect).toHaveBeenCalledTimes(1);
+        expect(tableProps.onClick).toHaveBeenCalledTimes(2);
+        expect(tableProps.onSelect).toHaveBeenCalledTimes(2);
     });
 
     it("should execute a double click on rows", async () => {
@@ -139,5 +150,51 @@ describe("TreeTable", () => {
         await wait(500);
 
         expect(tableProps.onDblClick).toHaveBeenCalled();
+    });
+
+    it("should select rows single", async () => {
+        const tableProps: TreeTableProps = {
+            ...getTableProps(),
+            columns: columns(),
+            rows: rows(),
+            selectMode: "single",
+            clickToSelect: true
+        };
+
+        const table = createFullTable(tableProps);
+        table.setState({ selectedRowKeys: ["0001"] });
+
+        const checkBox = table
+            .find(".ant-table-tbody td")
+            .first()
+            .find("input")
+            .first();
+        checkBox.simulate("change", { target: { checked: false } });
+        checkBox.simulate("change", { target: { checked: true } });
+        checkBox.simulate("change", { target: { checked: false } });
+
+        expect(table.state("selectedRowKeys")).toHaveLength(0);
+    });
+
+    it("should select multi rows", async () => {
+        const tableProps: TreeTableProps = {
+            ...getTableProps(),
+            columns: columns(),
+            rows: rows(),
+            selectMode: "multi",
+            clickToSelect: true
+        };
+
+        const table = createFullTable(tableProps);
+        table.setState({ selectedRowKeys: ["0001"] });
+
+        const row = table.find(".ant-table-tbody tr").first();
+        const row2 = table.find(".ant-table-tbody tr").at(1);
+        row.simulate("click");
+        await wait(500);
+        row2.simulate("click");
+        await wait(500);
+
+        expect(table.state("selectedRowKeys")).toHaveLength(1);
     });
 });

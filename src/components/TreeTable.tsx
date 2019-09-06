@@ -1,7 +1,7 @@
 import { Component, ReactNode, createElement } from "react";
 import classNames from "classnames";
 import clone from "lodash/clone";
-import uniq from "lodash/uniq";
+// import uniq from "lodash/uniq";
 
 import Table, { ColumnProps, TableRowSelection } from "antd/es/table";
 import arrayToTree, { Tree } from "array-to-tree";
@@ -92,8 +92,8 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
         this.onRowDblClick = this.onRowDblClick.bind(this);
         this.onExpand = this.onExpand.bind(this);
         this.setSelected = this.setSelected.bind(this);
-        this.expandAll = this.expandAll.bind(this);
-        this.collapseAll = this.collapseAll.bind(this);
+        // this.expandAll = this.expandAll.bind(this);
+        // this.collapseAll = this.collapseAll.bind(this);
         this.onSelectionChange = this.onSelectionChange.bind(this);
         this.rowClassName = this.rowClassName.bind(this);
     }
@@ -210,10 +210,6 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
         });
     }
 
-    componentWillUnmount(): void {
-        // this.removeEvents();
-    }
-
     private setSelected(keys: string[]): void {
         this.setState(
             {
@@ -229,20 +225,20 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
         return `treetable-treelevel-${index}${className}`;
     }
 
-    private expandAll(): void {
-        const parentIds = this.props.rows
-            .filter(row => typeof row._parent !== "undefined" && row._parent)
-            .map(row => row._parent) as string[];
-        this.setState({
-            expandedRowKeys: uniq(parentIds)
-        });
-    }
+    // private expandAll(): void {
+    //     const parentIds = this.props.rows
+    //         .filter(row => typeof row._parent !== "undefined" && row._parent)
+    //         .map(row => row._parent) as string[];
+    //     this.setState({
+    //         expandedRowKeys: uniq(parentIds)
+    //     });
+    // }
 
-    private collapseAll(): void {
-        this.setState({
-            expandedRowKeys: []
-        });
-    }
+    // private collapseAll(): void {
+    //     this.setState({
+    //         expandedRowKeys: []
+    //     });
+    // }
 
     private createTree(rows: RowObject[]): Tree<RowObject[]> {
         const tree = arrayToTree(rows, arrayToTreeOpts);
