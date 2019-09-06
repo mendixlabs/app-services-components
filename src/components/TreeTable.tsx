@@ -79,7 +79,7 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
     constructor(props: TreeTableProps) {
         super(props);
 
-        const rows = this.createTree(props.rows || []);
+        const rows = this.createTree(props.rows);
         this.state = {
             searchColumn: "all",
             rows,

@@ -16,8 +16,8 @@ const columns = (): TreeColumnProps[] => {
             id: "text",
             label: "Text",
             originalAttr: "text",
-            width: "10",
-            className: "rowClass"
+            width: null,
+            className: null
         }
     ];
 };
@@ -42,6 +42,10 @@ const getTableProps = (): TreeTableProps => {
         clickToSelect: false
     };
 };
+
+const wait = (num: number) => new Promise((resolve) => {
+    setTimeout(resolve, num);
+});
 
 describe("TreeTable", () => {
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -76,21 +80,32 @@ describe("TreeTable", () => {
         expect(table.find(".ant-table-tbody tr")).toHaveLength(2);
     });
 
-    it("should expand rows", () => {
+    it("should expand rows", async () => {
         const tableProps: TreeTableProps = {
             ...getTableProps(),
             columns: columns(),
             rows: rows()
         };
         const table = createFullTable(tableProps);
-        const expandButton = table.find(".treetable-treelevel-0 .ant-table-row-expand-icon").first();
+        const expandButton = table.find(".ant-table-tbody tr").first().find(".ant-table-row-expand-icon").first();
+
         expandButton.simulate("click");
         expect(table.find(".ant-table-tbody tr")).toHaveLength(4);
-        // expandButton.simulate("click");
-        // expect(table.find('.ant-table-tbody tr')).toHaveLength(2);
+
+        const expandButton2 = table.find(".ant-table-tbody tr").first().find(".ant-table-row-expand-icon").first();
+        expandButton2.simulate("click");
+        let visible = 0;
+        table.find('.ant-table-tbody tr').forEach(tr => {
+            if (tr.html().indexOf("display: none") === -1) {
+                visible += 1;
+            }
+        });
+
+        expect(visible).toEqual(2);
+
     });
 
-    it("should execute a click on rows", done => {
+    it("should execute a click on rows", async () => {
         const tableProps: TreeTableProps = {
             ...getTableProps(),
             columns: columns(),
@@ -103,16 +118,14 @@ describe("TreeTable", () => {
         const table = createFullTable(tableProps);
         const row = table.find(".ant-table-tbody tr").first();
         row.simulate("click");
-        row.simulate("click")
+        row.simulate("click");
+        await wait(500);
 
-        setTimeout(() => {
-            expect(tableProps.onClick).toHaveBeenCalledTimes(1);
-            expect(tableProps.onSelect).toHaveBeenCalledTimes(1);
-            done();
-        }, 500);
+        expect(tableProps.onClick).toHaveBeenCalledTimes(1);
+        expect(tableProps.onSelect).toHaveBeenCalledTimes(1);
     });
 
-    it("should execute a double click on rows", done => {
+    it("should execute a double click on rows", async () => {
         const tableProps: TreeTableProps = {
             ...getTableProps(),
             columns: columns(),
@@ -121,11 +134,10 @@ describe("TreeTable", () => {
         };
         const table = createFullTable(tableProps);
         const row = table.find(".ant-table-tbody tr").first();
-        row.simulate("dblclick");
 
-        setTimeout(() => {
-            expect(tableProps.onDblClick).toHaveBeenCalled();
-            done();
-        }, 500);
+        row.simulate("dblclick");
+        await wait(500);
+
+        expect(tableProps.onDblClick).toHaveBeenCalled();
     });
 });
