@@ -3,7 +3,7 @@ import { shallow, ShallowWrapper, ReactWrapper, mount } from "enzyme";
 
 import { TreeTable, TreeTableProps, TreeColumnProps, RowObject } from "../TreeTable";
 
-const columns = (): Array<TreeColumnProps> => {
+const columns = (): TreeColumnProps[] => {
     return [
         {
             id: 'title',
@@ -61,7 +61,7 @@ describe("TreeTable", () => {
         };
         const table = createFullTable(tableProps);
 
-        //console.log(table.html());
+        // console.log(table.html());
 
         expect(table.find('.ant-table-header-column')).toHaveLength(2);
     });
