@@ -1,28 +1,36 @@
 ## Mendix Tree Table
 
-Tree Table using [Ant Design Table](https://ant.design/components/table/) (MIT License)
+Tree Table using [Ant Design Table](https://ant.design/components/table/) (MIT License).
+
+See test-project: [https://reacttreeview-sandbox.mxapps.io/p/home](https://reacttreeview-sandbox.mxapps.io/p/home)
 
 ## Features
-[feature highlights]
+- Display a tree structure in a table
+- DataSource:
+  - Root:
+    - Xpath
+    - Microflow
+    - Nanoflow
+  - Children:
+    - Reference
+    - Microflow
+    - Nanoflow
+- Row classes
+- Row icons
+- Select row/rows
+- Dynamic columns
+- Much more...
 
 ## Usage
-[step by step instructions]
 
-## Demo project
-[link to sandbox]
+`To be done`
 
 ## Issues, suggestions and feature requests
-[link to GitHub issues]
 
-## Development and contribution
-[specify contribute]
+Please report your issues [here](https://github.com/JelteMX/mendix-tree-table/issues)
 
 ## TODO
-- DONE - Set icons attribute for a column
-- Standardize css classes (Discuss with UX)
-- DONE - Make column attribute optional, hide if it doesn't have an attribute (except first column)
-- DONE - Make column config from a microflow (set attribute for Title, Attribute (ModelReflection) and Visible (so we can show/hide them))
-- Investigate width of table (Should be straightforward)
-- Investigate height of table (need to sync column widths somehow)
-- On Row click select / Hide Checkboxes. Make Selected highlight more prominent
+- Write this README
 - Toolbar
+- Collapse/Expand all button (functionality is already there)
+- Unit/E2E tests
