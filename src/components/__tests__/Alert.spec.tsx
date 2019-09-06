@@ -12,10 +12,19 @@ describe("Alert", () => {
     });
 
     it("renders a list", () => {
-        const message = ["1","2"];
+        const message = ["1", "2"];
         const alert = shallow(<Alert bootstrapStyle="danger" className="widget-badge-alert" message={message} />);
 
-        expect(alert.equals(<div className="alert alert-danger widget-badge-alert"><ul><li>1</li><li>2</li></ul></div>)).toEqual(true);
+        expect(
+            alert.equals(
+                <div className="alert alert-danger widget-badge-alert">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                    </ul>
+                </div>
+            )
+        ).toEqual(true);
     });
 
     it("renders no structure when the alert message is not specified", () => {
