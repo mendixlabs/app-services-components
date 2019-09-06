@@ -12,8 +12,14 @@ describe("ButtonBar", () => {
             className: "test",
             buttons: [
                 {
-                    caption: "",
-                    onClick: () => {}
+                    caption: "disabled",
+                    onClick: () => {},
+                    disabled: true
+                },
+                {
+                    caption: "enabled",
+                    onClick: () => {},
+                    disabled: false
                 }
             ]
         };

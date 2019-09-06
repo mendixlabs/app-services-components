@@ -8,8 +8,8 @@
   "config": {
     "widgetPath": "./dist/test/widgets",
     "projectPath": "./dist/test/",
-    "widgetPathMac": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/widgets",
-    "projectPathMac": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/",
+    "_widgetPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/widgets",
+    "_projectPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/",
     "mendixHost": "http://10.211.55.3:8080",
     "developmentPort": "3000"
   },
@@ -45,6 +45,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-test-renderer": "^16.8.1",
     "@types/webdriverio": "^4.13.3",
+    "coveralls": "^3.0.6",
     "identity-obj-proxy": "^3.0.0",
     "mendix-client": "^7.15.7",
     "webpack-bundle-analyzer": "^3.4.1"

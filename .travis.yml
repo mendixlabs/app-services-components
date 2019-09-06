@@ -22,3 +22,5 @@ jobs:
         # Only doing unit tests now as e2e still needs to be finished up
         - name: "Unit tests"
           script: npm run test:unit
+        - name: "Coverals"
+          script: jest --coverage ./jest.config.js && cat ./dist/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./dist/coverage

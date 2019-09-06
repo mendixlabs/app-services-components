@@ -16,7 +16,7 @@ export interface ButtonBarProps {
 
 export class ButtonBar extends Component<ButtonBarProps> {
     render(): ReactNode {
-        if (!this.props.buttons) {
+        if (!this.props.buttons || this.props.buttons.length === 0) {
             return null;
         }
         const { className, buttons } = this.props;
