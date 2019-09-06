@@ -21,4 +21,4 @@ jobs:
           script: npm run build
         # Only doing unit tests now as e2e still needs to be finished up
         - name: "Unit tests"
-          script: npm test:unit
+          script: npm run test:unit
