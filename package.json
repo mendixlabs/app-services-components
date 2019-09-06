@@ -8,6 +8,8 @@
   "config": {
     "widgetPath": "./dist/test/widgets",
     "projectPath": "./dist/test/",
+    "widgetPathMac": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/widgets",
+    "projectPathMac": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/",
     "mendixHost": "http://10.211.55.3:8080",
     "developmentPort": "3000"
   },

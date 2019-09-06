@@ -16,7 +16,8 @@ describe("TreeTable", () => {
             size: "small",
             showHeader: true,
             selectMode: "none",
-            loading: false
+            loading: false,
+            clickToSelect: false
         };
         const table = createTable(tableProps);
 
