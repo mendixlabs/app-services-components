@@ -29,6 +29,7 @@ export interface TreeTableProps {
     expanderFunc?: (record: TableRecord, level: number) => void;
     onClick?: (record: TableRecord) => void;
     onDblClick?: (record: TableRecord) => void;
+    onClickOpenRow?: boolean;
     alertMessage?: string | string[];
     size: SizeOption;
     showHeader: boolean;
@@ -70,7 +71,11 @@ const arrayToTreeOpts = {
     customID: "key"
 };
 
+const DEBOUNCE = 250;
+
 export class TreeTable extends Component<TreeTableProps, TreeTableState> {
+    debounce: number | null;
+
     constructor(props: TreeTableProps) {
         super(props);
 
@@ -82,6 +87,7 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
             selectedRowKeys: [],
             expandedRowKeys: []
         };
+        this.debounce = null;
         this.onRowClick = this.onRowClick.bind(this);
         this.onRowDblClick = this.onRowDblClick.bind(this);
         this.onExpand = this.onExpand.bind(this);
@@ -93,30 +99,54 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
     }
 
     render(): ReactNode {
-        const { className, style, size, showHeader, selectMode, loading, buttonBar, clickToSelect } = this.props;
+        const {
+            className,
+            style,
+            size,
+            showHeader,
+            selectMode,
+            loading,
+            buttonBar,
+            clickToSelect,
+            onClickOpenRow
+        } = this.props;
         const { columns, rows, selectedRowKeys, expandedRowKeys } = this.state;
+        const clearDebounce = (): void => {
+            if (this.debounce !== null) {
+                clearTimeout(this.debounce);
+                this.debounce = null;
+            }
+        };
 
         const onRow = (record: TableRecord): { [name: string]: () => void } => {
             return {
                 onClick: () => {
-                    this.onRowClick(record);
-                    if (selectMode !== "none" && clickToSelect) {
-                        const findKey = selectedRowKeys.indexOf(record.key);
-                        const isSelected = findKey !== -1;
-                        if (isSelected && selectMode === "single") {
-                            this.setSelected([]);
-                        } else if (isSelected && selectMode === "multi") {
-                            selectedRowKeys.splice(findKey, 1);
-                            this.setSelected(selectedRowKeys);
-                        } else if (!isSelected && selectMode === "single") {
-                            this.setSelected([record.key]);
-                        } else if (!isSelected && selectMode === "multi") {
-                            selectedRowKeys.push(record.key);
-                            this.setSelected(selectedRowKeys);
+                    clearDebounce();
+                    this.debounce = window.setTimeout(() => {
+                        this.onRowClick(record);
+                        if (selectMode !== "none" && clickToSelect) {
+                            const findKey = selectedRowKeys.indexOf(record.key);
+                            const isSelected = findKey !== -1;
+                            if (isSelected && selectMode === "single") {
+                                this.setSelected([]);
+                            } else if (isSelected && selectMode === "multi") {
+                                selectedRowKeys.splice(findKey, 1);
+                                this.setSelected(selectedRowKeys);
+                            } else if (!isSelected && selectMode === "single") {
+                                this.setSelected([record.key]);
+                            } else if (!isSelected && selectMode === "multi") {
+                                selectedRowKeys.push(record.key);
+                                this.setSelected(selectedRowKeys);
+                            }
                         }
-                    }
+                    }, DEBOUNCE);
                 },
-                onDoubleClick: () => this.onRowDblClick(record) // double click row
+                onDoubleClick: () => {
+                    clearDebounce();
+                    this.debounce = window.setTimeout(() => {
+                        this.onRowDblClick(record); // double click row
+                    }, DEBOUNCE);
+                }
             };
         };
 
@@ -168,6 +198,7 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
                 loading={loading}
                 expandedRowKeys={expandedRowKeys}
                 rowClassName={this.rowClassName}
+                expandRowByClick={onClickOpenRow && selectMode !== "multi"}
             />
         );
     }

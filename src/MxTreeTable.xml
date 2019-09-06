@@ -233,7 +233,7 @@ NOTE: Non-persistent entities are discouraged as they have unpredictable behavio
         <property key="onClickForm" type="form" required="false">
             <caption>Single click page</caption>
             <category>Events</category>
-            <description>The page to open when an image is clicked</description>
+            <description>The page to open when a row is clicked</description>
         </property>
         <property key="onClickOpenPageAs" type="enumeration" defaultValue="content">
             <caption>Single click open page as</caption>
@@ -271,7 +271,7 @@ NOTE: Non-persistent entities are discouraged as they have unpredictable behavio
         <property key="onDblClickForm" type="form" required="false">
             <caption>Double click page</caption>
             <category>Events</category>
-            <description>The page to open when an image is clicked</description>
+            <description>The page to open when a row is clicked</description>
         </property>
         <property key="onDblClickOpenPageAs" type="enumeration" defaultValue="content">
             <caption>Double click open page as</caption>
