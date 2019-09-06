@@ -96,15 +96,18 @@ describe("TreeTable", () => {
             columns: columns(),
             rows: rows(),
             onClick: jasmine.createSpy("onClick"),
+            onSelect: jasmine.createSpy("onSelect"),
             selectMode: "single",
             clickToSelect: true
         };
         const table = createFullTable(tableProps);
         const row = table.find(".ant-table-tbody tr").first();
         row.simulate("click");
+        row.simulate("click")
 
         setTimeout(() => {
-            expect(tableProps.onClick).toHaveBeenCalled();
+            expect(tableProps.onClick).toHaveBeenCalledTimes(1);
+            expect(tableProps.onSelect).toHaveBeenCalledTimes(1);
             done();
         }, 500);
     });
