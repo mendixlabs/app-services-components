@@ -23,4 +23,4 @@ jobs:
         - name: "Unit tests"
           script: npm run test:unit
         - name: "Coverals"
-          script: jest --coverage ./jest.config.js && cat ./dist/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./dist/coverage
+          script: ./node_modules/.bin/jest --coverage ./jest.config.js && cat ./dist/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./dist/coverage
