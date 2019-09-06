@@ -6,8 +6,8 @@
   "copyright": "Mendix 2019",
   "author": "Jelte Lagendijk",
   "config": {
-    "widgetPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/widgets",
-    "projectPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/",
+    "widgetPath": "./dist/test/widgets",
+    "projectPath": "./dist/test/",
     "mendixHost": "http://10.211.55.3:8080",
     "developmentPort": "3000"
   },
