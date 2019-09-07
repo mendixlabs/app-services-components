@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>TreeTable</name>
     <description>Mendix TreeTable</description>
-    <icon></icon>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAC9UlEQVR4nO2byWsUQRSHv2QSxA0VDUZREY3HXFwQBBUP4hKCS9CDAfHgEgUvLiC4HUT8A9STJxX0JIgXQYnexH2BgCtCRFwwiNEkalxGivk1Nl09YxIzk6T7fdB01auqqbw31TXv9atgGIZhGOklE6N5DXAY2A5MBh4BP7xeCWU9kI1crcCUNCjfIMV/ASuAYVoJTtbs9U4IZSE1rgBLgUbgXEh+CagHZgEvYtSuBo4BY4Eur7W4VAAjgKPAzb7MVBEqT9D9daTPExlgjDc6h9snNnnS0nK5rwYIr4AjwAHgIrBGsmrtAb+BccA37xNyOOONBn56LcWlHOgG3vbHLFVa7u6ZfwqcB76ovsXrnVCcRU+EfgU6gQ1pUT7MSGBSZI8wDMMw0sg84ALwADipX4fUsDkmOvwKzEmDAaZLYecNzpZso2QtXu8hSiFHZ53u7sXIfZXPAAu1MtwquOeNyj0iZxUfdHitxSWjeXfLrf8nhQwwSvfPEXmb7sO9ETmcF7kIqPRaSsfUns5U5kn+Mhe4o80veATcO4Fn+marCkSHFTJA1mspLmWKXL/31yzHpcQn4GFoI2z0eiaYHTJAVt/+sjQpH1A+wM+0YRiGMVhYDtwG2oGrcphSw66QM9QVKtenwQAzpewHYJpkCyRrG6p+QqFgKEqd6nuBVyrfUF5uv6LEa94omAhcV4DS7rUWl4yyW1uBU3Ez9cYAQeAUDXCykfa4cZWhq9QGIM85iF5TI2Xfh84LzJfso9LpiWdPaOPrCJVXpUH5gJXAXb0qa9ZLU8MwDCPtpPYwhTtC80b+wEtgtdcjwRwK5QtbdMjS1XcOFZXz+e89wbnGzxUY1SqD5NJij3WmsFpucxyZAU6cdHstfaBJCmyLDN0neUOejxyv8DmadS7ldTD4Y/5n4woSn9EcYVDv9EbkcNa/BcyIyTsWm3KF5639MU9wctRZdLFkdaq/S0siZW2eZbvE65lganWs1v1jxWllkA3DMAzDGOQAfwBZxLuLwQrMtQAAAABJRU5ErkJggg==</icon>
     <properties>
 
         <!-- ****************
