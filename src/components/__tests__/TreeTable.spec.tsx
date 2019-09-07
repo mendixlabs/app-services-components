@@ -59,6 +59,15 @@ describe("TreeTable", () => {
         expect(table.hasClass("widget-treetable-wrapper")).toBe(true);
     });
 
+    it("should hide selectBoxes", () => {
+        const tableProps: TreeTableProps = {
+            ...getTableProps(),
+            hideSelectBoxes: true
+        };
+        const table = createTable(tableProps);
+        expect(table.hasClass("hide-selectboxes")).toBe(true);
+    });
+
     it("should render columns", () => {
         const tableProps: TreeTableProps = {
             ...getTableProps(),

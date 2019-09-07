@@ -82,6 +82,7 @@ export function getVisibleProperties(props: MxTreeTableContainerProps, visibilit
     visibilityMap.onDblClickOpenPageAs = props.onDblClickAction === "open";
 
     visibilityMap.selectClickSelect = props.selectMode !== "none";
+    visibilityMap.selectHideCheckboxes = props.selectMode !== "none";
     visibilityMap.selectActionButtons = props.selectMode !== "none";
 
     visibilityMap.columnHeaderEntity = props.columnMethod !== "static";

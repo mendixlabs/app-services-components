@@ -118,7 +118,14 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
 
     render(): ReactNode {
         const { columns, rows, isLoading, alertMessage, validColumns } = this.state;
-        const { uiSize, uiShowHeader, selectMode, selectActionButtons, selectClickSelect } = this.props;
+        const {
+            uiSize,
+            uiShowHeader,
+            selectMode,
+            selectActionButtons,
+            selectClickSelect,
+            selectHideCheckboxes
+        } = this.props;
         const buttonBar = this.getButtons(selectActionButtons);
 
         let selectionMode = selectMode;
@@ -146,7 +153,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             onSelect: this.onSelect,
             loading: isLoading,
             buttonBar,
-            clickToSelect: selectClickSelect
+            clickToSelect: selectClickSelect,
+            hideSelectBoxes: selectHideCheckboxes
         });
     }
 

@@ -344,6 +344,11 @@ NOTE: Non-persistent entities are discouraged as they have unpredictable behavio
             <category>Selection</category>
             <description>If enabled, you can select a row by simply clicking on it. If disabled, you will need to click the checkbox.</description>
         </property>
+        <property key="selectHideCheckboxes" type="boolean" defaultValue="false">
+            <caption>Hide checkboxes</caption>
+            <category>Selection</category>
+            <description>Hides the left column containing the checkboxes.</description>
+        </property>
         <property key="selectActionButtons" type="object" isList="true" required="false">
             <caption>Buttons</caption>
             <category>Selection</category>

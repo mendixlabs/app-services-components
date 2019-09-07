@@ -38,6 +38,7 @@ export interface TreeTableProps {
     onSelect?: (ids: string[]) => void;
     loading: boolean;
     buttonBar?: ReactNode;
+    hideSelectBoxes?: boolean;
 }
 
 interface TreeTableState {
@@ -108,7 +109,8 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
             loading,
             buttonBar,
             clickToSelect,
-            onClickOpenRow
+            onClickOpenRow,
+            hideSelectBoxes
         } = this.props;
         const { columns, rows, selectedRowKeys, expandedRowKeys } = this.state;
         const clearDebounce = (): void => {
@@ -179,7 +181,14 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
 
         return createElement(
             "div",
-            { className: classNames("widget-treetable-wrapper", className), style },
+            {
+                className: classNames(
+                    "widget-treetable-wrapper",
+                    hideSelectBoxes ? "hide-selectboxes" : null,
+                    className
+                ),
+                style
+            },
             createElement(Alert, {
                 bootstrapStyle: "danger",
                 className: "widget-treetable-alert",

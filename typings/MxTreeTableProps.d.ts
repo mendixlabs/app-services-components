@@ -83,6 +83,7 @@ export interface MxTreeTableContainerProps extends CommonProps {
 
     selectMode: SelectionMode;
     selectClickSelect: boolean;
+    selectHideCheckboxes: boolean;
     selectActionButtons: ActionButtonProps[];
     // selectMicroflow: string;
     // selectNanoflow: Nanoflow;
