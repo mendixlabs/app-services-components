@@ -1,6 +1,6 @@
 # Mendix Tree Table [![Build Status](https://travis-ci.org/JelteMX/mendix-tree-table.svg?branch=master)](https://travis-ci.org/JelteMX/mendix-tree-table) [![Coverage Status](https://coveralls.io/repos/github/JelteMX/mendix-tree-table/badge.svg?branch=master)](https://coveralls.io/github/JelteMX/mendix-tree-table?branch=master)[![Support](https://img.shields.io/badge/Support-Community%20(no%20active%20support)-orange.svg)](https://docs.mendix.com/developerportal/app-store/app-store-content-support)[![Studio](https://img.shields.io/badge/Studio%20version-8.0%2B-blue.svg)](https://appstore.home.mendix.com/link/modeler/)
 
-Tree Table using [Ant Design Table](https://ant.design/components/table/) (MIT License).
+Mendix Tree Table using [Ant Design Table](https://ant.design/components/table/) (MIT License).
 
 ![logo](assets/AppStoreIcon.png)
 
@@ -11,6 +11,7 @@ Show a tree-like structure in Mendix.
 > See test-project [https://reacttreeview-sandbox.mxapps.io/](https://reacttreeview-sandbox.mxapps.io/) for a live demo! This project is also used for all E2E tests. See at the bottom of this README a preview of the domain model
 
 ## Features
+
 - Display a tree structure in a table
 - DataSource:
   - Root:
@@ -26,6 +27,13 @@ Show a tree-like structure in Mendix.
 - Select row/rows
 - Dynamic columns
 - Much more...
+
+> This widget is only ~500Kb uncompressed, so in your cloud environment this would be about ~130Kb. This is light-weight for any project.
+
+Tested:
+- IE11
+- Chrome,Firefox,Safari
+- Should work on Mobile Web, but might not be very usable
 
 ## Basic configuration
 
