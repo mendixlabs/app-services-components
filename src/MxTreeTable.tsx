@@ -42,7 +42,6 @@ interface NodeObject {
 class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState> {
     private widgetId?: string;
     private subscriptionHandles: number[] = [];
-    private subscriptionCallback: (mxObject: mendix.lib.MxObject) => () => void;
     private referenceAttr: string;
     private loaderTimeout: number | null;
     private hasChildAttr: string;
@@ -93,9 +92,9 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             selectedObjects: []
         };
 
-        this.subscriptionCallback = mxObject => () => this.fetchData(mxObject);
         this.setLoader = this.setLoader.bind(this);
         this.resetSubscription = this.resetSubscription.bind(this);
+        this.clearSubscriptions = this.clearSubscriptions.bind(this);
         this.getColumnsFromDatasource = this.getColumnsFromDatasource.bind(this);
 
         this.getFormattedValue = this.getFormattedValue.bind(this);
@@ -110,6 +109,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         this.onSelect = this.onSelect.bind(this);
         this.onSelectAction = this.onSelectAction.bind(this);
         this.actionButtonClick = this.actionButtonClick.bind(this);
+        this.debug = this.debug.bind(this);
 
         if (this.staticColumns) {
             this.setTransFormColumns(props.columnList);
@@ -188,18 +188,28 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         }
     }
 
-    private resetSubscription(): void {
-        const { subscribe, unsubscribe } = window.mx.data;
+    private clearSubscriptions(): void {
+        const { unsubscribe } = window.mx.data;
 
-        if (this.subscriptionHandles) {
+        if (this.subscriptionHandles && this.subscriptionHandles.length > 0) {
             this.subscriptionHandles.forEach(unsubscribe);
             this.subscriptionHandles = [];
         }
+    }
+
+    private resetSubscription(): void {
+        this.debug("resetSubscriptions");
+        const { subscribe } = window.mx.data;
+
+        this.clearSubscriptions();
 
         if (this.props.mxObject && this.props.mxObject.getGuid) {
             this.subscriptionHandles.push(
                 subscribe({
-                    callback: this.subscriptionCallback(this.props.mxObject),
+                    callback: () => {
+                        this.clearSubscriptions();
+                        this.fetchData(this.props.mxObject);
+                    },
                     guid: this.props.mxObject.getGuid()
                 })
             );
@@ -211,7 +221,6 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     subscribe({
                         guid: row.key as string,
                         callback: () => {
-                            // console.log('subscription: ', index, row);
                             window.mx.data.get({
                                 guid: row.key as string,
                                 error: error => {
@@ -232,7 +241,6 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                                         if (findSelected !== -1) {
                                             selectedObjects.splice(findSelected, 1);
                                         }
-
                                         this.setState(
                                             {
                                                 selectedObjects,
@@ -375,6 +383,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private fetchByXpath(mxObject: mendix.lib.MxObject): void {
+        // this.debug('fetchByXpath', mxObject);
         const { constraint } = this.props;
         const requiresContext = constraint && constraint.indexOf("[%CurrentObject%]") > -1;
         const contextGuid = mxObject.getGuid();
@@ -396,6 +405,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private fetchByMf(microflow: string, mxObject?: mendix.lib.MxObject): void {
+        // this.debug('fetchByMf', microflow, mxObject);
         if (microflow) {
             window.mx.data.action({
                 callback: (mxObjects: mendix.lib.MxObject[]) => this.handleData(mxObjects, null, -1),
@@ -415,6 +425,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private fetchByNf(nanoflow: Nanoflow, mxObject?: mendix.lib.MxObject): void {
+        // this.debug('fetchByNf', nanoflow.nanoflow, mxObject);
         const context = this.getContext({ obj: mxObject });
         if (nanoflow) {
             window.mx.data.callNanoflow({
@@ -433,6 +444,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private handleData(objects: mendix.lib.MxObject[], parentKey?: string | null, level?: number): void {
+        // this.debug('handleData', objects, parentKey, level);
         objects = objects || [];
 
         const dataHandler = (): Promise<void> =>
@@ -533,14 +545,12 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         this.queue
             .add(dataHandler)
             .then(() => {
-                if (window.logger) {
-                    window.logger.debug(
-                        this.widgetId,
-                        "Data handled for",
-                        objects,
-                        `Queue length: ${this.queue.getPendingLength()}`
-                    );
-                }
+                this.debug(
+                    this.widgetId,
+                    "Data handled for",
+                    objects,
+                    `Queue length: ${this.queue.getPendingLength()}`
+                );
             })
             .catch(err => {
                 if (window.logger) {
@@ -855,6 +865,12 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             callback: () => {},
             error: () => {}
         });
+    }
+
+    private debug(...args: any) {
+        if (window.logger) {
+            window.logger.debug(this.widgetId, ...args);
+        }
     }
 
     static getColumns(columns: TreeviewColumnProps[], isStatic = true): TreeColumnProps[] {
