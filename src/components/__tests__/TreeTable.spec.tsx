@@ -123,9 +123,7 @@ describe("TreeTable", () => {
     });
 
     it("should expand rows with expanderFunc", async () => {
-        const rowsEmpty = [
-            { key: "0001", id: "001", title: "lvl0", text: "HASTEXT", children: [] }
-        ];
+        const rowsEmpty = [{ key: "0001", id: "001", title: "lvl0", text: "HASTEXT", children: [] }];
         const tableProps: TreeTableProps = {
             ...getTableProps(),
             columns: columns(),
@@ -207,7 +205,7 @@ describe("TreeTable", () => {
 
         checkBox.simulate("change", { target: { checked: true } });
 
-        const checkBox2 = table.find('.ant-table-thead input');
+        const checkBox2 = table.find(".ant-table-thead input");
         checkBox2.simulate("change", { target: { checked: false } });
 
         expect(table.state("selectedRowKeys")).toHaveLength(0);
@@ -248,7 +246,7 @@ describe("TreeTable", () => {
 
         expect(table.state("selectedRowKeys")).toHaveLength(1);
 
-        const checkBox = table.find('.ant-table-thead input');
+        const checkBox = table.find(".ant-table-thead input");
         checkBox.simulate("change", { target: { checked: false } });
 
         expect(table.state("selectedRowKeys")).toHaveLength(0);
