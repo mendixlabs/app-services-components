@@ -1,13 +1,13 @@
 {
   "name": "mxtreetable",
   "widgetName": "MxTreeTable",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "TreeTable widget",
   "copyright": "Mendix 2019",
   "author": "Jelte Lagendijk",
   "config": {
-    "widgetPath": "/Volumes/C/Projects/MendixProjects/NX Reporting-main/widgets",
-    "projectPath": "/Volumes/C/Projects/MendixProjects/NX Reporting-main/",
+    "widgetPath": "./dist/test/widgets",
+    "projectPath": "./dist/test/",
     "_widgetPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/widgets",
     "_projectPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/",
     "mendixHost": "http://10.211.55.3:8080",
