@@ -44,6 +44,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     private subscriptionHandles: number[] = [];
     private referenceAttr: string;
     private loaderTimeout: number | null;
+    private columnLoadTimeout: number | null;
     private hasChildAttr: string;
     private staticColumns: boolean;
     private columnPropsValid: boolean;
@@ -74,6 +75,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 (props.columnMethod === "microflow" && props.columnHeaderMicroflow !== ""));
 
         this.loaderTimeout = null;
+        this.columnLoadTimeout = null;
         this.transformNanoflows = {};
         this.subscriptionHandles = [];
         // We're creating a data queue that handles data changes one by one, max 1000 in the queue
@@ -207,7 +209,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             this.subscriptionHandles.push(
                 subscribe({
                     callback: () => {
-                        this.debug('subscription: context')
+                        this.debug("subscription: context");
                         this.clearSubscriptions();
                         this.fetchData(this.props.mxObject);
                     },
@@ -228,7 +230,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                                     MxTreeTable.logError(error.message);
                                 },
                                 callback: (res: mendix.lib.MxObject) => {
-                                    this.debug('subcription: row', index, row, res);
+                                    this.debug("subcription: row", index, row, res);
                                     // Object might have been removed!
                                     if (res === null) {
                                         const { rows } = this.state;
@@ -266,11 +268,23 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     subscribe({
                         guid: col,
                         callback: () => {
-                            this.debug('subscription: column', col);
+                            this.debug("subscription: column", col);
+                            // We're using a timeout, because in our typical projects multiple column subscriptions will be fired in parallel
+                            // That can become problematic when waiting for a getMicroflow. So we're debouncing this.
+                            if (this.columnLoadTimeout !== null) {
+                                window.clearTimeout(this.columnLoadTimeout);
+                                // this.columnLoadTimeout = null;
+                            }
                             this.clearSubscriptions();
-                            this.queue.add(
-                                () => this.getColumnsFromDatasource(this.props.mxObject).then(() => this.fetchData(this.props.mxObject))
-                            );
+                            this.columnLoadTimeout = window.setTimeout(() => {
+                                this.debug("subscription: column executed", col);
+                                this.queue.add(() =>
+                                    this.getColumnsFromDatasource(this.props.mxObject).then(() =>
+                                        this.fetchData(this.props.mxObject)
+                                    )
+                                );
+                                this.columnLoadTimeout = null;
+                            }, 100);
                         }
                     })
                 );
@@ -307,7 +321,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
 
         return this.executeAction(nodeObj).then((headerObjects: mendix.lib.MxObject[]) => {
             if (headerObjects && headerObjects.length > 0) {
-                const nodeEntity = mx.meta.getEntity(this.props.nodeEntity);
+                const nodeEntity = window.mx.meta.getEntity(this.props.nodeEntity);
                 const columns: TreeColumnProps[] = [];
                 headerObjects.forEach(obj => {
                     const headerAttribute = obj.get(columnHeaderAttrAttribute);
@@ -364,7 +378,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 callback
             );
         } else {
-            this.loaderTimeout = setTimeout(() => {
+            this.loaderTimeout = window.setTimeout(() => {
                 this.setState({
                     isLoading: true
                 });
@@ -388,7 +402,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private fetchByXpath(mxObject: mendix.lib.MxObject): void {
-        this.debug('fetchByXpath', mxObject);
+        this.debug("fetchByXpath", mxObject);
         const { constraint } = this.props;
         const requiresContext = constraint && constraint.indexOf("[%CurrentObject%]") > -1;
         const contextGuid = mxObject.getGuid();
@@ -410,7 +424,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private fetchByMf(microflow: string, mxObject?: mendix.lib.MxObject): void {
-        this.debug('fetchByMf', microflow, mxObject);
+        this.debug("fetchByMf", microflow, mxObject);
         if (microflow) {
             window.mx.data.action({
                 callback: (mxObjects: mendix.lib.MxObject[]) => this.handleData(mxObjects, null, -1),
@@ -430,7 +444,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private fetchByNf(nanoflow: Nanoflow, mxObject?: mendix.lib.MxObject): void {
-        this.debug('fetchByNf', nanoflow.nanoflow, mxObject);
+        this.debug("fetchByNf", nanoflow.nanoflow, mxObject);
         const context = this.getContext({ obj: mxObject });
         if (nanoflow) {
             window.mx.data.callNanoflow({
@@ -449,7 +463,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private handleData(objects: mendix.lib.MxObject[], parentKey?: string | null, level?: number): void {
-        this.debug('handleData', objects, parentKey, level);
+        this.debug("handleData", objects, parentKey, level);
         objects = objects || [];
 
         const dataHandler = (): Promise<void> =>
@@ -619,7 +633,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         } else if (type === "Boolean") {
             return ret ? "True" : "False";
         } else if (type === "Date" || type === "DateTime") {
-            return mx.parser.formatValue(ret, type.toLowerCase());
+            return window.mx.parser.formatValue(ret, type.toLowerCase());
         }
         return ret.valueOf ? ret.valueOf() : ret;
     }
@@ -723,7 +737,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     this.setState({ selectedObjects: unTouched });
                     this.onSelectAction();
                 } else {
-                    mx.data.get({
+                    window.mx.data.get({
                         guids: newIds,
                         callback: newObjs => {
                             this.setState({
@@ -750,7 +764,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         node: NodeObject,
         showError = true
     ): Promise<string | number | boolean | mendix.lib.MxObject | mendix.lib.MxObject[] | void> {
-        this.debug('executeAction', node);
+        this.debug("executeAction", node);
         const context = this.getContext(node);
 
         return new Promise((resolve, reject) => {
@@ -779,7 +793,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     callback: resolve,
                     error: error => {
                         if (showError) {
-                            mx.ui.error(
+                            window.mx.ui.error(
                                 `An error occurred while executing nanoflow ${node.nanoflow}: ${error.message}`
                             );
                         }
@@ -873,7 +887,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         });
     }
 
-    private debug(...args: any) {
+    private debug(...args: any): void {
         if (window.logger) {
             window.logger.debug(this.widgetId, ...args);
         }
