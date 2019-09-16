@@ -84,6 +84,7 @@ export function getVisibleProperties(props: MxTreeTableContainerProps, visibilit
     visibilityMap.selectClickSelect = props.selectMode !== "none";
     visibilityMap.selectHideCheckboxes = props.selectMode !== "none";
     visibilityMap.selectActionButtons = props.selectMode !== "none";
+    visibilityMap.selectSelectFirstOnSingle = props.selectMode === "single";
 
     visibilityMap.columnHeaderEntity = props.columnMethod !== "static";
     visibilityMap.columnHeaderAttrAttribute = props.columnMethod !== "static";

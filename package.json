@@ -6,8 +6,8 @@
   "copyright": "Mendix 2019",
   "author": "Jelte Lagendijk",
   "config": {
-    "widgetPath": "./dist/test/widgets",
-    "projectPath": "./dist/test/",
+    "widgetPath": "/Volumes/C/Projects/MendixProjects/NX Reporting-main/widgets",
+    "projectPath": "/Volumes/C/Projects/MendixProjects/NX Reporting-main/",
     "_widgetPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/widgets",
     "_projectPath": "/Volumes/C/Projects/MendixProjects/ReactTreeview-main/",
     "mendixHost": "http://10.211.55.3:8080",

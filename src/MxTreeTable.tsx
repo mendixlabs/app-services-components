@@ -23,6 +23,7 @@ interface MxTreeTableState {
     columns: TreeColumnProps[];
     rows: RowObject[];
     selectedObjects: mendix.lib.MxObject[];
+    selectFirstOnSingle: boolean;
 }
 
 export interface Nanoflow {
@@ -91,7 +92,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             columnGuids: [],
             columns,
             rows: [],
-            selectedObjects: []
+            selectedObjects: [],
+            selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single"
         };
 
         this.setLoader = this.setLoader.bind(this);
@@ -119,7 +121,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     render(): ReactNode {
-        const { columns, rows, isLoading, alertMessage, validColumns } = this.state;
+        const { columns, rows, isLoading, alertMessage, validColumns, selectFirstOnSingle } = this.state;
         const {
             uiSize,
             uiShowHeader,
@@ -156,7 +158,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             loading: isLoading,
             buttonBar,
             clickToSelect: selectClickSelect,
-            hideSelectBoxes: selectHideCheckboxes
+            hideSelectBoxes: selectHideCheckboxes,
+            selectFirst: selectFirstOnSingle
         });
     }
 
@@ -344,13 +347,15 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     columns,
                     columnGuids: headerObjects.map(obj => obj.getGuid()),
                     validColumns: true,
-                    isLoading: false
+                    isLoading: false,
+                    selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single"
                 });
             } else {
                 this.setState({
                     validColumns: false,
                     isLoading: false,
-                    alertMessage: "No dynamic columns loaded, not showing table"
+                    alertMessage: "No dynamic columns loaded, not showing table",
+                    selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single"
                 });
             }
         });
@@ -757,7 +762,11 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private onSelectAction(): void {
-        // TODO: Implement on selection change action
+        if (this.state.selectFirstOnSingle) {
+            this.setState({
+                selectFirstOnSingle: false
+            });
+        }
     }
 
     private executeAction(

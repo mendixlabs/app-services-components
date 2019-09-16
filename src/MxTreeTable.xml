@@ -349,6 +349,11 @@ NOTE: Non-persistent entities are discouraged as they have unpredictable behavio
             <category>Selection</category>
             <description>Hides the left column containing the checkboxes.</description>
         </property>
+        <property key="selectSelectFirstOnSingle" type="boolean" defaultValue="false">
+            <caption>Select first on single</caption>
+            <category>Selection</category>
+            <description>If enabled, it will automatically select the first row on load. Note: this might not always work when the columns change.</description>
+        </property>
         <property key="selectActionButtons" type="object" isList="true" required="false">
             <caption>Buttons</caption>
             <category>Selection</category>

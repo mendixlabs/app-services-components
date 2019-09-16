@@ -39,6 +39,7 @@ export interface TreeTableProps {
     loading: boolean;
     buttonBar?: ReactNode;
     hideSelectBoxes?: boolean;
+    selectFirst?: boolean;
 }
 
 interface TreeTableState {
@@ -110,7 +111,8 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
             buttonBar,
             clickToSelect,
             onClickOpenRow,
-            hideSelectBoxes
+            hideSelectBoxes,
+            selectFirst
         } = this.props;
         const { columns, rows, selectedRowKeys, expandedRowKeys } = this.state;
         const clearDebounce = (): void => {
@@ -154,16 +156,20 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
 
         let rowSelection: TableRowSelection<TableRecord> | undefined;
         if (selectMode !== "none") {
+            let selected = selectedRowKeys;
+            if (selectFirst && selectMode === "single" && selectedRowKeys.length === 0 && rows.length > 0) {
+                selected = [rows[0].key];
+            }
             rowSelection = {
                 type: "checkbox",
-                selectedRowKeys,
+                selectedRowKeys: selected,
                 onChange: (keys: string[]) => {
                     if (selectMode === "multi") {
                         this.setSelected(keys);
                     }
                 },
                 onSelectAll: () => {
-                    if (selectMode === "single" && selectedRowKeys.length > 0) {
+                    if (selectMode === "single" && selected.length > 0) {
                         this.setSelected([]);
                     }
                 },
