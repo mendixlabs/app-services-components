@@ -82,11 +82,17 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
         super(props);
 
         const rows = this.createTree(props.rows);
+
+        let selected: string[] = [];
+        if (props.selectFirst && props.selectMode === "single" && rows.length > 0) {
+            selected = [rows[0].key];
+        }
+
         this.state = {
             searchColumn: "all",
             rows,
             columns: this.getColumns(props.columns),
-            selectedRowKeys: [],
+            selectedRowKeys: selected,
             expandedRowKeys: []
         };
         this.debounce = null;
@@ -111,8 +117,7 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
             buttonBar,
             clickToSelect,
             onClickOpenRow,
-            hideSelectBoxes,
-            selectFirst
+            hideSelectBoxes
         } = this.props;
         const { columns, rows, selectedRowKeys, expandedRowKeys } = this.state;
         const clearDebounce = (): void => {
@@ -156,20 +161,16 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
 
         let rowSelection: TableRowSelection<TableRecord> | undefined;
         if (selectMode !== "none") {
-            let selected = selectedRowKeys;
-            if (selectFirst && selectMode === "single" && selectedRowKeys.length === 0 && rows.length > 0) {
-                selected = [rows[0].key];
-            }
             rowSelection = {
                 type: "checkbox",
-                selectedRowKeys: selected,
+                selectedRowKeys,
                 onChange: (keys: string[]) => {
                     if (selectMode === "multi") {
                         this.setSelected(keys);
                     }
                 },
                 onSelectAll: () => {
-                    if (selectMode === "single" && selected.length > 0) {
+                    if (selectMode === "single" && selectedRowKeys.length > 0) {
                         this.setSelected([]);
                     }
                 },

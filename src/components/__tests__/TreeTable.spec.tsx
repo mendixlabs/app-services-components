@@ -122,6 +122,27 @@ describe("TreeTable", () => {
         expect(visible).toEqual(2);
     });
 
+    it("should expand rows with expanderFunc", async () => {
+        const rowsEmpty = [
+            { key: "0001", id: "001", title: "lvl0", text: "HASTEXT", children: [] }
+        ];
+        const tableProps: TreeTableProps = {
+            ...getTableProps(),
+            columns: columns(),
+            rows: rowsEmpty,
+            expanderFunc: jasmine.createSpy("onExpand")
+        };
+        const table = createFullTable(tableProps);
+        const expandButton = table
+            .find(".ant-table-tbody tr")
+            .first()
+            .find(".ant-table-row-expand-icon")
+            .first();
+
+        expandButton.simulate("click");
+        expect(tableProps.expanderFunc).toHaveBeenCalledTimes(1);
+    });
+
     it("should execute a click on rows", async () => {
         const tableProps: TreeTableProps = {
             ...getTableProps(),
@@ -183,6 +204,27 @@ describe("TreeTable", () => {
         checkBox.simulate("change", { target: { checked: false } });
 
         expect(table.state("selectedRowKeys")).toHaveLength(0);
+
+        checkBox.simulate("change", { target: { checked: true } });
+
+        const checkBox2 = table.find('.ant-table-thead input');
+        checkBox2.simulate("change", { target: { checked: false } });
+
+        expect(table.state("selectedRowKeys")).toHaveLength(0);
+    });
+
+    it("should select single on first", async () => {
+        const tableProps: TreeTableProps = {
+            ...getTableProps(),
+            columns: columns(),
+            rows: rows(),
+            selectMode: "single",
+            clickToSelect: true,
+            selectFirst: true
+        };
+
+        const table = createFullTable(tableProps);
+        expect(table.state("selectedRowKeys")).toHaveLength(1);
     });
 
     it("should select multi rows", async () => {
@@ -205,5 +247,27 @@ describe("TreeTable", () => {
         await wait(500);
 
         expect(table.state("selectedRowKeys")).toHaveLength(1);
+
+        const checkBox = table.find('.ant-table-thead input');
+        checkBox.simulate("change", { target: { checked: false } });
+
+        expect(table.state("selectedRowKeys")).toHaveLength(0);
+    });
+
+    it("should set props", async () => {
+        const tableProps: TreeTableProps = {
+            ...getTableProps(),
+            columns: columns(),
+            rows: rows(),
+            selectMode: "single",
+            clickToSelect: true,
+            selectFirst: true
+        };
+
+        const table = createFullTable(tableProps);
+
+        table.setProps({ rows: [] });
+
+        expect(table.state("rows")).toHaveLength(0);
     });
 });
