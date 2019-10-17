@@ -40,6 +40,7 @@ export interface TreeTableProps {
     buttonBar?: ReactNode;
     hideSelectBoxes?: boolean;
     selectFirst?: boolean;
+    lastLoadFromContext: number;
 }
 
 interface TreeTableState {
@@ -49,6 +50,7 @@ interface TreeTableState {
     alertMessage?: string;
     selectedRowKeys: string[];
     expandedRowKeys: string[];
+    lastLoadFromContext: number;
 }
 
 export interface TableRecord {
@@ -63,6 +65,7 @@ export interface RowObject {
     key: string;
     _parent?: string;
     _icon?: string;
+    _mxReferences?: string[];
     [other: string]: any;
 }
 
@@ -93,7 +96,8 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
             rows,
             columns: this.getColumns(props.columns),
             selectedRowKeys: selected,
-            expandedRowKeys: []
+            expandedRowKeys: [],
+            lastLoadFromContext: props.lastLoadFromContext
         };
         this.debounce = null;
         this.onRowClick = this.onRowClick.bind(this);
@@ -224,6 +228,12 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
             columns: this.getColumns(newProps.columns),
             rows: this.createTree(newProps.rows)
         });
+        if (newProps.lastLoadFromContext !== this.state.lastLoadFromContext) {
+            this.setState({
+                lastLoadFromContext: newProps.lastLoadFromContext
+            });
+            this.collapseAll();
+        }
     }
 
     private setSelected(keys: string[]): void {
@@ -250,11 +260,11 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
     //     });
     // }
 
-    // private collapseAll(): void {
-    //     this.setState({
-    //         expandedRowKeys: []
-    //     });
-    // }
+    private collapseAll(): void {
+        this.setState({
+            expandedRowKeys: []
+        });
+    }
 
     private createTree(rows: RowObject[]): Tree<RowObject[]> {
         const tree = arrayToTree(rows, arrayToTreeOpts);

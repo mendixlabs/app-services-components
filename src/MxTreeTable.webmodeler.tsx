@@ -52,7 +52,8 @@ export class preview extends Component<MxTreeTableContainerProps> {
             showHeader: props.uiShowHeader,
             selectMode: "none",
             clickToSelect: true,
-            loading: false
+            loading: false,
+            lastLoadFromContext: 0
         };
     }
 }

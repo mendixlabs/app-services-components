@@ -24,10 +24,17 @@ const columns = (): TreeColumnProps[] => {
 
 const rows = (): RowObject[] => {
     return [
-        { key: "0001", id: "001", title: "lvl0", text: "HASTEXT", _className: "row-class-awesome" },
-        { key: "0002", id: "002", title: "lvl1", text: "HASTEXT", _parent: "0001" },
-        { key: "0003", id: "003", title: "lvl1", text: "HASTEXT", _parent: "0001" },
-        { key: "0004", id: "004", title: "lvl0", text: "HASTEXT", _icon: "test" }
+        {
+            key: "0001",
+            id: "001",
+            title: "lvl0",
+            text: "HASTEXT",
+            _className: "row-class-awesome",
+            _childrenLoaded: true
+        },
+        { key: "0002", id: "002", title: "lvl1", text: "HASTEXT", _parent: "0001", _childrenLoaded: true },
+        { key: "0003", id: "003", title: "lvl1", text: "HASTEXT", _parent: "0001", _childrenLoaded: true },
+        { key: "0004", id: "004", title: "lvl0", text: "HASTEXT", _icon: "test", _childrenLoaded: true }
     ];
 };
 
@@ -39,7 +46,8 @@ const getTableProps = (): TreeTableProps => {
         showHeader: true,
         selectMode: "none",
         loading: false,
-        clickToSelect: false
+        clickToSelect: false,
+        lastLoadFromContext: 0
     };
 };
 

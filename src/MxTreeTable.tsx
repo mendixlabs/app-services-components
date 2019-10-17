@@ -23,6 +23,7 @@ interface MxTreeTableState {
     rows: RowObject[];
     selectedObjects: mendix.lib.MxObject[];
     selectFirstOnSingle: boolean;
+    lastLoadFromContext: number;
 }
 
 export interface Nanoflow {
@@ -92,7 +93,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             columns,
             rows: [],
             selectedObjects: [],
-            selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single"
+            selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single",
+            lastLoadFromContext: +new Date()
         };
 
         this.setLoader = this.setLoader.bind(this);
@@ -120,7 +122,15 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     render(): ReactNode {
-        const { columns, rows, isLoading, alertMessage, validColumns, selectFirstOnSingle } = this.state;
+        const {
+            columns,
+            rows,
+            isLoading,
+            alertMessage,
+            validColumns,
+            selectFirstOnSingle,
+            lastLoadFromContext
+        } = this.state;
         const {
             uiSize,
             uiShowHeader,
@@ -158,7 +168,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             buttonBar,
             clickToSelect: selectClickSelect,
             hideSelectBoxes: selectHideCheckboxes,
-            selectFirst: selectFirstOnSingle
+            selectFirst: selectFirstOnSingle,
+            lastLoadFromContext
         });
     }
 
@@ -204,6 +215,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     private resetSubscription(): void {
         this.debug("resetSubscriptions");
         const { subscribe } = window.mx.data;
+        const { rows } = this.state;
 
         this.clearSubscriptions();
 
@@ -220,8 +232,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             );
         }
 
-        if (this.state.rows && this.state.rows.length > 0) {
-            this.state.rows.forEach((row, index) => {
+        if (rows && rows.length > 0) {
+            rows.forEach((row, index) => {
                 this.subscriptionHandles.push(
                     subscribe({
                         guid: row.key as string,
@@ -235,7 +247,6 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                                     this.debug("subcription: row", index, row, res);
                                     // Object might have been removed!
                                     if (res === null) {
-                                        const { rows } = this.state;
                                         // Remove element from rows
                                         const cloned = clone(rows);
                                         cloned.splice(index, 1);
@@ -255,6 +266,18 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                                         );
                                     } else {
                                         this.handleData([res], row._parent);
+                                        if (
+                                            this.props.childMethod === "microflow" ||
+                                            this.props.childMethod === "nanoflow"
+                                        ) {
+                                            // If object already exists and has children, we will reload all children;
+                                            const hasChildren =
+                                                rows.filter(findRow => findRow._parent && findRow._parent === row.key)
+                                                    .length > 0;
+                                            if (hasChildren) {
+                                                this.expanderFunc(row, 0);
+                                            }
+                                        }
                                     }
                                 }
                             });
@@ -545,10 +568,37 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                                         this.expanderFunc(obj, level - 1);
                                     }
                                 } else {
+                                    if (obj._mxReferences && obj._mxReferences.length > 0) {
+                                        // Are there reference that have not been loaded yet?
+                                        const unFoundRows = obj._mxReferences.filter(
+                                            o => currentRows.filter(c => c.key === o).length === 0
+                                        );
+                                        // Does this node already have nodes loaded?
+                                        const hasRows =
+                                            currentRows.filter(row => row._parent && row._parent === obj.key).length >
+                                            0;
+                                        if (hasRows && unFoundRows.length > 0) {
+                                            // Node has children, but some references that have not been loaded yet. Load them all;
+                                            unFoundRows.forEach(guid => {
+                                                mx.data.get({
+                                                    guid,
+                                                    callback: unFoundObject => {
+                                                        this.handleData([unFoundObject], obj.key);
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    }
                                     currentRows.splice(objIndex, 1, obj);
                                 }
                             });
                             this.setLoader(false);
+                            if (level === -1) {
+                                // As this level means we're reloading root data, we have to reset the expandedRows;
+                                this.setState({
+                                    lastLoadFromContext: +new Date()
+                                });
+                            }
                             this.setState({ rows: currentRows }, () => {
                                 this.resetSubscription();
                                 resolveData();
@@ -643,8 +693,9 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 
     private expanderFunc(record: TableRecord | RowObject, level: number): void {
-        if (record._mxReferences && record._mxReferences.length > 0) {
+        if (typeof record._mxReferences !== "undefined" && record._mxReferences.length > 0) {
             this.setLoader(true, () => {
+                const guids = record._mxReferences as string[];
                 window.mx.data.get({
                     callback: mxObjects => this.handleData(mxObjects, record.key, level),
                     error: error => {
@@ -653,7 +704,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                             alertMessage: `An error occurred while retrieving child items for ${record.key}: ${error}`
                         });
                     },
-                    guids: record._mxReferences
+                    guids
                 });
             });
         } else if (record._mxHasChildren && record.key) {
