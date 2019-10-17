@@ -1,6 +1,9 @@
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const path = require("path");
+
+const args = process.argv.slice(2);
+
 const baseConfig = require("./node_modules/@mendix/pluggable-widgets-tools/configs/webpack.config.prod.js");//Can also be webpack.config.prod.js
 
 const TerserPlugin = require("terser-webpack-plugin");
@@ -29,8 +32,6 @@ baseConfig[1].module.rules[1].use.options.presets[0] = [
         "corejs": "2"
     }
 ]
-
-baseConfig[0].resolve.alias
 
 const customConfig = {
     // Custom configuration goes here
@@ -74,6 +75,11 @@ const customConfig = {
         }
     }
 };
+
+if (args.length === 5 && args[4] === "--analyze") {
+    customConfig.plugins.push(new BundleAnalyzerPlugin());
+}
+
 const previewConfig = {
     // Custom configuration goes here
     // devtool: "source-map"
