@@ -3,7 +3,6 @@ import { findDOMNode } from "react-dom";
 
 import clone from "lodash/clone";
 import defaults from "lodash/defaults";
-import findIndex from "lodash/findIndex";
 import { hot } from "react-hot-loader/root";
 import Queue from "promise-queue";
 
@@ -243,7 +242,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
 
                                         // If we have an object that has been removed, we also need to remove it from our selection
                                         const { selectedObjects } = this.state;
-                                        const findSelected = findIndex(selectedObjects, el => el.getGuid() === row.key);
+                                        const findSelected = selectedObjects.findIndex(el => el.getGuid() === row.key);
                                         if (findSelected !== -1) {
                                             selectedObjects.splice(findSelected, 1);
                                         }
@@ -539,7 +538,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                             // eslint-disable-next-line
                             const currentRows: RowObject[] = level === -1 ? [] : clone(this.state.rows);
                             objs.forEach(obj => {
-                                const objIndex = findIndex(currentRows, { key: obj.key });
+                                const objIndex = currentRows.findIndex(row => row.key === obj.key);
                                 if (objIndex === -1) {
                                     currentRows.push(obj);
                                     if (typeof level !== "undefined" && level > 0 && obj.key) {
