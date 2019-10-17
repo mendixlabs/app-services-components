@@ -369,16 +369,33 @@ NOTE: Non-persistent entities are discouraged as they have unpredictable behavio
                     <category>Button</category>
                     <description>Extra class names</description>
                 </property>
-                <property key="selectABMicroflowMulti" type="microflow" required="false" entityProperty="../nodeEntity" parameterIsList="true">
+                <property key="selectABHideOnNotApplicable" type="boolean" defaultValue="true">
+                    <caption>Hide when not applicable</caption>
+                    <category>Button</category>
+                    <description>If this is set to 'true', it will hide the button when it does not have an applicable action for the selection (none/single/multi). If not, it will only disable the button.</description>
+                </property>
+                <property key="selectABMicroflowObjectMulti" type="microflow" required="false" entityProperty="../nodeEntity" parameterIsList="true">
                     <caption>Multi Microflow</caption>
                     <category>Button</category>
-                    <description>Only applies to Select Mode = 'Multi'</description>
+                    <description>Executed when MULTIPLE objects are selected. Note that this microflow is never executed when Select Mode = 'single'.
+
+Microflow input parameter: Object - Node</description>
                     <returnType type="Void" />
                 </property>
-                <property key="selectABMicroflowSingle" type="microflow" required="false" entityProperty="../nodeEntity">
+                <property key="selectABMicroflowObjectSingle" type="microflow" required="false" entityProperty="../nodeEntity">
                     <caption>Single Microflow</caption>
                     <category>Button</category>
-                    <description>Only applies to Select Mode = 'Single'</description>
+                    <description>Executed when a SINGLE object is selected. We make a clear distinction between multi/single due to restrictions in the Modeler. Please note that this has nothing to do with the Select Mode, purely how many objects are selected.
+
+Microflow input parameter: List - Node</description>
+                    <returnType type="Void" />
+                </property>
+                <property key="selectABMicroflowObjectNone" type="microflow" required="false">
+                    <caption>None Microflow</caption>
+                    <category>Button</category>
+                    <description>Executed when NO object is selected.
+
+Microflow input parameter: Object - Context object</description>
                     <returnType type="Void" />
                 </property>
             </properties>

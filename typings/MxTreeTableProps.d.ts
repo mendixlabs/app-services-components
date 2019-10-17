@@ -30,8 +30,10 @@ export interface TreeviewColumnProps {
 export interface ActionButtonProps {
     selectABLabel: string;
     selectABClass: string;
-    selectABMicroflowMulti: string;
-    selectABMicroflowSingle: string;
+    selectABHideOnNotApplicable: boolean;
+    selectABMicroflowObjectMulti: string;
+    selectABMicroflowObjectSingle: string;
+    selectABMicroflowObjectNone: string;
 }
 
 export interface MxTreeTableContainerProps extends CommonProps {

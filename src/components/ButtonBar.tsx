@@ -5,6 +5,7 @@ export interface ButtonBarButtonProps {
     caption: string;
     className?: string;
     disabled?: boolean;
+    hidden?: boolean;
     onClick: () => void;
 }
 
@@ -30,7 +31,7 @@ export class ButtonBar extends Component<ButtonBarProps> {
                     "button",
                     {
                         key: `widget-treetable-buttonbar-button-${index}`,
-                        className: classNames("btn mx-button", button.className, button.disabled ? "disabled" : ""),
+                        className: classNames("btn mx-button", button.className, button.disabled ? "disabled" : "", button.hidden ? "hidden" : ""),
                         disabled: button.disabled ? "disabled" : false,
                         onClick: button.onClick
                     },

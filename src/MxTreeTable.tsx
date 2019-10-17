@@ -847,28 +847,44 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
 
     private getButtons(actionButtons: ActionButtonProps[]): ReactNode {
         const { selectedObjects } = this.state;
-        const { selectMode } = this.props;
         const filteredButtons = actionButtons
             .filter(
                 button =>
                     button.selectABLabel &&
-                    ((selectMode === "single" && button.selectABMicroflowSingle) ||
-                        (selectMode === "multi" && button.selectABMicroflowMulti))
+                    (button.selectABMicroflowObjectMulti ||
+                        button.selectABMicroflowObjectNone ||
+                        button.selectABMicroflowObjectSingle)
             )
             .map(button => {
+                const {
+                    selectABMicroflowObjectMulti,
+                    selectABMicroflowObjectNone,
+                    selectABMicroflowObjectSingle
+                } = button;
+                const disabled =
+                    (!(selectedObjects && selectedObjects.length > 0) && !selectABMicroflowObjectNone) ||
+                    (selectedObjects.length === 1 && !selectABMicroflowObjectSingle) ||
+                    (selectedObjects.length > 1 && !selectABMicroflowObjectMulti);
+
                 const buttonProp: ButtonBarButtonProps = {
                     caption: button.selectABLabel,
-                    disabled: !(selectedObjects && selectedObjects.length > 0),
+                    disabled,
+                    hidden: button.selectABHideOnNotApplicable && disabled,
                     onClick: () => {}
                 };
                 if (button.selectABClass) {
                     buttonProp.className = button.selectABClass;
                 }
-                if (button.selectABMicroflowMulti) {
-                    buttonProp.onClick = () => this.actionButtonClick(button.selectABMicroflowMulti);
-                } else if (button.selectABMicroflowSingle) {
-                    buttonProp.onClick = () => this.actionButtonClick(button.selectABMicroflowSingle);
-                }
+                buttonProp.onClick = () => {
+                    const { selectedObjects } = this.state;
+                    if (selectedObjects.length === 0 && this.props.mxObject && selectABMicroflowObjectNone) {
+                        this.actionButtonClick(selectABMicroflowObjectNone, [this.props.mxObject]);
+                    } else if (selectedObjects.length === 1 && selectABMicroflowObjectSingle) {
+                        this.actionButtonClick(selectABMicroflowObjectSingle, selectedObjects);
+                    } else if (selectedObjects.length > 1 && selectABMicroflowObjectMulti) {
+                        this.actionButtonClick(selectABMicroflowObjectMulti, selectedObjects);
+                    }
+                };
                 return buttonProp;
             });
         if (filteredButtons.length === 0) {
@@ -880,14 +896,13 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         });
     }
 
-    private actionButtonClick(microflow: string): void {
-        const { selectedObjects } = this.state;
+    private actionButtonClick(microflow: string, objects: mendix.lib.MxObject[]): void {
         const { mxform } = this.props;
         window.mx.data.action({
             params: {
                 actionname: microflow,
                 applyto: "selection",
-                guids: selectedObjects.map(obj => obj.getGuid())
+                guids: objects.map(obj => obj.getGuid())
             },
             origin: mxform,
             callback: () => {},
