@@ -6,10 +6,10 @@ import defaults from "lodash/defaults";
 import { hot } from "react-hot-loader/root";
 import Queue from "promise-queue";
 import { executeMicroflow, executeNanoFlow, openPage } from "@jeltemx/mendix-react-widget-utils/lib/actions";
-import { getObjects } from "@jeltemx/mendix-react-widget-utils/lib/objects";
+import { getObjects, createObject, commitObject, getObject } from "@jeltemx/mendix-react-widget-utils/lib/objects";
 
 import { createCamelcaseId, fetchAttr } from "./util";
-import { validateProps } from "./util/validation";
+import { validateProps, ExtraMXValidateProps } from "./util/validation";
 
 import { MxTreeTableContainerProps, TreeviewColumnProps, ActionButtonProps } from "../typings/MxTreeTableProps";
 import { TreeTable, RowObject, TableRecord, TreeColumnProps } from "./components/TreeTable";
@@ -49,6 +49,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     private loaderTimeout: number | null;
     private columnLoadTimeout: number | null;
     private hasChildAttr: string;
+    private helperNodeReference: string;
+    private helperContextReference: string;
     private staticColumns: boolean;
     private columnPropsValid: boolean;
     private queue: Queue;
@@ -69,13 +71,17 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 ? props.childBoolean
                 : "";
 
+        this.helperNodeReference = props.helperNodeReference ? props.helperNodeReference.split("/")[0] : "";
+        this.helperContextReference = props.helperContextReference ? props.helperContextReference.split("/")[0] : "";
+
         this.staticColumns = props.columnMethod === "static";
         this.columnPropsValid =
             this.staticColumns ||
             (props.columnHeaderEntity !== "" &&
                 props.columnHeaderLabelAttribute !== "" &&
                 props.columnHeaderAttrAttribute !== "" &&
-                (props.columnMethod === "microflow" && props.columnHeaderMicroflow !== ""));
+                props.columnMethod === "microflow" &&
+                props.columnHeaderMicroflow !== "");
 
         this.loaderTimeout = null;
         this.columnLoadTimeout = null;
@@ -84,7 +90,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         // We're creating a data queue that handles data changes one by one, max 1000 in the queue
         this.queue = new Queue(1, 1000);
 
-        const alertMessage = validateProps(props);
+        const extraValidations = this.getMXValidations(props);
+        const alertMessage = validateProps(props, extraValidations);
         const columns = MxTreeTable.getColumns(props.columnList, this.staticColumns);
 
         this.state = {
@@ -99,24 +106,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             lastLoadFromContext: +new Date()
         };
 
-        this.setLoader = this.setLoader.bind(this);
-        this.resetSubscription = this.resetSubscription.bind(this);
-        this.clearSubscriptions = this.clearSubscriptions.bind(this);
-        this.getColumnsFromDatasource = this.getColumnsFromDatasource.bind(this);
-
-        this.getFormattedValue = this.getFormattedValue.bind(this);
-        this.getFormattedOrTransformed = this.getFormattedOrTransformed.bind(this);
-        this.getObjectKeyPairs = this.getObjectKeyPairs.bind(this);
-        this.executeAction = this.executeAction.bind(this);
-        this.setTransFormColumns = this.setTransFormColumns.bind(this);
-
-        this.expanderFunc = this.expanderFunc.bind(this);
-        this.onClick = this.onClick.bind(this);
-        this.onDblClick = this.onDblClick.bind(this);
-        this.onSelect = this.onSelect.bind(this);
-        this.onSelectAction = this.onSelectAction.bind(this);
-        this.actionButtonClick = this.actionButtonClick.bind(this);
-        this.debug = this.debug.bind(this);
+        this.bindMethods();
 
         if (this.staticColumns) {
             this.setTransFormColumns(props.columnList);
@@ -203,6 +193,41 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         if (this.subscriptionHandles) {
             this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
         }
+    }
+
+    private bindMethods(): void {
+        this.setLoader = this.setLoader.bind(this);
+        this.resetSubscription = this.resetSubscription.bind(this);
+        this.clearSubscriptions = this.clearSubscriptions.bind(this);
+        this.getColumnsFromDatasource = this.getColumnsFromDatasource.bind(this);
+
+        this.getFormattedValue = this.getFormattedValue.bind(this);
+        this.getFormattedOrTransformed = this.getFormattedOrTransformed.bind(this);
+        this.getObjectKeyPairs = this.getObjectKeyPairs.bind(this);
+        this.executeAction = this.executeAction.bind(this);
+        this.setTransFormColumns = this.setTransFormColumns.bind(this);
+
+        this.expanderFunc = this.expanderFunc.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.onDblClick = this.onDblClick.bind(this);
+        this.onSelect = this.onSelect.bind(this);
+        this.onSelectAction = this.onSelectAction.bind(this);
+        this.actionButtonClick = this.actionButtonClick.bind(this);
+        this.createHelperObject = this.createHelperObject.bind(this);
+
+        this.debug = this.debug.bind(this);
+    }
+
+    private getMXValidations(props: MxTreeTableContainerProps): ExtraMXValidateProps {
+        const extraProps: ExtraMXValidateProps = {};
+        const { helperEntity } = props;
+
+        if (helperEntity !== "") {
+            const entity = window.mx.meta.getEntity(helperEntity);
+            extraProps.helperObjectPersistence = entity.isPersistable();
+        }
+
+        return extraProps;
     }
 
     private clearSubscriptions(): void {
@@ -400,9 +425,12 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             this.loaderTimeout = null;
         }
         if (!loaderState) {
-            this.setState({
-                isLoading: false
-            }, callback);
+            this.setState(
+                {
+                    isLoading: false
+                },
+                callback
+            );
         } else {
             this.loaderTimeout = window.setTimeout(() => {
                 this.setState({
@@ -735,41 +763,56 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
 
     private onClick(record: TableRecord): void {
         if (record && record.key) {
-            const node: NodeObject = {
-                key: record.key
-            };
             const { onClickAction, onClickMf, onClickNf, onClickForm, onClickOpenPageAs } = this.props;
-            if (onClickAction === "mf" && onClickMf) {
-                node.microflow = onClickMf;
+            if (onClickAction === "open" && onClickForm) {
+                const node: NodeObject = {
+                    key: record.key,
+                    openpage: onClickForm,
+                    openpageas: onClickOpenPageAs
+                };
+                this.executeAction(node);
+            } else if (onClickAction === "mf" && onClickMf) {
+                this.clickAction(record.key, onClickMf, null);
             } else if (onClickAction === "nf" && onClickNf) {
-                node.nanoflow = onClickNf;
-            } else if (onClickAction === "open" && onClickForm) {
-                node.openpage = onClickForm;
-                node.openpageas = onClickOpenPageAs;
-            } else {
-                return;
+                this.clickAction(record.key, null, onClickNf);
             }
-            this.executeAction(node);
         }
     }
 
     private onDblClick(record: TableRecord): void {
         if (record && record.key) {
-            const node: NodeObject = {
-                key: record.key
-            };
             const { onDblClickAction, onDblClickMf, onDblClickNf, onDblClickForm, onDblClickOpenPageAs } = this.props;
-            if (onDblClickAction === "mf" && onDblClickMf) {
-                node.microflow = onDblClickMf;
+            if (onDblClickAction === "open" && onDblClickForm) {
+                const node: NodeObject = {
+                    key: record.key,
+                    openpage: onDblClickForm,
+                    openpageas: onDblClickOpenPageAs
+                };
+                this.executeAction(node);
+            } else if (onDblClickAction === "mf" && onDblClickMf) {
+                this.clickAction(record.key, onDblClickMf, null);
             } else if (onDblClickAction === "nf" && onDblClickNf) {
-                node.nanoflow = onDblClickNf;
-            } else if (onDblClickAction === "open" && onDblClickForm) {
-                node.openpage = onDblClickForm;
-                node.openpageas = onDblClickOpenPageAs;
-            } else {
-                return;
+                this.clickAction(record.key, null, onDblClickNf);
             }
-            this.executeAction(node);
+        }
+    }
+
+    private async clickAction(selectedGuid: string, mf: string | null, nf: Nanoflow | null): Promise<void> {
+        const nodeObject = await getObject(selectedGuid);
+        if (!nodeObject) {
+            return;
+        }
+        const helperObject = await this.createHelperObject([nodeObject]);
+        if (!helperObject) {
+            return;
+        }
+        const context = new window.mendix.lib.MxContext();
+        context.setContext(helperObject.getEntity(), helperObject.getGuid());
+
+        if (mf !== null) {
+            executeMicroflow(mf, context, this.props.mxform, true);
+        } else if (nf !== null) {
+            executeNanoFlow(nf, context, this.props.mxform, true);
         }
     }
 
@@ -789,14 +832,17 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     this.setState({ selectedObjects: unTouched });
                     this.onSelectAction();
                 } else {
-                    getObjects(newIds).then(newObjects => {
-                        const newObjs: mendix.lib.MxObject[] = newObjects || [];
-                        this.setState({
-                            selectedObjects: [...newObjs, ...unTouched]
+                    getObjects(newIds)
+                        .then(newObjects => {
+                            const newObjs: mendix.lib.MxObject[] = newObjects || [];
+                            this.setState({
+                                selectedObjects: [...newObjs, ...unTouched]
+                            });
+                            this.onSelectAction();
+                        })
+                        .catch(err => {
+                            throw err;
                         });
-                        this.onSelectAction();
-
-                    }).catch(err => { throw(err) });
                 }
             } catch (error) {
                 window.mx.ui.error(`An error occurred while setting selection: ${error.message}`);
@@ -827,7 +873,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             return openPage({ pageName: node.openpage, openAs: node.openpageas || "popup" }, context, showError);
         }
 
-        return Promise.reject("Incorrect action");
+        return Promise.reject(new Error("Incorrect action"));
     }
 
     private getContext(node: NodeObject): mendix.lib.MxContext {
@@ -853,20 +899,12 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             .filter(
                 button =>
                     button.selectABLabel &&
-                    (button.selectABMicroflowObjectMulti ||
-                        button.selectABMicroflowObjectNone ||
-                        button.selectABMicroflowObjectSingle)
+                    (button.selectABMicroflow || (button.selectABNanoflow && button.selectABNanoflow.nanoflow))
             )
             .map(button => {
-                const {
-                    selectABMicroflowObjectMulti,
-                    selectABMicroflowObjectNone,
-                    selectABMicroflowObjectSingle
-                } = button;
-                const disabled =
-                    (!(selectedObjects && selectedObjects.length > 0) && !selectABMicroflowObjectNone) ||
-                    (selectedObjects.length === 1 && !selectABMicroflowObjectSingle) ||
-                    (selectedObjects.length > 1 && !selectABMicroflowObjectMulti);
+                const { selectABAction, selectABMicroflow, selectABNanoflow } = button;
+
+                const disabled = !(selectedObjects && selectedObjects.length > 0);
 
                 const buttonProp: ButtonBarButtonProps = {
                     caption: button.selectABLabel,
@@ -877,14 +915,16 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 if (button.selectABClass) {
                     buttonProp.className = button.selectABClass;
                 }
+
                 buttonProp.onClick = () => {
                     const { selectedObjects } = this.state;
-                    if (selectedObjects.length === 0 && this.props.mxObject && selectABMicroflowObjectNone) {
-                        this.actionButtonClick(selectABMicroflowObjectNone, [this.props.mxObject]);
-                    } else if (selectedObjects.length === 1 && selectABMicroflowObjectSingle) {
-                        this.actionButtonClick(selectABMicroflowObjectSingle, selectedObjects);
-                    } else if (selectedObjects.length > 1 && selectABMicroflowObjectMulti) {
-                        this.actionButtonClick(selectABMicroflowObjectMulti, selectedObjects);
+
+                    if (selectedObjects.length > 0) {
+                        if (selectABAction === "mf" && selectABMicroflow) {
+                            this.actionButtonClick(selectedObjects, selectABMicroflow, null);
+                        } else if (selectABAction === "nf" && selectABNanoflow) {
+                            this.actionButtonClick(selectedObjects, null, selectABNanoflow);
+                        }
                     }
                 };
                 return buttonProp;
@@ -898,18 +938,53 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         });
     }
 
-    private actionButtonClick(microflow: string, objects: mendix.lib.MxObject[]): void {
+    private async actionButtonClick(
+        objects: mendix.lib.MxObject[],
+        mf: string | null,
+        nf: Nanoflow | null
+    ): Promise<void> {
         const { mxform } = this.props;
-        window.mx.data.action({
-            params: {
-                actionname: microflow,
-                applyto: "selection",
-                guids: objects.map(obj => obj.getGuid())
-            },
-            origin: mxform,
-            callback: () => {},
-            error: () => {}
-        });
+
+        const helperObject = await this.createHelperObject(objects);
+
+        if (helperObject === null) {
+            return;
+        }
+
+        const context = new window.mendix.lib.MxContext();
+        context.setContext(helperObject.getEntity(), helperObject.getGuid());
+
+        if (mf !== null) {
+            executeMicroflow(mf, context, mxform);
+        } else if (nf !== null) {
+            executeNanoFlow(nf, context, mxform);
+        }
+    }
+
+    private async createHelperObject(nodeObjects?: mendix.lib.MxObject[]): Promise<mendix.lib.MxObject | null> {
+        this.debug("createHelperObject", nodeObjects && nodeObjects.length);
+        if (!this.props.helperEntity || !this.helperContextReference || !this.helperNodeReference) {
+            window.mx.ui.error("Missing Helper entity and/or references");
+            return null;
+        }
+
+        const helperObject = await createObject(this.props.helperEntity);
+
+        if (this.props.mxObject) {
+            helperObject.addReference(this.helperContextReference, this.props.mxObject.getGuid());
+        }
+
+        if (nodeObjects && nodeObjects.length) {
+            helperObject.addReferences(
+                this.helperNodeReference,
+                nodeObjects.map(obj => obj.getGuid())
+            );
+        }
+
+        // Allthough it's a non-persistent object, we still need to commit it to make sure it's available in the runtime
+        await commitObject(helperObject);
+
+        return helperObject;
     }
 
     private debug(...args: any): void {

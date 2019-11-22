@@ -13,6 +13,7 @@ interface CommonProps {
 
 type ClickOptions = "nothing" | "mf" | "nf" | "open";
 type DataSource = "xpath" | "mf" | "nf";
+type ActionButtonAction = "mf" | "nf";
 type ChildDataSource = "disabled" | "reference" | "microflow" | "nanoflow";
 export type SizeOption = "default" | "middle" | "small";
 export type SelectionMode = "none" | "single" | "multi";
@@ -31,32 +32,28 @@ export interface ActionButtonProps {
     selectABLabel: string;
     selectABClass: string;
     selectABHideOnNotApplicable: boolean;
-    selectABMicroflowObjectMulti: string;
-    selectABMicroflowObjectSingle: string;
-    selectABMicroflowObjectNone: string;
+    selectABAction: ActionButtonAction;
+    selectABMicroflow: string;
+    selectABNanoflow: Nanoflow;
 }
 
 export interface MxTreeTableContainerProps extends CommonProps {
-    /** entity - describes the node */
     nodeEntity: string;
     dataSource: DataSource;
-    /** constraint to get the data */
     constraint: string;
-    /** microflow */
     getDataMf: string;
-    /** microflow */
     getDataNf: Nanoflow;
-    /** get child method */
+
     childMethod: ChildDataSource;
-    /** entity */
     childReference: string;
-    /** attribute */
     childBoolean: string;
-    /** microflow */
     getChildMf: string;
-    /** nanoflow */
     getChildNf: Nanoflow;
-    /** columns */
+
+    helperEntity: string;
+    helperContextReference: string;
+    helperNodeReference: string;
+
     columnList: TreeviewColumnProps[];
     columnHeaderEntity: string;
     columnHeaderLabelAttribute: string;

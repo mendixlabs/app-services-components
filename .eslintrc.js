@@ -1,6 +1,6 @@
 const base = require("./node_modules/@mendix/pluggable-widgets-tools/configs/eslint.ts.base.json");
 
-// base["rules"]["no-unused-expressions"] = "warn";
+base["rules"]["@typescript-eslint/ban-ts-ignore"] = "warn";
 
 module.exports = {
     ...base,

@@ -13,7 +13,11 @@ export const Alert: SFC<AlertProps> = ({ className, bootstrapStyle, message }) =
               "div",
               { className: classNames(`alert alert-${bootstrapStyle}`, className) },
               Array.isArray(message)
-                  ? createElement("ul", {}, message.map((m, i) => createElement("li", { key: `alert-${i}` }, m)))
+                  ? createElement(
+                        "ul",
+                        {},
+                        message.map((m, i) => createElement("li", { key: `alert-${i}` }, m))
+                    )
                   : message
           )
         : null;

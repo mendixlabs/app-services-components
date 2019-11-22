@@ -1,7 +1,20 @@
 import { MxTreeTableContainerProps } from "../../typings/MxTreeTableProps";
 
-export const validateProps = (props: MxTreeTableContainerProps): string | string[] => {
+export interface ExtraMXValidateProps {
+    helperObjectPersistence?: boolean;
+}
+
+export const validateProps = (
+    props: MxTreeTableContainerProps,
+    extraProps?: ExtraMXValidateProps
+): string | string[] => {
     const message: string[] = [];
+
+    if (extraProps) {
+        if (extraProps.helperObjectPersistence) {
+            message.push("Helper object cannot be a persistent entity!");
+        }
+    }
 
     if ((props.childMethod === "microflow" || props.childMethod === "nanoflow") && !props.childBoolean) {
         message.push("When using a microflow/nanoflow as Child data source, please set get child attribute");
@@ -42,12 +55,7 @@ export const validateProps = (props: MxTreeTableContainerProps): string | string
     if (props.onDblClickAction === "open" && !props.onDblClickForm) {
         message.push("On double click page missing");
     }
-    // if (
-    //     props.selectMode !== "none" &&
-    //     (!props.selectMicroflow && !props.selectNanoflow.nanoflow && !props.selectEntityReference)
-    // ) {
-    //     message.push("When selection mode is set, please set selection reference/nanoflow or microflow");
-    // }
+
     if (props.columnMethod !== "static") {
         if (!props.columnHeaderEntity) {
             message.push("When using dynamic columns, please define the column entity");
@@ -62,9 +70,25 @@ export const validateProps = (props: MxTreeTableContainerProps): string | string
     if (props.columnMethod === "microflow" && !props.columnHeaderMicroflow) {
         message.push("Column microflow is not defined!");
     }
-    // if (props.columnMethod === "nanoflow" && !props.columnHeaderNanoflow.nanoflow) {
-    //     message.push("Column nanoflow is not defined!");
-    // }
+
+    if (
+        (props.onClickAction !== "nothing" && props.onClickAction !== "open") ||
+        (props.onDblClickAction !== "nothing" && props.onDblClickAction !== "open") ||
+        (props.selectMode !== "none" && props.selectActionButtons.length > 0)
+    ) {
+        if (!props.helperEntity) {
+            message.push("For click/double click/selections a helper object needs to be configured");
+        }
+    }
+
+    if (props.helperEntity !== "") {
+        if (!props.helperContextReference) {
+            message.push("Helper object needs a reference to your context object");
+        }
+        if (!props.helperNodeReference) {
+            message.push("Helper object needs a reference set to your node objects");
+        }
+    }
 
     if (message.length === 0) {
         return "";
