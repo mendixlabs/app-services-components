@@ -63,22 +63,27 @@ Tested:
   - Child reference: Your Node should have a self-reference, as a reference set (so a many-to-many relation). You define this reference, the widget will take care of checking if it has children or not and load them when opening the parent
   - Microflow/Nanoflow: Your Node should have an attribute that tells whether or not it has children. This can be accomplished during the creation of your nodes, or a calculated attribute. If the widget sees a node has a child it will load the children.
 
-### 3. Columns
-![Columns](/assets/tab03-columns.png)
+### 3. Helper
+![Helper](/assets/tab03-helper.png)
+
+- For doing clicks and selections, we need a Helper object. This will be created by the widget for an action and passed down to a microflow/nanoflow. This helper object has a reference to the context object (view) and a reference SET to the Node objects. When you execute a microflow/nanoflow, you will need to retrieve the node object itself over a reference.
+
+### 4. Columns
+![Columns](/assets/tab04-columns.png)
 
 - Easiest way to configure columns is a list. This is a sorted list of all the attributes you want to show in the table. See **3.1 Columns List**
 - If you want to do this dynamically (because your client wants to configure it), please look at **4. Columns**
 
-#### 3.1. Column List
-![Columns sub](/assets/tab03-columns-sub.png)
+#### 4.1. Column List
+![Columns sub](/assets/tab04-columns-sub.png)
 
 - A column should have a caption (shown at the top) and an attribute (to display the value)
 - If you need to transform your value client-side, you can use a Transform Nanoflow. This should always return a string
 - In the column UI tab you can set the width of the column (as '100', '25%' etc)
 - You can also set a class name
 
-### 4. Dynamic Columns
-![Dynamic Columns](/assets/tab04-dynamic-columns.png)
+### 5. Dynamic Columns
+![Dynamic Columns](/assets/tab05-dynamic-columns.png)
 
 - Dynamic columns can be used to let the user define their column. This is a bit tricky though:
   - The attribute of the Node entity should be saved in the Attribute attribute of the column Entity (this is confusing, right 😜?).
@@ -88,25 +93,26 @@ Note:
 
 In order to get the attributes of your Node entity in your project, I encourage you to use the [Model Reflection module in the AppStore](https://appstore.home.mendix.com/link/app/69/). This has the ability to load all entities and read their attributes. Then use this to create your Column entities.
 
-### Events
-![Events](/assets/tab05-events.png)
+### 6. Events
+![Events](/assets/tab06-events.png)
 
 - Events are pretty straightforward. The widget uses a debounce, which means it will not single click when you double-click.
+- For the microflow/nanoflow, you will need to configure the helper object!
 
-### UI
-![UI](/assets/tab06-ui.png)
+### 7. UI
+![UI](/assets/tab07-ui.png)
 
 - The size changes the padding in the cells
 - Header row (which contains the captions of the column) can be disabled
 - You can set a class on the row through an attribute in your Node. This way it is possible to change colors (needs custom styling)
 - Icons can be shown on the first column of the row. See test-project
 
-### Selection
-![Selection](/assets/tab07-selection.png)
+### 8. Selection
+![Selection](/assets/tab08-selection.png)
 
 - Just like a normal table, you can use selection to do things with the Nodes.
 - Configure buttons for a selection.
-- **Note: Due to limitations you will need to set a different microflow for a single or multi selection. Still working on this feature.**
+- The microflow/nanoflows use the Helper object
 
 ## Test-project
 
