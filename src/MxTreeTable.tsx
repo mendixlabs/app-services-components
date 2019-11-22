@@ -5,6 +5,8 @@ import clone from "lodash/clone";
 import defaults from "lodash/defaults";
 import { hot } from "react-hot-loader/root";
 import Queue from "promise-queue";
+import { executeMicroflow, executeNanoFlow, openPage } from "@jeltemx/mendix-react-widget-utils/lib/actions";
+import { getObjects } from "@jeltemx/mendix-react-widget-utils/lib/objects";
 
 import { createCamelcaseId, fetchAttr } from "./util";
 import { validateProps } from "./util/validation";
@@ -398,12 +400,9 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             this.loaderTimeout = null;
         }
         if (!loaderState) {
-            this.setState(
-                {
-                    isLoading: false
-                },
-                callback
-            );
+            this.setState({
+                isLoading: false
+            }, callback);
         } else {
             this.loaderTimeout = window.setTimeout(() => {
                 this.setState({
@@ -783,27 +782,21 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             try {
                 const { selectedObjects } = this.state;
                 const currentIds = selectedObjects.map(obj => obj.getGuid());
-
                 const unTouched = selectedObjects.filter(obj => ids.indexOf(obj.getGuid()) !== -1);
-
                 const newIds = ids.filter(id => currentIds.indexOf(id) === -1);
 
                 if (ids.length === 0 || newIds.length === 0) {
                     this.setState({ selectedObjects: unTouched });
                     this.onSelectAction();
                 } else {
-                    window.mx.data.get({
-                        guids: newIds,
-                        callback: newObjs => {
-                            this.setState({
-                                selectedObjects: [...newObjs, ...unTouched]
-                            });
-                            this.onSelectAction();
-                        },
-                        error: err => {
-                            throw err;
-                        }
-                    });
+                    getObjects(newIds).then(newObjects => {
+                        const newObjs: mendix.lib.MxObject[] = newObjects || [];
+                        this.setState({
+                            selectedObjects: [...newObjs, ...unTouched]
+                        });
+                        this.onSelectAction();
+
+                    }).catch(err => { throw(err) });
                 }
             } catch (error) {
                 window.mx.ui.error(`An error occurred while setting selection: ${error.message}`);
@@ -826,57 +819,15 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         this.debug("executeAction", node);
         const context = this.getContext(node);
 
-        return new Promise((resolve, reject) => {
-            if (node.microflow) {
-                window.mx.data.action({
-                    params: {
-                        actionname: node.microflow
-                    },
-                    context,
-                    origin: this.props.mxform,
-                    callback: resolve,
-                    error: error => {
-                        if (showError) {
-                            window.mx.ui.error(
-                                `An error occurred while executing action ${node.microflow} : ${error.message}`
-                            );
-                        }
-                        reject(error);
-                    }
-                });
-            } else if (node.nanoflow && node.nanoflow.nanoflow) {
-                window.mx.data.callNanoflow({
-                    nanoflow: node.nanoflow,
-                    context,
-                    origin: this.props.mxform,
-                    callback: resolve,
-                    error: error => {
-                        if (showError) {
-                            window.mx.ui.error(
-                                `An error occurred while executing nanoflow ${node.nanoflow}: ${error.message}`
-                            );
-                        }
-                        reject(error);
-                    }
-                });
-            } else if (node.openpage) {
-                window.mx.ui.openForm(node.openpage, {
-                    location: node.openpageas || "popup",
-                    context,
-                    callback: () => {
-                        resolve();
-                    },
-                    error: error => {
-                        if (showError) {
-                            window.mx.ui.error(
-                                `An error occurred while opening form ${node.openpage} : ${error.message}`
-                            );
-                        }
-                        reject(error);
-                    }
-                });
-            }
-        });
+        if (node.microflow) {
+            return executeMicroflow(node.microflow, context, this.props.mxform, showError);
+        } else if (node.nanoflow && node.nanoflow.nanoflow) {
+            return executeNanoFlow(node.nanoflow, context, this.props.mxform, showError);
+        } else if (node.openpage) {
+            return openPage({ pageName: node.openpage, openAs: node.openpageas || "popup" }, context, showError);
+        }
+
+        return Promise.reject("Incorrect action");
     }
 
     private getContext(node: NodeObject): mendix.lib.MxContext {
