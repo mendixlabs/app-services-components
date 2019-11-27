@@ -1,6 +1,7 @@
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const path = require("path");
+const pkg = require('./package.json');
 
 const args = process.argv.slice(2);
 
@@ -51,7 +52,10 @@ const customConfig = {
                     mangle: true, // Note `mangle.properties` is `false` by default.
                     module: false,
                     output: {
-                        comments: false
+                        comments: false,
+                        beautify: false,
+                        preamble: `/* TreeTable Widget || Version ${pkg.version} || Apache 2 LICENSE || Developer: ${pkg.author} || Please report any issues here: https://github.com/JelteMX/mendix-tree-table/issues */\n`
+                        // comments: false
                     },
                     toplevel: false,
                     nameCache: null,

@@ -3,7 +3,6 @@ import { findDOMNode } from "react-dom";
 
 import clone from "lodash/clone";
 import defaults from "lodash/defaults";
-import { hot } from "react-hot-loader/root";
 import Queue from "promise-queue";
 import { executeMicroflow, executeNanoFlow, openPage } from "@jeltemx/mendix-react-widget-utils/lib/actions";
 import { getObjects, createObject, commitObject, getObject } from "@jeltemx/mendix-react-widget-utils/lib/objects";
@@ -490,8 +489,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 callback: (mxObjects: mendix.lib.MxObject[]) => this.handleData(mxObjects, null, -1),
                 error: error =>
                     this.setState({
-                        alertMessage: `An error occurred while retrieving nodes via the microflow ${microflow}:
-                            ${error.message}`
+                        alertMessage: `An error occurred while retrieving nodes via the microflow ${microflow}: ${error.message}`
                     }),
                 origin: this.props.mxform,
                 params: {
@@ -514,8 +512,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 callback: (mxObjects: mendix.lib.MxObject[]) => this.handleData(mxObjects, null, -1),
                 error: error => {
                     this.setState({
-                        alertMessage: `An error occurred while retrieving nodes via the nanoflow ${nanoflow}:
-                            ${error.message}`
+                        alertMessage: `An error occurred while retrieving nodes via the nanoflow ${nanoflow}: ${error.message}`
                     });
                 }
             });
@@ -1045,4 +1042,4 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     }
 }
 
-export default hot(MxTreeTable);
+export default MxTreeTable;

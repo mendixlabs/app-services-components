@@ -4,7 +4,7 @@
   "version": "1.5.0",
   "description": "TreeTable widget",
   "copyright": "Mendix 2019",
-  "author": "Jelte Lagendijk",
+  "author": "Jelte Lagendijk <jelte.lagendijk@mendix.com>",
   "config": {
     "widgetPath": "./dist/test/widgets",
     "projectPath": "./dist/test/",
