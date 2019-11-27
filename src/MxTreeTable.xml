@@ -356,6 +356,28 @@ It should be a non-persistent entity (persistent is not permitted) with a refere
                 </property>
             </propertyGroup>
 
+            <propertyGroup caption="Selection onChange">
+                <property key="selectOnChangeAction" type="enumeration" defaultValue="nothing">
+                    <caption>On Change action</caption>
+                    <description>Execute this action when the selection changes</description>
+                    <enumerationValues>
+                        <enumerationValue key="nothing">Nothing</enumerationValue>
+                        <enumerationValue key="mf">Microflow</enumerationValue>
+                        <enumerationValue key="nf">Nanoflow</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="selectOnChangeMicroflow" type="microflow" required="false" entityProperty="helperEntity">
+                    <caption>Microflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+                <property key="selectOnChangeNanoflow" type="nanoflow" required="false" entityProperty="helperEntity">
+                    <caption>Nanoflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+            </propertyGroup>
+
             <propertyGroup caption="Selection UI">
                 <property key="selectActionButtons" type="object" isList="true" required="false">
                     <caption>Buttons</caption>

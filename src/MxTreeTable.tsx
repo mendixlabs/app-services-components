@@ -129,12 +129,18 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             selectMode,
             selectActionButtons,
             selectClickSelect,
-            selectHideCheckboxes
+            selectHideCheckboxes,
+            selectOnChangeAction
         } = this.props;
         const buttonBar = this.getButtons(selectActionButtons);
 
         let selectionMode = selectMode;
-        if (selectMode !== "none" && buttonBar === null && !(selectClickSelect && selectMode === "single")) {
+        if (
+            selectMode !== "none" &&
+            buttonBar === null &&
+            !(selectClickSelect && selectMode === "single") &&
+            selectOnChangeAction === "nothing"
+        ) {
             selectionMode = "none";
         }
 
@@ -212,7 +218,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         this.onDblClick = this.onDblClick.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onSelectAction = this.onSelectAction.bind(this);
-        this.actionButtonClick = this.actionButtonClick.bind(this);
+        this.selectionAction = this.selectionAction.bind(this);
         this.createHelperObject = this.createHelperObject.bind(this);
 
         this.debug = this.debug.bind(this);
@@ -829,16 +835,21 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 const newIds = ids.filter(id => currentIds.indexOf(id) === -1);
 
                 if (ids.length === 0 || newIds.length === 0) {
-                    this.setState({ selectedObjects: unTouched });
-                    this.onSelectAction();
+                    this.setState({ selectedObjects: unTouched }, () => {
+                        this.onSelectAction();
+                    });
                 } else {
                     getObjects(newIds)
                         .then(newObjects => {
                             const newObjs: mendix.lib.MxObject[] = newObjects || [];
-                            this.setState({
-                                selectedObjects: [...newObjs, ...unTouched]
-                            });
-                            this.onSelectAction();
+                            this.setState(
+                                {
+                                    selectedObjects: [...newObjs, ...unTouched]
+                                },
+                                () => {
+                                    this.onSelectAction();
+                                }
+                            );
                         })
                         .catch(err => {
                             throw err;
@@ -850,11 +861,28 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         }
     }
 
-    private onSelectAction(): void {
+    private async onSelectAction(): Promise<void> {
+        const { selectedObjects } = this.state;
+        const { selectOnChangeAction, selectOnChangeMicroflow, selectOnChangeNanoflow } = this.props;
+        this.debug("onSelectAction", selectedObjects.length);
+
         if (this.state.selectFirstOnSingle) {
             this.setState({
                 selectFirstOnSingle: false
             });
+        }
+
+        // When we do an onChange selection, chances are that you change the context object. In order to avoid re-rendering the table, we temporarily lift
+        // all subscriptions, then do the select Action, then reapply the selections. This can also be avoid by creating a helperSelection object and add this
+        // to your view, then changing that helper selection Object instead of the context object
+        if (selectOnChangeAction === "mf" && selectOnChangeMicroflow) {
+            this.clearSubscriptions();
+            await this.selectionAction(selectedObjects, selectOnChangeMicroflow, null);
+            this.resetSubscription();
+        } else if (selectOnChangeAction === "nf" && selectOnChangeNanoflow) {
+            this.clearSubscriptions();
+            await this.selectionAction(selectedObjects, null, selectOnChangeNanoflow);
+            this.resetSubscription();
         }
     }
 
@@ -921,9 +949,9 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
 
                     if (selectedObjects.length > 0) {
                         if (selectABAction === "mf" && selectABMicroflow) {
-                            this.actionButtonClick(selectedObjects, selectABMicroflow, null);
+                            this.selectionAction(selectedObjects, selectABMicroflow, null);
                         } else if (selectABAction === "nf" && selectABNanoflow) {
-                            this.actionButtonClick(selectedObjects, null, selectABNanoflow);
+                            this.selectionAction(selectedObjects, null, selectABNanoflow);
                         }
                     }
                 };
@@ -938,7 +966,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         });
     }
 
-    private async actionButtonClick(
+    private async selectionAction(
         objects: mendix.lib.MxObject[],
         mf: string | null,
         nf: Nanoflow | null
@@ -955,9 +983,9 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         context.setContext(helperObject.getEntity(), helperObject.getGuid());
 
         if (mf !== null) {
-            executeMicroflow(mf, context, mxform);
+            return executeMicroflow(mf, context, mxform).then(() => {});
         } else if (nf !== null) {
-            executeNanoFlow(nf, context, mxform);
+            return executeNanoFlow(nf, context, mxform).then(() => {});
         }
     }
 

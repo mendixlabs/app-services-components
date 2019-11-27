@@ -33,7 +33,7 @@ Show a tree-like structure in Mendix.
     - Nanoflow
 - Row classes
 - Row icons
-- Select row/rows
+- Select row/rows, execute on change/action button
 - Dynamic columns
 - Much more...
 
@@ -113,6 +113,7 @@ In order to get the attributes of your Node entity in your project, I encourage 
 - Just like a normal table, you can use selection to do things with the Nodes.
 - Configure buttons for a selection.
 - The microflow/nanoflows use the Helper object
+- Please note that when we use the Selection onChange, chances are that you will make a change to your context object (for example, set a selection reference/set). This would mean that the table re-renders, losing the selection. We circumvent this by temporarily lift the subscriptions (that will trigger when the context changes), execute the action, then reapply the subscriptions.
 
 ## Test-project
 

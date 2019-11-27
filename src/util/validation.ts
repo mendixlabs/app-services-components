@@ -74,7 +74,8 @@ export const validateProps = (
     if (
         (props.onClickAction !== "nothing" && props.onClickAction !== "open") ||
         (props.onDblClickAction !== "nothing" && props.onDblClickAction !== "open") ||
-        (props.selectMode !== "none" && props.selectActionButtons.length > 0)
+        (props.selectMode !== "none" && props.selectActionButtons.length > 0) ||
+        props.selectOnChangeAction !== "nothing"
     ) {
         if (!props.helperEntity) {
             message.push("For click/double click/selections a helper object needs to be configured");

@@ -14,6 +14,7 @@ interface CommonProps {
 type ClickOptions = "nothing" | "mf" | "nf" | "open";
 type DataSource = "xpath" | "mf" | "nf";
 type ActionButtonAction = "mf" | "nf";
+type OnChangeAction = "nothing" | "mf" | "nf";
 type ChildDataSource = "disabled" | "reference" | "microflow" | "nanoflow";
 export type SizeOption = "default" | "middle" | "small";
 export type SelectionMode = "none" | "single" | "multi";
@@ -84,7 +85,8 @@ export interface MxTreeTableContainerProps extends CommonProps {
     selectClickSelect: boolean;
     selectHideCheckboxes: boolean;
     selectSelectFirstOnSingle: boolean;
+    selectOnChangeAction: OnChangeAction;
+    selectOnChangeMicroflow: string;
+    selectOnChangeNanoflow: Nanoflow;
     selectActionButtons: ActionButtonProps[];
-    // selectMicroflow: string;
-    // selectNanoflow: Nanoflow;
 }
