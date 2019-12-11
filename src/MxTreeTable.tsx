@@ -152,6 +152,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         return createElement(TreeTable, {
             columns,
             rows,
+            className: this.props.class,
             alertMessage,
             expanderFunc: this.expanderFunc,
             onClick: this.onClick,
