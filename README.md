@@ -102,7 +102,7 @@ In order to get the attributes of your Node entity in your project, I encourage 
 ### 7. UI
 ![UI](/assets/tab07-ui.png)
 
-- The size changes the padding in the cells
+- ~~The size changes the padding in the cells~~ Size is obsolete and set to standard. You should do sizing in your theming.
 - Header row (which contains the captions of the column) can be disabled
 - You can set a class on the row through an attribute in your Node. This way it is possible to change colors (needs custom styling)
 - Icons can be shown on the first column of the row. See test-project

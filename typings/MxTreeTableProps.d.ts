@@ -16,9 +16,7 @@ type DataSource = "xpath" | "mf" | "nf";
 type ActionButtonAction = "mf" | "nf";
 type OnChangeAction = "nothing" | "mf" | "nf";
 type ChildDataSource = "disabled" | "reference" | "microflow" | "nanoflow";
-export type SizeOption = "default" | "middle" | "small";
 export type SelectionMode = "none" | "single" | "multi";
-// export type ColumnMethod = "static" | "microflow" | "nanoflow";
 export type ColumnMethod = "static" | "microflow";
 
 export interface TreeviewColumnProps {
@@ -75,7 +73,6 @@ export interface MxTreeTableContainerProps extends CommonProps {
     onDblClickForm: string;
     onDblClickOpenPageAs: PageLocation;
 
-    uiSize: SizeOption;
     uiShowHeader: boolean;
     uiRowClassAttr: string;
     uiRowIconAttr: string;

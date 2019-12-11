@@ -294,15 +294,6 @@ It should be a non-persistent entity (persistent is not permitted) with a refere
         *********************-->
 
         <propertyGroup caption="UI">
-            <property key="uiSize" type="enumeration" defaultValue="small">
-                <caption>Size</caption>
-                <description>Set size of table, affects paddings and some styling</description>
-                <enumerationValues>
-                    <enumerationValue key="default">Big</enumerationValue>
-                    <enumerationValue key="middle">Middle</enumerationValue>
-                    <enumerationValue key="small">Small</enumerationValue>
-                </enumerationValues>
-            </property>
             <property key="uiShowHeader" type="boolean" defaultValue="true">
                 <caption>Show header</caption>
                 <description>Make header row visible/invisible</description>

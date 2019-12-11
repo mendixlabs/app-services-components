@@ -123,7 +123,6 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             lastLoadFromContext
         } = this.state;
         const {
-            uiSize,
             uiShowHeader,
             selectMode,
             selectActionButtons,
@@ -157,7 +156,6 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             expanderFunc: this.expanderFunc,
             onClick: this.onClick,
             onDblClick: this.onDblClick,
-            size: uiSize,
             showHeader: uiShowHeader,
             selectMode: selectionMode,
             onSelect: this.onSelect,

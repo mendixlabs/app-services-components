@@ -48,7 +48,6 @@ export class preview extends Component<MxTreeTableContainerProps> {
             columns,
             rows: [],
             alertMessage: validationAlert,
-            size: props.uiSize,
             showHeader: props.uiShowHeader,
             selectMode: "none",
             clickToSelect: true,

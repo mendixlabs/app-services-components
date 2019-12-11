@@ -42,7 +42,6 @@ const getTableProps = (): TreeTableProps => {
     return {
         columns: [],
         rows: [],
-        size: "small",
         showHeader: true,
         selectMode: "none",
         loading: false,

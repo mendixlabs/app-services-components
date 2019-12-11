@@ -10,7 +10,7 @@ import arrayToTree, { Tree } from "array-to-tree";
 import "../ui/MxTreeTable.scss";
 
 import { Alert } from "./Alert";
-import { SizeOption, SelectionMode } from "../../typings/MxTreeTableProps";
+import { SelectionMode } from "../../typings/MxTreeTableProps";
 
 export interface TreeColumnProps {
     id: string;
@@ -31,7 +31,6 @@ export interface TreeTableProps {
     onDblClick?: (record: TableRecord) => void;
     onClickOpenRow?: boolean;
     alertMessage?: string | string[];
-    size: SizeOption;
     showHeader: boolean;
     clickToSelect: boolean;
     selectMode: SelectionMode;
@@ -114,7 +113,6 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
         const {
             className,
             style,
-            size,
             showHeader,
             selectMode,
             loading,
@@ -212,7 +210,6 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
                 onRow={onRow}
                 onExpand={this.onExpand}
                 pagination={false}
-                size={size}
                 showHeader={showHeader}
                 rowSelection={rowSelection}
                 loading={loading}
