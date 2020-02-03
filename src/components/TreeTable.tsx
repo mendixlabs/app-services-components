@@ -320,7 +320,7 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
                 const parsed = parseInt(col.width, 10);
                 treeColumn.width = !isNaN(parsed) && `${parsed}` === col.width ? parsed : col.width;
             }
-            if (col.className && col.className !== null) {
+            if (col.className) {
                 treeColumn.className = col.className;
             }
             return treeColumn;
