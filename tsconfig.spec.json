@@ -1,0 +1,18 @@
+{
+  "extends": "./node_modules/@mendix/pluggable-widgets-tools/configs/tsconfig.base.json",
+  "baseUrl": "./",
+  "include": ["./src/components/__tests__", "./typings"],
+  "compilerOptions": {
+      "types": ["jest", "mendix-client"],
+      "noImplicitAny": false,
+      "sourceMap": false,
+      "module": "commonjs",
+      "lib": [
+        "es6",
+        "dom"
+      ],
+      "target": "es5",
+      "allowJs": true,
+      "moduleResolution": "node"
+  },
+}

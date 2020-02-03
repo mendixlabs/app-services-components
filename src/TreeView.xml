@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="com.mendix.widget.custom.treeview.TreeView" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Tree View</name>
+    <description>TreeView for Mendix</description>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAADh0lEQVR4nO3d8W3aQBiHYVx1BOObKkLKDp0qMwQZT5WEIahQSKVW0a8OiWwu9zyS/6eFNweG+24DAAAAAAAAAAAAAAAAAAAAAAAAAEAtHh8f7/u+P242m9Ma13a7fRnHcXc6nTY1Xnxza8bxdg3D8CyQOnQN/kG4iWf5dDpV+X/fdW29ZH7cwGOAm/Wz9admqb/kXdd5A18hKwgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCQfP7QezTILGCQNBcINvt9rj2YyilPK/9GOBd55E756kia000KaU8TdN0Z6pJHZqbanLtk/zvZ5Vap5J8lqkmgEBgDoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAikEvv9/v68n/68s3GNaxiGl8PhsGv9efj2PrEX+6+95UvvBe/7/rjWPvq367KXvyn2pM+09p70G5rf1dRrxlssCJqfrFirpVaw1idPWkEgEAgEAoFAIBAIBAJ3sa7U+t2dVlhBIBAIBAKBwGeQKzX8W6ymWEEgEAgEAoFAIBAIBAJ3sSrlrtYyrCAQCKQS54kmaz/SUkpzQxuaU+tUk3Ecd5epIqtMNCmlPE3TdNfa68VUk5nWnmpyK7qurX+2t1gQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKphHPSWYRz0p2T/hF2FM7knPQ/nJMOvDIXq1LOSV+GFQQCgUAgEAgEAoFAIHAX60qt391phRUEAoFAIBAIfAa5knPS22AFgUAgEAgEAoFAIBAI3MWqlLtay7CCQCCQSjgnnUU4J9056R9hqslMzkl/5Zx0QCAwh0AgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCARSif1+f3/el37e2bjGNQzDy+Fw2LX+PHx7te5J7/v+uNZ+9Lfrsie+Kfakz7T2nvQbmoPV1GvGWywITFas1FIrWOsTHK0gEAgEAoFAIBAIBAKBu1hXav3uTiusIBAIZKZbOJ+D5QlkpoeHh1/nH+xV8WD5Mn6LVYm1fgv2zmctv8UCBAL/JRAIBAKBQCDwTXqlfJO/DCsIBAKpxC18k19KaW5oQ3OWnkbyVdc4jrvLVJFVJpqUUp6mabpr/fUDAAAAAAAAAAAAAAAAAAAAAAAAAFCJzWbzG57uxl0Vfft2AAAAAElFTkSuQmCC</icon>
+    <properties>
+        <propertyGroup caption="Data Source">
+            <propertyGroup caption="General">
+                <property key="nodeEntity" type="entity" required="true" allowNonPersistableEntities="true">
+                    <caption>Entity</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Method">
+                <property key="nodeDataSource" type="enumeration" defaultValue="xpath">
+                    <caption>Data Source</caption>
+                    <description>Choose how you retrieve nodes</description>
+                    <enumerationValues>
+                        <enumerationValue key="xpath">XPath</enumerationValue>
+                        <enumerationValue key="microflow">Microflow</enumerationValue>
+                        <enumerationValue key="nanoflow">Nanoflow</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="nodeConstraint" required="false" type="entityConstraint" entityProperty="nodeEntity">
+                    <caption>Node constraint</caption>
+                    <description>The xpath constraint on the entity.</description>
+                </property>
+                <property key="nodeGetDataMicroflow" type="microflow" required="false">
+                    <caption>Microflow</caption>
+                    <description>Choose 'Microflow' in Data Source and choose a microflow here</description>
+                    <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+                </property>
+                <property key="nodeGetDataNanoflow" type="nanoflow" required="false">
+                    <caption>Nanoflow</caption>
+                    <description>Choose 'Nanoflow' in Data Source and choose a nanoflow here.</description>
+                    <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <propertyGroup caption="Data">
+            <propertyGroup caption="Scenario">
+                <property key="nodeLoadScenario" type="enumeration" defaultValue="all">
+                    <caption>Load</caption>
+                    <description>Decide what the widget needs to load when it has a context object</description>
+                    <enumerationValues>
+                        <enumerationValue key="all">Whole tree</enumerationValue>
+                        <enumerationValue key="top">Partial (only top level)</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Load: Whole Tree">
+                <property key="nodeIsRootAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Root attribute</caption>
+                    <description>When loading the whole tree, the widget needs to know which nodes are considered top-level</description>
+                    <attributeTypes>
+                            <attributeType name="Boolean" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Load: Top level">
+                <property key="childScenario" type="enumeration" defaultValue="reference">
+                    <caption>Child retrieval</caption>
+                    <description>Choose how children should be retrieved when only loading partial data.</description>
+                    <enumerationValues>
+                        <enumerationValue key="reference">Reference (needs Child reference)</enumerationValue>
+                        <enumerationValue key="action">Action (needs Has Child attribute)</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Child retrieval action">
+                <property key="childActionMethod" type="enumeration" defaultValue="microflow">
+                    <caption>Action</caption>
+                    <description>Method how to get the child elements</description>
+                    <enumerationValues>
+                        <enumerationValue key="microflow">Microflow</enumerationValue>
+                        <enumerationValue key="nanoflow">Nanoflow</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="childActionMicroflow" type="microflow" required="false" entityProperty="nodeEntity">
+                    <caption>Get child Microflow</caption>
+                    <description />
+                    <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+                </property>
+                <property key="childActionNanoflow" type="nanoflow" required="false" entityProperty="nodeEntity">
+                    <caption>Get child Nanoflow</caption>
+                    <description />
+                    <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <propertyGroup caption="Relation">
+            <propertyGroup caption="Type">
+                <property key="relationType" type="enumeration" defaultValue="nodeParent">
+                    <caption>Relation Type</caption>
+                    <description>Decide how the nodes are related to each other:
+-- Node - Parent: Node has a reference to its parent
+-- Node - Children: Node has a reference set to its children</description>
+                    <enumerationValues>
+                            <enumerationValue key="nodeParent">Node - Parent</enumerationValue>
+                            <enumerationValue key="nodeChildren">Node - Children</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Node - Parent">
+                <property key="relationNodeParent" type="entity" required="false" allowNonPersistableEntities="true" isPath="yes" pathType="reference" entityProperty="nodeEntity">
+                    <caption>Parent reference</caption>
+                    <description></description>
+                </property>
+                <property key="relationNodeParentHasChildAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Has Child attribute</caption>
+                    <description>Note: the "Has Child attribute" is only needed when loading children (so not needed if you load the whole tree at once).</description>
+                    <attributeTypes>
+                         <attributeType name="Boolean" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Node - Children">
+                <property key="relationChildReference" type="entity" required="false" allowNonPersistableEntities="true" isPath="yes" pathType="referenceSet" entityProperty="nodeEntity">
+                    <caption>Child reference</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <propertyGroup caption="UI">
+            <propertyGroup caption="Title">
+                <property key="uiNodeTitleType" type="enumeration" defaultValue="attribute">
+                    <caption>Node Title Type</caption>
+                    <description></description>
+                    <enumerationValues>
+                         <enumerationValue key="attribute">Attribute</enumerationValue>
+                         <enumerationValue key="nanoflow">Nanoflow</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="uiNodeTitleAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Node Title attribute</caption>
+                    <description>Attribute that contains the title. Note that this can contain HTML if you need it.</description>
+                    <attributeTypes>
+                         <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="uiNodeTitleNanoflow" type="nanoflow" entityProperty="nodeEntity" required="false">
+                    <caption>Node Title Nanoflow</caption>
+                    <description>Choose 'Nanoflow' in Node Title Type and choose a nanoflow here. The Nanoflow should return a string and can contain HTML</description>
+                    <returnType type="String" />
+                </property>
+                <property key="uiNodeRenderAsHTML" type="boolean" defaultValue="false">
+                    <caption>Node render as HTML</caption>
+                    <description>Render title as HTML. Note: although we do some client side sanitation for the HTML, in general it is a good practice to do this server side for any input that is created by the user.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Icon">
+                <property key="uiNodeIconAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Icon attr</caption>
+                    <description>If you want to show an icon, set the attribute. This string will be used as the class for an icon</description>
+                    <attributeTypes>
+                         <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="uiNodeIconIsGlyphicon" type="boolean" defaultValue="true">
+                    <caption>Glyphicon</caption>
+                    <description>When using icons, we default to Glyphicons from Bootstrap. This will prefix the value of the attribute with 'glyphicon glyphicon-'. If you want to use different icons, please switch off Glyphicon</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <propertyGroup caption="Drag &amp; Drop">
+            <propertyGroup caption="Option">
+                <property key="dragIsDraggable" type="boolean" defaultValue="false">
+                    <caption>Enabled</caption>
+                    <description>This option gives you the possibility to drag&amp;drop an item in the TreeView.
+Note:
+
+- Currently only possible in a Node-Parent relation (Parent-Children not enabled yet)
+- Top-level objects are not draggable
+- If you are not able to edit the item, this might result in an error. The widget will try to take care of most of the validations here to see if you are able to edit this.</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <propertyGroup caption="EXPERIMENTAL - Search">
+            <propertyGroup caption="Feature">
+                <property key="searchEnabled" type="boolean" defaultValue="false">
+                    <caption>Enable</caption>
+                    <description>Note: Search will only work when Load is set to 'Whole tree'. It cannot be enabled for partial trees. Also, this feature is still considered experimental in this version of the widget. We might remove it in the future or change the setup.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Entity">
+                <property key="searchHelperEntity" type="entity" required="false" allowNonPersistableEntities="true">
+                    <caption>Helper Entity</caption>
+                    <description>In order to do client side search using a Nanoflow, we need to create a helper entity.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Helper settings">
+                <property key="searchStringAttribute" type="attribute" entityProperty="searchHelperEntity" required="false">
+                    <caption>Search attribute</caption>
+                    <description></description>
+                    <attributeTypes>
+                         <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="searchNodeReference" type="entity" required="false" entityProperty="searchHelperEntity" isPath="yes" pathType="referenceSet" allowNonPersistableEntities="true">
+                    <caption>Node reference</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Helper action">
+                <property key="searchNanoflow" type="nanoflow" required="false" entityProperty="searchHelperEntity">
+                    <caption>Nanoflow</caption>
+                    <description></description>
+                    <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <propertyGroup caption="Events">
+            <propertyGroup caption="Node">
+                <property key="eventNodeOnClickAction" type="enumeration" defaultValue="nothing">
+                    <caption>Node click action</caption>
+                    <description>This action is executed when you click a Node (the first column)</description>
+                    <enumerationValues>
+                            <enumerationValue key="nothing">Nothing</enumerationValue>
+                            <enumerationValue key="microflow">Microflow</enumerationValue>
+                            <enumerationValue key="nanoflow">Nanoflow</enumerationValue>
+                            <enumerationValue key="open">Open page</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="eventNodeClickFormat" type="enumeration" defaultValue="single">
+                    <caption>Node click type</caption>
+                    <description></description>
+                    <enumerationValues>
+                         <enumerationValue key="single">Single</enumerationValue>
+                         <enumerationValue key="double">Double</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="eventNodeOnClickMicroflow" type="microflow" required="false" entityProperty="nodeEntity">
+                    <caption>Node click Microflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+                <property key="eventNodeOnClickNanoflow" type="nanoflow" required="false" entityProperty="nodeEntity">
+                    <caption>Node click Nanoflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+                <property key="eventNodeOnClickForm" type="form" required="false">
+                    <caption>Node click page</caption>
+                    <description>The page to open when a Node is clicked</description>
+                </property>
+                <property key="eventNodeOnClickOpenPageAs" type="enumeration" defaultValue="content">
+                    <caption>Node click open page as</caption>
+                    <description/>
+                    <enumerationValues>
+                        <enumerationValue key="content">Full page</enumerationValue>
+                        <enumerationValue key="popup">Popup</enumerationValue>
+                        <enumerationValue key="modal">Blocking popup</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>
