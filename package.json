@@ -32,7 +32,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "git@github.com:mendix/pluggable-widgets-tools.git",
+    "@mendix/pluggable-widgets-tools": "https://github.com/mendix/pluggable-widgets-tools.git",
     "@types/big.js": "^4.0.5",
     "@types/camelcase": "^5.2.0",
     "@types/classnames": "^2.2.4",
