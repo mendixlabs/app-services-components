@@ -6,6 +6,7 @@
 [![Studio](https://img.shields.io/badge/Studio%20version-8.0%2B-blue.svg)](https://appstore.home.mendix.com/link/modeler/)
 ![GitHub release](https://img.shields.io/github/release/JelteMX/mendix-tree-table)
 ![GitHub issues](https://img.shields.io/github/issues/JelteMX/mendix-tree-table)
+[![DeepScan grade](https://deepscan.io/api/teams/7221/projects/9345/branches/120491/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7221&pid=9345&bid=120491)
 
 # Mendix Tree Table
 
