@@ -500,8 +500,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         }
     }
 
-    private fetchByNf(nanoflow: Nanoflow, mxObject?: mendix.lib.MxObject): void {
-        this.debug("fetchByNf", nanoflow.nanoflow, mxObject);
+    private fetchByNf(nanoflow?: Nanoflow, mxObject?: mendix.lib.MxObject): void {
+        this.debug("fetchByNf", nanoflow && nanoflow.nanoflow, mxObject);
         const context = this.getContext({ obj: mxObject });
         if (nanoflow) {
             window.mx.data.callNanoflow({
@@ -673,7 +673,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     const key = col.id;
                     return this.getFormattedOrTransformed(obj, col.originalAttr).then(res => {
                         const retVal: { [key: string]: string | number | boolean | ReactNode } = {};
-                        if (appendIcon && appendIcon !== null && index === 0) {
+                        if (appendIcon && index === 0) {
                             const prefix = this.props.uiIconPrefix || "glyphicon glyphicon-";
                             retVal[key] = createElement(
                                 "div",
@@ -1028,7 +1028,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 label: column.columnHeader,
                 originalAttr: column.columnAttr,
                 width: column.columnWidth && column.columnWidth !== "" ? column.columnWidth : null,
-                className: column.columnClassName && column.columnClassName !== "" ? column.columnClassName : null
+                className: column.columnClassName ? column.columnClassName : null
             };
             return tableColumn;
         });
