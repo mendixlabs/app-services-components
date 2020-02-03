@@ -50,6 +50,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
     private hasChildAttr: string;
     private helperNodeReference: string;
     private helperContextReference: string;
+    private helperContextEntity: string;
     private staticColumns: boolean;
     private columnPropsValid: boolean;
     private queue: Queue;
@@ -72,6 +73,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
 
         this.helperNodeReference = props.helperNodeReference ? props.helperNodeReference.split("/")[0] : "";
         this.helperContextReference = props.helperContextReference ? props.helperContextReference.split("/")[0] : "";
+        this.helperContextEntity = props.helperContextReference ? props.helperContextReference.split("/")[1] : "";
 
         this.staticColumns = props.columnMethod === "static";
         this.columnPropsValid =
@@ -979,9 +981,13 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         context.setContext(helperObject.getEntity(), helperObject.getGuid());
 
         if (mf !== null) {
-            return executeMicroflow(mf, context, mxform).then(() => { this.debug('Action executed'); });
+            return executeMicroflow(mf, context, mxform).then(() => {
+                this.debug("Action executed");
+            });
         } else if (nf !== null) {
-            return executeNanoFlow(nf, context, mxform).then(() => { this.debug('Action executed'); });
+            return executeNanoFlow(nf, context, mxform).then(() => {
+                this.debug("Action executed");
+            });
         }
     }
 
@@ -995,7 +1001,17 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         const helperObject = await createObject(this.props.helperEntity);
 
         if (this.props.mxObject) {
-            helperObject.addReference(this.helperContextReference, this.props.mxObject.getGuid());
+            const contextEntity = this.props.mxObject.getEntity();
+            if (contextEntity !== this.helperContextEntity) {
+                window.mx.ui.error(`Error creating a Helper object.
+
+You are trying to set the reference "${this.helperContextReference}" which expects an object of type "${this.helperContextEntity}".
+
+Your context object is of type "${contextEntity}". Please check the configuration of your widget. (Helper => Reference to context)`);
+                return null;
+            } else {
+                helperObject.addReference(this.helperContextReference, this.props.mxObject.getGuid());
+            }
         }
 
         if (nodeObjects && nodeObjects.length) {
