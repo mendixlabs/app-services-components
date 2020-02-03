@@ -13,12 +13,16 @@ describe("ButtonBar", () => {
             buttons: [
                 {
                     caption: "disabled",
-                    onClick: () => {},
+                    onClick: () => {
+                        console.log('click')
+                    },
                     disabled: true
                 },
                 {
                     caption: "enabled",
-                    onClick: () => {},
+                    onClick: () => {
+                        console.log('click')
+                    },
                     disabled: false
                 }
             ]

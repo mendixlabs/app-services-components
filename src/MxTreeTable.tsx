@@ -934,23 +934,23 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     caption: button.selectABLabel,
                     disabled,
                     hidden: button.selectABHideOnNotApplicable && disabled,
-                    onClick: () => {}
+                    onClick: () => {
+                        const { selectedObjects } = this.state;
+
+                        if (selectedObjects.length > 0) {
+                            if (selectABAction === "mf" && selectABMicroflow) {
+                                this.selectionAction(selectedObjects, selectABMicroflow, null);
+                            } else if (selectABAction === "nf" && selectABNanoflow) {
+                                this.selectionAction(selectedObjects, null, selectABNanoflow);
+                            }
+                        }
+                    }
                 };
+
                 if (button.selectABClass) {
                     buttonProp.className = button.selectABClass;
                 }
 
-                buttonProp.onClick = () => {
-                    const { selectedObjects } = this.state;
-
-                    if (selectedObjects.length > 0) {
-                        if (selectABAction === "mf" && selectABMicroflow) {
-                            this.selectionAction(selectedObjects, selectABMicroflow, null);
-                        } else if (selectABAction === "nf" && selectABNanoflow) {
-                            this.selectionAction(selectedObjects, null, selectABNanoflow);
-                        }
-                    }
-                };
                 return buttonProp;
             });
         if (filteredButtons.length === 0) {
@@ -979,9 +979,9 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         context.setContext(helperObject.getEntity(), helperObject.getGuid());
 
         if (mf !== null) {
-            return executeMicroflow(mf, context, mxform).then(() => {});
+            return executeMicroflow(mf, context, mxform).then(() => { this.debug('Action executed'); });
         } else if (nf !== null) {
-            return executeNanoFlow(nf, context, mxform).then(() => {});
+            return executeNanoFlow(nf, context, mxform).then(() => { this.debug('Action executed'); });
         }
     }
 
