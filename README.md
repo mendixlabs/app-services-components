@@ -18,7 +18,7 @@ Show a tree-like structure in Mendix.
 
 ![preview](/assets/preview.png)
 
-> See test-project [https://reacttreeview-sandbox.mxapps.io/](https://reacttreeview-sandbox.mxapps.io/) for a live demo! This project is also used for all E2E tests. See at the bottom of this README a preview of the domain model
+> See test-project [https://reacttreeview-sandbox.mxapps.io/](https://reacttreeview-sandbox.mxapps.io/) for a live demo! This project is also used for all E2E tests. See at the bottom of this README a preview of the domain model. Test-project can be downloaded [here](https://github.com/JelteMX/widget-test-projects#tree-table)
 
 ## Features
 
