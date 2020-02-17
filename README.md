@@ -17,7 +17,7 @@ Show a Tree structure in your Mendix project
 
 ![screenshot](/assets/screenshot.png)
 
-> See test-project [https://treeview-react-sandbox.mxapps.io/](https://treeview-react-sandbox.mxapps.io/) for a live demo!
+> See test-project [https://treeview-react-sandbox.mxapps.io/](https://treeview-react-sandbox.mxapps.io/) for a live demo! The test-project itself can be downloaded [here](https://github.com/JelteMX/widget-test-projects#tree-view)
 
 > Missing features? See TODO at the bottom to see which items are still on the TODO list. If you find other bugs, please report this as an issue [here](https://github.com/JelteMX/mendix-tree-table/issues)
 
