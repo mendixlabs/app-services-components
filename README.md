@@ -3,6 +3,7 @@
 [![Dependencies](https://david-dm.org/JelteMX/mendix-tree-view.svg)]([https://david-dm.org/JelteMX/mendix-tree-view](https://david-dm.org/JelteMX/mendix-tree-view))
 [![DevDependencies](https://david-dm.org/JelteMX/mendix-tree-view/dev-status.svg)]([https://david-dm.org/JelteMX/mendix-tree-view?type=dev](https://david-dm.org/JelteMX/mendix-tree-view?type=dev))
 [![Support](https://img.shields.io/badge/Support-Community%20(no%20active%20support)-orange.svg)](https://docs.mendix.com/developerportal/app-store/app-store-content-support)
+![WM](https://img.shields.io/badge/Webmodeler%20compatible-NO-red.svg)
 [![Studio](https://img.shields.io/badge/Studio%20version-8.0%2B-blue.svg)](https://appstore.home.mendix.com/link/modeler/)
 [![GitHub release](https://img.shields.io/github/release/JelteMX/mendix-tree-view)](https://github.com/JelteMX/mendix-tree-view/releases/latest)
 [![GitHub issues](https://img.shields.io/github/issues/JelteMX/mendix-tree-view)](https://github.com/JelteMX/mendix-tree-view/issues)
