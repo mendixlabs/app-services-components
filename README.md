@@ -1,3 +1,4 @@
+[![Apache License](https://img.shields.io/badge/license-Apache%202.0-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.org/JelteMX/mendix-tree-table.svg?branch=master)](https://travis-ci.org/JelteMX/mendix-tree-table)
 [![Coverage Status](https://coveralls.io/repos/github/JelteMX/mendix-tree-table/badge.svg?branch=master)](https://coveralls.io/github/JelteMX/mendix-tree-table?branch=master)
 [![Dependencies](https://david-dm.org/JelteMX/mendix-tree-table.svg)]([https://david-dm.org/JelteMX/mendix-tree-table](https://david-dm.org/JelteMX/mendix-tree-table))
