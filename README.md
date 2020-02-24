@@ -109,7 +109,6 @@ These are action items on the list for future releases
 - WebModeler preview
 - Draggable NodeChildren
 - On DragChange mf/nf
-- Selectable? Version 2.0
 - Automated unit tests & CI/CD pipeline
 
 ## License
