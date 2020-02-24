@@ -58,6 +58,8 @@ export interface TreeViewContainerProps extends CommonProps {
     eventNodeOnClickForm: string;
     eventNodeOnClickOpenPageAs: OpenPageAs;
 
+    selectionSelectOnClick: boolean;
+
     searchEnabled: boolean;
     searchHelperEntity: string;
     searchStringAttribute: string;

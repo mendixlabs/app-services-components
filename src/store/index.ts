@@ -17,6 +17,7 @@ export interface TreeGuids {
 export interface NodeStoreConstructorOptions {
     contextObject?: mendix.lib.MxObject;
     loadFull: boolean;
+    holdSelection?: boolean;
     subscriptionHandler?: (guids: TreeGuids) => void;
     onSelectionChange?: (guids: TreeGuids) => void;
     validationMessages: ValidationMessage[];
@@ -61,12 +62,14 @@ export class NodeStore {
     @observable public validationMessages: ValidationMessage[] = [];
 
     private loadFull = false;
+    private holdSelection = false;
     private expandedMapping: { [key: string]: string[] } = {};
 
     constructor(opts: NodeStoreConstructorOptions) {
         const {
             contextObject,
             loadFull,
+            holdSelection,
             subscriptionHandler,
             onSelectionChange,
             validationMessages,
@@ -78,6 +81,7 @@ export class NodeStore {
 
         this.isLoading = false;
         this.loadFull = typeof loadFull !== "undefined" ? loadFull : false;
+        this.holdSelection = typeof holdSelection !== "undefined" ? holdSelection : false;
         this.contextObject = contextObject || null;
         this.subscriptionHandler = subscriptionHandler || ((): void => {});
         this.onSelectionChangeHandler = onSelectionChange || ((): void => {});
@@ -238,6 +242,27 @@ export class NodeStore {
     @computed
     get selectedEntriesIds(): string[] {
         return this.entries.filter(entry => entry.selected).map(entry => entry.guid);
+    }
+
+    @action
+    selectEntry(guid: string) {
+        if (!this.holdSelection) {
+            return;
+        }
+        let selectedFound = false;
+        this.selectedEntries.forEach(entry => {
+            if (entry.guid !== guid) {
+                entry.setSelected(false);
+            } else {
+                selectedFound = true;
+            }
+        });
+        if (!selectedFound) {
+            const entry = this.findEntry(guid);
+            if (entry) {
+                entry.setSelected(true);
+            }
+        }
     }
 
     // Expanded
