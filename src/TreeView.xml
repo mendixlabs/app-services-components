@@ -262,6 +262,12 @@ Note:
                     </enumerationValues>
                 </property>
             </propertyGroup>
+            <propertyGroup caption="Selection">
+                <property key="selectionSelectOnClick" type="boolean" defaultValue="true">
+                    <caption>Enable selection class</caption>
+                    <description>When clicking a Node, you might want to indicate that this is the selected Node. The widget will add a .selected class to the selected node.</description>
+                </property>
+            </propertyGroup>
         </propertyGroup>
     </properties>
 </widget>

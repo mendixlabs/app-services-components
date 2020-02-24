@@ -20,6 +20,7 @@ import classNames from "classnames";
 export interface TreeViewComponentProps {
     store: NodeStore;
     draggable: boolean;
+    holdSelection: boolean;
     searchEnabled: boolean;
     showIcon: boolean;
     iconIsGlyphicon: boolean;
@@ -120,7 +121,10 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
         return data.map(item => {
             let icon: ReactNode | boolean = false;
             const isLeaf = !((item.children && item.children.length > 0) || item.hasChildren);
-            const extraClass = classNames(item.highlight ? "highlight" : "");
+            const extraClass = classNames(
+                item.highlight ? "highlight" : "",
+                item.selected && this.props.holdSelection ? "selected" : ""
+            );
 
             if (item.icon) {
                 icon = <span className={iconIsGlyphicon ? "glyphicon glyphicon-" + item.icon : item.icon} />;
@@ -153,6 +157,9 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
             const entryObject = this.props.store.findEntry(node.props.eventKey);
             if (entryObject && entryObject.mxObject) {
                 this.props.onClickHandler(entryObject.mxObject, clickType);
+                if (this.props.holdSelection) {
+                    this.props.store.selectEntry(entryObject.guid);
+                }
             }
         };
     }
