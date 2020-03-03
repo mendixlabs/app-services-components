@@ -8,6 +8,7 @@
 [![Studio](https://img.shields.io/badge/Studio%20version-8.0%2B-blue.svg)](https://appstore.home.mendix.com/link/modeler/)
 [![GitHub release](https://img.shields.io/github/release/JelteMX/mendix-tree-view)](https://github.com/JelteMX/mendix-tree-view/releases/latest)
 [![GitHub issues](https://img.shields.io/github/issues/JelteMX/mendix-tree-view)](https://github.com/JelteMX/mendix-tree-view/issues)
+[![Available](https://img.shields.io/badge/Test%20Project-available-green.svg)](https://github.com/JelteMX/widget-test-projects)
 
 # Tree View for Mendix
 
@@ -109,7 +110,6 @@ These are action items on the list for future releases
 - WebModeler preview
 - Draggable NodeChildren
 - On DragChange mf/nf
-- Selectable? Version 2.0
 - Automated unit tests & CI/CD pipeline
 
 ## License
