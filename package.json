@@ -1,7 +1,7 @@
 {
   "name": "mxtreetable",
   "widgetName": "MxTreeTable",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "TreeTable widget",
   "copyright": "Mendix 2019",
   "author": "Jelte Lagendijk <jelte.lagendijk@mendix.com>",
@@ -32,7 +32,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "https://github.com/mendix/pluggable-widgets-tools.git",
+    "@mendix/pluggable-widgets-tools": "git+https://github.com/mendix/pluggable-widgets-tools.git",
     "@types/big.js": "^4.0.5",
     "@types/camelcase": "^5.2.0",
     "@types/classnames": "^2.2.4",

@@ -91,6 +91,20 @@ export const validateProps = (
         }
     }
 
+    if (props.selectActionButtons.length > 0) {
+        props.selectActionButtons.forEach(button => {
+            if (button.selectABAction === "mf" && !button.selectABMicroflow) {
+                message.push(
+                    `Selection -> Buttonbar -> Button with label '${button.selectABLabel}' should have a microflow configured`
+                );
+            } else if (button.selectABAction === "nf" && !button.selectABNanoflow.nanoflow) {
+                message.push(
+                    `Selection -> Buttonbar -> Button with label '${button.selectABLabel}' should have a nanoflow configured`
+                );
+            }
+        });
+    }
+
     if (message.length === 0) {
         return "";
     }

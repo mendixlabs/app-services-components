@@ -384,8 +384,8 @@ It should be a non-persistent entity (persistent is not permitted) with a refere
                                 <description>Extra class names</description>
                             </property>
                             <property key="selectABHideOnNotApplicable" type="boolean" defaultValue="true">
-                                <caption>Hide when not applicable</caption>
-                                <description>If this is set to 'true', it will hide the button when it does not have an applicable action for the selection (none/single/multi). If not, it will only disable the button.</description>
+                                <caption>Hide when disabled</caption>
+                                <description>If this is set to 'true', it will hide the button when it is disabled</description>
                             </property>
                         </propertyGroup>
                         <propertyGroup caption="Button events">
