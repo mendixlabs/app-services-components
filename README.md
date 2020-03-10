@@ -1,3 +1,4 @@
+[![Apache License](https://img.shields.io/badge/license-Apache%202.0-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.org/JelteMX/mendix-tree-table.svg?branch=master)](https://travis-ci.org/JelteMX/mendix-tree-table)
 [![Coverage Status](https://coveralls.io/repos/github/JelteMX/mendix-tree-table/badge.svg?branch=master)](https://coveralls.io/github/JelteMX/mendix-tree-table?branch=master)
 [![Dependencies](https://david-dm.org/JelteMX/mendix-tree-table.svg)]([https://david-dm.org/JelteMX/mendix-tree-table](https://david-dm.org/JelteMX/mendix-tree-table))
@@ -7,6 +8,7 @@
 ![GitHub release](https://img.shields.io/github/release/JelteMX/mendix-tree-table)
 ![GitHub issues](https://img.shields.io/github/issues/JelteMX/mendix-tree-table)
 [![DeepScan grade](https://deepscan.io/api/teams/7221/projects/9345/branches/120491/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7221&pid=9345&bid=120491)
+[![Available](https://img.shields.io/badge/Test%20Project-available-green.svg)](https://github.com/JelteMX/widget-test-projects)
 
 # Mendix Tree Table
 
@@ -18,7 +20,7 @@ Show a tree-like structure in Mendix.
 
 ![preview](/assets/preview.png)
 
-> See test-project [https://reacttreeview-sandbox.mxapps.io/](https://reacttreeview-sandbox.mxapps.io/) for a live demo! This project is also used for all E2E tests. See at the bottom of this README a preview of the domain model
+> See test-project [https://reacttreeview-sandbox.mxapps.io/](https://reacttreeview-sandbox.mxapps.io/) for a live demo! This project is also used for all E2E tests. See at the bottom of this README a preview of the domain model. Test-project can be downloaded [here](https://github.com/JelteMX/widget-test-projects#tree-table)
 
 ## Features
 
