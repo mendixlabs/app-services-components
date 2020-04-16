@@ -6,6 +6,7 @@ cache: npm
 branches:
     only:
         - master
+        - refactoring_version_2
 env:
     global:
         # List of all touched files, excluding paths starting with 'packages'

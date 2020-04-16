@@ -1,16 +1,16 @@
 import { Component, ReactNode, createElement } from "react";
+import { observer } from "mobx-react";
 import classNames from "classnames";
-import clone from "lodash/clone";
-// import uniq from "lodash/uniq";
-
-import Table, { ColumnProps, TableRowSelection } from "antd/es/table";
-import arrayToTree, { Tree } from "array-to-tree";
+import Table, { TableRowSelection, ColumnProps } from "antd/es/table";
 
 // Importing seperate so we don't pollute the CSS too much
 import "../ui/MxTreeTable.scss";
 
-import { Alert } from "./Alert";
+import { Alerts } from "./Alert";
 import { SelectionMode } from "../../typings/MxTreeTableProps";
+import { NodeStore } from "../store";
+import { TableRecord } from "../util/columns";
+import { MockStore } from "../store/index";
 
 export interface TreeColumnProps {
     id: string;
@@ -21,83 +21,34 @@ export interface TreeColumnProps {
 }
 
 export interface TreeTableProps {
-    defaultValue?: string;
+    store: NodeStore | MockStore;
     className?: string;
     style?: object;
-    columns: TreeColumnProps[];
-    rows: RowObject[];
+
     expanderFunc?: (record: TableRecord, level: number) => void;
+
     onClick?: (record: TableRecord) => void;
     onDblClick?: (record: TableRecord) => void;
+    getInlineActionButtons?: () => Array<ColumnProps<TableRecord>>;
     onClickOpenRow?: boolean;
-    alertMessage?: string | string[];
+
     showHeader: boolean;
     clickToSelect: boolean;
     selectMode: SelectionMode;
     onSelect?: (ids: string[]) => void;
-    loading: boolean;
     buttonBar?: ReactNode;
     hideSelectBoxes?: boolean;
-    selectFirst?: boolean;
-    lastLoadFromContext: number;
 }
-
-interface TreeTableState {
-    searchColumn: string;
-    rows: Tree<RowObject[]>;
-    columns: Array<ColumnProps<TableRecord>>;
-    alertMessage?: string;
-    selectedRowKeys: string[];
-    expandedRowKeys: string[];
-    lastLoadFromContext: number;
-}
-
-export interface TableRecord {
-    key: string;
-    children?: string[];
-    _mxReferences?: string[];
-    _className?: string;
-    [other: string]: any;
-}
-
-export interface RowObject {
-    key: string;
-    _parent?: string;
-    _icon?: string;
-    _mxReferences?: string[];
-    [other: string]: any;
-}
-
-export type PageLocation = "content" | "popup" | "modal";
-
-const arrayToTreeOpts = {
-    parentProperty: "_parent",
-    customID: "key"
-};
 
 const DEBOUNCE = 250;
 
-export class TreeTable extends Component<TreeTableProps, TreeTableState> {
+@observer
+export class TreeTable extends Component<TreeTableProps> {
     debounce: number | null;
 
     constructor(props: TreeTableProps) {
         super(props);
 
-        const rows = this.createTree(props.rows);
-
-        let selected: string[] = [];
-        if (props.selectFirst && props.selectMode === "single" && rows.length > 0) {
-            selected = [rows[0].key];
-        }
-
-        this.state = {
-            searchColumn: "all",
-            rows,
-            columns: this.getColumns(props.columns),
-            selectedRowKeys: selected,
-            expandedRowKeys: [],
-            lastLoadFromContext: props.lastLoadFromContext
-        };
         this.debounce = null;
         this.onRowClick = this.onRowClick.bind(this);
         this.onRowDblClick = this.onRowDblClick.bind(this);
@@ -111,17 +62,28 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
 
     render(): ReactNode {
         const {
+            store,
             className,
             style,
             showHeader,
             selectMode,
-            loading,
             buttonBar,
             clickToSelect,
             onClickOpenRow,
-            hideSelectBoxes
+            hideSelectBoxes,
+            getInlineActionButtons
         } = this.props;
-        const { columns, rows, selectedRowKeys, expandedRowKeys } = this.state;
+
+        const {
+            selectedRows,
+            expandedKeys,
+            treeTableColumns,
+            validationMessages,
+            removeValidationMessage,
+            rowTree,
+            isLoading
+        } = store;
+
         const clearDebounce = (): void => {
             if (this.debounce !== null) {
                 clearTimeout(this.debounce);
@@ -136,18 +98,19 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
                     this.debounce = window.setTimeout(() => {
                         this.onRowClick(record);
                         if (selectMode !== "none" && clickToSelect) {
-                            const findKey = selectedRowKeys.indexOf(record.key);
+                            const findKey = selectedRows.indexOf(record.key);
+                            const selected = [...selectedRows];
                             const isSelected = findKey !== -1;
                             if (isSelected && selectMode === "single") {
                                 this.setSelected([]);
                             } else if (isSelected && selectMode === "multi") {
-                                selectedRowKeys.splice(findKey, 1);
-                                this.setSelected(selectedRowKeys);
+                                selected.splice(findKey, 1);
+                                this.setSelected(selected);
                             } else if (!isSelected && selectMode === "single") {
                                 this.setSelected([record.key]);
                             } else if (!isSelected && selectMode === "multi") {
-                                selectedRowKeys.push(record.key);
-                                this.setSelected(selectedRowKeys);
+                                selected.push(record.key);
+                                this.setSelected(selected);
                             }
                         }
                     }, DEBOUNCE);
@@ -165,14 +128,14 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
         if (selectMode !== "none") {
             rowSelection = {
                 type: "checkbox",
-                selectedRowKeys,
+                selectedRowKeys: selectedRows,
                 onChange: (keys: string[]) => {
                     if (selectMode === "multi") {
                         this.setSelected(keys);
                     }
                 },
                 onSelectAll: () => {
-                    if (selectMode === "single" && selectedRowKeys.length > 0) {
+                    if (selectMode === "single" && selectedRows.length > 0) {
                         this.setSelected([]);
                     }
                 },
@@ -188,58 +151,42 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
             };
         }
 
-        return createElement(
-            "div",
-            {
-                className: classNames(
+        let columns = treeTableColumns;
+        if (getInlineActionButtons) {
+            const extraColumns = getInlineActionButtons();
+            columns = [...treeTableColumns, ...extraColumns];
+        }
+
+        return (
+            <div
+                className={classNames(
                     "widget-treetable-wrapper",
                     hideSelectBoxes ? "hide-selectboxes" : null,
                     className
-                ),
-                style
-            },
-            createElement(Alert, {
-                bootstrapStyle: "danger",
-                className: "widget-treetable-alert",
-                message: this.props.alertMessage
-            }),
-            buttonBar,
-            <Table
-                columns={columns}
-                dataSource={rows}
-                onRow={onRow}
-                onExpand={this.onExpand}
-                pagination={false}
-                showHeader={showHeader}
-                rowSelection={rowSelection}
-                loading={loading}
-                expandedRowKeys={expandedRowKeys}
-                rowClassName={this.rowClassName}
-                expandRowByClick={onClickOpenRow && selectMode !== "multi"}
-            />
+                )}
+                style={style}
+            >
+                <Alerts validationMessages={validationMessages} remove={removeValidationMessage} />
+                {buttonBar}
+                <Table
+                    columns={columns}
+                    dataSource={rowTree}
+                    onRow={onRow}
+                    onExpand={this.onExpand}
+                    pagination={false}
+                    showHeader={showHeader}
+                    rowSelection={rowSelection}
+                    loading={isLoading}
+                    expandedRowKeys={expandedKeys}
+                    rowClassName={this.rowClassName}
+                    expandRowByClick={onClickOpenRow && selectMode !== "multi"}
+                />
+            </div>
         );
-    }
-
-    componentWillReceiveProps(newProps: TreeTableProps): void {
-        this.setState({
-            columns: this.getColumns(newProps.columns),
-            rows: this.createTree(newProps.rows)
-        });
-        if (newProps.lastLoadFromContext !== this.state.lastLoadFromContext) {
-            this.setState({
-                lastLoadFromContext: newProps.lastLoadFromContext
-            });
-            this.collapseAll();
-        }
     }
 
     private setSelected(keys: string[]): void {
-        this.setState(
-            {
-                selectedRowKeys: keys
-            },
-            () => this.onSelectionChange(this.state.selectedRowKeys)
-        );
+        this.onSelectionChange(keys);
     }
 
     private rowClassName(record: TableRecord, index: number): string {
@@ -257,20 +204,9 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
     //     });
     // }
 
-    private collapseAll(): void {
-        this.setState({
-            expandedRowKeys: []
-        });
-    }
-
-    private createTree(rows: RowObject[]): Tree<RowObject[]> {
-        const tree = arrayToTree(rows, arrayToTreeOpts);
-
-        // When creating the tree, it cann be possible to get orphaned children (a node that has a parent id, but parent removed).
-        // We filter these top level elements from the tree, as they are no longer relevant
-
-        return tree.filter(treeEl => typeof treeEl._parent === "undefined" && !treeEl._parent);
-    }
+    // private collapseAll(): void {
+    //     this.props.store.setExpanded([]);
+    // }
 
     private onRowClick(record: TableRecord): void {
         if (this.props.onClick) {
@@ -291,8 +227,8 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
     }
 
     private onExpand(expanded: boolean, record: TableRecord): void {
-        const { expandedRowKeys } = this.state;
-        const cloned = clone(expandedRowKeys);
+        const { expandedKeys } = this.props.store;
+        const cloned = [...expandedKeys];
         if (expanded) {
             cloned.push(record.key);
         } else {
@@ -301,30 +237,9 @@ export class TreeTable extends Component<TreeTableProps, TreeTableState> {
                 cloned.splice(found, 1);
             }
         }
-        this.setState({
-            expandedRowKeys: cloned
-        });
+        this.props.store.setExpanded(cloned);
         if (expanded && record.children && record.children.length === 0 && this.props.expanderFunc) {
             this.props.expanderFunc(record, 0);
         }
-    }
-
-    private getColumns(columns: TreeColumnProps[]): Array<ColumnProps<TableRecord>> {
-        const stateColumns = columns.map(col => {
-            const treeColumn: ColumnProps<TableRecord> = {
-                key: col.id,
-                dataIndex: col.id,
-                title: col.label
-            };
-            if (col.width && col.width !== null) {
-                const parsed = parseInt(col.width, 10);
-                treeColumn.width = !isNaN(parsed) && `${parsed}` === col.width ? parsed : col.width;
-            }
-            if (col.className) {
-                treeColumn.className = col.className;
-            }
-            return treeColumn;
-        });
-        return stateColumns;
     }
 }

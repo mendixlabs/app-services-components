@@ -68,4 +68,32 @@
     .widget-treetable-buttonbar {
         margin-bottom: 6px;
     }
+
+    .buttonColumn {
+        padding: 0;
+    }
+
+    .actionButton {
+        padding: 0.4em;
+    }
+}
+.widget-treetable-alert {
+    .alerts {
+        margin-bottom: 0;
+        list-style: none;
+        padding: 0;
+
+        li:first-child {
+            margin-top: 10px;
+        }
+    }
+}
+.demo-error-card--treetable {
+    padding: 10px 20px;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    &:first-child {
+        margin-top: 10px;
+    }
 }

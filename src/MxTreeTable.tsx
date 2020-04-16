@@ -1,68 +1,91 @@
 import { Component, ReactNode, createElement } from "react";
+import { hot } from "react-hot-loader/root";
 import { findDOMNode } from "react-dom";
+import { observer } from "mobx-react";
+import store from "store2";
 
-import clone from "lodash/clone";
-import defaults from "lodash/defaults";
-import Queue from "promise-queue";
-import { executeMicroflow, executeNanoFlow, openPage } from "@jeltemx/mendix-react-widget-utils/lib/actions";
-import { getObjects, createObject, commitObject, getObject } from "@jeltemx/mendix-react-widget-utils/lib/objects";
+// import * as ls from "local-storage";
+// // @ts-ignore;
+// window.ls = ls;
 
-import { createCamelcaseId, fetchAttr } from "./util";
-import { validateProps, ExtraMXValidateProps } from "./util/validation";
+import {
+    IAction,
+    getObjectContextFromObjects,
+    executeMicroflow,
+    executeNanoFlow,
+    openPage,
+    fetchByXpath,
+    getObjects,
+    ValidationMessage,
+    getObject,
+    commitObject,
+    createObject,
+    OpenPageAs,
+    entityIsPersistable
+} from "@jeltemx/mendix-react-widget-utils";
 
-import { MxTreeTableContainerProps, TreeviewColumnProps, ActionButtonProps } from "../typings/MxTreeTableProps";
-import { TreeTable, RowObject, TableRecord, TreeColumnProps } from "./components/TreeTable";
-import { Alert } from "./components/Alert";
+import { NodeStore, NodeStoreConstructorOptions } from "./store";
+import {
+    MxTreeTableContainerProps,
+    Nanoflow,
+    TreeviewColumnProps,
+    SelectActionButtonProps,
+    ClickOptions,
+    InlineActionButtonAction
+} from "../typings/MxTreeTableProps";
+import { ExtraMXValidateProps, validateProps } from "./util/validation";
+import { getColumns, TreeColumnProps, TableRecord, getInlineActionButtons } from "./util/columns";
+import { createCamelcaseId } from "./util";
 import { ButtonBarButtonProps, ButtonBar } from "./components/ButtonBar";
+import { Alerts } from "./components/Alert";
+import { TreeTable } from "./components/TreeTable";
+import { TreeRowObject } from "./store/objects/row";
+import { getReferencePart } from "./util/index";
+import { TableState } from "./store/index";
+import { ColumnProps } from "antd/es/table/interface";
 
-interface MxTreeTableState {
-    alertMessage: string | string[];
-    isLoading: boolean;
-    validColumns: boolean;
-    columnGuids: string[];
-    columns: TreeColumnProps[];
-    rows: RowObject[];
-    selectedObjects: mendix.lib.MxObject[];
-    selectFirstOnSingle: boolean;
-    lastLoadFromContext: number;
+export interface Action extends IAction {}
+export type ActionReturn = string | number | boolean | mendix.lib.MxObject | mendix.lib.MxObject[] | void;
+export interface TransformNanoflows {
+    [key: string]: Nanoflow;
 }
 
-export interface Nanoflow {
-    nanoflow: object[];
-    paramsSpec: { Progress: string };
-}
-
-interface NodeObject {
-    obj?: mendix.lib.MxObject;
-    key?: string;
-    microflow?: string;
-    nanoflow?: Nanoflow;
-    openpage?: string;
-    openpageas?: "content" | "popup" | "modal" | "node";
-}
-
-class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState> {
+@observer
+class MxTreeTable extends Component<MxTreeTableContainerProps> {
+    private store: NodeStore;
     private widgetId?: string;
-    private subscriptionHandles: number[] = [];
+
     private referenceAttr: string;
-    private loaderTimeout: number | null;
-    private columnLoadTimeout: number | null;
     private hasChildAttr: string;
+    private columnLoadTimeout: number | null = null;
     private helperNodeReference: string;
     private helperContextReference: string;
     private helperContextEntity: string;
     private staticColumns: boolean;
     private columnPropsValid: boolean;
-    private queue: Queue;
-    private transformNanoflows: {
-        [key: string]: Nanoflow;
-    };
+
+    private transformNanoflows: TransformNanoflows;
+
+    private debug = this._debug.bind(this);
+    private fetchData = this._fetchData.bind(this);
+    private reset = this._reset.bind(this);
+    private handleData = this._handleData.bind(this);
+    private convertMxObjectToRow = this._convertMxObjectToRow.bind(this);
+    private resetColumns = this._resetColumnsDebounce.bind(this);
+    private getInitialState = this._getInitialState.bind(this);
+    private writeTableState = this._writeTableState.bind(this);
+    private executeAction = this._executeAction.bind(this);
+    private loadChildData = this._loadChildData.bind(this);
+    private getObjectKeyPairs = this._getObjectKeyPairs.bind(this);
+    private expanderFunction = this._expanderFunction.bind(this);
+    private getColumnsFromDatasource = this._getColumnsFromDatasource.bind(this);
+    private getButtons = this._getButtons.bind(this);
 
     constructor(props: MxTreeTableContainerProps) {
         super(props);
 
-        this.referenceAttr =
-            props.childMethod === "reference" && "" !== props.childReference ? props.childReference.split("/")[0] : "";
+        // Set various properties based on props coming from runtime
+        this.referenceAttr = props.childMethod === "reference" ? getReferencePart(props.childReference) : "";
         this.hasChildAttr =
             props.childMethod !== "disabled" &&
             props.childMethod !== "reference" &&
@@ -71,9 +94,9 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 ? props.childBoolean
                 : "";
 
-        this.helperNodeReference = props.helperNodeReference ? props.helperNodeReference.split("/")[0] : "";
-        this.helperContextReference = props.helperContextReference ? props.helperContextReference.split("/")[0] : "";
-        this.helperContextEntity = props.helperContextReference ? props.helperContextReference.split("/")[1] : "";
+        this.helperNodeReference = getReferencePart(props.helperNodeReference);
+        this.helperContextReference = getReferencePart(props.helperContextReference);
+        this.helperContextEntity = getReferencePart(props.helperContextReference, "entity");
 
         this.staticColumns = props.columnMethod === "static";
         this.columnPropsValid =
@@ -84,46 +107,102 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                 props.columnMethod === "microflow" &&
                 props.columnHeaderMicroflow !== "");
 
-        this.loaderTimeout = null;
-        this.columnLoadTimeout = null;
+        // Keep a list of transform nanoflows for titles
         this.transformNanoflows = {};
-        this.subscriptionHandles = [];
-        // We're creating a data queue that handles data changes one by one, max 1000 in the queue
-        this.queue = new Queue(1, 1000);
-
-        const extraValidations = this.getMXValidations(props);
-        const alertMessage = validateProps(props, extraValidations);
-        const columns = MxTreeTable.getColumns(props.columnList, this.staticColumns);
-
-        this.state = {
-            alertMessage,
-            isLoading: true,
-            validColumns: !this.staticColumns,
-            columnGuids: [],
-            columns,
-            rows: [],
-            selectedObjects: [],
-            selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single",
-            lastLoadFromContext: +new Date()
-        };
-
-        this.bindMethods();
-
         if (this.staticColumns) {
             this.setTransFormColumns(props.columnList);
+        }
+
+        // Validations
+        const extraValidations = this.getMXValidations(props);
+        const validationMessages = validateProps(props, extraValidations);
+
+        // Create static columns (if applicable)
+        const columns = getColumns(props.columnList, this.staticColumns);
+
+        // Create store
+        const storeOpts: NodeStoreConstructorOptions = {
+            calculateInitialParents: this.props.loadScenario === "all",
+            rowObjectMxProperties: {
+                nodeChildReference: this.referenceAttr,
+                hasChildAttr: this.hasChildAttr,
+                childIsRootAttr: this.props.nodeIsRootAttr,
+                uiRowClassAttr: this.props.uiRowClassAttr,
+                uiRowIconPrefix: this.props.uiIconPrefix,
+                uiRowIconAttr: this.props.uiRowIconAttr
+            },
+            validationMessages,
+            validColumns: this.columnPropsValid,
+            selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single",
+            columns,
+            convertMxObjectToRow: this.convertMxObjectToRow,
+            childLoader: this.loadChildData,
+            resetColumns: this.resetColumns,
+            getInitialTableState: this.getInitialState,
+            writeTableState: this.writeTableState,
+            onSelect: this.onSelectAction.bind(this),
+            // TODO make this a check if you can reset state!
+            resetState: true,
+            reset: this.reset,
+            debug: this.debug
+        };
+
+        this.store = new NodeStore(storeOpts);
+
+        // @ts-ignore
+        window._STORE = this.store;
+    }
+
+    // **********************
+    // DEFAULT REACT METHODS
+    // **********************
+
+    componentDidUpdate(): void {
+        if (this.widgetId) {
+            const domNode = findDOMNode(this);
+            // @ts-ignore
+            domNode.setAttribute("widgetId", this.widgetId);
+        }
+    }
+
+    componentWillReceiveProps(nextProps: MxTreeTableContainerProps): void {
+        if (!this.widgetId) {
+            const domNode = findDOMNode(this);
+            // @ts-ignore
+            this.widgetId = domNode.getAttribute("widgetId") || undefined;
+        }
+
+        if (nextProps.experimentalExposeSetSelected && this.store.contextObject) {
+            const guid = this.store.contextObject.getGuid();
+            // @ts-ignore
+            if (typeof window[`__TreeTable_${guid}_select`] !== "undefined") {
+                // @ts-ignore
+                delete window[`__TreeTable_${guid}_select`];
+            }
+        }
+
+        this.store.setContext(nextProps.mxObject);
+        this.store.resetSubscriptions("MxTreeTable componentReceiveProps");
+
+        if (nextProps.experimentalExposeSetSelected && nextProps.mxObject) {
+            const guid = nextProps.mxObject.getGuid();
+            // @ts-ignore
+            window[`__TreeTable_${guid}_select`] = this.store.setSelectedFromExternal.bind(this.store);
+        }
+
+        if (nextProps.mxObject) {
+            this.store.setLoading(true);
+            if (!this.staticColumns && this.columnPropsValid) {
+                this.getColumnsFromDatasource(nextProps.mxObject).then(() => this.fetchData(nextProps.mxObject));
+            } else {
+                this.fetchData(nextProps.mxObject);
+            }
+        } else {
+            this.store.setLoading(false);
         }
     }
 
     render(): ReactNode {
-        const {
-            columns,
-            rows,
-            isLoading,
-            alertMessage,
-            validColumns,
-            selectFirstOnSingle,
-            lastLoadFromContext
-        } = this.state;
         const {
             uiShowHeader,
             selectMode,
@@ -132,6 +211,9 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             selectHideCheckboxes,
             selectOnChangeAction
         } = this.props;
+        const { validationMessages, removeValidationMessage } = this.store;
+        const fatalValidations = validationMessages.filter(m => m.fatal);
+
         const buttonBar = this.getButtons(selectActionButtons);
 
         let selectionMode = selectMode;
@@ -144,218 +226,42 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             selectionMode = "none";
         }
 
-        if (!validColumns && alertMessage) {
-            return createElement(Alert, {
-                bootstrapStyle: "warning",
-                className: "widget-treetable-alert",
-                message: alertMessage
-            });
-        }
-        return createElement(TreeTable, {
-            columns,
-            rows,
-            className: this.props.class,
-            alertMessage,
-            expanderFunc: this.expanderFunc,
-            onClick: this.onClick,
-            onDblClick: this.onDblClick,
-            showHeader: uiShowHeader,
-            selectMode: selectionMode,
-            onSelect: this.onSelect,
-            loading: isLoading,
-            buttonBar,
-            clickToSelect: selectClickSelect,
-            hideSelectBoxes: selectHideCheckboxes,
-            selectFirst: selectFirstOnSingle,
-            lastLoadFromContext
-        });
-    }
-
-    componentWillReceiveProps(nextProps: MxTreeTableContainerProps): void {
-        if (!this.widgetId) {
-            const domNode = findDOMNode(this);
-            // @ts-ignore
-            this.widgetId = domNode.getAttribute("widgetId") || undefined;
-        }
-        this.resetSubscription();
-        this.setState({ isLoading: true }, () => {
-            if (!this.staticColumns && this.columnPropsValid) {
-                this.getColumnsFromDatasource(nextProps.mxObject).then(() => this.fetchData(nextProps.mxObject));
-            } else {
-                this.fetchData(nextProps.mxObject);
-            }
-        });
-    }
-
-    componentDidUpdate(): void {
-        if (this.widgetId) {
-            const domNode = findDOMNode(this);
-            // @ts-ignore
-            domNode.setAttribute("widgetId", this.widgetId);
-        }
-    }
-
-    componentWillUnmount(): void {
-        if (this.subscriptionHandles) {
-            this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
-        }
-    }
-
-    private bindMethods(): void {
-        this.setLoader = this.setLoader.bind(this);
-        this.resetSubscription = this.resetSubscription.bind(this);
-        this.clearSubscriptions = this.clearSubscriptions.bind(this);
-        this.getColumnsFromDatasource = this.getColumnsFromDatasource.bind(this);
-
-        this.getFormattedValue = this.getFormattedValue.bind(this);
-        this.getFormattedOrTransformed = this.getFormattedOrTransformed.bind(this);
-        this.getObjectKeyPairs = this.getObjectKeyPairs.bind(this);
-        this.executeAction = this.executeAction.bind(this);
-        this.setTransFormColumns = this.setTransFormColumns.bind(this);
-
-        this.expanderFunc = this.expanderFunc.bind(this);
-        this.onClick = this.onClick.bind(this);
-        this.onDblClick = this.onDblClick.bind(this);
-        this.onSelect = this.onSelect.bind(this);
-        this.onSelectAction = this.onSelectAction.bind(this);
-        this.selectionAction = this.selectionAction.bind(this);
-        this.createHelperObject = this.createHelperObject.bind(this);
-
-        this.debug = this.debug.bind(this);
-    }
-
-    private getMXValidations(props: MxTreeTableContainerProps): ExtraMXValidateProps {
-        const extraProps: ExtraMXValidateProps = {};
-        const { helperEntity } = props;
-
-        if (helperEntity !== "") {
-            const entity = window.mx.meta.getEntity(helperEntity);
-            extraProps.helperObjectPersistence = entity.isPersistable();
-        }
-
-        return extraProps;
-    }
-
-    private clearSubscriptions(): void {
-        const { unsubscribe } = window.mx.data;
-
-        if (this.subscriptionHandles && this.subscriptionHandles.length > 0) {
-            this.subscriptionHandles.forEach(unsubscribe);
-            this.subscriptionHandles = [];
-        }
-    }
-
-    private resetSubscription(): void {
-        this.debug("resetSubscriptions");
-        const { subscribe } = window.mx.data;
-        const { rows } = this.state;
-
-        this.clearSubscriptions();
-
-        if (this.props.mxObject && this.props.mxObject.getGuid) {
-            this.subscriptionHandles.push(
-                subscribe({
-                    callback: () => {
-                        this.debug("subscription: context");
-                        this.clearSubscriptions();
-                        this.fetchData(this.props.mxObject);
-                    },
-                    guid: this.props.mxObject.getGuid()
-                })
+        if (fatalValidations.length > 0) {
+            return (
+                <div className={"widget-treetable-alert"}>
+                    <Alerts validationMessages={fatalValidations} remove={removeValidationMessage} />
+                </div>
             );
         }
 
-        if (rows && rows.length > 0) {
-            rows.forEach((row, index) => {
-                this.subscriptionHandles.push(
-                    subscribe({
-                        guid: row.key as string,
-                        callback: () => {
-                            window.mx.data.get({
-                                guid: row.key as string,
-                                error: error => {
-                                    MxTreeTable.logError(error.message);
-                                },
-                                callback: (res: mendix.lib.MxObject) => {
-                                    this.debug("subcription: row", index, row, res);
-                                    // Object might have been removed!
-                                    if (res === null) {
-                                        // Remove element from rows
-                                        const cloned = clone(rows);
-                                        cloned.splice(index, 1);
-
-                                        // If we have an object that has been removed, we also need to remove it from our selection
-                                        const { selectedObjects } = this.state;
-                                        const findSelected = selectedObjects.findIndex(el => el.getGuid() === row.key);
-                                        if (findSelected !== -1) {
-                                            selectedObjects.splice(findSelected, 1);
-                                        }
-                                        this.setState(
-                                            {
-                                                selectedObjects,
-                                                rows: cloned
-                                            },
-                                            this.resetSubscription
-                                        );
-                                    } else {
-                                        this.handleData([res], row._parent);
-                                        if (
-                                            this.props.childMethod === "microflow" ||
-                                            this.props.childMethod === "nanoflow"
-                                        ) {
-                                            // If object already exists and has children, we will reload all children;
-                                            const hasChildren =
-                                                rows.filter(findRow => findRow._parent && findRow._parent === row.key)
-                                                    .length > 0;
-                                            if (hasChildren) {
-                                                this.expanderFunc(row, 0);
-                                            }
-                                        }
-                                    }
-                                }
-                            });
-                        }
-                    })
-                );
-            });
-        }
-
-        if (this.state.columnGuids && this.state.columnGuids.length > 0) {
-            this.state.columnGuids.forEach(col => {
-                this.subscriptionHandles.push(
-                    subscribe({
-                        guid: col,
-                        callback: () => {
-                            this.debug("subscription: column", col);
-                            // We're using a timeout, because in our typical projects multiple column subscriptions will be fired in parallel
-                            // That can become problematic when waiting for a getMicroflow. So we're debouncing this.
-                            if (this.columnLoadTimeout !== null) {
-                                window.clearTimeout(this.columnLoadTimeout);
-                                // this.columnLoadTimeout = null;
-                            }
-                            this.clearSubscriptions();
-                            this.columnLoadTimeout = window.setTimeout(() => {
-                                this.debug("subscription: column executed", col);
-                                this.queue.add(() =>
-                                    this.getColumnsFromDatasource(this.props.mxObject).then(() =>
-                                        this.fetchData(this.props.mxObject)
-                                    )
-                                );
-                                this.columnLoadTimeout = null;
-                            }, 100);
-                        }
-                    })
-                );
-            });
-        }
+        return createElement(TreeTable, {
+            store: this.store,
+            className: this.props.class,
+            expanderFunc: this.expanderFunction,
+            onClick: this._onClick.bind(this),
+            onDblClick: this._onDblClick.bind(this),
+            showHeader: uiShowHeader,
+            selectMode: selectionMode,
+            onSelect: this.onSelect.bind(this),
+            getInlineActionButtons: this._getInlineButtonColumns.bind(this),
+            buttonBar,
+            clickToSelect: selectClickSelect,
+            hideSelectBoxes: selectHideCheckboxes
+        });
     }
 
-    private getColumnsFromDatasource(mxObject?: mendix.lib.MxObject): Promise<void> {
+    // **********************
+    // COLUMNS
+    // **********************
+
+    private async _getColumnsFromDatasource(mxObject?: mendix.lib.MxObject): Promise<void> {
         if (!mxObject) {
-            return Promise.resolve();
+            return;
         }
+        this.debug("getColumnsFromDatasource");
 
         const {
+            nodeEntity,
             columnMethod,
             columnHeaderMicroflow,
             // columnHeaderNanoflow,
@@ -364,563 +270,215 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
             columnHeaderClassAttribute
         } = this.props;
 
-        const nodeObj: NodeObject = {
-            obj: mxObject
-        };
+        const action: Action = {};
 
         if (columnMethod === "microflow" && columnHeaderMicroflow) {
-            nodeObj.microflow = columnHeaderMicroflow;
-            // } else if (columnMethod === "nanoflow" && columnHeaderNanoflow.nanoflow) {
-            //     nodeObj.nanoflow = columnHeaderNanoflow;
+            action.microflow = columnHeaderMicroflow;
         } else {
-            // TODO: Alert that something is wrong;
-            return Promise.resolve();
+            // TODO Alert that something is wrong;
+            return;
         }
 
-        return this.executeAction(nodeObj).then((headerObjects: mendix.lib.MxObject[]) => {
-            if (headerObjects && headerObjects.length > 0) {
-                const nodeEntity = window.mx.meta.getEntity(this.props.nodeEntity);
-                const columns: TreeColumnProps[] = [];
-                headerObjects.forEach(obj => {
-                    const headerAttribute = obj.get(columnHeaderAttrAttribute);
-                    // TODO fix the MxMetaObject, should have this method
-                    // @ts-ignore
-                    if (typeof headerAttribute === "string" && headerAttribute && nodeEntity.has(headerAttribute)) {
-                        const headerProps: TreeColumnProps = {
-                            id: createCamelcaseId(headerAttribute),
-                            originalAttr: headerAttribute,
-                            label: obj.get(columnHeaderLabelAttribute) as string,
-                            width: null
-                        };
-                        if (typeof columnHeaderClassAttribute === "string" && columnHeaderClassAttribute) {
-                            headerProps.className = obj.get(columnHeaderClassAttribute) as string;
-                        }
-                        columns.push(headerProps);
+        const headerObjects = (await this.executeAction(action, true, mxObject)) as mendix.lib.MxObject[];
+
+        if (headerObjects && headerObjects.length > 0) {
+            const nodeMetaEntity = window.mx.meta.getEntity(nodeEntity);
+            const columns: TreeColumnProps[] = [];
+
+            headerObjects.forEach(obj => {
+                const headerAttribute = obj.get(columnHeaderAttrAttribute);
+                if (typeof headerAttribute === "string" && headerAttribute && nodeMetaEntity.has(headerAttribute)) {
+                    const headerProps: TreeColumnProps = {
+                        id: createCamelcaseId(headerAttribute),
+                        originalAttr: headerAttribute,
+                        label: obj.get(columnHeaderLabelAttribute) as string,
+                        guid: obj.getGuid(),
+                        width: null,
+                        transFromNanoflow: null
+                    };
+                    if (typeof columnHeaderClassAttribute === "string" && columnHeaderClassAttribute) {
+                        headerProps.className = obj.get(columnHeaderClassAttribute) as string;
                     }
-                });
-                this.setState({
-                    columns,
-                    columnGuids: headerObjects.map(obj => obj.getGuid()),
-                    validColumns: true,
-                    isLoading: false,
-                    selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single"
-                });
+                    columns.push(headerProps);
+                }
+            });
+
+            this.store.setColumns(columns);
+            this.store.setValidColumns(true);
+        } else {
+            this.store.setValidColumns(false);
+            this.store.addValidationMessage(new ValidationMessage("No dynamic columns loaded, not showing table"));
+        }
+
+        this.store.setSelectFirstOnSingle(this.props.selectSelectFirstOnSingle && this.props.selectMode === "single");
+    }
+
+    // **********************
+    // DATA
+    // **********************
+
+    private async _fetchData(mxObject?: mendix.lib.MxObject): Promise<void> {
+        this.debug("fetchData", mxObject ? mxObject.getGuid() : null, this.props.dataSource);
+        this.store.setExpanded([], false);
+        try {
+            let objects: mendix.lib.MxObject[] = [];
+            if (this.props.dataSource === "xpath" && this.props.nodeEntity && mxObject) {
+                objects = (await fetchByXpath(
+                    mxObject,
+                    this.props.nodeEntity,
+                    this.props.constraint
+                )) as mendix.lib.MxObject[];
+            } else if (this.props.dataSource === "mf" && this.props.getDataMf) {
+                objects = (await this.executeAction(
+                    { microflow: this.props.getDataMf },
+                    false,
+                    mxObject
+                )) as mendix.lib.MxObject[];
+            } else if (this.props.dataSource === "nf" && this.props.getDataNf && this.props.getDataNf.nanoflow) {
+                objects = (await this.executeAction(
+                    { nanoflow: this.props.getDataNf },
+                    false,
+                    mxObject
+                )) as mendix.lib.MxObject[];
             } else {
-                this.setState({
-                    validColumns: false,
-                    isLoading: false,
-                    alertMessage: "No dynamic columns loaded, not showing table",
-                    selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single"
-                });
+                this.store.setLoading(false);
             }
-        });
-    }
 
-    private setTransFormColumns(columns: TreeviewColumnProps[]): void {
-        this.transformNanoflows = {};
-        columns.forEach(column => {
-            if (column.transformNanoflow) {
-                this.transformNanoflows[column.columnAttr] = column.transformNanoflow;
+            if (objects !== null) {
+                this.handleData(objects, null, -1);
+            } else {
+                this.handleData([], null, -1);
             }
-        });
+        } catch (error) {
+            window.mx.ui.error("An error occurred while executing retrieving data: ", error);
+        }
     }
 
-    private setLoader(loaderState: boolean, callback?: () => void): void {
-        if (this.loaderTimeout !== null) {
-            clearTimeout(this.loaderTimeout);
-            this.loaderTimeout = null;
+    private async _handleData(
+        objects: mendix.lib.MxObject[],
+        parentKey?: string | null,
+        level?: number
+    ): Promise<void> {
+        this.debug("handleData", objects.length, parentKey, level);
+
+        try {
+            this.store.setRowObjects(objects, level, parentKey);
+            this.store.setLoading(false);
+        } catch (error) {
+            window.mx.ui.error("An error occurred while handling data: ", error);
         }
-        if (!loaderState) {
-            this.setState(
-                {
-                    isLoading: false
-                },
-                callback
-            );
-        } else {
-            this.loaderTimeout = window.setTimeout(() => {
-                this.setState({
-                    isLoading: true
-                });
-            }, 300);
-            if (callback) {
-                callback();
+    }
+
+    private async _loadChildData(guids: string[], parentKey: string, loadFromRef: boolean): Promise<void> {
+        this.debug("loadChildData", guids, parentKey, loadFromRef);
+        try {
+            if (loadFromRef) {
+                const objects = await getObjects(guids);
+                if (objects) {
+                    this.handleData(objects, parentKey);
+                }
+            } else {
+                const rowObject = this.store.findRowObject(parentKey);
+                if (rowObject) {
+                    const treeObj = rowObject.treeObject;
+                    this._expanderFunction(treeObj, 1);
+                }
             }
+        } catch (error) {
+            console.log(error);
         }
     }
 
-    private fetchData(mxObject?: mendix.lib.MxObject): void {
-        if (this.props.dataSource === "xpath" && this.props.nodeEntity && mxObject) {
-            this.fetchByXpath(mxObject);
-        } else if (this.props.dataSource === "mf" && this.props.getDataMf) {
-            this.fetchByMf(this.props.getDataMf, mxObject);
-        } else if (this.props.dataSource === "nf" && this.props.getDataNf) {
-            this.fetchByNf(this.props.getDataNf, mxObject);
-        } else {
-            this.setState({ isLoading: false });
-        }
+    private async _convertMxObjectToRow(mxObject: mendix.lib.MxObject): Promise<TreeRowObject> {
+        const keyPairValues = await this.getObjectKeyPairs(mxObject);
+
+        const retObj: TreeRowObject = {
+            key: mxObject.getGuid(),
+            ...keyPairValues
+        };
+
+        return retObj;
     }
 
-    private fetchByXpath(mxObject: mendix.lib.MxObject): void {
-        this.debug("fetchByXpath", mxObject);
-        const { constraint } = this.props;
-        const requiresContext = constraint && constraint.indexOf("[%CurrentObject%]") > -1;
-        const contextGuid = mxObject.getGuid();
-        if (!contextGuid && requiresContext) {
-            this.setState({ isLoading: false });
-            return;
-        }
-
-        const entityConstraint = constraint ? constraint.replace(/\[%CurrentObject%]/g, contextGuid) : "";
-
-        window.mx.data.get({
-            callback: mxObjects => this.handleData(mxObjects, null, -1),
-            error: error =>
-                this.setState({
-                    alertMessage: `An error occurred while retrieving items via XPath (${entityConstraint}): ${error}`
-                }),
-            xpath: `//${this.props.nodeEntity}${entityConstraint}`
-        });
-    }
-
-    private fetchByMf(microflow: string, mxObject?: mendix.lib.MxObject): void {
-        this.debug("fetchByMf", microflow, mxObject);
-        if (microflow) {
-            window.mx.data.action({
-                callback: (mxObjects: mendix.lib.MxObject[]) => this.handleData(mxObjects, null, -1),
-                error: error =>
-                    this.setState({
-                        alertMessage: `An error occurred while retrieving nodes via the microflow ${microflow}: ${error.message}`
-                    }),
-                origin: this.props.mxform,
-                params: {
-                    actionname: microflow,
-                    applyto: "selection",
-                    guids: mxObject ? [mxObject.getGuid()] : []
-                }
-            });
-        }
-    }
-
-    private fetchByNf(nanoflow?: Nanoflow, mxObject?: mendix.lib.MxObject): void {
-        this.debug("fetchByNf", nanoflow && nanoflow.nanoflow, mxObject);
-        const context = this.getContext({ obj: mxObject });
-        if (nanoflow) {
-            window.mx.data.callNanoflow({
-                nanoflow,
-                context,
-                origin: this.props.mxform,
-                callback: (mxObjects: mendix.lib.MxObject[]) => this.handleData(mxObjects, null, -1),
-                error: error => {
-                    this.setState({
-                        alertMessage: `An error occurred while retrieving nodes via the nanoflow ${nanoflow}: ${error.message}`
-                    });
-                }
-            });
-        }
-    }
-
-    private handleData(objects: mendix.lib.MxObject[], parentKey?: string | null, level?: number): void {
-        this.debug("handleData", objects, parentKey, level);
-        objects = objects || [];
-
-        const dataHandler = (): Promise<void> =>
-            new Promise((resolveData, rejectData) => {
-                try {
-                    const objectPromises = objects.map(
-                        mxObject =>
-                            // eslint-disable-next-line
-                            new Promise(async resolve => {
-                                const attributes = mxObject.getAttributes();
-                                const referenceObjects =
-                                    this.referenceAttr !== "" && -1 < attributes.indexOf(this.referenceAttr)
-                                        ? mxObject.getReferences(this.referenceAttr)
-                                        : [];
-
-                                let childAttrValue: string | number | boolean | undefined;
-                                if (this.hasChildAttr) {
-                                    childAttrValue = await fetchAttr(mxObject, this.hasChildAttr);
-                                }
-
-                                let appendIcon: string | null = null;
-
-                                if (this.props.uiRowIconAttr) {
-                                    appendIcon = (await fetchAttr(mxObject, this.props.uiRowIconAttr)) as string | null;
-                                }
-
-                                const keyPairValues = await this.getObjectKeyPairs(mxObject, appendIcon);
-
-                                const retObj: RowObject = defaults(
-                                    {
-                                        key: mxObject.getGuid()
-                                    },
-                                    keyPairValues
-                                );
-
-                                if (this.props.uiRowClassAttr) {
-                                    const className = (await fetchAttr(mxObject, this.props.uiRowClassAttr)) as
-                                        | string
-                                        | null;
-                                    if (className) {
-                                        retObj._className = className;
-                                    }
-                                }
-
-                                if (appendIcon) {
-                                    const prefix = this.props.uiIconPrefix || "glyphicon glyphicon-";
-                                    retObj._icon = `${prefix}${appendIcon}`;
-                                }
-
-                                if (referenceObjects && 0 < referenceObjects.length) {
-                                    retObj._mxReferences = referenceObjects;
-                                    retObj.children = [];
-                                } else if (childAttrValue) {
-                                    retObj._mxHasChildren = true;
-                                    retObj.children = [];
-                                }
-
-                                if (typeof parentKey !== "undefined" && parentKey !== null) {
-                                    retObj._parent = parentKey;
-                                }
-
-                                resolve(retObj);
-                            })
-                    );
-
-                    Promise.all(objectPromises)
-                        .then((objs: RowObject[]) => {
-                            // eslint-disable-next-line
-                            const currentRows: RowObject[] = level === -1 ? [] : clone(this.state.rows);
-                            objs.forEach(obj => {
-                                const objIndex = currentRows.findIndex(row => row.key === obj.key);
-                                if (objIndex === -1) {
-                                    currentRows.push(obj);
-                                    if (typeof level !== "undefined" && level > 0 && obj.key) {
-                                        this.expanderFunc(obj, level - 1);
-                                    }
-                                } else {
-                                    if (obj._mxReferences && obj._mxReferences.length > 0) {
-                                        // Are there reference that have not been loaded yet?
-                                        const unFoundRows = obj._mxReferences.filter(
-                                            o => currentRows.filter(c => c.key === o).length === 0
-                                        );
-                                        // Does this node already have nodes loaded?
-                                        const hasRows =
-                                            currentRows.filter(row => row._parent && row._parent === obj.key).length >
-                                            0;
-                                        if (hasRows && unFoundRows.length > 0) {
-                                            // Node has children, but some references that have not been loaded yet. Load them all;
-                                            unFoundRows.forEach(guid => {
-                                                mx.data.get({
-                                                    guid,
-                                                    callback: unFoundObject => {
-                                                        this.handleData([unFoundObject], obj.key);
-                                                    }
-                                                });
-                                            });
-                                        }
-                                    }
-                                    currentRows.splice(objIndex, 1, obj);
-                                }
-                            });
-                            this.setLoader(false);
-                            if (level === -1) {
-                                // As this level means we're reloading root data, we have to reset the expandedRows;
-                                this.setState({
-                                    lastLoadFromContext: +new Date()
-                                });
-                            }
-                            this.setState({ rows: currentRows }, () => {
-                                this.resetSubscription();
-                                resolveData();
-                            });
-                        })
-                        .catch(err => {
-                            throw err;
-                        });
-                } catch (error) {
-                    this.setLoader(false);
-                    this.setState({
-                        alertMessage: `An error occurred while handling data for ${objects}: ${error}`
-                    });
-                    rejectData(error);
-                }
-            });
-        this.queue
-            .add(dataHandler)
-            .then(() => {
-                this.debug(
-                    this.widgetId,
-                    "Data handled for",
-                    objects,
-                    `Queue length: ${this.queue.getPendingLength()}`
-                );
-            })
-            .catch(err => {
-                if (window.logger) {
-                    window.logger.error("Data handle error for", objects, err);
-                }
-            });
-    }
-
-    private getObjectKeyPairs(
-        obj: mendix.lib.MxObject,
-        appendIcon: string | null
-    ): Promise<{ [key: string]: string | number | boolean }> {
-        const attributes = obj.getAttributes();
-        const { columns } = this.state;
+    private _getObjectKeyPairs(
+        obj: mendix.lib.MxObject
+    ): Promise<{ [key: string]: string | number | boolean | ReactNode }> {
+        const { columns } = this.store;
         return Promise.all(
-            columns.map((col: TreeColumnProps, index: number) => {
-                if (col.originalAttr && -1 < attributes.indexOf(col.originalAttr)) {
-                    const key = col.id;
-                    return this.getFormattedOrTransformed(obj, col.originalAttr).then(res => {
-                        const retVal: { [key: string]: string | number | boolean | ReactNode } = {};
-                        if (appendIcon && index === 0) {
-                            const prefix = this.props.uiIconPrefix || "glyphicon glyphicon-";
-                            retVal[key] = createElement(
-                                "div",
-                                {
-                                    className: "ant-table-cell-with-icon"
-                                },
-                                createElement("i", { className: `ant-table-cell-icon ${prefix}${appendIcon}` }),
-                                res
-                            );
-                        } else {
-                            retVal[key] = res;
-                        }
-                        return retVal;
-                    });
-                } else {
-                    return Promise.resolve({});
-                }
-            })
+            columns
+                .filter(col => col.transFromNanoflow && col.transFromNanoflow.nanoflow)
+                .map(async (col: TreeColumnProps) => {
+                    let returnValue: { id?: string; value?: string } = {};
+                    if (col.transFromNanoflow) {
+                        const formatted = (await this.executeAction(
+                            { nanoflow: col.transFromNanoflow },
+                            true,
+                            obj
+                        )) as string;
+                        returnValue = { id: col.id, value: formatted };
+                    }
+                    return returnValue;
+                })
         ).then(objects => {
-            return defaults({}, ...objects);
+            const retVal: { [key: string]: string | number | boolean | ReactNode } = {};
+
+            objects.forEach(obj => {
+                if (obj.id) {
+                    retVal[obj.id] = obj.value;
+                }
+            });
+
+            return retVal;
         });
     }
 
-    private getFormattedOrTransformed(obj: mendix.lib.MxObject, attr: string): Promise<string | number | boolean> {
-        if (this.transformNanoflows[attr] && typeof this.transformNanoflows[attr].nanoflow !== "undefined") {
-            return this.executeAction({
-                obj,
-                nanoflow: this.transformNanoflows[attr]
-            }) as Promise<string>;
-        }
-        const res = this.getFormattedValue(obj, attr);
-        return Promise.resolve(res);
-    }
-
-    private getFormattedValue(obj: mendix.lib.MxObject, attr: string): string | number | boolean {
-        const type = obj.getAttributeType(attr);
-        const ret = obj.get(attr);
-        if (type === "Enum") {
-            return obj.getEnumCaption(attr, ret as string);
-        } else if (type === "Boolean") {
-            return ret ? "True" : "False";
-        } else if (type === "Date" || type === "DateTime") {
-            return window.mx.parser.formatValue(ret, type.toLowerCase());
-        }
-        return ret.valueOf ? ret.valueOf() : ret;
-    }
-
-    private expanderFunc(record: TableRecord | RowObject, level: number): void {
-        if (typeof record._mxReferences !== "undefined" && record._mxReferences.length > 0) {
-            this.setLoader(true, () => {
+    private async _expanderFunction(record: TableRecord | TreeRowObject, level: number): Promise<void> {
+        this.debug("expanderFunction", record, level);
+        try {
+            if (typeof record._mxReferences !== "undefined" && record._mxReferences.length > 0) {
+                this.store.setLoading(true);
                 const guids = record._mxReferences as string[];
-                window.mx.data.get({
-                    callback: mxObjects => this.handleData(mxObjects, record.key, level),
-                    error: error => {
-                        this.setLoader(false);
-                        this.setState({
-                            alertMessage: `An error occurred while retrieving child items for ${record.key}: ${error}`
-                        });
-                    },
-                    guids
-                });
-            });
-        } else if (record._mxHasChildren && record.key) {
-            const node: NodeObject = {
-                key: record.key
-            };
-            if (this.props.childMethod === "microflow" && this.props.getChildMf) {
-                node.microflow = this.props.getChildMf;
-            } else if (this.props.childMethod === "nanoflow" && this.props.getChildNf) {
-                node.nanoflow = this.props.getChildNf;
-            }
-
-            if (node.microflow || node.nanoflow) {
-                this.setLoader(true, () => {
-                    this.executeAction(node, false)
-                        .then((result: mendix.lib.MxObject[]) => {
-                            this.handleData(result, record.key, level);
-                        })
-                        .catch(error => {
-                            this.setLoader(false);
-                            this.setState({
-                                alertMessage: `An error occurred while retrieving child items for ${record.key}: ${error}`
-                            });
-                        });
-                });
-            }
-        }
-    }
-
-    private onClick(record: TableRecord): void {
-        if (record && record.key) {
-            const { onClickAction, onClickMf, onClickNf, onClickForm, onClickOpenPageAs } = this.props;
-            if (onClickAction === "open" && onClickForm) {
-                const node: NodeObject = {
-                    key: record.key,
-                    openpage: onClickForm,
-                    openpageas: onClickOpenPageAs
-                };
-                this.executeAction(node);
-            } else if (onClickAction === "mf" && onClickMf) {
-                this.clickAction(record.key, onClickMf, null);
-            } else if (onClickAction === "nf" && onClickNf) {
-                this.clickAction(record.key, null, onClickNf);
-            }
-        }
-    }
-
-    private onDblClick(record: TableRecord): void {
-        if (record && record.key) {
-            const { onDblClickAction, onDblClickMf, onDblClickNf, onDblClickForm, onDblClickOpenPageAs } = this.props;
-            if (onDblClickAction === "open" && onDblClickForm) {
-                const node: NodeObject = {
-                    key: record.key,
-                    openpage: onDblClickForm,
-                    openpageas: onDblClickOpenPageAs
-                };
-                this.executeAction(node);
-            } else if (onDblClickAction === "mf" && onDblClickMf) {
-                this.clickAction(record.key, onDblClickMf, null);
-            } else if (onDblClickAction === "nf" && onDblClickNf) {
-                this.clickAction(record.key, null, onDblClickNf);
-            }
-        }
-    }
-
-    private async clickAction(selectedGuid: string, mf: string | null, nf: Nanoflow | null): Promise<void> {
-        const nodeObject = await getObject(selectedGuid);
-        if (!nodeObject) {
-            return;
-        }
-        const helperObject = await this.createHelperObject([nodeObject]);
-        if (!helperObject) {
-            return;
-        }
-        const context = new window.mendix.lib.MxContext();
-        context.setContext(helperObject.getEntity(), helperObject.getGuid());
-
-        if (mf !== null) {
-            executeMicroflow(mf, context, this.props.mxform, true);
-        } else if (nf !== null) {
-            executeNanoFlow(nf, context, this.props.mxform, true);
-        }
-    }
-
-    private onSelect(ids: string[]): void {
-        const { selectMode, mxObject } = this.props;
-        if (selectMode === "none") {
-            return;
-        }
-        if (mxObject) {
-            try {
-                const { selectedObjects } = this.state;
-                const currentIds = selectedObjects.map(obj => obj.getGuid());
-                const unTouched = selectedObjects.filter(obj => ids.indexOf(obj.getGuid()) !== -1);
-                const newIds = ids.filter(id => currentIds.indexOf(id) === -1);
-
-                if (ids.length === 0 || newIds.length === 0) {
-                    this.setState({ selectedObjects: unTouched }, () => {
-                        this.onSelectAction();
-                    });
-                } else {
-                    getObjects(newIds)
-                        .then(newObjects => {
-                            const newObjs: mendix.lib.MxObject[] = newObjects || [];
-                            this.setState(
-                                {
-                                    selectedObjects: [...newObjs, ...unTouched]
-                                },
-                                () => {
-                                    this.onSelectAction();
-                                }
-                            );
-                        })
-                        .catch(err => {
-                            throw err;
-                        });
+                const mxRowObjects = await getObjects(guids);
+                if (mxRowObjects) {
+                    this.handleData(mxRowObjects, record.key, level);
                 }
-            } catch (error) {
-                window.mx.ui.error(`An error occurred while setting selection: ${error.message}`);
+                this.store.setLoading(false);
+            } else if (record._mxHasChildren && record.key) {
+                const mxNodeObject = await getObject(record.key);
+                if (!mxNodeObject) {
+                    return;
+                }
+                const action: Action = {};
+
+                if (this.props.childMethod === "microflow" && this.props.getChildMf) {
+                    action.microflow = this.props.getChildMf;
+                } else if (
+                    this.props.childMethod === "nanoflow" &&
+                    this.props.getChildNf &&
+                    this.props.getChildNf.nanoflow
+                ) {
+                    action.nanoflow = this.props.getChildNf;
+                }
+
+                if (action.microflow || action.nanoflow) {
+                    this.store.setLoading(true);
+                    const mxObjects = (await this.executeAction(action, true, mxNodeObject)) as mendix.lib.MxObject[];
+                    this.handleData(mxObjects, record.key, level);
+                    this.store.setLoading(false);
+                }
             }
+        } catch (error) {
+            mx.ui.error(`An error occurred while retrieving child items for ${record.key}: ${error}`);
+            this.store.setLoading(false);
         }
     }
 
-    private async onSelectAction(): Promise<void> {
-        const { selectedObjects } = this.state;
-        const { selectOnChangeAction, selectOnChangeMicroflow, selectOnChangeNanoflow } = this.props;
-        this.debug("onSelectAction", selectedObjects.length);
+    // **********************
+    // BUTTONS
+    // **********************
 
-        if (this.state.selectFirstOnSingle) {
-            this.setState({
-                selectFirstOnSingle: false
-            });
-        }
-
-        // When we do an onChange selection, chances are that you change the context object. In order to avoid re-rendering the table, we temporarily lift
-        // all subscriptions, then do the select Action, then reapply the selections. This can also be avoid by creating a helperSelection object and add this
-        // to your view, then changing that helper selection Object instead of the context object
-        if (selectOnChangeAction === "mf" && selectOnChangeMicroflow) {
-            this.clearSubscriptions();
-            await this.selectionAction(selectedObjects, selectOnChangeMicroflow, null);
-            this.resetSubscription();
-        } else if (selectOnChangeAction === "nf" && selectOnChangeNanoflow) {
-            this.clearSubscriptions();
-            await this.selectionAction(selectedObjects, null, selectOnChangeNanoflow);
-            this.resetSubscription();
-        }
-    }
-
-    private executeAction(
-        node: NodeObject,
-        showError = true
-    ): Promise<string | number | boolean | mendix.lib.MxObject | mendix.lib.MxObject[] | void> {
-        this.debug("executeAction", node);
-        const context = this.getContext(node);
-
-        if (node.microflow) {
-            return executeMicroflow(node.microflow, context, this.props.mxform, showError);
-        } else if (node.nanoflow && node.nanoflow.nanoflow) {
-            return executeNanoFlow(node.nanoflow, context, this.props.mxform, showError);
-        } else if (node.openpage) {
-            return openPage({ pageName: node.openpage, openAs: node.openpageas || "popup" }, context, showError);
-        }
-
-        return Promise.reject(new Error("Incorrect action"));
-    }
-
-    private getContext(node: NodeObject): mendix.lib.MxContext {
-        const context = new window.mendix.lib.MxContext();
-
-        if (node.obj && node.obj.getGuid) {
-            context.setContext(this.props.nodeEntity, node.obj.getGuid());
-            // @ts-ignore
-        } else if (node.key) {
-            // TODO: This is dirty! Let's not do this
-            // @ts-ignore
-            context.setContext(this.props.nodeEntity, node.key);
-        } else if (this.props.mxObject) {
-            context.setContext(this.props.mxObject.getEntity(), this.props.mxObject.getGuid());
-        }
-
-        return context;
-    }
-
-    private getButtons(actionButtons: ActionButtonProps[]): ReactNode {
-        const { selectedObjects } = this.state;
+    private _getButtons(actionButtons: SelectActionButtonProps[]): ReactNode {
+        const selectedObjects = this.store.selectedRows;
         const filteredButtons = actionButtons
             .filter(
                 button =>
@@ -936,14 +494,19 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
                     caption: button.selectABLabel,
                     disabled,
                     hidden: button.selectABHideOnNotApplicable && disabled,
-                    onClick: () => {
-                        const { selectedObjects } = this.state;
+                    onClick: async () => {
+                        const selectedObjects = this.store.selectedRows;
 
                         if (selectedObjects.length > 0) {
+                            const selection = await getObjects(selectedObjects);
+                            if (!selection) {
+                                return;
+                            }
+
                             if (selectABAction === "mf" && selectABMicroflow) {
-                                this.selectionAction(selectedObjects, selectABMicroflow, null);
+                                this.selectionAction(selection, selectABMicroflow, null);
                             } else if (selectABAction === "nf" && selectABNanoflow) {
-                                this.selectionAction(selectedObjects, null, selectABNanoflow);
+                                this.selectionAction(selection, null, selectABNanoflow);
                             }
                         }
                     }
@@ -964,32 +527,106 @@ class MxTreeTable extends Component<MxTreeTableContainerProps, MxTreeTableState>
         });
     }
 
-    private async selectionAction(
-        objects: mendix.lib.MxObject[],
-        mf: string | null,
-        nf: Nanoflow | null
+    private _getInlineButtonColumns(): Array<ColumnProps<TableRecord>> {
+        return getInlineActionButtons(
+            this.props.inlineActionButtons,
+            (
+                record: TableRecord,
+                action: InlineActionButtonAction,
+                microflow: string,
+                nanoflow: Nanoflow,
+                form: string,
+                formOpenAs: OpenPageAs
+            ): void => {
+                this._onClickHandler(record, action as ClickOptions, microflow, nanoflow, form, formOpenAs);
+            }
+        );
+    }
+
+    // **********************
+    // VALIDATIONS
+    // **********************
+
+    private getMXValidations(props: MxTreeTableContainerProps): ExtraMXValidateProps {
+        const extraProps: ExtraMXValidateProps = {};
+        const { helperEntity } = props;
+
+        if (helperEntity !== "") {
+            extraProps.helperObjectPersistence = entityIsPersistable(helperEntity);
+        }
+
+        return extraProps;
+    }
+
+    // **********************
+    // CLICK ACTIONS
+    // **********************
+
+    private async _onClick(record: TableRecord): Promise<void> {
+        // this.debug("click: ", record);
+        const { onClickAction, onClickMf, onClickNf, onClickForm, onClickOpenPageAs } = this.props;
+        this._onClickHandler(record, onClickAction, onClickMf, onClickNf, onClickForm, onClickOpenPageAs);
+    }
+
+    private async _onDblClick(record: TableRecord): Promise<void> {
+        // this.debug("dblClick: ", record);
+        const { onDblClickAction, onDblClickMf, onDblClickNf, onDblClickForm, onDblClickOpenPageAs } = this.props;
+        this._onClickHandler(
+            record,
+            onDblClickAction,
+            onDblClickMf,
+            onDblClickNf,
+            onDblClickForm,
+            onDblClickOpenPageAs
+        );
+    }
+
+    private async _onClickHandler(
+        record: TableRecord,
+        action: ClickOptions,
+        microflow: string,
+        nanoflow: Nanoflow,
+        form: string,
+        formOpenAs: OpenPageAs
     ): Promise<void> {
-        const { mxform } = this.props;
+        if (record && record.key) {
+            if (action === "open" && form) {
+                const nodeObject = await getObject(record.key);
+                if (!nodeObject) {
+                    return;
+                }
+                this.executeAction({ page: { pageName: form, openAs: formOpenAs } }, false, nodeObject);
+            } else if (action === "mf" && microflow) {
+                this.clickAction(record.key, microflow, null);
+            } else if (action === "nf" && nanoflow && nanoflow.nanoflow) {
+                this.clickAction(record.key, null, nanoflow);
+            }
+        }
+    }
 
-        const helperObject = await this.createHelperObject(objects);
-
-        if (helperObject === null) {
+    private async clickAction(selectedGuid: string, mf: string | null, nf: Nanoflow | null): Promise<void> {
+        const nodeObject = await getObject(selectedGuid);
+        if (!nodeObject) {
             return;
         }
 
+        const helperObject = await this.createHelperObject([nodeObject]);
+        if (!helperObject) {
+            return;
+        }
         const context = new window.mendix.lib.MxContext();
         context.setContext(helperObject.getEntity(), helperObject.getGuid());
 
         if (mf !== null) {
-            return executeMicroflow(mf, context, mxform).then(() => {
-                this.debug("Action executed");
-            });
+            executeMicroflow(mf, context, this.props.mxform, true);
         } else if (nf !== null) {
-            return executeNanoFlow(nf, context, mxform).then(() => {
-                this.debug("Action executed");
-            });
+            executeNanoFlow(nf, context, this.props.mxform, true);
         }
     }
+
+    // **********************
+    // HELPER OBJECT (CLICK, SELECTION)
+    // **********************
 
     private async createHelperObject(nodeObjects?: mendix.lib.MxObject[]): Promise<mendix.lib.MxObject | null> {
         this.debug("createHelperObject", nodeObjects && nodeObjects.length);
@@ -1027,34 +664,230 @@ Your context object is of type "${contextEntity}". Please check the configuratio
         return helperObject;
     }
 
-    private debug(...args: any): void {
-        if (window.logger) {
-            window.logger.debug(this.widgetId, ...args);
+    // **********************
+    // SELECTION
+    // **********************
+
+    private async selectionAction(
+        objects: mendix.lib.MxObject[],
+        mf: string | null,
+        nf: Nanoflow | null
+    ): Promise<void> {
+        const { mxform } = this.props;
+
+        const helperObject = await this.createHelperObject(objects);
+
+        if (helperObject === null) {
+            return;
+        }
+
+        const context = new window.mendix.lib.MxContext();
+        context.setContext(helperObject.getEntity(), helperObject.getGuid());
+
+        if (mf !== null) {
+            return executeMicroflow(mf, context, mxform).then(() => {
+                this.debug("Action executed");
+            });
+        } else if (nf !== null) {
+            return executeNanoFlow(nf, context, mxform).then(() => {
+                this.debug("Action executed");
+            });
         }
     }
 
-    static getColumns(columns: TreeviewColumnProps[], isStatic = true): TreeColumnProps[] {
-        if (!isStatic) {
-            return [];
+    private onSelect(ids: string[]): void {
+        const { selectMode, mxObject } = this.props;
+        if (selectMode === "none") {
+            return;
         }
-        const newColumns = columns.map(column => {
-            const id = createCamelcaseId(column.columnAttr);
-            const tableColumn: TreeColumnProps = {
-                id,
-                label: column.columnHeader,
-                originalAttr: column.columnAttr,
-                width: column.columnWidth && column.columnWidth !== "" ? column.columnWidth : null,
-                className: column.columnClassName ? column.columnClassName : null
-            };
-            return tableColumn;
+        if (mxObject) {
+            try {
+                const { selectedRows } = this.store;
+                const unTouched = selectedRows.filter(row => ids.indexOf(row) !== -1);
+                const newIds = ids.filter(id => selectedRows.indexOf(id) === -1);
+
+                if (ids.length === 0 || newIds.length === 0) {
+                    this.store.setSelected(unTouched);
+                    this.onSelectAction();
+                } else {
+                    getObjects(newIds)
+                        .then(newObjects => {
+                            const newObjs: mendix.lib.MxObject[] = newObjects || [];
+                            this.store.setSelected([...newObjs.map(o => o.getGuid()), ...unTouched]);
+                            this.onSelectAction();
+                        })
+                        .catch(err => {
+                            throw err;
+                        });
+                }
+            } catch (error) {
+                window.mx.ui.error(`An error occurred while setting selection: ${error.message}`);
+            }
+        }
+    }
+
+    private async onSelectAction(selected?: string[]): Promise<void> {
+        const selectedFromStore = this.store.selectedRows;
+        const selectedRows = typeof selected !== "undefined" ? selected : selectedFromStore;
+        const { selectOnChangeAction, selectOnChangeMicroflow, selectOnChangeNanoflow } = this.props;
+        this.debug("onSelectAction", selectedRows.length);
+
+        if (this.store.selectFirstOnSingle) {
+            this.store.setSelectFirstOnSingle(false);
+        }
+
+        // When we do an onChange selection, chances are that you change the context object. In order to avoid re-rendering the table, we temporarily lift
+        // all subscriptions, then do the select Action, then reapply the selections. This can also be avoid by creating a helperSelection object and add this
+        // to your view, then changing that helper selection Object instead of the context object
+        if (selectOnChangeAction === "mf" && selectOnChangeMicroflow) {
+            const selectedObjects = await getObjects(selectedRows);
+            if (selectedObjects === null) {
+                return;
+            }
+            this.store.clearSubscriptions();
+            await this.selectionAction(selectedObjects, selectOnChangeMicroflow, null);
+            this.store.resetSubscriptions("onSelectAction mf");
+        } else if (selectOnChangeAction === "nf" && selectOnChangeNanoflow && selectOnChangeNanoflow.nanoflow) {
+            const selectedObjects = await getObjects(selectedRows);
+            if (selectedObjects === null) {
+                return;
+            }
+            this.store.clearSubscriptions();
+            await this.selectionAction(selectedObjects, null, selectOnChangeNanoflow);
+            this.store.resetSubscriptions("onSelectAction nf");
+        }
+    }
+
+    // **********************
+    // STATE MANAGEMENT
+    // **********************
+
+    private _getInitialState(guid: string): TableState {
+        const {
+            stateManagementType,
+            stateLocalStorageKey,
+            stateExecuteSelectActionOnRestore,
+            stateLocalStorageType
+        } = this.props;
+        const key = stateLocalStorageKey !== "" ? `TreeTableState-${stateLocalStorageKey}` : `TreeTableState-${guid}`;
+        const currentDateTime = +new Date();
+        const emptyState: TableState = {
+            context: guid,
+            expanded: [],
+            selected: []
+        };
+        if (stateManagementType === "disabled" /* || stateManagementType === "mendix"*/) {
+            return emptyState;
+        }
+        const hasLocalStorage = stateLocalStorageType === "session" ? store.session.has(key) : store.local.has(key);
+
+        if (!hasLocalStorage) {
+            this.writeTableState(emptyState);
+            return emptyState;
+        }
+
+        const localStoredState = (stateLocalStorageType === "session"
+            ? store.session.get(key)
+            : store.local.get(key)) as TableState | null;
+        this.debug("getTableState", localStoredState);
+        if (
+            localStoredState &&
+            localStoredState.lastUpdate &&
+            currentDateTime - localStoredState.lastUpdate < this.props.stateLocalStorageTime * 1000 * 60
+        ) {
+            if (
+                localStoredState.selected &&
+                localStoredState.selected.length > 0 &&
+                stateExecuteSelectActionOnRestore
+            ) {
+                this.onSelectAction(localStoredState.selected);
+            }
+            return localStoredState;
+        }
+
+        this.writeTableState(emptyState);
+        return emptyState;
+    }
+
+    private _writeTableState(state: TableState): void {
+        const { stateManagementType, stateLocalStorageKey, stateLocalStorageType } = this.props;
+        if (stateManagementType === "disabled" /* || stateManagementType === "mendix"*/) {
+            return;
+        }
+        this.debug("writeTableState", state);
+        const key =
+            stateLocalStorageKey !== "" ? `TreeTableState-${stateLocalStorageKey}` : `TreeTableState-${state.context}`;
+        state.lastUpdate = +new Date();
+        if (stateLocalStorageType === "session") {
+            store.session.set(key, state);
+        } else {
+            store.local.set(key, state);
+        }
+    }
+
+    // **********************
+    // OTHER METHODS
+    // **********************
+
+    private _resetColumnsDebounce(col: string): void {
+        if (this.columnLoadTimeout !== null) {
+            window.clearTimeout(this.columnLoadTimeout);
+        }
+        this.store.clearSubscriptions();
+        this.columnLoadTimeout = window.setTimeout(() => {
+            this.debug("Reset columns ", col);
+            this.getColumnsFromDatasource(this.props.mxObject).then(() => {
+                this.store.resetSubscriptions("MxTreeTable resetColumnsDebounce");
+                this.fetchData(this.props.mxObject);
+            });
+            this.columnLoadTimeout = null;
+        }, 100);
+    }
+
+    private _reset(): void {
+        if (!this.staticColumns && this.columnPropsValid) {
+            this.getColumnsFromDatasource(this.props.mxObject).then(() => {
+                this.store.resetSubscriptions("MxTreeTable reset");
+                this.fetchData(this.props.mxObject);
+            });
+        } else {
+            this.fetchData(this.props.mxObject);
+        }
+    }
+
+    private setTransFormColumns(columns: TreeviewColumnProps[]): void {
+        this.transformNanoflows = {};
+        columns.forEach(column => {
+            if (column.transformNanoflow && column.transformNanoflow.nanoflow) {
+                this.transformNanoflows[column.columnAttr] = column.transformNanoflow;
+            }
         });
-        return newColumns;
     }
 
-    static logError(message: string, style?: string, error?: Error): void {
-        // eslint-disable-next-line no-unused-expressions,no-console
-        window.logger ? window.logger.error(message) : console.log(message, style, error);
+    private _executeAction(action: Action, showError = false, obj?: mendix.lib.MxObject): Promise<ActionReturn> {
+        this.debug("executeAction", action, obj && obj.getGuid());
+        const { mxform } = this.props;
+        const context = getObjectContextFromObjects(obj, this.props.mxObject);
+
+        if (action.microflow) {
+            return executeMicroflow(action.microflow, context, mxform, showError);
+        } else if (action.nanoflow) {
+            return executeNanoFlow(action.nanoflow, context, mxform, showError);
+        } else if (action.page) {
+            return openPage(action.page, context, showError);
+        }
+
+        return Promise.reject(
+            new Error(`No microflow/nanoflow/page defined for this action: ${JSON.stringify(action)}`)
+        );
+    }
+
+    private _debug(...args: unknown[]): void {
+        const id = this.props.friendlyId || this.widgetId;
+        if (window.logger) {
+            window.logger.debug(`${id}:`, ...args);
+        }
     }
 }
 
-export default MxTreeTable;
+export default hot(MxTreeTable);

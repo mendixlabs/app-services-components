@@ -40,7 +40,7 @@ Show a tree-like structure in Mendix.
 - Dynamic columns
 - Much more...
 
-> This widget is only ~500Kb uncompressed, so in your cloud environment this would be about ~130Kb. This is light-weight for any project.
+> This widget is only ~600Kb uncompressed, so in your cloud environment this would be about ~150Kb. This is light-weight for any project.
 
 Tested:
 - IE11
@@ -53,6 +53,7 @@ Tested:
 ![Data](/assets/tab01-data.png)
 
 - Select an Entity that will serve as your Node.
+- You can choose whether to load the whole tree or partial (top level)
 - Nodes can be retrieved through a few methods: Xpath, Microflow, Nanoflow
 - Please note that this only loads the top-level data (first nodes)
 - When you set this to XPath, define your constraint (if needed)
@@ -86,7 +87,6 @@ Tested:
 - You can also set a class name
 
 ### 5. Dynamic Columns
-![Dynamic Columns](/assets/tab05-dynamic-columns.png)
 
 - Dynamic columns can be used to let the user define their column. This is a bit tricky though:
   - The attribute of the Node entity should be saved in the Attribute attribute of the column Entity (this is confusing, right 😜?).
@@ -97,32 +97,39 @@ Note:
 In order to get the attributes of your Node entity in your project, I encourage you to use the [Model Reflection module in the AppStore](https://appstore.home.mendix.com/link/app/69/). This has the ability to load all entities and read their attributes. Then use this to create your Column entities.
 
 ### 6. Events
-![Events](/assets/tab06-events.png)
+![Events](/assets/tab05-events.png)
 
 - Events are pretty straightforward. The widget uses a debounce, which means it will not single click when you double-click.
 - For the microflow/nanoflow, you will need to configure the helper object!
 
 ### 7. UI
-![UI](/assets/tab07-ui.png)
+![UI](/assets/tab06-ui.png)
 
-- ~~The size changes the padding in the cells~~ Size is obsolete and set to standard. You should do sizing in your theming.
 - Header row (which contains the captions of the column) can be disabled
 - You can set a class on the row through an attribute in your Node. This way it is possible to change colors (needs custom styling)
 - Icons can be shown on the first column of the row. See test-project
 
 ### 8. Selection
-![Selection](/assets/tab08-selection.png)
+![Selection](/assets/tab07-selection.png)
 
 - Just like a normal table, you can use selection to do things with the Nodes.
 - Configure buttons for a selection.
 - The microflow/nanoflows use the Helper object
 - Please note that when we use the Selection onChange, chances are that you will make a change to your context object (for example, set a selection reference/set). This would mean that the table re-renders, losing the selection. We circumvent this by temporarily lift the subscriptions (that will trigger when the context changes), execute the action, then reapply the subscriptions.
 
+### 9. Misc
+![Misc](/assets/tab08-misc.png)
+
+- You can now save the state of your table. This only works for the whole tree, no partial trees!
+- Experimentally expose `window.__TreeTable_{guid}_select`. This will only accept 1 guid at the moment.
+
 ## Test-project
 
 The [test-project](https://reacttreeview-sandbox.mxapps.io/) uses the following domain model. This is purely an example, but can be used as an inspiration to use in your own project:
 
 ![domain-model-example](/assets/domain-model-example.png)
+
+Test-project can be downloaded [here](https://github.com/JelteMX/widget-test-projects#tree-table)
 
 ## Issues, suggestions and feature requests
 

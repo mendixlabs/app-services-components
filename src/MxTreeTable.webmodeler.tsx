@@ -1,9 +1,10 @@
 import { Component, ReactNode, createElement } from "react";
 
 import { MxTreeTableContainerProps } from "../typings/MxTreeTableProps";
-import MxTreeTable from "./MxTreeTable";
 import { validateProps } from "./util/validation";
 import { TreeTable, TreeTableProps } from "./components/TreeTable";
+import { getColumns, getTreeTableColumns } from "./util/columns";
+import { MockStore } from "./store/index";
 
 declare function require(name: string): string;
 
@@ -28,31 +29,47 @@ export class preview extends Component<MxTreeTableContainerProps> {
     }
 
     private transformProps(props: MxTreeTableContainerProps): TreeTableProps {
-        const validationAlert = validateProps(props);
-        let columns = MxTreeTable.getColumns(props.columnList);
+        const validationMessages = validateProps(props);
+        let columns = getColumns(props.columnList);
 
         if (props.columnMethod === "microflow") {
             columns = [
                 {
+                    guid: null,
                     id: "dummy",
                     width: null,
                     originalAttr: "",
-                    label: "Columns dynamically loaded through microflow/nanoflow"
+                    label: "Columns dynamically loaded through microflow/nanoflow",
+                    transFromNanoflow: null
                 }
             ];
         }
 
+        const store: MockStore = {
+            validationMessages,
+            rowTree: [],
+            expandedKeys: [],
+            isLoading: false,
+            selectedRows: [],
+            removeValidationMessage: (_id: string): void => {
+                console.log("noop", _id);
+            },
+            setExpanded: () => {
+                console.log("noop");
+            },
+            setSelected: () => {
+                console.log("noop");
+            },
+            treeTableColumns: getTreeTableColumns(columns)
+        };
+
         return {
+            store,
             className: props.class,
             style: props.style,
-            columns,
-            rows: [],
-            alertMessage: validationAlert,
             showHeader: props.uiShowHeader,
             selectMode: "none",
-            clickToSelect: true,
-            loading: false,
-            lastLoadFromContext: 0
+            clickToSelect: true
         };
     }
 }

@@ -1,33 +1,41 @@
 import { CSSProperties } from "react";
-import { Nanoflow } from "../src/MxTreeTable";
-import { PageLocation } from "../src/components/TreeTable";
+import { INanoflow, OpenPageAs } from "@jeltemx/mendix-react-widget-utils";
+
+export interface Nanoflow extends INanoflow {}
 
 interface CommonProps {
     id: string;
     class: string;
     style?: CSSProperties;
+    friendlyId?: string;
     tabIndex: number;
     mxform: mxui.lib.form._FormBase;
     mxObject?: mendix.lib.MxObject;
 }
 
-type ClickOptions = "nothing" | "mf" | "nf" | "open";
-type DataSource = "xpath" | "mf" | "nf";
-type ActionButtonAction = "mf" | "nf";
-type OnChangeAction = "nothing" | "mf" | "nf";
-type ChildDataSource = "disabled" | "reference" | "microflow" | "nanoflow";
+export type ClickOptions = "nothing" | "mf" | "nf" | "open";
+export type InlineActionButtonAction = "mf" | "nf" | "open";
+export type DataSource = "xpath" | "mf" | "nf";
+export type ActionButtonAction = "mf" | "nf";
+export type OnChangeAction = "nothing" | "mf" | "nf";
+export type ChildDataSource = "disabled" | "reference" | "microflow" | "nanoflow";
 export type SelectionMode = "none" | "single" | "multi";
 export type ColumnMethod = "static" | "microflow";
+export type LoadScenario = "partial" | "all";
+export type StateManagementType = "disabled" | "localStorage" /*| "mendix"*/;
+export type StateManagementStorage = "session" | "local";
+export type ColumnTitleType = "attr" | "nanoflow";
 
 export interface TreeviewColumnProps {
     columnHeader: string;
     columnAttr: string;
+    columnTitleType: ColumnTitleType;
     transformNanoflow?: Nanoflow;
     columnWidth?: string;
     columnClassName?: string;
 }
 
-export interface ActionButtonProps {
+export interface SelectActionButtonProps {
     selectABLabel: string;
     selectABClass: string;
     selectABHideOnNotApplicable: boolean;
@@ -36,12 +44,26 @@ export interface ActionButtonProps {
     selectABNanoflow: Nanoflow;
 }
 
+export interface InlineActionButtonProps {
+    actionButtonClass: string;
+    actionButttonLabel: string;
+    actionButtonColumnLabel: string;
+    actionButtonColumnClass: string;
+    actionButtonOnClickAction: InlineActionButtonAction;
+    actionButtonOnClickMf: string;
+    actionButtonOnClickNf: Nanoflow;
+    actionButtonOnClickForm: string;
+    actionButtonOnClickOpenPageAs: OpenPageAs;
+}
+
 export interface MxTreeTableContainerProps extends CommonProps {
     nodeEntity: string;
+    loadScenario: LoadScenario;
     dataSource: DataSource;
     constraint: string;
     getDataMf: string;
     getDataNf: Nanoflow;
+    nodeIsRootAttr: string;
 
     childMethod: ChildDataSource;
     childReference: string;
@@ -61,17 +83,18 @@ export interface MxTreeTableContainerProps extends CommonProps {
     columnHeaderMicroflow: string;
     columnHeaderNanoflow: Nanoflow;
     columnMethod: ColumnMethod;
+    inlineActionButtons: InlineActionButtonProps[];
 
     onClickAction: ClickOptions;
     onClickMf: string;
     onClickNf: Nanoflow;
     onClickForm: string;
-    onClickOpenPageAs: PageLocation;
+    onClickOpenPageAs: OpenPageAs;
     onDblClickAction: ClickOptions;
     onDblClickMf: string;
     onDblClickNf: Nanoflow;
     onDblClickForm: string;
-    onDblClickOpenPageAs: PageLocation;
+    onDblClickOpenPageAs: OpenPageAs;
 
     uiShowHeader: boolean;
     uiRowClassAttr: string;
@@ -85,5 +108,16 @@ export interface MxTreeTableContainerProps extends CommonProps {
     selectOnChangeAction: OnChangeAction;
     selectOnChangeMicroflow: string;
     selectOnChangeNanoflow: Nanoflow;
-    selectActionButtons: ActionButtonProps[];
+    selectActionButtons: SelectActionButtonProps[];
+
+    stateManagementType: StateManagementType;
+    stateLocalStorageTime: number;
+    stateLocalStorageType: StateManagementStorage;
+    stateLocalStorageKey: string;
+    stateExecuteSelectActionOnRestore: boolean;
+    // stateEntity: string;
+    // getStateObjectMicroflow: string;
+    // stateNodeSelectionReference: string;
+    // stateNodeExpandReference: string;
+    experimentalExposeSetSelected: boolean;
 }
