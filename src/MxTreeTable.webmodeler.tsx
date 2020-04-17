@@ -66,7 +66,7 @@ export class preview extends Component<MxTreeTableContainerProps> {
         return {
             store,
             className: props.class,
-            style: props.style,
+            // style: props.style,
             showHeader: props.uiShowHeader,
             selectMode: "none",
             clickToSelect: true
