@@ -515,7 +515,7 @@ It should be a non-persistent entity (persistent is not permitted) with a refere
         <propertyGroup caption="Misc">
             <propertyGroup caption="State Management">
                 <property key="stateManagementType" type="enumeration" defaultValue="disabled">
-                    <caption>Type</caption>
+                    <caption>State Type</caption>
                     <description>
 Note: State management (currently) ONLY works when you load a whole tree (see Data section). In case of 'Top level', it will be disabled.
                     </description>

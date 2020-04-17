@@ -7,7 +7,8 @@ export interface ExtraMXValidateProps {
 
 export const validateProps = (
     props: MxTreeTableContainerProps,
-    extraProps: ExtraMXValidateProps = {}
+    extraProps: ExtraMXValidateProps = {},
+    isWebModeler = false
 ): ValidationMessage[] => {
     const messages: ValidationMessage[] = [];
     const conditionalValidation = (condition: boolean, category: string, msg: string): void => {
@@ -35,7 +36,8 @@ export const validateProps = (
     );
 
     conditionalValidation(
-        props.childMethod === "nanoflow" && !props.getChildNf.nanoflow,
+        props.childMethod === "nanoflow" &&
+            ((!isWebModeler && !props.getChildNf.nanoflow) || (isWebModeler && !props.getChildNf)),
         "Data Children",
         "When using a nanoflow as Child data source, child nanoflow is required"
     );
@@ -59,7 +61,8 @@ export const validateProps = (
     );
 
     conditionalValidation(
-        props.dataSource === "nf" && !props.getDataNf.nanoflow,
+        props.dataSource === "nf" &&
+            ((!isWebModeler && !props.getDataNf.nanoflow) || (isWebModeler && !props.getDataNf)),
         "Data",
         "For data source option 'nanoflow', a data source nanoflow is required"
     );
@@ -79,7 +82,8 @@ export const validateProps = (
     conditionalValidation(props.onClickAction === "mf" && !props.onClickMf, "Events", "On click microflow missing");
 
     conditionalValidation(
-        props.onClickAction === "nf" && !props.onClickNf.nanoflow,
+        props.onClickAction === "nf" &&
+            ((!isWebModeler && !props.onClickNf.nanoflow) || (isWebModeler && !props.onClickNf)),
         "Events",
         "On click nanoflow missing"
     );
@@ -93,7 +97,8 @@ export const validateProps = (
     );
 
     conditionalValidation(
-        props.onDblClickAction === "nf" && !props.onDblClickNf.nanoflow,
+        props.onDblClickAction === "nf" &&
+            ((!isWebModeler && !props.onDblClickNf.nanoflow) || (isWebModeler && !props.onDblClickNf)),
         "Events",
         "On double click nanoflow missing"
     );
@@ -120,7 +125,8 @@ export const validateProps = (
             );
             conditionalValidation(
                 staticColumn.columnTitleType === "nanoflow" &&
-                    !(staticColumn.transformNanoflow && staticColumn.transformNanoflow.nanoflow),
+                    ((!isWebModeler && !(staticColumn.transformNanoflow && staticColumn.transformNanoflow.nanoflow)) ||
+                        (isWebModeler && !staticColumn.transformNanoflow)),
                 "Columns (List)",
                 "Static column Title type is set to Nanoflow, but no nanoflow is defined" +
                     (staticColumn.columnHeader !== "" ? ", caption: " + staticColumn.columnHeader : "")
@@ -179,7 +185,10 @@ export const validateProps = (
                         `Selection -> Buttonbar -> Button with label '${button.selectABLabel}' should have a microflow configured`
                     )
                 );
-            } else if (button.selectABAction === "nf" && !button.selectABNanoflow.nanoflow) {
+            } else if (
+                button.selectABAction === "nf" &&
+                ((!isWebModeler && !button.selectABNanoflow.nanoflow) || (isWebModeler && !button.selectABNanoflow))
+            ) {
                 messages.push(
                     new ValidationMessage(
                         `Selection -> Buttonbar -> Button with label '${button.selectABLabel}' should have a nanoflow configured`
@@ -195,7 +204,11 @@ export const validateProps = (
                 messages.push(
                     new ValidationMessage("Column -> Inline Buttons -> Button should have a microflow configured")
                 );
-            } else if (button.actionButtonOnClickAction === "nf" && !button.actionButtonOnClickNf.nanoflow) {
+            } else if (
+                button.actionButtonOnClickAction === "nf" &&
+                ((!isWebModeler && !button.actionButtonOnClickNf.nanoflow) ||
+                    (isWebModeler && !button.actionButtonOnClickNf))
+            ) {
                 messages.push(
                     new ValidationMessage("Column -> Inline Buttons -> Button should have a nanoflow configured")
                 );

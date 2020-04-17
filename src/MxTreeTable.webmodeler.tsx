@@ -5,6 +5,7 @@ import { validateProps } from "./util/validation";
 import { TreeTable, TreeTableProps } from "./components/TreeTable";
 import { getColumns, getTreeTableColumns } from "./util/columns";
 import { MockStore } from "./store/index";
+import { Alerts } from "./components/Alert";
 
 declare function require(name: string): string;
 
@@ -14,9 +15,25 @@ type VisibilityMap = {
 
 export class preview extends Component<MxTreeTableContainerProps> {
     render(): ReactNode {
+        const tableProps = this.transformProps(this.props);
+        const fatalValidations = tableProps.store.validationMessages.filter(m => m.fatal);
+        const noop = () => {
+            console.log("noop");
+        };
+
+        if (fatalValidations.length > 0) {
+            return (
+                <div ref={this.parentInline}>
+                    <div className={"widget-treetable-alert"}>
+                        <Alerts validationMessages={fatalValidations} remove={noop} />
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <div ref={this.parentInline}>
-                <TreeTable {...this.transformProps(this.props)} />
+                <TreeTable {...tableProps} />
             </div>
         );
     }
@@ -29,7 +46,7 @@ export class preview extends Component<MxTreeTableContainerProps> {
     }
 
     private transformProps(props: MxTreeTableContainerProps): TreeTableProps {
-        const validationMessages = validateProps(props);
+        const validationMessages = validateProps(props, {}, true);
         let columns = getColumns(props.columnList);
 
         if (props.columnMethod === "microflow") {
@@ -84,9 +101,11 @@ export function getVisibleProperties(props: MxTreeTableContainerProps, visibilit
     visibilityMap.getDataNf = props.dataSource === "nf";
 
     visibilityMap.childBoolean = props.childMethod === "microflow" || props.childMethod === "nanoflow";
-    visibilityMap.childReference = props.childMethod === "reference";
+    visibilityMap.childReference = props.childMethod === "reference" || props.loadScenario === "all";
     visibilityMap.getChildMf = props.childMethod === "microflow";
     visibilityMap.getChildNf = props.childMethod === "nanoflow";
+
+    visibilityMap.nodeIsRootAttr = props.loadScenario === "all";
 
     visibilityMap.onClickMf = props.onClickAction === "mf";
     visibilityMap.onClickNf = props.onClickAction === "nf";
@@ -101,13 +120,25 @@ export function getVisibleProperties(props: MxTreeTableContainerProps, visibilit
     visibilityMap.selectClickSelect = props.selectMode !== "none";
     visibilityMap.selectHideCheckboxes = props.selectMode !== "none";
     visibilityMap.selectActionButtons = props.selectMode !== "none";
+    visibilityMap.selectOnChangeAction = props.selectMode !== "none";
+    visibilityMap.selectOnChangeMicroflow = props.selectMode !== "none";
+    visibilityMap.selectOnChangeNanoflow = props.selectMode !== "none";
+    visibilityMap.selectActionButtons = props.selectMode !== "none";
     visibilityMap.selectSelectFirstOnSingle = props.selectMode === "single";
 
+    visibilityMap.columnList = props.columnMethod === "static";
     visibilityMap.columnHeaderEntity = props.columnMethod !== "static";
     visibilityMap.columnHeaderAttrAttribute = props.columnMethod !== "static";
     visibilityMap.columnHeaderClassAttribute = props.columnMethod !== "static";
     visibilityMap.columnHeaderLabelAttribute = props.columnMethod !== "static";
     visibilityMap.columnHeaderMicroflow = props.columnMethod === "microflow";
+
+    visibilityMap.uiIconPrefix = props.uiRowIconAttr !== "";
+
+    visibilityMap.stateLocalStorageType = props.stateManagementType === "localStorage";
+    visibilityMap.stateLocalStorageTime = props.stateManagementType === "localStorage";
+    visibilityMap.stateLocalStorageKey = props.stateManagementType === "localStorage";
+    visibilityMap.stateExecuteSelectActionOnRestore = props.stateManagementType === "localStorage";
 
     return visibilityMap;
 }
