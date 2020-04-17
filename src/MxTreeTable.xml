@@ -420,7 +420,8 @@ It should be a non-persistent entity (persistent is not permitted) with a refere
             <propertyGroup caption="Selection behavior">
                 <property key="selectMode" type="enumeration" defaultValue="none">
                     <caption>Select Mode</caption>
-                    <description>Make sure you add the Selection Helper entity when doing selections!</description>
+                    <description>- Make sure you add the Selection Helper entity when doing selections!
+- Selection is only enabled when you have added something in the Button Bar or added an On Change Action. If neither is configured, selection will be disabled.</description>
                     <enumerationValues>
                         <enumerationValue key="none">None</enumerationValue>
                         <enumerationValue key="single">Single</enumerationValue>
