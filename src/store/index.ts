@@ -457,7 +457,8 @@ export class NodeStore {
         };
 
         try {
-            const tree = arrayToTree(toJS(this.rowObjects.map(r => r.treeObject)), arrayToTreeOpts);
+            const treeObjects = this.rowObjects.map(r => r.treeObject);
+            const tree = arrayToTree(treeObjects, arrayToTreeOpts);
 
             // When creating the tree, it can be possible to get orphaned children (a node that has a parent id, but parent removed).
             // We filter these top level elements from the tree, as they are no longer relevant

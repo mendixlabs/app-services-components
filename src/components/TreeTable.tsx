@@ -157,6 +157,23 @@ export class TreeTable extends Component<TreeTableProps> {
             columns = [...treeTableColumns, ...extraColumns];
         }
 
+        columns = columns.map((col, index) => {
+            return {
+                ...col,
+                render: (text, record) => {
+                    if (index === 0 && record._icon) {
+                        return (
+                            <div className="ant-table-cell-with-icon">
+                                <i className={`ant-table-cell-icon ${record._icon}`} />
+                                {text}
+                            </div>
+                        );
+                    }
+                    return text;
+                }
+            };
+        });
+
         return (
             <div
                 className={classNames(

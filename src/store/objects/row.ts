@@ -1,7 +1,6 @@
 import { observable, action, computed, flow, toJS } from "mobx";
 import { RowObjectMxProperties } from "..";
 import { TreeColumnProps } from "../../util/columns";
-import { createElement } from "react";
 import { getFormattedValue } from "@jeltemx/mendix-react-widget-utils";
 
 export interface RowObjectOptions {
@@ -25,6 +24,7 @@ export interface TreeRowObject {
     key: string;
     _parent?: string;
     _icon?: string;
+    _firstKey?: string | null;
     _mxReferences?: string[];
     children?: [];
     [other: string]: any;
@@ -237,14 +237,15 @@ export class RowObject {
 
     @computed
     get treeObject(): TreeRowObject {
+        const rowClassName = this._rowClass;
+        const iconClassName = this._iconClass;
+        const firstColumnId = this.firstColumnId;
+
         const keyVals: TreeRowObject = {
             ...this._keyValCorePairs,
             ...this._keyValTransformedPairs,
             key: this.key
         };
-        const rowClassName = this._rowClass;
-        const iconClassName = this._iconClass;
-        const firstColumnId = this.firstColumnId;
 
         keyVals.key = this.key;
 
@@ -263,15 +264,7 @@ export class RowObject {
         }
 
         if (iconClassName !== null && firstColumnId !== null && keyVals[firstColumnId]) {
-            const formatted = keyVals[firstColumnId];
-            keyVals[firstColumnId] = createElement(
-                "div",
-                {
-                    className: "ant-table-cell-with-icon"
-                },
-                createElement("i", { className: `ant-table-cell-icon ${iconClassName}` }),
-                formatted
-            );
+            keyVals._icon = iconClassName;
         }
 
         return toJS(keyVals);
