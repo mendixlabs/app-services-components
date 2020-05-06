@@ -158,6 +158,9 @@ export class TreeTable extends Component<TreeTableProps> {
         }
 
         columns = columns.map((col, index) => {
+            if (!col.key) {
+                return col;
+            }
             return {
                 ...col,
                 render: (text, record) => {
