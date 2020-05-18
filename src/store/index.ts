@@ -43,6 +43,7 @@ export interface RowObjectMxProperties {
 
 export interface NodeStoreConstructorOptions {
     contextObject?: mendix.lib.MxObject;
+    dataResetOnContextChange?: boolean;
     columns: TreeColumnProps[];
     validColumns: boolean;
     selectFirstOnSingle: boolean;
@@ -87,6 +88,7 @@ export class NodeStore {
     private writeTableState: (state: TableState) => void;
     private onSelect: (ids: string[]) => void;
 
+    private dataResetOnContextChange: boolean;
     private needToCalculateInitialParents: boolean;
     private needToRestoreStateOnContextChange: boolean;
     private needToRestoreSelectFirst: boolean;
@@ -96,6 +98,7 @@ export class NodeStore {
 
     constructor({
         contextObject,
+        dataResetOnContextChange,
         columns,
         validColumns,
         selectFirstOnSingle,
@@ -113,6 +116,7 @@ export class NodeStore {
         debug
     }: NodeStoreConstructorOptions) {
         this.contextObject = contextObject || null;
+        this.dataResetOnContextChange = typeof dataResetOnContextChange !== 'undefined' ? dataResetOnContextChange : false;
         this.columns = columns;
         this.validColumns = validColumns;
         this.selectFirstOnSingle = selectFirstOnSingle;
@@ -140,7 +144,7 @@ export class NodeStore {
     @action
     setContext(obj?: mendix.lib.MxObject): void {
         this.debug("Store: setContext", obj);
-        if (this.contextObject !== null && obj && this.contextObject.getGuid() !== obj.getGuid()) {
+        if (this.contextObject !== null && obj && (this.contextObject.getGuid() !== obj.getGuid() || this.dataResetOnContextChange)) {
             if (this.needToCalculateInitialParents) {
                 this.calculateInitialParents = true;
                 if (this.needToRestoreStateOnContextChange) {
@@ -385,7 +389,7 @@ export class NodeStore {
 
         const { subscribe } = window.mx.data;
 
-        if (this.contextObject && this.contextObject.getGuid) {
+        if (this.contextObject && this.contextObject.getGuid && !this.dataResetOnContextChange) {
             const guid = this.contextObject.getGuid();
             this.subscriptionHandles.push(
                 subscribe({

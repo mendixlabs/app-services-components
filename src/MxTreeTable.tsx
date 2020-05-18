@@ -122,6 +122,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps> {
 
         // Create store
         const storeOpts: NodeStoreConstructorOptions = {
+            dataResetOnContextChange: this.props.dataResetOnContextChange,
             calculateInitialParents: this.props.loadScenario === "all",
             rowObjectMxProperties: {
                 nodeChildReference: this.referenceAttr,
@@ -200,6 +201,10 @@ class MxTreeTable extends Component<MxTreeTableContainerProps> {
         } else {
             this.store.setLoading(false);
         }
+    }
+
+    componentWillUnmount(): void {
+        this.store.clearSubscriptions();
     }
 
     render(): ReactNode {

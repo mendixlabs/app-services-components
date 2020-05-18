@@ -64,6 +64,7 @@ export interface MxTreeTableContainerProps extends CommonProps {
     getDataMf: string;
     getDataNf: Nanoflow;
     nodeIsRootAttr: string;
+    dataResetOnContextChange: boolean;
 
     childMethod: ChildDataSource;
     childReference: string;

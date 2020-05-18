@@ -64,6 +64,12 @@
                     </attributeTypes>
                 </property>
             </propertyGroup>
+            <propertyGroup caption="Reset">
+                <property key="dataResetOnContextChange" type="boolean" defaultValue="false">
+                    <caption>Reset on context change</caption>
+                    <description>This should be false by default, because you only want to reload the whole table when the context object is switched (new object guid). If for some reason you need to reset the table whenever the context object changes, set this to true. Use this combined with the 'Whole Tree' scenario and state management.</description>
+                </property>
+            </propertyGroup>
         </propertyGroup>
 
         <!-- ****************
