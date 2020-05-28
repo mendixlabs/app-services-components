@@ -116,7 +116,8 @@ export class NodeStore {
         debug
     }: NodeStoreConstructorOptions) {
         this.contextObject = contextObject || null;
-        this.dataResetOnContextChange = typeof dataResetOnContextChange !== 'undefined' ? dataResetOnContextChange : false;
+        this.dataResetOnContextChange =
+            typeof dataResetOnContextChange !== "undefined" ? dataResetOnContextChange : false;
         this.columns = columns;
         this.validColumns = validColumns;
         this.selectFirstOnSingle = selectFirstOnSingle;
@@ -144,7 +145,11 @@ export class NodeStore {
     @action
     setContext(obj?: mendix.lib.MxObject): void {
         this.debug("Store: setContext", obj);
-        if (this.contextObject !== null && obj && (this.contextObject.getGuid() !== obj.getGuid() || this.dataResetOnContextChange)) {
+        if (
+            this.contextObject !== null &&
+            obj &&
+            (this.contextObject.getGuid() !== obj.getGuid() || this.dataResetOnContextChange)
+        ) {
             if (this.needToCalculateInitialParents) {
                 this.calculateInitialParents = true;
                 if (this.needToRestoreStateOnContextChange) {
