@@ -143,6 +143,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps> {
             getInitialTableState: this.getInitialState,
             writeTableState: this.writeTableState,
             onSelect: this.onSelectAction.bind(this),
+            selectionMode: this.props.selectMode,
             // TODO make this a check if you can reset state!
             resetState: true,
             reset: this.reset,

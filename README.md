@@ -121,7 +121,7 @@ In order to get the attributes of your Node entity in your project, I encourage 
 ![Misc](/assets/tab08-misc.png)
 
 - You can now save the state of your table. This only works for the whole tree, no partial trees!
-- Experimentally expose `window.__TreeTable_{guid}_select`. This will only accept 1 guid at the moment.
+- Experimentally expose `window.__TreeTable_{guid}_select`. This will accept a guid as string, or array of guids for multi selection
 
 ## Test-project
 

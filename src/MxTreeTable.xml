@@ -587,7 +587,7 @@ Note: State management (currently) ONLY works when you load a whole tree (see Da
             <propertyGroup caption="Experimental">
                 <property key="experimentalExposeSetSelected" type="boolean" defaultValue="false">
                     <caption>Expose setSelected</caption>
-                    <description>This is an EXPERIMENTAL feature. It will expose the function to select a certain object in the Tree Table, so you can target it with a Nanoflow + Javascript Action.
+                    <description>This is an EXPERIMENTAL feature. It will expose the function to select a certain object/list of objects in the Tree Table, so you can target it with a Nanoflow + Javascript Action.
 
 Notes:
 - This is EXPERIMENTAL. Please debug in the console when having problems. No guarantees that this feature will stay in the widget.

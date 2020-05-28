@@ -4,6 +4,7 @@ import arrayToTree, { Tree } from "array-to-tree";
 import { ValidationMessage, getObject } from "@jeltemx/mendix-react-widget-utils";
 import { TreeColumnProps, getTreeTableColumns, TableRecord } from "../util/columns";
 import { RowObject, TreeRowObject } from "./objects/row";
+import { SelectionMode } from "../../typings/MxTreeTableProps";
 
 configure({ enforceActions: "observed" });
 
@@ -52,6 +53,7 @@ export interface NodeStoreConstructorOptions {
     expandFirstLevel: boolean;
     resetState: boolean;
     rowObjectMxProperties: RowObjectMxProperties;
+    selectionMode: SelectionMode;
 
     childLoader: (guids: string[], parentKey: string, loadFromRef: boolean) => Promise<void>;
     convertMxObjectToRow: (mxObject: mendix.lib.MxObject, parentKey?: string | null) => Promise<TreeRowObject>;
@@ -89,6 +91,7 @@ export class NodeStore {
     private writeTableState: (state: TableState) => void;
     private onSelect: (ids: string[]) => void;
 
+    private selectionMode: SelectionMode;
     private dataResetOnContextChange: boolean;
     private needToCalculateInitialParents: boolean;
     private needToRestoreStateOnContextChange: boolean;
@@ -111,6 +114,7 @@ export class NodeStore {
         rowObjectMxProperties,
         validationMessages,
         getInitialTableState,
+        selectionMode,
         onSelect,
         writeTableState,
         resetState,
@@ -130,6 +134,7 @@ export class NodeStore {
         this.needToCalculateInitialParents = calculateInitialParents;
         this.validationMessages = validationMessages;
         this.rowObjectMxProperties = rowObjectMxProperties;
+        this.selectionMode = selectionMode;
         this.getInitialTableState = getInitialTableState;
         this.writeTableState = writeTableState;
         this.resetState = resetState;
@@ -521,13 +526,41 @@ export class NodeStore {
         return this.rowObjects.filter(findRow => findRow._parent && findRow._parent === row.key).length > 0;
     }
 
-    private _setSelectedFromExternal(guid: string): void {
-        const object = this.findRowObject(guid);
-        if (object) {
-            const parents = this.findParents(object);
-            this.setSelected([object.key]);
-            this.setExpanded(parents.map(p => p.key));
-            this.onSelect([object.key]);
+    private _setSelectedFromExternal(guids: string | string[]): void {
+        if (this.selectionMode === "none") {
+            return;
+        }
+
+        let selected: RowObject[] = [];
+        if (Array.isArray(guids)) {
+            selected = guids.map(guid => this.findRowObject(guid)).filter(obj => obj !== null) as RowObject[];
+        } else {
+            const object = this.findRowObject(guids);
+            if (object) {
+                selected.push(object);
+            }
+        }
+
+        if (selected.length > 0) {
+            if (this.selectionMode === "single") {
+                selected = [selected[0]];
+            }
+
+            const parentGuids: string[] = [];
+            const selectedGuids = selected.map(obj => obj.key);
+
+            selected.forEach(obj => {
+                const parents = this.findParents(obj);
+                parents.forEach(parent => {
+                    if (parentGuids.indexOf(parent.key) === -1) {
+                        parentGuids.push(parent.key);
+                    }
+                });
+            });
+
+            this.setSelected(selectedGuids);
+            this.setExpanded(parentGuids);
+            this.onSelect(selectedGuids);
         }
     }
 
