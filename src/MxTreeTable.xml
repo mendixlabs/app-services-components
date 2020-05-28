@@ -394,28 +394,36 @@ It should be a non-persistent entity (persistent is not permitted) with a refere
         *********************-->
 
         <propertyGroup caption="UI">
-            <property key="uiShowHeader" type="boolean" defaultValue="true">
-                <caption>Show header</caption>
-                <description>Make header row visible/invisible</description>
-            </property>
-            <property key="uiRowClassAttr" type="attribute" entityProperty="nodeEntity" required="false">
-                <caption>Row Class Attribute</caption>
-                <description>Attribute that will set an extra class on a row. This attribute should contain a valid css className, like 'mx-treeview-row'. This className can also be used in styling, where you would define a couple of classNames to set certain statuses and give each a color. This can be a calculated attribute, but keep in mind that performance might go down if you use that too much.</description>
-                <attributeTypes>
-                    <attributeType name="String" />
-                </attributeTypes>
-            </property>
-            <property key="uiRowIconAttr" type="attribute" entityProperty="nodeEntity" required="false">
-                <caption>Icon Attribute</caption>
-                <description>Attribute that will determine which icon to show in the first column of the row. Can be prefixed (see next)</description>
-                <attributeTypes>
-                    <attributeType name="String" />
-                </attributeTypes>
-            </property>
-            <property key="uiIconPrefix" type="string" required="false" defaultValue="glyphicon glyphicon-">
-                <caption>Icon class prefix</caption>
-                <description>When using icons in a row, it will use an &lt;i&gt; element with this className. When empty, it will use the standard 'glyphicon glyphicon-' prefix to use Bootstrap style elements. You can set your own icon prefixes here.</description>
-            </property>
+            <propertyGroup caption="General">
+                <property key="uiShowHeader" type="boolean" defaultValue="true">
+                    <caption>Show header</caption>
+                    <description>Make header row visible/invisible</description>
+                </property>
+                <property key="uiRowClassAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Row Class Attribute</caption>
+                    <description>Attribute that will set an extra class on a row. This attribute should contain a valid css className, like 'mx-treeview-row'. This className can also be used in styling, where you would define a couple of classNames to set certain statuses and give each a color. This can be a calculated attribute, but keep in mind that performance might go down if you use that too much.</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="uiRowIconAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Icon Attribute</caption>
+                    <description>Attribute that will determine which icon to show in the first column of the row. Can be prefixed (see next)</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="uiIconPrefix" type="string" required="false" defaultValue="glyphicon glyphicon-">
+                    <caption>Icon class prefix</caption>
+                    <description>When using icons in a row, it will use an &lt;i&gt; element with this className. When empty, it will use the standard 'glyphicon glyphicon-' prefix to use Bootstrap style elements. You can set your own icon prefixes here.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Scenario: Whole Tree">
+                <property key="uiExpandFirstLevelWholeTree" type="boolean" defaultValue="false">
+                    <caption>Expand first level</caption>
+                    <description>Only works while loading the whole tree: Automatically expand the first level of the tree. Currently it is only possible to automatically expand the first level. This will be ignored if the user has already used state management before.</description>
+                </property>
+            </propertyGroup>
         </propertyGroup>
 
         <!-- ****************

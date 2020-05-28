@@ -49,6 +49,7 @@ export interface NodeStoreConstructorOptions {
     selectFirstOnSingle: boolean;
     validationMessages: ValidationMessage[];
     calculateInitialParents: boolean;
+    expandFirstLevel: boolean;
     resetState: boolean;
     rowObjectMxProperties: RowObjectMxProperties;
 
@@ -92,6 +93,7 @@ export class NodeStore {
     private needToCalculateInitialParents: boolean;
     private needToRestoreStateOnContextChange: boolean;
     private needToRestoreSelectFirst: boolean;
+    private expandFirstLevel: boolean;
 
     private reset: () => void;
     private resetColumns: (col: string) => void;
@@ -99,6 +101,7 @@ export class NodeStore {
     constructor({
         contextObject,
         dataResetOnContextChange,
+        expandFirstLevel,
         columns,
         validColumns,
         selectFirstOnSingle,
@@ -119,6 +122,7 @@ export class NodeStore {
         this.dataResetOnContextChange =
             typeof dataResetOnContextChange !== "undefined" ? dataResetOnContextChange : false;
         this.columns = columns;
+        this.expandFirstLevel = expandFirstLevel;
         this.validColumns = validColumns;
         this.selectFirstOnSingle = selectFirstOnSingle;
         this.needToRestoreSelectFirst = selectFirstOnSingle;
@@ -234,6 +238,12 @@ export class NodeStore {
             // Reset state if applicable
             this.debug("store: setRowObjects get state: ", this.contextObject.getGuid());
             const initialTablesState = this.getInitialTableState(this.contextObject.getGuid());
+
+            // Expanding first level and safely writing this.
+            if (typeof initialTablesState.lastUpdate === "undefined" && this.expandFirstLevel) {
+                initialTablesState.expanded = rootObjectGuids;
+                this.writeTableState(initialTablesState);
+            }
 
             // We need to filter out any that are not in the initial state
             initialState = {

@@ -132,6 +132,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps> {
                 uiRowIconPrefix: this.props.uiIconPrefix,
                 uiRowIconAttr: this.props.uiRowIconAttr
             },
+            expandFirstLevel: this.props.loadScenario === "all" && this.props.uiExpandFirstLevelWholeTree,
             validationMessages,
             validColumns: this.columnPropsValid,
             selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single",
@@ -815,18 +816,22 @@ Your context object is of type "${contextEntity}". Please check the configuratio
     }
 
     private _writeTableState(state: TableState): void {
+        // We're doing this the dirty way instead of Object.assign because IE11 sucks
+        const writeState = JSON.parse(JSON.stringify(state)) as TableState;
         const { stateManagementType, stateLocalStorageKey, stateLocalStorageType } = this.props;
         if (stateManagementType === "disabled" /* || stateManagementType === "mendix"*/) {
             return;
         }
-        this.debug("writeTableState", state);
+        this.debug("writeTableState", writeState);
         const key =
-            stateLocalStorageKey !== "" ? `TreeTableState-${stateLocalStorageKey}` : `TreeTableState-${state.context}`;
-        state.lastUpdate = +new Date();
+            stateLocalStorageKey !== ""
+                ? `TreeTableState-${stateLocalStorageKey}`
+                : `TreeTableState-${writeState.context}`;
+        writeState.lastUpdate = +new Date();
         if (stateLocalStorageType === "session") {
-            store.session.set(key, state);
+            store.session.set(key, writeState);
         } else {
-            store.local.set(key, state);
+            store.local.set(key, writeState);
         }
     }
 
