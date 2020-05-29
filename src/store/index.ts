@@ -59,7 +59,7 @@ export interface NodeStoreConstructorOptions {
     convertMxObjectToRow: (mxObject: mendix.lib.MxObject, parentKey?: string | null) => Promise<TreeRowObject>;
     getInitialTableState: (guid: string) => TableState;
     writeTableState: (state: TableState) => void;
-    onSelect: (ids: string[]) => void;
+    onSelect: (ids?: string[]) => void;
     resetColumns: (col: string) => void;
     reset: () => void;
     debug: (...args: unknown[]) => void;
@@ -89,7 +89,7 @@ export class NodeStore {
     private convertMxObjectToRow: (mxObject: mendix.lib.MxObject, parentKey?: string | null) => Promise<TreeRowObject>;
     private getInitialTableState: (guid: string) => TableState;
     private writeTableState: (state: TableState) => void;
-    private onSelect: (ids: string[]) => void;
+    private onSelect: (ids?: string[]) => void;
 
     private selectionMode: SelectionMode;
     private dataResetOnContextChange: boolean;
@@ -526,13 +526,15 @@ export class NodeStore {
         return this.rowObjects.filter(findRow => findRow._parent && findRow._parent === row.key).length > 0;
     }
 
-    private _setSelectedFromExternal(guids: string | string[]): void {
+    private _setSelectedFromExternal(guids?: null | string | string[]): void {
         if (this.selectionMode === "none") {
             return;
         }
 
         let selected: RowObject[] = [];
-        if (Array.isArray(guids)) {
+        if (typeof guids === "undefined" || guids === null) {
+            selected = [];
+        } else if (Array.isArray(guids)) {
             selected = guids.map(guid => this.findRowObject(guid)).filter(obj => obj !== null) as RowObject[];
         } else {
             const object = this.findRowObject(guids);
@@ -561,6 +563,9 @@ export class NodeStore {
             this.setSelected(selectedGuids);
             this.setExpanded(parentGuids);
             this.onSelect(selectedGuids);
+        } else if (selected.length === 0) {
+            this.setSelected();
+            this.onSelect();
         }
     }
 

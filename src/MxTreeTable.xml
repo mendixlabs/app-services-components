@@ -557,6 +557,10 @@ Note: State management (currently) ONLY works when you load a whole tree (see Da
                     <caption>Key</caption>
                     <description>When storing the state in local storage, it will choose a specific key, based on the the GUID of your context. If you happen to use a non-persistent context, this will change every time. In that case you can set a key here (make it unique for your current view). Otherwise, leave it empty.</description>
                 </property>
+                <property key="stateLocalStorageKeyIncludeGUID" type="boolean" defaultValue="false">
+                    <caption>Include guid</caption>
+                    <description>When you set a key you can still add the GUID if needed. This is not useful when using non-persistent objects</description>
+                </property>
                 <property key="stateExecuteSelectActionOnRestore" type="boolean" defaultValue="true">
                     <caption>Restore selection action</caption>
                     <description>When you restore your state, and you have an On Change action defined for your selection (see Selection tab), you can execute this. This is enabled by default.</description>
