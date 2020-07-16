@@ -4,7 +4,6 @@ import { Tree as ArrayTree } from "array-to-tree";
 import Tree, { AntTreeNode } from "antd/es/tree";
 import Spin from "antd/es/spin";
 import Input from "antd/es/input";
-import Icon from "antd/es/icon";
 import Empty from "antd/es/empty";
 import debounce from "debounce";
 
@@ -107,7 +106,6 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
                 expandedKeys={expandedKeys}
                 showIcon={showIcon}
                 showLine={showLine}
-                switcherIcon={showLine ? <Icon type="caret-down-fill" /> : undefined}
                 selectable={false}
                 draggable={draggable}
                 onDrop={this.onDrop.bind(this)}
