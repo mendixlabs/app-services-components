@@ -1,11 +1,17 @@
-import { Component, ReactNode, createElement } from "react";
+import { Component, ReactNode, createElement, ReactElement } from "react";
 import { findDOMNode } from "react-dom";
 
 import { TreeViewComponent } from "./components/TreeViewComponent";
 import { hot } from "react-hot-loader/root";
 import { TreeViewContainerProps } from "../typings/TreeViewProps";
 
+import "antd/es/tree/style/index.css";
+import "antd/es/spin/style/index.css";
+import "antd/es/empty/style/index.css";
+import "antd/es/input/style/index.css";
+
 import "./ui/TreeView.scss";
+
 import { NodeStore, NodeStoreConstructorOptions } from "./store/index";
 import {
     IAction,
@@ -128,6 +134,7 @@ class TreeView extends Component<TreeViewContainerProps> {
                 iconIsGlyphicon={uiNodeIconIsGlyphicon}
                 draggable={dragIsDraggable}
                 onClickHandler={this.clickTypeHandler}
+                switcherBg={this.props.uiSwitcherBg}
             />
         );
     }
@@ -173,6 +180,10 @@ class TreeView extends Component<TreeViewContainerProps> {
                 isRoot: nodeLoadScenario === "top"
             });
 
+            if (nodeLoadScenario === "all") {
+                entryOpts.isLoaded = true;
+            }
+
             this.store.setEntries(objects, entryOpts);
         } else {
             this.store.setEntries([], {});
@@ -181,7 +192,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         this.store.setLoading(false);
     }
 
-    private async _fetchChildren(parentObject: EntryObject): Promise<void> {
+    private async _fetchChildren(parentObject: EntryObject, expandAfter: string | null = null): Promise<void> {
         if (this.props.nodeLoadScenario === "all") {
             return;
         }
@@ -234,7 +245,7 @@ class TreeView extends Component<TreeViewContainerProps> {
                 parent: parentObject.mxObject.getGuid()
             });
 
-            this.store.setEntries(objects, entryOpts, false);
+            this.store.setEntries(objects, entryOpts, false, expandAfter);
             parentObject.setLoaded(true);
         } else {
             parentObject.setHasChildren(false);
@@ -251,7 +262,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         const nanoflow = this.props.uiNodeTitleNanoflow;
 
         if (titleType === "attribute" && attribute) {
-            opts.staticTitleMethod = (obj: mendix.lib.MxObject) =>
+            opts.staticTitleMethod = (obj: mendix.lib.MxObject): ReactElement =>
                 getStaticTitleFromObject(obj, {
                     attribute,
                     titleType,

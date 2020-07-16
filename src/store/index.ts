@@ -21,7 +21,7 @@ export interface NodeStoreConstructorOptions {
     onSelectionChange?: (guids: TreeGuids) => void;
     validationMessages: ValidationMessage[];
     entryObjectAttributes: EntryObjectAttributes;
-    childLoader: (parent: EntryObject) => Promise<void>;
+    childLoader: (parent: EntryObject, expandAfter: string | null) => Promise<void>;
     searchHandler?: (_query: string) => Promise<mendix.lib.MxObject[] | null>;
     debug: (...args: unknown[]) => void;
 }
@@ -45,7 +45,7 @@ export class NodeStore {
     public subscriptionHandler: (guids: TreeGuids) => void;
     public onSelectionChangeHandler: (guids: TreeGuids) => void;
     public entryObjectAttributes: EntryObjectAttributes;
-    public childLoader: (parent: EntryObject) => Promise<void> = async () => {};
+    public childLoader: (parent: EntryObject, expandAfter?: string | null) => Promise<void> = async () => {};
     public searchHandler: ((_query: string) => Promise<mendix.lib.MxObject[] | null>) | null;
     public debug: (...args: unknown[]) => void;
 
@@ -123,7 +123,12 @@ export class NodeStore {
 
     // Entries
     @action
-    setEntries(entryObjects: mendix.lib.MxObject[], opts: EntryObjectExtraOptions, clean = true): void {
+    setEntries(
+        entryObjects: mendix.lib.MxObject[],
+        opts: EntryObjectExtraOptions,
+        clean = true,
+        expandAfter: string | null = null
+    ): void {
         this.debug("store: setEntries", entryObjects.length, opts, clean);
         const entries = entryObjects.map(mxObject => this.createEntryObject(mxObject, this.entryHandler(opts), opts));
 
@@ -153,6 +158,10 @@ export class NodeStore {
                 }
             });
             this.entries = cloned;
+        }
+
+        if (expandAfter !== null) {
+            this.expandKey(expandAfter, true);
         }
     }
 
@@ -244,7 +253,7 @@ export class NodeStore {
     }
 
     @action
-    selectEntry(guid: string) {
+    selectEntry(guid: string): void {
         if (!this.holdSelection) {
             return;
         }
@@ -274,9 +283,10 @@ export class NodeStore {
     expandKey(guid: string, expanded: boolean): void {
         const entryObject = this.findEntry(guid);
         if (entryObject) {
-            entryObject.setExpanded(expanded);
             if (expanded && !entryObject.isLoaded) {
-                this.childLoader(entryObject);
+                this.childLoader(entryObject, guid);
+            } else {
+                entryObject.setExpanded(expanded);
             }
         }
     }

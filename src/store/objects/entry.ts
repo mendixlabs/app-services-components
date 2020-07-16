@@ -27,6 +27,7 @@ export interface EntryObjectExtraOptions {
     classMethod?: ClassMethod;
     isRoot?: boolean;
     parent?: string;
+    isLoaded?: boolean;
 }
 
 export interface EntryObjectOptions {
@@ -60,14 +61,13 @@ export class EntryObject {
     fixTitle = flow(function*(this: EntryObject) {
         if (this._dynamicTitleMethod) {
             const title = yield this._dynamicTitleMethod(this._obj);
-            // @ts-ignore
             this._title = title;
         }
     });
 
     constructor(opts: EntryObjectOptions, attributes: EntryObjectAttributes) {
         const { mxObject, changeHandler, extraOpts } = opts;
-        const { staticTitleMethod, dynamicTitleMethod, classMethod, isRoot, parent } = extraOpts;
+        const { staticTitleMethod, dynamicTitleMethod, classMethod, isRoot, parent, isLoaded } = extraOpts;
         this._obj = mxObject;
 
         this._title = "";
@@ -77,7 +77,7 @@ export class EntryObject {
         this._parent = typeof parent !== "undefined" ? parent : "";
         this._children = [];
         this._hasChildren = false;
-        this._isLoaded = false;
+        this._isLoaded = typeof isLoaded !== "undefined" ? isLoaded : false;
         this._isExpanded = false;
         this._isRoot = typeof isRoot !== "undefined" ? isRoot : false;
         this._dynamicTitleMethod = dynamicTitleMethod || null;

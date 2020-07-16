@@ -37,6 +37,7 @@ export interface TreeViewContainerProps extends CommonProps {
     uiNodeIconAttr: string;
     uiNodeIconIsGlyphicon: boolean;
     uiTableShowLines: boolean;
+    uiSwitcherBg: string;
 
     relationType: RelationType;
     relationNodeParent: string;

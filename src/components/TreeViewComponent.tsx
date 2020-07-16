@@ -1,21 +1,21 @@
-import { Component, ReactNode, createElement, ReactElement } from "react";
+import { Component, ReactNode, createElement, MouseEvent } from "react";
 import { observer } from "mobx-react";
 import { Tree as ArrayTree } from "array-to-tree";
-import Tree, { AntTreeNode } from "antd/es/tree";
-import Spin from "antd/es/spin";
-import Input from "antd/es/input";
-import Empty from "antd/es/empty";
+import classNames from "classnames";
+
+import { Key } from "antd/es/table/interface";
+import { EventDataNode, DataNode } from "antd/es/tree";
+import { Tree, Spin, Input, Empty } from "antd";
+import { CaretDownFilled } from "@ant-design/icons";
+
 import debounce from "debounce";
 
-const { TreeNode } = Tree;
 const { Search } = Input;
 
 import { NodeStore } from "../store/index";
 import { TreeObject } from "../store/objects/entry";
-import { AntTreeNodeDropEvent, AntTreeNodeExpandedEvent } from "antd/es/tree/Tree";
 import { ClickCellType } from "../utils/titlehelper";
 import { Alerts } from "./Alerts";
-import classNames from "classnames";
 
 export interface TreeViewComponentProps {
     store: NodeStore;
@@ -27,6 +27,7 @@ export interface TreeViewComponentProps {
     iconIsGlyphicon: boolean;
     onClickHandler: (_obj: mendix.lib.MxObject, _clickType: ClickCellType) => Promise<void>;
     className: string;
+    switcherBg: string;
 }
 
 @observer
@@ -45,6 +46,16 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
                 </Spin>
             </div>
         );
+    }
+
+    componentWillMount(): void {
+        if (this.props.switcherBg) {
+            document.documentElement.style.setProperty("--switcher-icon-bg", this.props.switcherBg);
+        }
+    }
+
+    componentWillUnmount(): void {
+        document.documentElement.style.removeProperty("--switcher-icon-bg");
     }
 
     private renderControl(): ReactNode {
@@ -106,19 +117,19 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
                 expandedKeys={expandedKeys}
                 showIcon={showIcon}
                 showLine={showLine}
+                switcherIcon={showLine ? <CaretDownFilled style={{ backgroundColor: "#F5F8FD" }} /> : undefined}
                 selectable={false}
                 draggable={draggable}
                 onDrop={this.onDrop.bind(this)}
                 onExpand={this.onExpand.bind(this)}
                 onClick={this.handleClick("single")}
                 onDoubleClick={this.handleClick("double")}
-            >
-                {this.renderTreeNodes(store.entryTree)}
-            </Tree>
+                treeData={this.getTreeNodes(store.entryTree)}
+            />
         );
     }
 
-    private renderTreeNodes(data: ArrayTree<TreeObject>[]): ReactElement<any>[] {
+    private getTreeNodes(data: ArrayTree<TreeObject>[]): DataNode[] {
         const { iconIsGlyphicon } = this.props;
         return data.map(item => {
             let icon: ReactNode | boolean = false;
@@ -133,32 +144,46 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
                 icon = <span className={iconIsGlyphicon ? "glyphicon glyphicon-" + item.icon : item.icon} />;
             }
 
-            if (item.children && item.children.length > 0) {
-                const children = this.renderTreeNodes(item.children);
-                return (
-                    <TreeNode key={item.guid} title={item.title} icon={icon} isLeaf={isLeaf} className={extraClass}>
-                        {children}
-                    </TreeNode>
-                );
+            const dataNode: DataNode = {
+                key: item.guid,
+                icon,
+                title: item.title,
+                isLeaf,
+                className: extraClass
+            };
+
+            if (item.children && item.children.length > 0 && typeof item.children[0] !== "string") {
+                const children = this.getTreeNodes(item.children);
+                dataNode.children = children;
             }
-            return <TreeNode key={item.guid} icon={icon} title={item.title} isLeaf={isLeaf} className={extraClass} />;
+
+            return dataNode;
         });
     }
 
-    private onDrop(opts: AntTreeNodeDropEvent): void {
-        if (!opts.dragNode.props.eventKey) {
+    private onDrop(info: {
+        event: React.MouseEvent;
+        node: EventDataNode;
+        dragNode: EventDataNode;
+        dragNodesKeys: Key[];
+        dropPosition: number;
+        dropToGap: boolean;
+    }): void {
+        if (!info.dragNode.key) {
             return;
         }
-        // console.log(`Dragged : ${opts.dragNode.props.eventKey} to ${opts.node.props.eventKey}`);
-        this.props.store.switchEntryParent(opts.dragNode.props.eventKey, opts.node.props.eventKey);
+        this.props.store.switchEntryParent(info.dragNode.key as string, info.node.key as string);
     }
 
-    private handleClick(clickType: ClickCellType): (_evt: unknown, _node: AntTreeNode) => void {
-        return (_evt: unknown, node: AntTreeNode) => {
-            if (!node.props.eventKey || !this.props.onClickHandler) {
+    private handleClick(
+        clickType: ClickCellType
+    ): (_evt: MouseEvent<Element, globalThis.MouseEvent>, node: EventDataNode) => void {
+        return (_evt: MouseEvent<Element, globalThis.MouseEvent>, node: EventDataNode): void => {
+            if (!node.key || !this.props.onClickHandler) {
                 return;
             }
-            const entryObject = this.props.store.findEntry(node.props.eventKey);
+            const key = node.key as string;
+            const entryObject = this.props.store.findEntry(key);
             if (entryObject && entryObject.mxObject) {
                 this.props.onClickHandler(entryObject.mxObject, clickType);
                 if (this.props.holdSelection) {
@@ -168,10 +193,17 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
         };
     }
 
-    private onExpand(_expandedKeys: string[], info: AntTreeNodeExpandedEvent): void {
+    private onExpand(
+        _expandedKeys: React.ReactText[],
+        info: {
+            node: EventDataNode;
+            expanded: boolean;
+            nativeEvent: globalThis.MouseEvent;
+        }
+    ): void {
         const { expanded, node } = info;
-        if (node && node.props.eventKey && typeof expanded !== "undefined") {
-            this.props.store.expandKey(node.props.eventKey, expanded);
+        if (node && node.key && typeof expanded !== "undefined") {
+            this.props.store.expandKey(node.key as string, expanded);
         }
     }
 }

@@ -172,6 +172,10 @@
                     <caption>Show tree lines</caption>
                     <description>These lines will show up in the tree structure to make it better visible</description>
                 </property>
+                <property key="uiSwitcherBg" type="string" required="false" defaultValue="">
+                    <caption>Switcher background</caption>
+                    <description>When using tree lines, you might need to set the switcher background to match the background of your tree.</description>
+                </property>
             </propertyGroup>
         </propertyGroup>
 
