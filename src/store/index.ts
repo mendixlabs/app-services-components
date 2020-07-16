@@ -1,6 +1,5 @@
 import { observable, action, configure, computed, flow } from "mobx";
 import arrayToTree, { Tree } from "array-to-tree";
-// import { getObject } from "@jeltemx/mendix-react-widget-utils";
 
 import { ValidationMessage } from "@jeltemx/mendix-react-widget-utils/lib/validation";
 import { EntryObject, EntryObjectOptions, EntryObjectExtraOptions, TreeObject } from "./objects/entry";

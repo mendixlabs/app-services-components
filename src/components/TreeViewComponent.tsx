@@ -4,6 +4,7 @@ import { Tree as ArrayTree } from "array-to-tree";
 import Tree, { AntTreeNode } from "antd/es/tree";
 import Spin from "antd/es/spin";
 import Input from "antd/es/input";
+import Icon from "antd/es/icon";
 import Empty from "antd/es/empty";
 import debounce from "debounce";
 
@@ -23,6 +24,7 @@ export interface TreeViewComponentProps {
     holdSelection: boolean;
     searchEnabled: boolean;
     showIcon: boolean;
+    showLine: boolean;
     iconIsGlyphicon: boolean;
     onClickHandler: (_obj: mendix.lib.MxObject, _clickType: ClickCellType) => Promise<void>;
     className: string;
@@ -87,7 +89,7 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
     }
 
     private renderTree(): ReactNode {
-        const { store, draggable, showIcon } = this.props;
+        const { store, draggable, showIcon, showLine } = this.props;
         const { validationMessages, removeValidationMessage, expandedKeys } = store;
         const treeClass = classNames("treeview-widget-tree");
 
@@ -104,6 +106,8 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
                 className={treeClass}
                 expandedKeys={expandedKeys}
                 showIcon={showIcon}
+                showLine={showLine}
+                switcherIcon={showLine ? <Icon type="caret-down-fill" /> : undefined}
                 selectable={false}
                 draggable={draggable}
                 onDrop={this.onDrop.bind(this)}
@@ -123,7 +127,8 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
             const isLeaf = !((item.children && item.children.length > 0) || item.hasChildren);
             const extraClass = classNames(
                 item.highlight ? "highlight" : "",
-                item.selected && this.props.holdSelection ? "selected" : ""
+                item.selected && this.props.holdSelection ? "selected" : "",
+                item.icon ? "has-icon" : ""
             );
 
             if (item.icon) {

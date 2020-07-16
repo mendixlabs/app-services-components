@@ -574,6 +574,7 @@
 				cursor: pointer;
 				-webkit-transition: all 0.3s;
 				transition: all 0.3s;
+				// padding-right: 20px;
 
 				&:hover {
 					background-color: #e6f7ff;
@@ -609,13 +610,14 @@
 				display: inline-block;
 				width: 24px;
 				height: 24px;
-				margin: 0;
+				margin: 0 0 0 -10px;
 				line-height: 24px;
 				text-align: center;
 				vertical-align: top;
 				border: 0 none;
 				outline: none;
 				cursor: pointer;
+				float: left;
 
 				&:empty {
 					display: none;
@@ -895,7 +897,7 @@
 
 			span.ant-tree-switcher {
 				color: rgba(0, 0, 0, 0.45);
-				background: #fff;
+				background: transparent;
 			}
 
 			span.ant-tree-switcher.ant-tree-switcher-noop {
@@ -1872,6 +1874,25 @@
 		overflow: hidden;
 		-webkit-transition: height 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
 		transition: height 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+	}
+
+	.ant-tree-show-line {
+		.ant-tree-switcher {
+			&.ant-tree-switcher-noop {
+				background: transparent;
+				width: 1px;
+				margin-right: 23px;
+				left: 12px;
+				border-left: 1px solid #d9d9d9;
+				i.anticon.anticon-file.ant-tree-switcher-line-icon {
+					display: none;
+				}
+			}
+		}
+	}
+
+	li.has-icon > .ant-tree-node-content-wrapper {
+		padding-right: 20px;
 	}
 }
 

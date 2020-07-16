@@ -109,13 +109,20 @@ class TreeView extends Component<TreeViewContainerProps> {
     }
 
     render(): ReactNode {
-        const { dragIsDraggable, uiNodeIconIsGlyphicon, uiNodeIconAttr, selectionSelectOnClick } = this.props;
+        const {
+            dragIsDraggable,
+            uiNodeIconIsGlyphicon,
+            uiNodeIconAttr,
+            selectionSelectOnClick,
+            uiTableShowLines
+        } = this.props;
         const showIcon = uiNodeIconAttr !== "";
         return (
             <TreeViewComponent
                 className={this.props.class}
                 searchEnabled={this.searchEnabled}
                 holdSelection={selectionSelectOnClick}
+                showLine={uiTableShowLines}
                 store={this.store}
                 showIcon={showIcon}
                 iconIsGlyphicon={uiNodeIconIsGlyphicon}
