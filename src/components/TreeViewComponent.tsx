@@ -1,4 +1,4 @@
-import { Component, ReactNode, createElement } from "react";
+import { Component, ReactNode, createElement, ReactElement } from "react";
 import { observer } from "mobx-react";
 import { Tree as ArrayTree } from "array-to-tree";
 import Tree, { AntTreeNode } from "antd/es/tree";
@@ -116,7 +116,7 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
         );
     }
 
-    private renderTreeNodes(data: ArrayTree<TreeObject>[]): ReactNode {
+    private renderTreeNodes(data: ArrayTree<TreeObject>[]): ReactElement<any>[] {
         const { iconIsGlyphicon } = this.props;
         return data.map(item => {
             let icon: ReactNode | boolean = false;
@@ -130,10 +130,11 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
                 icon = <span className={iconIsGlyphicon ? "glyphicon glyphicon-" + item.icon : item.icon} />;
             }
 
-            if (item.children) {
+            if (item.children && item.children.length > 0) {
+                const children = this.renderTreeNodes(item.children);
                 return (
                     <TreeNode key={item.guid} title={item.title} icon={icon} isLeaf={isLeaf} className={extraClass}>
-                        {this.renderTreeNodes(item.children)}
+                        {children}
                     </TreeNode>
                 );
             }

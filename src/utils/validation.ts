@@ -6,8 +6,8 @@ export interface ValidateExtraProps {
 }
 
 export const validateProps = (
-    props: TreeViewContainerProps,
-    _extraProps: ValidateExtraProps = {}
+    props: TreeViewContainerProps
+    // _extraProps: ValidateExtraProps = {}
 ): ValidationMessage[] => {
     const messages: ValidationMessage[] = [];
     const conditionalValidation = (condition: boolean, category: string, msg: string): void => {

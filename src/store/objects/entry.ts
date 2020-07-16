@@ -1,9 +1,10 @@
 import { computed, flow, observable, action, toJS } from "mobx";
-import { ReactNode } from "react";
+import { ReactNode, ReactElement } from "react";
 import { EntryObjectAttributes } from "..";
 import { commitObject } from "@jeltemx/mendix-react-widget-utils";
 
-export type TitleMethod = ((obj: mendix.lib.MxObject) => Promise<ReactNode | string>) | null;
+export type DynamicTitleMethod = ((obj: mendix.lib.MxObject) => Promise<ReactNode | string>) | null;
+export type StaticTitleMethod = ((obj: mendix.lib.MxObject) => ReactElement | string) | null;
 export type ClassMethod = ((obj: mendix.lib.MxObject) => string) | null;
 
 export interface TreeObject {
@@ -11,7 +12,7 @@ export interface TreeObject {
     parent: string;
     children: string[];
     hasChildren: boolean;
-    title: string;
+    title: string | ReactNode;
     root: boolean;
     selected: boolean;
     expanded: boolean;
@@ -21,7 +22,8 @@ export interface TreeObject {
 }
 
 export interface EntryObjectExtraOptions {
-    titleMethod?: TitleMethod;
+    dynamicTitleMethod?: DynamicTitleMethod;
+    staticTitleMethod?: StaticTitleMethod;
     classMethod?: ClassMethod;
     isRoot?: boolean;
     parent?: string;
@@ -40,7 +42,8 @@ export class EntryObject {
     public _changeHandler: (guid?: string, removedCb?: (removed: boolean) => void) => void;
 
     public _attributes: EntryObjectAttributes;
-    public _titleMethod: TitleMethod;
+    public _dynamicTitleMethod: DynamicTitleMethod;
+    public _staticTitleMethod: StaticTitleMethod;
     public _classMethod: ClassMethod;
 
     @observable _title: string;
@@ -55,8 +58,8 @@ export class EntryObject {
     @observable _isRoot: boolean;
 
     fixTitle = flow(function*(this: EntryObject) {
-        if (this._titleMethod) {
-            const title = yield this._titleMethod(this._obj);
+        if (this._dynamicTitleMethod) {
+            const title = yield this._dynamicTitleMethod(this._obj);
             // @ts-ignore
             this._title = title;
         }
@@ -64,7 +67,7 @@ export class EntryObject {
 
     constructor(opts: EntryObjectOptions, attributes: EntryObjectAttributes) {
         const { mxObject, changeHandler, extraOpts } = opts;
-        const { titleMethod, classMethod, isRoot, parent } = extraOpts;
+        const { staticTitleMethod, dynamicTitleMethod, classMethod, isRoot, parent } = extraOpts;
         this._obj = mxObject;
 
         this._title = "";
@@ -77,7 +80,8 @@ export class EntryObject {
         this._isLoaded = false;
         this._isExpanded = false;
         this._isRoot = typeof isRoot !== "undefined" ? isRoot : false;
-        this._titleMethod = titleMethod || null;
+        this._dynamicTitleMethod = dynamicTitleMethod || null;
+        this._staticTitleMethod = staticTitleMethod || null;
         this._classMethod = classMethod || null;
         this._changeHandler = changeHandler || ((): void => {});
         this._subscriptions = [];
@@ -87,8 +91,10 @@ export class EntryObject {
             console.warn("No changehandler for ", opts);
         }
 
-        if (titleMethod) {
+        if (dynamicTitleMethod) {
             this.fixTitle();
+        } else if (staticTitleMethod) {
+            this._title = staticTitleMethod(mxObject) as string;
         }
 
         if (classMethod) {
@@ -160,7 +166,12 @@ export class EntryObject {
                             }
                         } else {
                             this.setAttributes();
-                            this.fixTitle();
+
+                            if (this._dynamicTitleMethod) {
+                                this.fixTitle();
+                            } else if (this._staticTitleMethod) {
+                                this._title = this._staticTitleMethod(this._obj) as string;
+                            }
                         }
                     });
                 }

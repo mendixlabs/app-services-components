@@ -19,8 +19,8 @@ import {
     deleteObject
 } from "@jeltemx/mendix-react-widget-utils";
 import { splitRef } from "./utils/index";
-import { TitleMethod, EntryObjectExtraOptions, EntryObject } from "./store/objects/entry";
-import { getTitleFromObject, ClickCellType } from "./utils/titlehelper";
+import { EntryObjectExtraOptions, EntryObject } from "./store/objects/entry";
+import { getStaticTitleFromObject, getDynamicTitleFromObject, ClickCellType } from "./utils/titlehelper";
 import { validateProps } from "./utils/validation";
 import { commitObject } from "@jeltemx/mendix-react-widget-utils";
 
@@ -32,10 +32,18 @@ class TreeView extends Component<TreeViewContainerProps> {
     private widgetId?: string;
     private searchEnabled: boolean;
 
+    fetchData = this._fetchData.bind(this);
+    fetchChildren = this._fetchChildren.bind(this);
+    executeAction = this._executeAction.bind(this);
+    getEntryOptions = this._getEntryOptions.bind(this);
+    getClassMethod = this._getClassMethod.bind(this);
+    clickTypeHandler = this._clickTypeHandler.bind(this);
+    createSearchHelper = this._createSearchHelper.bind(this);
+    search = this._search.bind(this);
+    debug = this._debug.bind(this);
+
     constructor(props: TreeViewContainerProps) {
         super(props);
-
-        this.bindMethods();
 
         const parentRef = props.relationType === "nodeParent" ? splitRef(props.relationNodeParent) : null;
         const childRef = props.relationType === "nodeChildren" ? splitRef(props.relationChildReference) : null;
@@ -117,18 +125,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         );
     }
 
-    private bindMethods(): void {
-        this.fetchData = this.fetchData.bind(this);
-        this.fetchChildren = this.fetchChildren.bind(this);
-        this.executeAction = this.executeAction.bind(this);
-        this.getTitleMethod = this.getTitleMethod.bind(this);
-        this.getClassMethod = this.getClassMethod.bind(this);
-        this.clickTypeHandler = this.clickTypeHandler.bind(this);
-        this.search = this.search.bind(this);
-        this.debug = this.debug.bind(this);
-    }
-
-    private async fetchData(object: mendix.lib.MxObject): Promise<void> {
+    private async _fetchData(object: mendix.lib.MxObject): Promise<void> {
         this.debug("fetchData", object.getGuid());
         const {
             nodeEntity,
@@ -165,11 +162,9 @@ class TreeView extends Component<TreeViewContainerProps> {
         }
 
         if (objects !== null) {
-            const entryOpts: EntryObjectExtraOptions = { titleMethod: this.getTitleMethod() };
-
-            if (nodeLoadScenario === "top") {
-                entryOpts.isRoot = true;
-            }
+            const entryOpts = this.getEntryOptions({
+                isRoot: nodeLoadScenario === "top"
+            });
 
             this.store.setEntries(objects, entryOpts);
         } else {
@@ -179,7 +174,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         this.store.setLoading(false);
     }
 
-    private async fetchChildren(parentObject: EntryObject): Promise<void> {
+    private async _fetchChildren(parentObject: EntryObject): Promise<void> {
         if (this.props.nodeLoadScenario === "all") {
             return;
         }
@@ -228,10 +223,9 @@ class TreeView extends Component<TreeViewContainerProps> {
         }
 
         if (objects !== null) {
-            const entryOpts: EntryObjectExtraOptions = {
-                titleMethod: this.getTitleMethod(),
+            const entryOpts = this.getEntryOptions({
                 parent: parentObject.mxObject.getGuid()
-            };
+            });
 
             this.store.setEntries(objects, entryOpts, false);
             parentObject.setLoaded(true);
@@ -243,23 +237,33 @@ class TreeView extends Component<TreeViewContainerProps> {
         this.store.setLoading(false);
     }
 
-    private getTitleMethod(): TitleMethod {
+    private _getEntryOptions(opts: Partial<EntryObjectExtraOptions>): EntryObjectExtraOptions {
         const renderAsHTML = this.props.uiNodeRenderAsHTML;
         const titleType = this.props.uiNodeTitleType;
         const attribute = this.props.uiNodeTitleAttr;
         const nanoflow = this.props.uiNodeTitleNanoflow;
 
-        return (obj: mendix.lib.MxObject): Promise<ReactNode> =>
-            getTitleFromObject(obj, {
-                attribute,
-                executeAction: this.executeAction,
-                nanoflow,
-                titleType,
-                renderAsHTML
-            });
+        if (titleType === "attribute" && attribute) {
+            opts.staticTitleMethod = (obj: mendix.lib.MxObject) =>
+                getStaticTitleFromObject(obj, {
+                    attribute,
+                    titleType,
+                    renderAsHTML
+                });
+        } else if (titleType === "nanoflow" && nanoflow.nanoflow) {
+            opts.dynamicTitleMethod = (obj: mendix.lib.MxObject): Promise<ReactNode> =>
+                getDynamicTitleFromObject(obj, {
+                    executeAction: this.executeAction,
+                    nanoflow,
+                    titleType,
+                    renderAsHTML
+                });
+        }
+
+        return opts;
     }
 
-    private getClassMethod(attr: string): (obj: mendix.lib.MxObject) => string {
+    private _getClassMethod(attr: string): (obj: mendix.lib.MxObject) => string {
         return (obj: mendix.lib.MxObject): string => {
             if (!obj || !attr) {
                 return "";
@@ -268,7 +272,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         };
     }
 
-    private async clickTypeHandler(obj: mendix.lib.MxObject, clickType: ClickCellType = "single"): Promise<void> {
+    private async _clickTypeHandler(obj: mendix.lib.MxObject, clickType: ClickCellType = "single"): Promise<void> {
         if (!obj || this.props.eventNodeClickFormat !== clickType) {
             return;
         }
@@ -295,7 +299,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         }
     }
 
-    private async search(query: string): Promise<mendix.lib.MxObject[] | null> {
+    private async _search(query: string): Promise<mendix.lib.MxObject[] | null> {
         const { searchNanoflow } = this.props;
 
         if (!searchNanoflow) {
@@ -316,7 +320,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         return objects;
     }
 
-    private async createSearchHelper(query: string): Promise<mendix.lib.MxObject | null> {
+    private async _createSearchHelper(query: string): Promise<mendix.lib.MxObject | null> {
         const { searchHelperEntity, searchNodeReference, searchStringAttribute } = this.props;
         const searchNodeRef = searchNodeReference !== "" ? splitRef(searchNodeReference) : null;
 
@@ -341,7 +345,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         return helperObject;
     }
 
-    private executeAction(action: Action, showError = false, obj?: mendix.lib.MxObject): Promise<ActionReturn> {
+    private _executeAction(action: Action, showError = false, obj?: mendix.lib.MxObject): Promise<ActionReturn> {
         this.debug("executeAction", action, obj && obj.getGuid());
         const { mxform } = this.props;
         const context = getObjectContextFromObjects(obj, this.props.mxObject);
@@ -359,7 +363,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         );
     }
 
-    private debug(...args: unknown[]): void {
+    private _debug(...args: unknown[]): void {
         const id = this.props.friendlyId || this.widgetId;
         if (window.logger) {
             window.logger.debug(`${id}:`, ...args);
