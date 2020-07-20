@@ -12,8 +12,7 @@ import {
     IAction,
     getObjectContextFromObjects,
     executeMicroflow,
-    executeNanoFlow,
-    openPage,
+    executeNanoflow,
     fetchByXpath,
     getObjects,
     ValidationMessage,
@@ -21,7 +20,8 @@ import {
     commitObject,
     createObject,
     OpenPageAs,
-    entityIsPersistable
+    entityIsPersistable,
+    executeAction
 } from "@jeltemx/mendix-react-widget-utils";
 
 import { NodeStore, NodeStoreConstructorOptions } from "./store";
@@ -45,7 +45,7 @@ import { TableState } from "./store/index";
 import { ColumnProps } from "antd/es/table/interface";
 
 export interface Action extends IAction {}
-export type ActionReturn = string | number | boolean | mendix.lib.MxObject | mendix.lib.MxObject[] | void;
+export type ActionReturn = null | string | number | boolean | mendix.lib.MxObject | mendix.lib.MxObject[] | void;
 export interface TransformNanoflows {
     [key: string]: Nanoflow;
 }
@@ -253,7 +253,8 @@ class MxTreeTable extends Component<MxTreeTableContainerProps> {
             getInlineActionButtons: this._getInlineButtonColumns.bind(this),
             buttonBar,
             clickToSelect: selectClickSelect,
-            hideSelectBoxes: selectHideCheckboxes
+            hideSelectBoxes: selectHideCheckboxes,
+            renderExpandButton: this.props.loadScenario === "all" && this.props.uiRenderExpandButton
         });
     }
 
@@ -627,7 +628,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps> {
         if (mf !== null) {
             executeMicroflow(mf, context, this.props.mxform, true);
         } else if (nf !== null) {
-            executeNanoFlow(nf, context, this.props.mxform, true);
+            executeNanoflow(nf, context, this.props.mxform, true);
         }
     }
 
@@ -696,7 +697,7 @@ Your context object is of type "${contextEntity}". Please check the configuratio
                 this.debug("Action executed");
             });
         } else if (nf !== null) {
-            return executeNanoFlow(nf, context, mxform).then(() => {
+            return executeNanoflow(nf, context, mxform).then(() => {
                 this.debug("Action executed");
             });
         }
@@ -888,19 +889,12 @@ Your context object is of type "${contextEntity}". Please check the configuratio
 
     private _executeAction(action: Action, showError = false, obj?: mendix.lib.MxObject): Promise<ActionReturn> {
         this.debug("executeAction", action, obj && obj.getGuid());
-        const { mxform } = this.props;
-        const context = getObjectContextFromObjects(obj, this.props.mxObject);
 
-        if (action.microflow) {
-            return executeMicroflow(action.microflow, context, mxform, showError);
-        } else if (action.nanoflow) {
-            return executeNanoFlow(action.nanoflow, context, mxform, showError);
-        } else if (action.page) {
-            return openPage(action.page, context, showError);
-        }
-
-        return Promise.reject(
-            new Error(`No microflow/nanoflow/page defined for this action: ${JSON.stringify(action)}`)
+        return executeAction(
+            action,
+            showError,
+            getObjectContextFromObjects(obj, this.props.mxObject),
+            this.props.mxform
         );
     }
 

@@ -49,6 +49,7 @@ const rows = (): any[] => {
 const getTableProps = (rows?: TreeRowObject[], columns?: TreeColumnProps[]): TreeTableProps => {
     const store: MockStore = {
         validationMessages: [],
+        rowObjects: [],
         rowTree: rows || [],
         expandedKeys: [],
         isLoading: false,

@@ -423,6 +423,10 @@ It should be a non-persistent entity (persistent is not permitted) with a refere
                     <caption>Expand first level</caption>
                     <description>Only works while loading the whole tree: Automatically expand the first level of the tree. Currently it is only possible to automatically expand the first level. This will be ignored if the user has already used state management before.</description>
                 </property>
+                <property key="uiRenderExpandButton" type="boolean" defaultValue="false">
+                    <caption>Render expand button</caption>
+                    <description>Render a button to expand/collapse all</description>
+                </property>
             </propertyGroup>
         </propertyGroup>
 

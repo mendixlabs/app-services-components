@@ -102,6 +102,7 @@ export interface MxTreeTableContainerProps extends CommonProps {
     uiRowIconAttr: string;
     uiIconPrefix: string;
     uiExpandFirstLevelWholeTree: boolean;
+    uiRenderExpandButton: boolean;
 
     selectMode: SelectionMode;
     selectClickSelect: boolean;

@@ -1,6 +1,7 @@
 import { Component, ReactNode, createElement } from "react";
 import { observer } from "mobx-react";
 import classNames from "classnames";
+import { FaExpandAlt, FaCompressAlt } from "react-icons/fa";
 import Table, { TableRowSelection, ColumnProps } from "antd/es/table";
 
 // Importing seperate so we don't pollute the CSS too much
@@ -38,6 +39,7 @@ export interface TreeTableProps {
     onSelect?: (ids: string[]) => void;
     buttonBar?: ReactNode;
     hideSelectBoxes?: boolean;
+    renderExpandButton?: boolean;
 }
 
 const DEBOUNCE = 250;
@@ -54,8 +56,8 @@ export class TreeTable extends Component<TreeTableProps> {
         this.onRowDblClick = this.onRowDblClick.bind(this);
         this.onExpand = this.onExpand.bind(this);
         this.setSelected = this.setSelected.bind(this);
-        // this.expandAll = this.expandAll.bind(this);
-        // this.collapseAll = this.collapseAll.bind(this);
+        this.expandAll = this.expandAll.bind(this);
+        this.collapseAll = this.collapseAll.bind(this);
         this.onSelectionChange = this.onSelectionChange.bind(this);
         this.rowClassName = this.rowClassName.bind(this);
     }
@@ -158,11 +160,20 @@ export class TreeTable extends Component<TreeTableProps> {
         }
 
         columns = columns.map((col, index) => {
-            if (!col.key) {
-                return col;
+            const newCol = { ...col };
+            if (!newCol.key) {
+                return newCol;
+            }
+            if (index === 0 && this.props.renderExpandButton) {
+                newCol.title = (
+                    <div>
+                        {this.renderExpandButton()}
+                        {col.title}
+                    </div>
+                );
             }
             return {
-                ...col,
+                ...newCol,
                 render: (text, record) => {
                     if (index === 0 && record._icon) {
                         return (
@@ -205,6 +216,23 @@ export class TreeTable extends Component<TreeTableProps> {
         );
     }
 
+    private renderExpandButton(): ReactNode {
+        const expanded = this.props.store.expandedKeys.length > 0;
+        const className = classNames("treetable-expand-button");
+        if (expanded) {
+            return (
+                <div role="button" className={className} onClick={this.collapseAll}>
+                    <FaCompressAlt />
+                </div>
+            );
+        }
+        return (
+            <div role="button" className={className} onClick={this.expandAll}>
+                <FaExpandAlt />
+            </div>
+        );
+    }
+
     private setSelected(keys: string[]): void {
         this.onSelectionChange(keys);
     }
@@ -215,18 +243,18 @@ export class TreeTable extends Component<TreeTableProps> {
         return `treetable-treelevel-${index}${className}`;
     }
 
-    // private expandAll(): void {
-    //     const parentIds = this.props.rows
-    //         .filter(row => typeof row._parent !== "undefined" && row._parent)
-    //         .map(row => row._parent) as string[];
-    //     this.setState({
-    //         expandedRowKeys: uniq(parentIds)
-    //     });
-    // }
+    private expandAll(): void {
+        const parentIds = this.props.store.rowObjects
+            .filter(row => typeof row._parent !== "undefined" && row._parent)
+            .map(row => row._parent) as string[];
+        const filtered = parentIds.filter((item, i, ar) => ar.indexOf(item) === i);
 
-    // private collapseAll(): void {
-    //     this.props.store.setExpanded([]);
-    // }
+        this.props.store.setExpanded(filtered);
+    }
+
+    private collapseAll(): void {
+        this.props.store.setExpanded([]);
+    }
 
     private onRowClick(record: TableRecord): void {
         if (this.props.onClick) {

@@ -64,6 +64,7 @@ export class preview extends Component<MxTreeTableContainerProps> {
 
         const store: MockStore = {
             validationMessages,
+            rowObjects: [],
             rowTree: [],
             expandedKeys: [],
             isLoading: false,

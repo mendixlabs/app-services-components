@@ -7,6 +7,17 @@
 @import "~antd/es/pagination/style/index.css";
 
 .widget-treetable-wrapper {
+
+    .treetable-expand-button {
+        display: inline-block;
+        height: 25px;
+        width: 14px;
+        margin-right: 10px;
+        line-height: 14px;
+        margin-top: 0px;
+        padding: 6px 0 0 0;
+    }
+
     .ant-table-thead {
         .ant-table-selection-column {
             .ant-checkbox-input {
