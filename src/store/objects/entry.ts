@@ -18,13 +18,13 @@ export interface TreeObject {
     expanded: boolean;
     canExpand?: boolean;
     icon: string | null;
+    className: string | null;
     highlight?: boolean;
 }
 
 export interface EntryObjectExtraOptions {
     dynamicTitleMethod?: DynamicTitleMethod;
     staticTitleMethod?: StaticTitleMethod;
-    classMethod?: ClassMethod;
     isRoot?: boolean;
     parent?: string;
     isLoaded?: boolean;
@@ -45,11 +45,10 @@ export class EntryObject {
     public _attributes: EntryObjectAttributes;
     public _dynamicTitleMethod: DynamicTitleMethod;
     public _staticTitleMethod: StaticTitleMethod;
-    public _classMethod: ClassMethod;
 
     @observable _title: string;
     @observable _icon: string | null;
-    @observable _class: string;
+    @observable _class: string | null;
     @observable _selected: boolean;
     @observable _parent: string;
     @observable _children: string[];
@@ -67,12 +66,12 @@ export class EntryObject {
 
     constructor(opts: EntryObjectOptions, attributes: EntryObjectAttributes) {
         const { mxObject, changeHandler, extraOpts } = opts;
-        const { staticTitleMethod, dynamicTitleMethod, classMethod, isRoot, parent, isLoaded } = extraOpts;
+        const { staticTitleMethod, dynamicTitleMethod, isRoot, parent, isLoaded } = extraOpts;
         this._obj = mxObject;
 
         this._title = "";
         this._icon = null;
-        this._class = "";
+        this._class = null;
         this._selected = false;
         this._parent = typeof parent !== "undefined" ? parent : "";
         this._children = [];
@@ -82,7 +81,6 @@ export class EntryObject {
         this._isRoot = typeof isRoot !== "undefined" ? isRoot : false;
         this._dynamicTitleMethod = dynamicTitleMethod || null;
         this._staticTitleMethod = staticTitleMethod || null;
-        this._classMethod = classMethod || null;
         this._changeHandler = changeHandler || ((): void => {});
         this._subscriptions = [];
         this._attributes = attributes;
@@ -95,10 +93,6 @@ export class EntryObject {
             this.fixTitle();
         } else if (staticTitleMethod) {
             this._title = staticTitleMethod(mxObject) as string;
-        }
-
-        if (classMethod) {
-            this.fixClass();
         }
 
         this.resetSubscription();
@@ -127,6 +121,10 @@ export class EntryObject {
             const icon = this._obj.get(attr.iconAttr) as string;
             this.setIcon(icon);
         }
+        if (attr.classAttr) {
+            const className = this._obj.get(attr.classAttr) as string;
+            this.setClass(className);
+        }
 
         if (attr.hasChildAttr) {
             const hasChildren = this._obj.get(attr.hasChildAttr) as boolean;
@@ -139,13 +137,6 @@ export class EntryObject {
         const { unsubscribe } = window.mx.data;
         this._subscriptions.forEach(subscription => unsubscribe(subscription));
         this._subscriptions = [];
-    }
-
-    @action
-    fixClass(): void {
-        if (this._classMethod) {
-            this._class = this._classMethod(this._obj);
-        }
     }
 
     @action
@@ -227,7 +218,7 @@ export class EntryObject {
 
     @computed
     get className(): string {
-        return this._class;
+        return this._class !== null ? this._class : "";
     }
 
     @computed
@@ -251,7 +242,8 @@ export class EntryObject {
             root: this.isRoot,
             selected: this.selected,
             expanded: this.isExpanded,
-            icon: this.icon
+            icon: this.icon,
+            className: this.className
         };
     }
 
@@ -301,5 +293,10 @@ export class EntryObject {
     @action
     setIcon(str = ""): void {
         this._icon = str === "" ? null : str;
+    }
+
+    @action
+    setClass(str = ""): void {
+        this._class = str === "" ? null : str;
     }
 }

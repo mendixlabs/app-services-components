@@ -66,6 +66,8 @@ Tested:
 
 ![settings](/assets/settings4.png)
 
+- Note: You can now also set the class name of a node with an attribute
+
 ### 5. Drag & Drop
 
 ![settings](/assets/settings5.png)

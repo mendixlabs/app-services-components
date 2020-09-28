@@ -58,6 +58,7 @@ class TreeView extends Component<TreeViewContainerProps> {
         const relationType = props.relationType;
         const rootAttr = props.nodeIsRootAttr !== "" ? props.nodeIsRootAttr : null;
         const iconAttr = props.uiNodeIconAttr !== "" ? props.uiNodeIconAttr : null;
+        const classAttr = props.uiNodeClassName !== "" ? props.uiNodeClassName : null;
         const loadFull = props.nodeLoadScenario === "all";
 
         this.searchEnabled =
@@ -79,7 +80,8 @@ class TreeView extends Component<TreeViewContainerProps> {
                 hasChildAttr,
                 relationType,
                 rootAttr,
-                iconAttr
+                iconAttr,
+                classAttr
             },
             childLoader: this.fetchChildren,
             validationMessages,
