@@ -167,6 +167,15 @@
                     <description>When using icons, we default to Glyphicons from Bootstrap. This will prefix the value of the attribute with 'glyphicon glyphicon-'. If you want to use different icons, please switch off Glyphicon</description>
                 </property>
             </propertyGroup>
+            <propertyGroup caption="Classnames">
+                <property key="uiNodeClassName" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Class attr</caption>
+                    <description>If you need to set an extra class name on the node itself (for example, to add a color to it), you can use this attribute.</description>
+                    <attributeTypes>
+                         <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
             <propertyGroup caption="Other">
                 <property key="uiTableShowLines" type="boolean" defaultValue="false">
                     <caption>Show tree lines</caption>

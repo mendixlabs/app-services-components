@@ -135,6 +135,7 @@ export class TreeViewComponent extends Component<TreeViewComponentProps> {
             let icon: ReactNode | boolean = false;
             const isLeaf = !((item.children && item.children.length > 0) || item.hasChildren);
             const extraClass = classNames(
+                item.className,
                 item.highlight ? "highlight" : "",
                 item.selected && this.props.holdSelection ? "selected" : "",
                 item.icon ? "has-icon" : ""

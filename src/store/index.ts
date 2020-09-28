@@ -32,6 +32,7 @@ export interface EntryObjectAttributes {
     parentRef: string | null;
     rootAttr: string | null;
     iconAttr: string | null;
+    classAttr: string | null;
     relationType: RelationType;
 }
 
