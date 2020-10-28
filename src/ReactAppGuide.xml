@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.reactappguide.ReactAppGuide" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>React App Guide</name>
+    <description>My widget description</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="userWelcome" type="attribute" onChange="onUserWelcomeChange">
+                <caption>Welcome attribute</caption>
+                <description>The attribute where the user setting is stored for wheather or not to show the App Product Guide</description>
+                <attributeTypes>
+                    <attributeType name="Boolean"/>
+                </attributeTypes>
+            </property>
+
+            <property key="onUserWelcomeChange" type="action">
+                <caption>On Complete</caption>
+             <description>Usually a Microflow to store that user hase complted the Product Guide </description>
+            </property>
+
+            <property key="isPageCall" type="boolean" defaultValue="false">
+				<caption>On Complete Page Call?</caption>
+				<description>Set this to true if the On Complete is calling a Page</description>
+			</property>
+
+            <property key="showSkipButton" type="boolean" defaultValue="true">
+				<caption>Show Skip Button</caption>
+				<description></description>
+			</property>
+
+            <property key="showProgress" type="boolean" defaultValue="false">
+				<caption>Show Progress</caption>
+				<description></description>
+			</property>
+
+            <property key="listOfSteps" type="object" isList="true">
+                <caption>List of Steps</caption>
+                <description/>
+                <properties>
+                    <propertyGroup caption="Object list group">
+                    <property type="string" key="target" required="true">
+                        <caption>classname (Target)</caption>
+                        <description>class-name of Element (CSS)</description>
+                    </property>
+                    <property type="string" key="title" required="true" multiline="false">
+                        <caption>Title</caption>
+                        <description>Title to display to End User</description>
+                    </property>
+                    <property type="string" key="content" required="true" multiline="true">
+                        <caption>Content</caption>
+                        <description>Text Description, To display to End User</description>
+                    </property>
+                       <property key="placement" type="enumeration" defaultValue="top">
+                            <caption>Position (Placement)</caption>
+                            <description>Position of the Pop Up Card</description>
+                            <enumerationValues>
+                                <enumerationValue key="auto">Auto</enumerationValue>
+                                <enumerationValue key="top">Top</enumerationValue>
+                                <enumerationValue key="bottom">Bottom</enumerationValue>
+                                <enumerationValue key="left">Left</enumerationValue>
+                                <enumerationValue key="right">Right</enumerationValue>
+                            </enumerationValues>
+                        </property>
+                    </propertyGroup>
+                </properties>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Product Guide Card Styles">
+            <property type="string" key="arrowColor" required="false">
+                <caption>Arrow Color</caption>
+                <description></description>
+            </property>
+            <property type="string" key="textColor" required="false">
+                <caption>Text Color</caption>
+                <description></description>
+            </property>
+            <property type="string" key="primaryColor" required="false">
+                <caption>Primary Color</caption>
+                <description></description>
+            </property>
+            <property type="string" key="backgroundColor" required="false">
+                <caption>Back Ground Color</caption>
+                <description></description>
+            </property>
+            <property type="string" key="overlayColor" required="false">
+                <caption>Overlay Color</caption>
+                <description></description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>
