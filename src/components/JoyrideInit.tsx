@@ -1,4 +1,4 @@
-import { createElement, useState } from "react";
+import { createElement, useState, ReactElement } from "react";
 import Joyride, { STATUS } from "react-joyride";
 import { ReactAppGuideContainerProps } from "../../typings/ReactAppGuideProps";
 import { reFormattedList, findAndTriggerScroll } from "../utils";
@@ -15,17 +15,20 @@ const JoyrideInit = ({
     textColor,
     primaryColor,
     backgroundColor
-}: ExcludedReactAppGuideContainerProps) => {
+}: ExcludedReactAppGuideContainerProps): ReactElement => {
     const formattedList = reFormattedList(listOfSteps);
     const [stepCounter, setStepCounter] = useState<number>(0);
-    const _areYouDone = (data: any) => {
+    const _areYouDone = (data: any): void => {
         const { status, action, index, lifecycle } = data;
 
-        if (status == STATUS.FINISHED || status == STATUS.SKIPPED) {
+        if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
             userWelcome.setValue(!userWelcome.value);
+            setTimeout(() => {
+                userWelcome.setValue(userWelcome.value);
+            }, 10);
         }
 
-        if (action == "next" && index == stepCounter && lifecycle == "complete") {
+        if (action === "next" && index === stepCounter && lifecycle === "complete") {
             const updateIndex = index + 1;
             const foundObject = formattedList[updateIndex];
             if (foundObject) {
@@ -34,7 +37,7 @@ const JoyrideInit = ({
             setStepCounter(updateIndex);
         }
 
-        if (action == "prev" && index == stepCounter && lifecycle == "complete") {
+        if (action === "prev" && index === stepCounter && lifecycle === "complete") {
             const updateIndex = index - 1;
             const foundObject = formattedList[updateIndex];
             setStepCounter(updateIndex);
@@ -68,7 +71,6 @@ const JoyrideInit = ({
                         backgroundColor: backgroundColor ? backgroundColor : "#fff",
                         primaryColor: primaryColor ? primaryColor : "#000",
                         textColor,
-                        width: "auto",
                         zIndex: 1000
                     }
                 }}

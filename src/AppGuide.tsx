@@ -10,11 +10,12 @@ export default class ReactAppGuide extends Component<ReactAppGuideContainerProps
     state = {
         display: false
     };
-    componentDidUpdate(pP: ReactAppGuideContainerProps) {
-        const { userWelcome } = this.props;
+
+    componentDidUpdate(pP: ReactAppGuideContainerProps): void {
+        const { userWelcome, isPageCall } = this.props;
         const { display } = this.state;
-        if (userWelcome.value != pP.userWelcome.value) {
-            if (!userWelcome.value || userWelcome.value != undefined) {
+        if (userWelcome.value !== pP.userWelcome.value) {
+            if (!userWelcome.value && userWelcome.value !== undefined) {
                 /**
                  *  JS is Blocking the Updating Dom (JS single Thread)
                  * https://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful
@@ -26,7 +27,7 @@ export default class ReactAppGuide extends Component<ReactAppGuideContainerProps
                 }, 0);
             }
         }
-        if (userWelcome.value && display) {
+        if (userWelcome.value && display && !isPageCall) {
             this.setState({
                 display: false
             });

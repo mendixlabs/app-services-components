@@ -1,7 +1,7 @@
 import { ListOfStepsType } from "../../typings/ReactAppGuideProps";
 const _formatTarget = (target: string): string => {
     if (target.indexOf(".")) {
-        //Add a Dot To the Start
+        // Add a Dot To the Start
         const newTarget = `.${target}`;
         return newTarget;
     } else {
@@ -11,7 +11,7 @@ const _formatTarget = (target: string): string => {
 
 export const reFormattedList = (listOfSteps: ListOfStepsType[]): [] => {
     const _reFormattedList = listOfSteps.reduce((a: any, c: any) => {
-        if (a.length == 0) {
+        if (a.length === 0) {
             return [
                 ...a,
                 {
@@ -34,11 +34,11 @@ export const reFormattedList = (listOfSteps: ListOfStepsType[]): [] => {
     return _reFormattedList;
 };
 
-export const findAndTriggerScroll = (target: string): void => {
+export const findAndTriggerScroll = (target: string): any => {
     console.log("target", target);
     const sanitizedTarget = target.replace(/\./g, "");
     const element = document.getElementsByClassName(sanitizedTarget);
-    element && element[0].scrollIntoView({ block: "center" });
+    return element && element[0].scrollIntoView({ block: "center" });
 };
 
 // console.log("listOfSteps", listOfSteps);

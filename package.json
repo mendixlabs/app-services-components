@@ -1,6 +1,6 @@
 {
-    "name": "reactappguide",
-    "widgetName": "ReactAppGuide",
+    "name": "appguide",
+    "widgetName": "AppGuide",
     "version": "1.0.0",
     "description": "My widget description",
     "copyright": "2020 Mendix Technology BV",
