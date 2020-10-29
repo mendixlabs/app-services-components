@@ -19,10 +19,9 @@
   <br>
   
 </p>
+ <img  align="center" alt="headerIMG" src="./assets/AppGuide.png" target="_blank" />
 
-![datasource](./assets/AppGuide.png)
-
-### A Widget to Showcase new Features in your App, or created Guided tour in your app.
+### A Widget to Showcase new Features in your App, or created a Guided tour in your app.
 
 The basic idea is that you add a unique class name to a element (div, h1, ect.) and then add that class name to the
 widget, you give it a title and a description and that will create a guided introduction to your app. This will take the
