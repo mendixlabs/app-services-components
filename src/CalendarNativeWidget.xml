@@ -8,9 +8,64 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-            <property key="yourName" type="string" required="false">
-                <caption>Name</caption>
-                <description>Enter your name</description>
+            
+            <property key="incomingDates"  type="datasource" isList="true" required="false">
+                <caption>Incoming Dates</caption>
+                <description />
+            </property>
+
+            <property key="title" type="attribute" dataSource="incomingDates">
+                <caption>title</caption>
+                <description>title</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="description" type="attribute" dataSource="incomingDates">
+                <caption>description</caption>
+                <description></description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="date" type="attribute" dataSource="incomingDates">
+                <caption>Date</caption>
+                <description></description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+    
+           <property key="volatileDate" type="attribute" required="false" onChange="onClick">
+                <caption>Volatile Date</caption>
+                <description/>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>
+
+
+            <property key="onClick" type="action">
+                <caption>On click</caption>
+                <description>This action will not be called when secondary buttons are used.</description>
+            </property>
+
+        </propertyGroup>
+           <propertyGroup caption="Appearance">
+              <property type="string" key="selectedColor" required="false">
+                <caption>selectedColor Date</caption>
+                <description></description>
+            </property>
+              <property type="string" key="selectedTextColor" required="false">
+                <caption>selectedTextColor Date</caption>
+                <description></description>
+            </property>
+              <property type="string" key="dotColor" required="false">
+                <caption>Dot Color</caption>
+                <description>Default Date Color</description>
             </property>
         </propertyGroup>
     </properties>
