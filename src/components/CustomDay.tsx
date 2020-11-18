@@ -1,21 +1,44 @@
 import { createElement } from "react";
 import { View, Text, TouchableWithoutFeedback } from "react-native";
-interface CustomPayProps {
+import { isPast, isToday } from "date-fns";
+
+interface CustomDayProps {
     day: any;
-    defaultDotColor: any;
-    defaultTextColor: any;
-    onDayPress: any;
+    openCalendar: boolean;
     rawInComingDates: any;
-    openCalendar: any;
+    defaultDotColor: string;
+    defaultTextColor: string;
+    disablePastDates: boolean;
+    onDayPress: (day: any) => Promise<void>;
 }
 const CustomDay = ({
     day,
+    onDayPress,
+    openCalendar,
     defaultDotColor,
     defaultTextColor,
-    onDayPress,
     rawInComingDates,
-    openCalendar
-}: CustomPayProps) => {
+    disablePastDates
+}: CustomDayProps) => {
+    const { marking, date, state } = day;
+    // Styling needs to change if date is 1 char or 2
+    const isDayLong = date.day <= 9;
+    // This is needed as Mon marked days come in as [] and MArked days as {}
+    const isMark = !Array.isArray(marking);
+    //@ts-ignore
+    const disabledMark = isMark && marking.disabled;
+    // selected
+    //@ts-ignore
+    const selectedViewStyle = marking.selected && {
+        backgroundColor: defaultDotColor
+    };
+    //@ts-ignore
+    const selectedTextStyle = marking.selected && {
+        color: defaultTextColor
+    };
+    const isInPastAndDisabled = disablePastDates && isPast(new Date(date.dateString));
+    const isItToday = isToday(new Date(date.dateString));
+
     const markedDay = (isMark: any, marking: any) => {
         if (isMark) {
             if (marking.disabledWithNoMarker) {
@@ -28,7 +51,7 @@ const CustomDay = ({
         }
     };
 
-    const summerizeDay = (day: any) => {
+    const summarizeDay = (day: any) => {
         if (day && rawInComingDates) {
             const reducedRawDates = rawInComingDates.reduce((a: any, c: any) => {
                 if (c.formattedDate === day.dateString) {
@@ -38,9 +61,8 @@ const CustomDay = ({
                 }
             }, []);
             if (reducedRawDates.length) {
-                console.log("reducedRawDates", reducedRawDates);
                 return (
-                    <Text numberOfLines={2} style={{ textAlign: "center", fontSize: 10 }}>
+                    <Text numberOfLines={2} style={{ textAlign: "center", fontSize: 8 }}>
                         {reducedRawDates.length} Events
                     </Text>
                 );
@@ -48,26 +70,10 @@ const CustomDay = ({
         }
     };
 
-    const { marking, date, state } = day;
-    // Styling needs to change if date is 1 char or 2
-    const isDayLong = date.day <= 9;
-    // This is needed as Mon marked days come in as [] and MArked days as {}
-    const isMark = !Array.isArray(marking);
-    //@ts-ignore
-    const disabledMark = isMark && marking.disabled;
-    // selected
-    //@ts-ignore
-    const x = marking.selected && {
-        backgroundColor: defaultDotColor
-    };
-    //@ts-ignore
-    const p = marking.selected && {
-        color: defaultTextColor
-    };
     return (
         <TouchableWithoutFeedback
             onPress={() => {
-                !disabledMark && onDayPress(date);
+                !disabledMark && !isInPastAndDisabled && onDayPress(date);
             }}
         >
             <View
@@ -81,22 +87,26 @@ const CustomDay = ({
                         paddingRight: isDayLong ? "20%" : "14%",
                         paddingLeft: isDayLong ? "20%" : "14%"
                     },
-                    x
+                    selectedViewStyle
                 ]}
             >
                 <Text
                     style={[
                         {
                             textAlign: "center",
-                            color: state === "disabled" || disabledMark ? "gray" : "black"
+                            color: isItToday
+                                ? defaultDotColor
+                                : state === "disabled" || disabledMark
+                                ? "#DAE1E8"
+                                : "black"
                         },
-                        p
+                        selectedTextStyle
                     ]}
                 >
                     {date.day}
                 </Text>
-                {openCalendar && <View>{summerizeDay(date)}</View>}
-                {!openCalendar && (
+                {openCalendar && !isInPastAndDisabled && <View>{summarizeDay(date)}</View>}
+                {!openCalendar && !isInPastAndDisabled && (
                     <View
                         style={{
                             height: 5,

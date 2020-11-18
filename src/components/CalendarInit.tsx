@@ -1,4 +1,4 @@
-import { createElement, cloneElement, useState, useEffect } from "react";
+import { createElement, Fragment, cloneElement, useState, useEffect } from "react";
 import { View, Button } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { Style } from "@mendix/pluggable-widgets-tools";
@@ -7,7 +7,7 @@ import GestureRecognizer from "react-native-swipe-gestures";
 import Arrows from "./Arrows";
 import CustomDay from "./CustomDay";
 
-import { format, eachWeekendOfMonth, isSunday, isSaturday } from "date-fns";
+import { format, eachWeekendOfMonth, isSunday, isSaturday, addMonths } from "date-fns";
 // import * as R from "ramda";
 // import { Image } from "mendix/components/native/Image";
 
@@ -22,24 +22,30 @@ const CalendarInit = ({
     title,
     dotColor,
     description,
+    initialDate,
     volatileDate,
     incomingDates,
     selectedColor,
     activeSwipeDown,
     disableWeekends,
+    disablePastDates,
     autoTriggerAction,
-    selectedTextColor
+    selectedTextColor,
+    disableMonthChange
 }: ExcludedCalendarNativeWidgetProps) => {
-    const [openCalendar, setOpenCalendar] = useState<boolean>(false);
+    const [weekends, setWeekends] = useState<any>();
+    const [startDate, setStartDate] = useState<Date>();
     const [selected, setSelected] = useState<string>();
+    const [openCalendar, setOpenCalendar] = useState<boolean>(false);
     const [rawInComingDates, setRawInComingDates] = useState<any>();
     const [inComingDates, setInComingDates] = useState<any>({ weekends: null, appDates: null });
-    const [weekends, setWeekends] = useState<any>();
 
-    console.log("rawInComingDates", rawInComingDates, openCalendar);
-    const defaultDotColor: string = dotColor ? dotColor : "#05bedb";
+    const defaultDotColor: string = dotColor ? dotColor : "#2C97EB";
     const defaultTextColor: string = selectedTextColor ? selectedTextColor : "white";
-    const defaultSelectedColor: string = selectedColor ? selectedColor : "05bedb";
+    const defaultSelectedColor: string = selectedColor ? selectedColor : "#2C97EB";
+    useEffect(() => {
+        setStartDate(addMonths(Date.now(), initialDate));
+    }, []);
     useEffect(() => {
         /**
          * Resets Selected Day If a Event Was Added
@@ -50,15 +56,15 @@ const CalendarInit = ({
     }, [incomingDates]);
     const onMonthChange = (month: any) => {
         const dateObject = new Date(month.timestamp);
+        setOpenCalendar(false);
         _disableWeekends(dateObject);
     };
     const _disableWeekends = (newMonth?: any) => {
         const current = Date.now();
-        const aMonthfromDate = newMonth ? eachWeekendOfMonth(newMonth) : eachWeekendOfMonth(current);
-
-        const dissabledWeekends =
-            aMonthfromDate &&
-            aMonthfromDate.reduce((a, c) => {
+        const aMonthFromDate = newMonth ? eachWeekendOfMonth(newMonth) : eachWeekendOfMonth(current);
+        const disabledWeekends =
+            aMonthFromDate &&
+            aMonthFromDate.reduce((a, c) => {
                 const formattedDate = format(new Date(c), DATE_FORMAT);
                 const day = {
                     ...a,
@@ -69,8 +75,7 @@ const CalendarInit = ({
                 };
                 return day;
             }, []);
-
-        setWeekends(dissabledWeekends);
+        setWeekends(disabledWeekends);
     };
     const _triggerEvent = async (day?: string) => {
         /**
@@ -91,7 +96,7 @@ const CalendarInit = ({
 
     const onDayPress = async (day: any) => {
         const dateObject = new Date(day.dateString);
-        // TODO Disable by user
+
         if (disableWeekends && (isSunday(dateObject) || isSaturday(dateObject))) {
             await setSelected("");
             return;
@@ -147,7 +152,6 @@ const CalendarInit = ({
                 break;
             case "SWIPE_DOWN":
                 setOpenCalendar(true);
-
                 break;
         }
     }
@@ -156,52 +160,71 @@ const CalendarInit = ({
         velocityThreshold: 0.3,
         directionalOffsetThreshold: 80
     };
-    // console.log("inComingDates", inComingDates);
-
+    /**
+     *  This is done (with the Clone Element) to be able to pass Conditional Props to the Calendar Components
+     * This Helps so that we can keep the CORE Calendar Module with out the need to Frok from Github
+     */
     const rendererForActiveSwipeDown = activeSwipeDown
         ? {
               dayComponent: (day: any) => (
                   <CustomDay
                       day={day}
-                      defaultDotColor={defaultDotColor}
-                      defaultTextColor={defaultTextColor}
                       onDayPress={onDayPress}
-                      rawInComingDates={rawInComingDates}
                       openCalendar={openCalendar}
+                      defaultDotColor={defaultDotColor}
+                      disablePastDates={disablePastDates}
+                      rawInComingDates={rawInComingDates}
+                      defaultTextColor={defaultTextColor}
                   />
               )
           }
         : {};
+    const rendererForMinDate = disablePastDates
+        ? {
+              minDate: Date.now()
+          }
+        : {};
+    console.log("disableMonthChange", disableMonthChange);
     return (
         <View>
-            <GestureRecognizer onSwipe={direction => onSwipe(direction)} config={config}>
-                {cloneElement(
-                    <Calendar
-                        current={Date.now()}
-                        hideArrows={false}
-                        renderArrow={(direction: string) => <Arrows direction={direction} />}
-                        enableSwipeMonths={true}
-                        hideExtraDays={true}
-                        onDayPress={onDayPress}
-                        markedDates={{
-                            ...inComingDates,
-                            // @ts-ignore
-                            [selected]: {
-                                selected: true,
-                                disableTouchEvent: true,
-                                selectedColor: defaultSelectedColor,
-                                selectedTextColor: defaultTextColor
-                            },
-                            ...weekends
-                        }}
-                        onMonthChange={month => {
-                            disableWeekends && onMonthChange(month);
-                        }}
-                    />,
-                    { ...rendererForActiveSwipeDown }
-                )}
-            </GestureRecognizer>
-            {!autoTriggerAction && <Button title="Add Event" onPress={() => _triggerEvent()} disabled={!selected} />}
+            {startDate && (
+                <Fragment>
+                    <GestureRecognizer onSwipe={direction => onSwipe(direction)} config={config}>
+                        {cloneElement(
+                            <Calendar
+                                current={startDate}
+                                hideArrows={false}
+                                hideExtraDays={false}
+                                onDayPress={onDayPress}
+                                renderArrow={(direction: string) => (
+                                    <Arrows disableMonthChange={disableMonthChange} direction={direction} />
+                                )}
+                                disableMonthChange={disableMonthChange}
+                                disableArrowLeft={disableMonthChange}
+                                disableArrowRight={disableMonthChange}
+                                markedDates={{
+                                    ...inComingDates,
+                                    // @ts-ignore
+                                    [selected]: {
+                                        selected: true,
+                                        disableTouchEvent: true,
+                                        selectedColor: defaultSelectedColor,
+                                        selectedTextColor: defaultTextColor
+                                    },
+                                    ...weekends
+                                }}
+                                onMonthChange={month => {
+                                    disableWeekends && onMonthChange(month);
+                                }}
+                            />,
+                            { ...rendererForActiveSwipeDown, ...rendererForMinDate }
+                        )}
+                    </GestureRecognizer>
+                    {!autoTriggerAction && (
+                        <Button title="Add Event" onPress={() => _triggerEvent()} disabled={!selected} />
+                    )}
+                </Fragment>
+            )}
         </View>
     );
 };

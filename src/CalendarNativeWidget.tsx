@@ -24,8 +24,10 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
             selectedColor,
             activeSwipeDown,
             disableWeekends,
+            disablePastDates,
             selectedTextColor,
-            autoTriggerAction
+            autoTriggerAction,
+            disableMonthChange
         } = this.props;
         // console.log("this.props", this.props.volatileDate, this.props.volatileDate?.value);
         // const d = new Date("01/07/2020");
@@ -45,8 +47,10 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                     incomingDates={incomingDates}
                     activeSwipeDown={activeSwipeDown}
                     disableWeekends={disableWeekends}
-                    autoTriggerAction={autoTriggerAction}
+                    disablePastDates={disablePastDates}
                     selectedTextColor={selectedTextColor}
+                    autoTriggerAction={autoTriggerAction}
+                    disableMonthChange={disableMonthChange}
                 />
                 {/* <Text onPress={() => this.props.volatileDate?.setValue(d as any)}>trigger date</Text> */}
             </View>

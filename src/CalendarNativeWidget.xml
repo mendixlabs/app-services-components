@@ -57,6 +57,11 @@
                         <description>Activate Swiping down to expand the Calendar</description>
                     </property>
 
+                    <property key="disableMonthChange" type="boolean" defaultValue="false">
+                        <caption>Disable Month Change</caption>
+                        <description>Activate Swiping down to expand the Calendar</description>
+                    </property>
+
                     <property key="autoTriggerAction" type="boolean" defaultValue="true">
                         <caption>Auto Trigger Action </caption>
                         <description>Auto Trigger Action after User Presses Date</description>
@@ -66,7 +71,12 @@
                         <caption>Disable Weekends</caption>
                         <description>Only make Bussnisses Day Pressabile </description>
                     </property>
-                    
+
+                    <property key="disablePastDates" type="boolean" defaultValue="false">
+                        <caption>Disable Past Dates</caption>
+                        <description>Only make Bussnisses Day Pressabile </description>
+                    </property>
+
                     <property key="initialDate" type="integer" defaultValue="0">
                         <caption>Months from now to Start Date</caption>
                         <description></description>
