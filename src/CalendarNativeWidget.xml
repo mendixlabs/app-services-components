@@ -7,53 +7,72 @@
     <description>My widget description</description>
     <icon/>
     <properties>
-        <propertyGroup caption="General">
-            
-            <property key="incomingDates"  type="datasource" isList="true" required="false">
-                <caption>Incoming Dates</caption>
-                <description />
-            </property>
+        <propertyGroup caption="Data">
+                <property key="incomingDates"  type="datasource" isList="true" required="false">
+                    <caption>Incoming Dates</caption>
+                    <description>List of Date Objects</description>
+                </property>
 
-            <property key="title" type="attribute" dataSource="incomingDates">
-                <caption>title</caption>
-                <description>title</description>
-                <attributeTypes>
-                    <attributeType name="String"/>
-                </attributeTypes>
-            </property>
+                <property key="title" type="attribute" dataSource="incomingDates">
+                    <caption>Title</caption>
+                    <description>Title of the Entry</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
 
-            <property key="description" type="attribute" dataSource="incomingDates">
-                <caption>description</caption>
-                <description></description>
-                <attributeTypes>
-                    <attributeType name="String"/>
-                </attributeTypes>
-            </property>
+                <property key="description" type="attribute" dataSource="incomingDates">
+                    <caption>Description</caption>
+                    <description>Description of the Entry</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
 
-            <property key="date" type="attribute" dataSource="incomingDates">
-                <caption>Date</caption>
-                <description></description>
-                <attributeTypes>
-                    <attributeType name="DateTime"/>
-                </attributeTypes>
-            </property>
+                <property key="date" type="attribute" dataSource="incomingDates">
+                    <caption>Date</caption>
+                    <description>Date of the Entry</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime"/>
+                    </attributeTypes>
+                </property>
 
-    
-           <property key="volatileDate" type="attribute" required="false" onChange="onClick">
-                <caption>Volatile Date</caption>
-                <description/>
-                <attributeTypes>
-                    <attributeType name="DateTime"/>
-                </attributeTypes>
-            </property>
+                <property key="volatileDate" type="attribute" required="false" onChange="onClick">
+                        <caption>Volatile Date</caption>
+                        <description/>
+                        <attributeTypes>
+                            <attributeType name="DateTime"/>
+                        </attributeTypes>
+                    </property>
 
+                    <property key="onClick" type="action">
+                        <caption>On click</caption>
+                        <description>This action will not be called when secondary buttons are used.</description>
+                    </property>
+                </propertyGroup>
 
-            <property key="onClick" type="action">
-                <caption>On click</caption>
-                <description>This action will not be called when secondary buttons are used.</description>
-            </property>
+                <propertyGroup caption="Settings">
+                    <property key="activeSwipeDown" type="boolean" defaultValue="false">
+                        <caption>Active Swipe Down</caption>
+                        <description>Activate Swiping down to expand the Calendar</description>
+                    </property>
 
-        </propertyGroup>
+                    <property key="autoTriggerAction" type="boolean" defaultValue="true">
+                        <caption>Auto Trigger Action </caption>
+                        <description>Auto Trigger Action after User Presses Date</description>
+                    </property>
+
+                    <property key="disableWeekends" type="boolean" defaultValue="false">
+                        <caption>Disable Weekends</caption>
+                        <description>Only make Bussnisses Day Pressabile </description>
+                    </property>
+                    
+                    <property key="initialDate" type="integer" defaultValue="0">
+                        <caption>Months from now to Start Date</caption>
+                        <description></description>
+                    </property>
+                </propertyGroup>
+
            <propertyGroup caption="Appearance">
               <property type="string" key="selectedColor" required="false">
                 <caption>selectedColor Date</caption>
@@ -64,8 +83,8 @@
                 <description></description>
             </property>
               <property type="string" key="dotColor" required="false">
-                <caption>Dot Color</caption>
-                <description>Default Date Color</description>
+                <caption>Dot Color Date</caption>
+                <description></description>
             </property>
         </propertyGroup>
     </properties>

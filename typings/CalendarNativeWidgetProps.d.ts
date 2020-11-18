@@ -14,6 +14,10 @@ export interface CalendarNativeWidgetProps<Style> {
     date: ListAttributeValue<Date>;
     volatileDate?: EditableValue<Date>;
     onClick?: ActionValue;
+    activeSwipeDown: boolean;
+    autoTriggerAction: boolean;
+    disableWeekends: boolean;
+    initialDate: number;
     selectedColor: string;
     selectedTextColor: string;
     dotColor: string;
@@ -28,6 +32,10 @@ export interface CalendarNativeWidgetPreviewProps {
     date: string;
     volatileDate: string;
     onClick: {} | null;
+    activeSwipeDown: boolean;
+    autoTriggerAction: boolean;
+    disableWeekends: boolean;
+    initialDate: number | null;
     selectedColor: string;
     selectedTextColor: string;
     dotColor: string;

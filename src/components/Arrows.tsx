@@ -4,7 +4,6 @@ interface Props {
     direction: string;
 }
 const Arrows = ({ direction }: Props): ReactElement => {
-    console.log("direction", direction);
     return <View>{direction == "left" ? <Text>{"<"}</Text> : <Text>{">"}</Text>}</View>;
 };
 
