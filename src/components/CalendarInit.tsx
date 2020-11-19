@@ -7,7 +7,7 @@ import GestureRecognizer from "react-native-swipe-gestures";
 import Arrows from "./Arrows";
 import CustomDay from "./CustomDay";
 
-import { format, eachWeekendOfMonth, isSunday, isSaturday, addMonths } from "date-fns";
+import { format, isPast, eachWeekendOfMonth, isSunday, isSaturday, addMonths } from "date-fns";
 // import * as R from "ramda";
 // import { Image } from "mendix/components/native/Image";
 
@@ -56,26 +56,28 @@ const CalendarInit = ({
     }, [incomingDates]);
     const onMonthChange = (month: any) => {
         const dateObject = new Date(month.timestamp);
-        setOpenCalendar(false);
-        _disableWeekends(dateObject);
+
+        !disableWeekends && _parseIncomingDates();
+        disableWeekends && _disableWeekends(dateObject);
     };
     const _disableWeekends = (newMonth?: any) => {
-        const current = Date.now();
-        const aMonthFromDate = newMonth ? eachWeekendOfMonth(newMonth) : eachWeekendOfMonth(current);
-        const disabledWeekends =
-            aMonthFromDate &&
-            aMonthFromDate.reduce((a, c) => {
-                const formattedDate = format(new Date(c), DATE_FORMAT);
-                const day = {
-                    ...a,
-                    [formattedDate]: {
-                        disabled: true,
-                        disabledWithNoMarker: true
-                    }
-                };
-                return day;
-            }, []);
-        setWeekends(disabledWeekends);
+        if (startDate) {
+            const aMonthFromDate = newMonth ? eachWeekendOfMonth(newMonth) : eachWeekendOfMonth(startDate);
+            const disabledWeekends =
+                aMonthFromDate &&
+                aMonthFromDate.reduce((a, c) => {
+                    const formattedDate = format(new Date(c), DATE_FORMAT);
+                    const day = {
+                        ...a,
+                        [formattedDate]: {
+                            disabled: true,
+                            disabledWithNoMarker: true
+                        }
+                    };
+                    return day;
+                }, []);
+            setWeekends(disabledWeekends);
+        }
     };
     const _triggerEvent = async (day?: string) => {
         /**
@@ -88,7 +90,6 @@ const CalendarInit = ({
             }
             if (day) {
                 const dateObject = new Date(day);
-                console.log("dateObject", dateObject);
                 await volatileDate.setValue(dateObject);
             }
         }
@@ -129,15 +130,18 @@ const CalendarInit = ({
     const _formatIncomingDates = async (destructedValues: any) => {
         if (destructedValues) {
             const formattedDates = await destructedValues?.reduce((a: any, c: any) => {
-                const r = {
-                    ...a,
-                    [c.formattedDate]: {
-                        marked: true,
-                        dotColor: defaultDotColor
-                        // multiDay: true
-                    }
-                };
-                return r;
+                const isInPastAndDisabled = disablePastDates && isPast(new Date(c.formattedDate));
+                if (!isInPastAndDisabled) {
+                    const internalDate = {
+                        ...a,
+                        [c.formattedDate]: {
+                            marked: true,
+                            dotColor: defaultDotColor
+                            // multiDay: true
+                        }
+                    };
+                    return internalDate;
+                }
             }, []);
 
             await setInComingDates(formattedDates);
@@ -184,7 +188,6 @@ const CalendarInit = ({
               minDate: Date.now()
           }
         : {};
-    console.log("disableMonthChange", disableMonthChange);
     return (
         <View>
             {startDate && (
@@ -192,13 +195,11 @@ const CalendarInit = ({
                     <GestureRecognizer onSwipe={direction => onSwipe(direction)} config={config}>
                         {cloneElement(
                             <Calendar
+                                firstDay={0}
                                 current={startDate}
                                 hideArrows={false}
                                 hideExtraDays={false}
                                 onDayPress={onDayPress}
-                                renderArrow={(direction: string) => (
-                                    <Arrows disableMonthChange={disableMonthChange} direction={direction} />
-                                )}
                                 disableMonthChange={disableMonthChange}
                                 disableArrowLeft={disableMonthChange}
                                 disableArrowRight={disableMonthChange}
@@ -213,8 +214,11 @@ const CalendarInit = ({
                                     },
                                     ...weekends
                                 }}
+                                renderArrow={(direction: string) => (
+                                    <Arrows disableMonthChange={disableMonthChange} direction={direction} />
+                                )}
                                 onMonthChange={month => {
-                                    disableWeekends && onMonthChange(month);
+                                    onMonthChange(month);
                                 }}
                             />,
                             { ...rendererForActiveSwipeDown, ...rendererForMinDate }

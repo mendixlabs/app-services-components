@@ -21,20 +21,20 @@ const CustomDay = ({
     disablePastDates
 }: CustomDayProps) => {
     const { marking, date, state } = day;
-    // Styling needs to change if date is 1 char or 2
-    const isDayLong = date.day <= 9;
+
     // This is needed as Mon marked days come in as [] and MArked days as {}
     const isMark = !Array.isArray(marking);
     //@ts-ignore
     const disabledMark = isMark && marking.disabled;
     // selected
     //@ts-ignore
-    const selectedViewStyle = marking.selected && {
-        backgroundColor: defaultDotColor
-    };
+    // const selectedViewStyle = marking.selected && {
+    //     backgroundColor: defaultDotColor
+    // };
     //@ts-ignore
-    const selectedTextStyle = marking.selected && {
-        color: defaultTextColor
+    const selectedViewStyle = marking.selected && {
+        color: defaultTextColor,
+        backgroundColor: defaultDotColor
     };
     const isInPastAndDisabled = disablePastDates && isPast(new Date(date.dateString));
     const isItToday = isToday(new Date(date.dateString));
@@ -62,14 +62,13 @@ const CustomDay = ({
             }, []);
             if (reducedRawDates.length) {
                 return (
-                    <Text numberOfLines={2} style={{ textAlign: "center", fontSize: 8 }}>
+                    <Text numberOfLines={2} style={{ textAlign: "center", fontSize: 8, paddingTop: 2 }}>
                         {reducedRawDates.length} Events
                     </Text>
                 );
             }
         }
     };
-
     return (
         <TouchableWithoutFeedback
             onPress={() => {
@@ -81,38 +80,47 @@ const CustomDay = ({
                     {
                         justifyContent: "center",
                         alignItems: "center",
-                        paddingTop: "5%",
-                        paddingBottom: "5%",
-                        borderRadius: openCalendar ? 8 : 16,
-                        paddingRight: isDayLong ? "20%" : "14%",
-                        paddingLeft: isDayLong ? "20%" : "14%"
-                    },
-                    selectedViewStyle
+                        width: "100%"
+                    }
                 ]}
             >
-                <Text
+                <View
                     style={[
                         {
-                            textAlign: "center",
-                            color: isItToday
-                                ? defaultDotColor
-                                : state === "disabled" || disabledMark
-                                ? "#DAE1E8"
-                                : "black"
+                            borderRadius: 100 / 2,
+                            width: "60%",
+                            padding: 5
                         },
-                        selectedTextStyle
+                        selectedViewStyle
                     ]}
                 >
-                    {date.day}
-                </Text>
+                    <Text
+                        style={[
+                            {
+                                // width: "100%",
+                                textAlign: "center",
+                                color: marking.selected
+                                    ? "white"
+                                    : isItToday
+                                    ? defaultDotColor
+                                    : state === "disabled" || disabledMark
+                                    ? "#DAE1E8"
+                                    : "black"
+                            }
+                        ]}
+                    >
+                        {date.day}
+                    </Text>
+                </View>
                 {openCalendar && !isInPastAndDisabled && <View>{summarizeDay(date)}</View>}
                 {!openCalendar && !isInPastAndDisabled && (
                     <View
                         style={{
                             height: 5,
                             width: 5,
-                            backgroundColor: markedDay(isMark, marking),
-                            borderRadius: 100 / 2
+                            borderRadius: 100 / 2,
+                            // marginTop: 2,
+                            backgroundColor: markedDay(isMark, marking)
                         }}
                     ></View>
                 )}
