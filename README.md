@@ -28,19 +28,22 @@
   <br>
 
   <br>
-   A React Native Calendar for Mendix Native
+   A React Native Calendar for Mendix Native (with Dark Mode Support)
 </p>
 
-<h2>Usage</h2>
-In its current form the Calendar put most of the Power in the Mendix Developers hands. The Widget tries to be a Minimal as possible while stying powerful.
+You can track current status and add feature requests on the
+[Github Project Board](https://github.com/ahwelgemoed/calendar-native-widget/projects/1)
 
-The Idea at a highter level :
+<h2>Usage</h2>
+In its current form the Calendar put most of the Power in the Mendix Developers hands. The Widget tries to be a Minimal as possible while styling powerful.
+
+The Idea at a higher level :
 
 -   You provide the widget with a list data source and specify the Date Entity.
--   You wrap the Widget in a second datasource that is ideally Volatile/NonPersistabile. This value will be consumde by
+-   You wrap the Widget in a second outsource that is ideally Volatile/Non Persistable. This value will be consume by
     the Widget and changed/manipulated. (Think of this like Redux/Mobx state)
--   Pass the OnClick a Nano flow with the Paramater. This paramater will be the altered value (The date the user Pressed
-    on) You as Medix dev can then descide what to do.
+-   Pass the OnClick a Nano flow with the Parameter. This parameter will be the altered value (The date the user Pressed
+    on) You as Mendix dev can then deicide what to do.
 
 <h3>Data</h3>
 
