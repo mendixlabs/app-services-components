@@ -2,8 +2,11 @@ import { createElement } from "react";
 import { View, Text, TouchableWithoutFeedback } from "react-native";
 import { isPast, isToday } from "date-fns";
 
+import { DEFAULT_COLORS } from "../utils/theme";
+
 interface CustomDayProps {
     day: any;
+    propertyName: string;
     openCalendar: boolean;
     rawInComingDates: any;
     defaultDotColor: string;
@@ -14,6 +17,7 @@ interface CustomDayProps {
 const CustomDay = ({
     day,
     onDayPress,
+    propertyName,
     openCalendar,
     defaultDotColor,
     defaultTextColor,
@@ -24,27 +28,25 @@ const CustomDay = ({
 
     // This is needed as Mon marked days come in as [] and MArked days as {}
     const isMark = !Array.isArray(marking);
-    //@ts-ignore
+
     const disabledMark = isMark && marking.disabled;
-    // selected
-    //@ts-ignore
-    // const selectedViewStyle = marking.selected && {
-    //     backgroundColor: defaultDotColor
-    // };
-    //@ts-ignore
+
     const selectedViewStyle = marking.selected && {
         color: defaultTextColor,
         backgroundColor: defaultDotColor
     };
     const isInPastAndDisabled = disablePastDates && isPast(new Date(date.dateString));
     const isItToday = isToday(new Date(date.dateString));
-
     const markedDay = (isMark: any, marking: any) => {
         if (isMark) {
             if (marking.disabledWithNoMarker) {
                 return "none";
             } else {
-                return defaultDotColor;
+                if (marking.userSelected) {
+                    return "none";
+                } else {
+                    return defaultDotColor;
+                }
             }
         } else {
             return "none";
@@ -63,7 +65,7 @@ const CustomDay = ({
             if (reducedRawDates.length) {
                 return (
                     <Text numberOfLines={2} style={{ textAlign: "center", fontSize: 8, paddingTop: 2 }}>
-                        {reducedRawDates.length} Events
+                        {reducedRawDates.length} {propertyName}
                     </Text>
                 );
             }
@@ -89,7 +91,7 @@ const CustomDay = ({
                         {
                             borderRadius: 100 / 2,
                             width: "60%",
-                            padding: 5
+                            padding: 6
                         },
                         selectedViewStyle
                     ]}
@@ -97,15 +99,14 @@ const CustomDay = ({
                     <Text
                         style={[
                             {
-                                // width: "100%",
                                 textAlign: "center",
                                 color: marking.selected
-                                    ? "white"
+                                    ? DEFAULT_COLORS.white
                                     : isItToday
                                     ? defaultDotColor
                                     : state === "disabled" || disabledMark
-                                    ? "#DAE1E8"
-                                    : "black"
+                                    ? DEFAULT_COLORS.white
+                                    : DEFAULT_COLORS.black
                             }
                         ]}
                     >

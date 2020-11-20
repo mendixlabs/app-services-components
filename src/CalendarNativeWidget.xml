@@ -13,22 +13,6 @@
                     <description>List of Date Objects</description>
                 </property>
 
-                <property key="title" type="attribute" dataSource="incomingDates">
-                    <caption>Title</caption>
-                    <description>Title of the Entry</description>
-                    <attributeTypes>
-                        <attributeType name="String"/>
-                    </attributeTypes>
-                </property>
-
-                <property key="description" type="attribute" dataSource="incomingDates">
-                    <caption>Description</caption>
-                    <description>Description of the Entry</description>
-                    <attributeTypes>
-                        <attributeType name="String"/>
-                    </attributeTypes>
-                </property>
-
                 <property key="date" type="attribute" dataSource="incomingDates">
                     <caption>Date</caption>
                     <description>Date of the Entry</description>
@@ -52,6 +36,36 @@
                 </propertyGroup>
 
                 <propertyGroup caption="Settings">
+
+                <property key="propertyName" type="string" defaultValue="Event" required="false">
+                    <caption>Name of Property</caption>
+                    <description>Name of Property seen when User swipes down</description>
+                </property>
+
+                <property key="buttonText" type="string" defaultValue="Add Event" required="false">
+                    <caption>Button Text</caption>
+                    <description>Text on Button for if Auto Trigger Action is set to False</description>
+                </property>
+
+                <property key="startOfWeek" type="enumeration" defaultValue="SUNDAY">
+                    <caption>Start Of Week</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="SUNDAY">Sunday</enumerationValue>
+                        <enumerationValue key="MONDAY">Monday</enumerationValue>
+                    </enumerationValues>
+                </property>
+
+                <property key="darkModeOption" type="enumeration" defaultValue="SYSTEM">
+                    <caption>Start Of Week</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="SYSTEM">System</enumerationValue>
+                        <enumerationValue key="LIGHT">Light</enumerationValue>
+                        <enumerationValue key="DARK">Dark</enumerationValue>
+                    </enumerationValues>
+                </property>
+
                     <property key="activeSwipeDown" type="boolean" defaultValue="false">
                         <caption>Active Swipe Down</caption>
                         <description>Activate Swiping down to expand the Calendar</description>
@@ -69,32 +83,32 @@
 
                     <property key="disableWeekends" type="boolean" defaultValue="false">
                         <caption>Disable Weekends</caption>
-                        <description>Only make Bussnisses Day Pressabile </description>
+                        <description>Unable to Select Weekends</description>
                     </property>
 
                     <property key="disablePastDates" type="boolean" defaultValue="false">
                         <caption>Disable Past Dates</caption>
-                        <description>Only make Bussnisses Day Pressabile </description>
+                        <description>Unable to Select Past Dates</description>
                     </property>
 
                     <property key="initialDate" type="integer" defaultValue="0">
-                        <caption>Months from now to Start Date</caption>
-                        <description></description>
+                        <caption>Months from now</caption>
+                        <description>Number of months form "Today" the initial Month Must Be (Can be Negative)</description>
                     </property>
                 </propertyGroup>
 
            <propertyGroup caption="Appearance">
               <property type="string" key="selectedColor" required="false">
-                <caption>selectedColor Date</caption>
-                <description></description>
+                <caption>Selected Date Color</caption>
+                <description>Custom Background Color of Selected Date</description>
             </property>
               <property type="string" key="selectedTextColor" required="false">
-                <caption>selectedTextColor Date</caption>
-                <description></description>
+                <caption>Selected Text Date Color</caption>
+                <description>Custom Color of Selected Text Date</description>
             </property>
               <property type="string" key="dotColor" required="false">
-                <caption>Dot Color Date</caption>
-                <description></description>
+                <caption>Dot Date Color</caption>
+                <description>Custom color for Dot</description>
             </property>
         </propertyGroup>
     </properties>

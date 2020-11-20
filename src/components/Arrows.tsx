@@ -2,12 +2,13 @@ import { createElement, ReactElement } from "react";
 import { View, Text } from "react-native";
 interface Props {
     direction: string;
+    defaultDotColor: string;
     disableMonthChange: boolean;
 }
-const Arrows = ({ direction, disableMonthChange }: Props): ReactElement => {
+const Arrows = ({ direction, disableMonthChange, defaultDotColor }: Props): ReactElement => {
     const arrowStyles = {
-        fontSize: 30,
-        color: "#2C97EB"
+        fontSize: 20,
+        color: defaultDotColor
     };
     if (!disableMonthChange) {
         return (

@@ -14,14 +14,16 @@ export interface CustomStyle extends Style {
 export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<CustomStyle>> {
     render(): ReactNode {
         const {
-            title,
             date,
             dotColor,
-            description,
+            buttonText,
             initialDate,
+            startOfWeek,
+            propertyName,
             volatileDate,
             incomingDates,
             selectedColor,
+            darkModeOption,
             activeSwipeDown,
             disableWeekends,
             disablePastDates,
@@ -29,22 +31,19 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
             autoTriggerAction,
             disableMonthChange
         } = this.props;
-        // console.log("this.props", this.props.volatileDate, this.props.volatileDate?.value);
-        // const d = new Date("01/07/2020");
-        // const z = new Date("11/08/2020");
-        // console.log("d", (d.getTime() / 1000).toFixed(0));
-        // console.log("x", (z.getTime() / 1000).toFixed(0));
         return (
             <View>
                 <CalendarInit
                     date={date}
-                    title={title}
                     dotColor={dotColor}
-                    description={description}
+                    buttonText={buttonText}
+                    startOfWeek={startOfWeek}
                     initialDate={initialDate}
                     volatileDate={volatileDate}
+                    propertyName={propertyName}
                     selectedColor={selectedColor}
                     incomingDates={incomingDates}
+                    darkModeOption={darkModeOption}
                     activeSwipeDown={activeSwipeDown}
                     disableWeekends={disableWeekends}
                     disablePastDates={disablePastDates}
@@ -52,7 +51,6 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                     autoTriggerAction={autoTriggerAction}
                     disableMonthChange={disableMonthChange}
                 />
-                {/* <Text onPress={() => this.props.volatileDate?.setValue(d as any)}>trigger date</Text> */}
             </View>
         );
     }

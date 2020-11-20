@@ -3,29 +3,36 @@ import { View, Button } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { Style } from "@mendix/pluggable-widgets-tools";
 import GestureRecognizer from "react-native-swipe-gestures";
+import { format, isPast, eachWeekendOfMonth, isSunday, isSaturday, addMonths } from "date-fns";
 
+// Custom Components
 import Arrows from "./Arrows";
 import CustomDay from "./CustomDay";
-
-import { format, isPast, eachWeekendOfMonth, isSunday, isSaturday, addMonths } from "date-fns";
-// import * as R from "ramda";
-// import { Image } from "mendix/components/native/Image";
-
+// Types
 import { CalendarNativeWidgetProps } from "../../typings/CalendarNativeWidgetProps";
+//Utils
+import { witchTheme, DEFAULT_COLORS } from "../utils/theme";
 
 const DATE_FORMAT = "yyy-MM-dd";
 
 type ExcludedCalendarNativeWidgetProps = Omit<CalendarNativeWidgetProps<Style>, "name" | "style">;
 
+enum DAYS_OF_THE_WEEK {
+    SUNDAY = 0,
+    MONDAY
+}
+
 const CalendarInit = ({
     date,
-    title,
     dotColor,
-    description,
+    buttonText,
+    startOfWeek,
     initialDate,
     volatileDate,
+    propertyName,
     incomingDates,
     selectedColor,
+    darkModeOption,
     activeSwipeDown,
     disableWeekends,
     disablePastDates,
@@ -36,13 +43,13 @@ const CalendarInit = ({
     const [weekends, setWeekends] = useState<any>();
     const [startDate, setStartDate] = useState<Date>();
     const [selected, setSelected] = useState<string>();
-    const [openCalendar, setOpenCalendar] = useState<boolean>(false);
     const [rawInComingDates, setRawInComingDates] = useState<any>();
+    const [openCalendar, setOpenCalendar] = useState<boolean>(false);
     const [inComingDates, setInComingDates] = useState<any>({ weekends: null, appDates: null });
 
-    const defaultDotColor: string = dotColor ? dotColor : "#2C97EB";
-    const defaultTextColor: string = selectedTextColor ? selectedTextColor : "white";
-    const defaultSelectedColor: string = selectedColor ? selectedColor : "#2C97EB";
+    const defaultDotColor: string = dotColor ? dotColor : DEFAULT_COLORS.blue;
+    const defaultTextColor: string = selectedTextColor ? selectedTextColor : DEFAULT_COLORS.white;
+    const defaultSelectedColor: string = selectedColor ? selectedColor : DEFAULT_COLORS.blue;
     useEffect(() => {
         setStartDate(addMonths(Date.now(), initialDate));
     }, []);
@@ -54,11 +61,14 @@ const CalendarInit = ({
         _parseIncomingDates();
         disableWeekends && _disableWeekends();
     }, [incomingDates]);
+    console.log("darkMode");
     const onMonthChange = (month: any) => {
         const dateObject = new Date(month.timestamp);
-
-        !disableWeekends && _parseIncomingDates();
-        disableWeekends && _disableWeekends(dateObject);
+        if (disableWeekends) {
+            _disableWeekends(dateObject);
+        } else {
+            _parseIncomingDates();
+        }
     };
     const _disableWeekends = (newMonth?: any) => {
         if (startDate) {
@@ -111,13 +121,9 @@ const CalendarInit = ({
     const _parseIncomingDates = () => {
         if (incomingDates) {
             const destructedValues = incomingDates.items?.map((item: any) => {
-                const titleValue = title(item);
-                const descriptionValue = description(item);
                 const dateValue = date(item);
                 const formattedDate = format(new Date(dateValue.displayValue), DATE_FORMAT);
                 return {
-                    titleValue,
-                    descriptionValue,
                     dateValue,
                     formattedDate
                 };
@@ -137,7 +143,6 @@ const CalendarInit = ({
                         [c.formattedDate]: {
                             marked: true,
                             dotColor: defaultDotColor
-                            // multiDay: true
                         }
                     };
                     return internalDate;
@@ -166,7 +171,7 @@ const CalendarInit = ({
     };
     /**
      *  This is done (with the Clone Element) to be able to pass Conditional Props to the Calendar Components
-     * This Helps so that we can keep the CORE Calendar Module with out the need to Frok from Github
+     * This Helps so that we can keep the CORE Calendar Module with out the need to Fork from Github
      */
     const rendererForActiveSwipeDown = activeSwipeDown
         ? {
@@ -174,6 +179,7 @@ const CalendarInit = ({
                   <CustomDay
                       day={day}
                       onDayPress={onDayPress}
+                      propertyName={propertyName}
                       openCalendar={openCalendar}
                       defaultDotColor={defaultDotColor}
                       disablePastDates={disablePastDates}
@@ -188,26 +194,34 @@ const CalendarInit = ({
               minDate: Date.now()
           }
         : {};
+    const rendererForTheme = {
+        theme: witchTheme(darkModeOption)
+    };
     return (
         <View>
             {startDate && (
                 <Fragment>
-                    <GestureRecognizer onSwipe={direction => onSwipe(direction)} config={config}>
+                    <GestureRecognizer
+                        config={config}
+                        style={{ paddingBottom: 10 }}
+                        onSwipe={direction => onSwipe(direction)}
+                    >
                         {cloneElement(
                             <Calendar
-                                firstDay={0}
                                 current={startDate}
                                 hideArrows={false}
                                 hideExtraDays={false}
                                 onDayPress={onDayPress}
-                                disableMonthChange={disableMonthChange}
                                 disableArrowLeft={disableMonthChange}
                                 disableArrowRight={disableMonthChange}
+                                disableMonthChange={disableMonthChange}
+                                firstDay={DAYS_OF_THE_WEEK[startOfWeek]}
                                 markedDates={{
                                     ...inComingDates,
                                     // @ts-ignore
                                     [selected]: {
                                         selected: true,
+                                        userSelected: true,
                                         disableTouchEvent: true,
                                         selectedColor: defaultSelectedColor,
                                         selectedTextColor: defaultTextColor
@@ -215,17 +229,21 @@ const CalendarInit = ({
                                     ...weekends
                                 }}
                                 renderArrow={(direction: string) => (
-                                    <Arrows disableMonthChange={disableMonthChange} direction={direction} />
+                                    <Arrows
+                                        direction={direction}
+                                        defaultDotColor={defaultDotColor}
+                                        disableMonthChange={disableMonthChange}
+                                    />
                                 )}
                                 onMonthChange={month => {
                                     onMonthChange(month);
                                 }}
                             />,
-                            { ...rendererForActiveSwipeDown, ...rendererForMinDate }
+                            { ...rendererForActiveSwipeDown, ...rendererForMinDate, ...rendererForTheme }
                         )}
                     </GestureRecognizer>
                     {!autoTriggerAction && (
-                        <Button title="Add Event" onPress={() => _triggerEvent()} disabled={!selected} />
+                        <Button title={buttonText} onPress={() => _triggerEvent()} disabled={!selected} />
                     )}
                 </Fragment>
             )}
@@ -234,89 +252,3 @@ const CalendarInit = ({
 };
 
 export default CalendarInit;
-
-// const formattedDates = destructedValues?.map((date: any) => {
-//     return {
-//         [date.formattedDate]: { marked: true }
-//     };
-// });
-{
-    /* {!R.isEmpty(inComingDates) && ( */
-}
-// <Calendar
-// @ts-ignore
-// disabledDaysIndexes={[0, 6]}
-// minDate={Date.now()}
-
-//   style={styles.calendar}
-
-// markingType={"multi-dot"}
-
-// dayComponent={day => {
-//     const { marking, date, state } = day;
-//     // Styling needs to change if date is 1 char or 2
-//     const isDayLong = date.day <= 9;
-//     // This is needed as Mon marked days come in as [] and MArked days as {}
-//     const isMark = !Array.isArray(marking);
-//     //@ts-ignore
-//     const disabledMark = isMark && marking.disabled;
-//     // selected
-//     //@ts-ignore
-//     const x = marking.selected && {
-//         backgroundColor: defaultDotColor
-//     };
-//     //@ts-ignore
-//     const p = marking.selected && {
-//         color: defaultTextColor
-//     };
-//     return (
-//         <TouchableWithoutFeedback
-//             onPress={() => {
-//                 console.log("disabledMark", isMark, disabledMark);
-//                 !disabledMark && onDayPress(date);
-//             }}
-//         >
-//             <View
-//                 style={[
-//                     {
-//                         justifyContent: "center",
-//                         alignItems: "center",
-//                         paddingTop: "5%",
-//                         paddingBottom: "5%",
-//                         borderRadius: openCalendar ? 8 : 16,
-//                         paddingRight: isDayLong ? "20%" : "14%",
-//                         paddingLeft: isDayLong ? "20%" : "14%"
-//                     },
-//                     x
-//                 ]}
-//             >
-//                 <Text
-//                     style={[
-//                         {
-//                             textAlign: "center",
-//                             color: state === "disabled" || disabledMark ? "gray" : "black"
-//                         },
-//                         p
-//                     ]}
-//                 >
-//                     {date.day}
-//                 </Text>
-//                 {openCalendar && <View>{summerizeDay(date)}</View>}
-//                 {!openCalendar && (
-//                     <View
-//                         style={{
-//                             height: 5,
-//                             width: 5,
-//                             backgroundColor: markedDay(isMark, marking),
-//                             borderRadius: 100 / 2
-//                         }}
-//                     ></View>
-//                 )}
-//             </View>
-//         </TouchableWithoutFeedback>
-//     );
-// }}
-// />
-{
-    /* )} */
-}
