@@ -181,6 +181,7 @@ const CalendarInit = ({
                       onDayPress={onDayPress}
                       propertyName={propertyName}
                       openCalendar={openCalendar}
+                      darkModeOption={darkModeOption}
                       defaultDotColor={defaultDotColor}
                       disablePastDates={disablePastDates}
                       rawInComingDates={rawInComingDates}

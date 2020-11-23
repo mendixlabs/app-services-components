@@ -15,7 +15,7 @@ export const DEFAULT_COLORS = {
     disableGreyDark: "#242729",
     blue: "#2C97EB"
 };
-export const witchTheme = (darkModeOption: DarkModeOptionEnum) => {
+export const witchDarkMode = (darkModeOption: DarkModeOptionEnum): boolean => {
     let darkMode = false;
     switch (darkModeOption) {
         case "SYSTEM":
@@ -28,6 +28,10 @@ export const witchTheme = (darkModeOption: DarkModeOptionEnum) => {
             darkMode = true;
             break;
     }
+    return darkMode;
+};
+export const witchTheme = (darkModeOption: DarkModeOptionEnum) => {
+    const darkMode = witchDarkMode(darkModeOption);
     const theme = {
         backgroundColor: "transparent",
         calendarBackground: "transparent",

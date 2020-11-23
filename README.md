@@ -34,6 +34,20 @@
 You can track current status and add feature requests on the
 [Github Project Board](https://github.com/ahwelgemoed/calendar-native-widget/projects/1)
 
+<h2>Examples</h2>
+
+<p align="center">Add a Date</p>
+<p align="center">
+ <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/SaveDate.gif" target="_blank" />
+</p>
+<p align="center">Swipe Down for More</p>
+<p align="center">
+ <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/SwipeDown.gif" target="_blank" />
+</p>
+<p align="center">Display Modes</p>
+ <img width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Light.png" target="_blank" />
+ <img width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Dark.png" target="_blank" />
+
 <h2>Usage</h2>
 In its current form the Calendar put most of the Power in the Mendix Developers hands. The Widget tries to be a Minimal as possible while staying powerful.
 

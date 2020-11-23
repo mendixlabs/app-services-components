@@ -1,8 +1,8 @@
 import { createElement } from "react";
 import { View, Text, TouchableWithoutFeedback } from "react-native";
 import { isPast, isToday } from "date-fns";
-
-import { DEFAULT_COLORS } from "../utils/theme";
+import { DarkModeOptionEnum } from "../../typings/CalendarNativeWidgetProps";
+import { DEFAULT_COLORS, witchDarkMode } from "../utils/theme";
 
 interface CustomDayProps {
     day: any;
@@ -11,6 +11,7 @@ interface CustomDayProps {
     rawInComingDates: any;
     defaultDotColor: string;
     defaultTextColor: string;
+    darkModeOption: DarkModeOptionEnum;
     disablePastDates: boolean;
     onDayPress: (day: any) => Promise<void>;
 }
@@ -19,13 +20,15 @@ const CustomDay = ({
     onDayPress,
     propertyName,
     openCalendar,
+    darkModeOption,
     defaultDotColor,
     defaultTextColor,
     rawInComingDates,
     disablePastDates
 }: CustomDayProps) => {
     const { marking, date, state } = day;
-
+    const isDarkMode = witchDarkMode(darkModeOption);
+    console.log("isDarkMode", isDarkMode);
     // This is needed as Mon marked days come in as [] and MArked days as {}
     const isMark = !Array.isArray(marking);
 
@@ -64,13 +67,22 @@ const CustomDay = ({
             }, []);
             if (reducedRawDates.length) {
                 return (
-                    <Text numberOfLines={2} style={{ textAlign: "center", fontSize: 8, paddingTop: 2 }}>
+                    <Text
+                        numberOfLines={2}
+                        style={{
+                            textAlign: "center",
+                            fontSize: 8,
+                            paddingTop: 2,
+                            color: isDarkMode ? DEFAULT_COLORS.disableGrey : DEFAULT_COLORS.disableGreyDark
+                        }}
+                    >
                         {reducedRawDates.length} {propertyName}
                     </Text>
                 );
             }
         }
     };
+
     return (
         <TouchableWithoutFeedback
             onPress={() => {
@@ -105,6 +117,10 @@ const CustomDay = ({
                                     : isItToday
                                     ? defaultDotColor
                                     : state === "disabled" || disabledMark
+                                    ? isDarkMode
+                                        ? DEFAULT_COLORS.black
+                                        : DEFAULT_COLORS.white
+                                    : isDarkMode
                                     ? DEFAULT_COLORS.white
                                     : DEFAULT_COLORS.black
                             }
