@@ -57,7 +57,7 @@
                 </property>
 
                 <property key="darkModeOption" type="enumeration" defaultValue="SYSTEM">
-                    <caption>Start Of Week</caption>
+                    <caption>Display Mode</caption>
                     <description></description>
                     <enumerationValues>
                         <enumerationValue key="SYSTEM">System</enumerationValue>
@@ -73,7 +73,7 @@
 
                     <property key="disableMonthChange" type="boolean" defaultValue="false">
                         <caption>Disable Month Change</caption>
-                        <description>Activate Swiping down to expand the Calendar</description>
+                        <description>Prevent user from changing the Month</description>
                     </property>
 
                     <property key="autoTriggerAction" type="boolean" defaultValue="true">
