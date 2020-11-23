@@ -47,7 +47,8 @@ You can track current status and add feature requests on the
 <p align="center">Display Modes</p>
  <a href="#">
  <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Light.png" target="_blank" /></a>
- <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Dark.png" target="_blank" />
+  <a href="#">
+ <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Dark.png" target="_blank" /></a>
 
 <h2>Usage</h2>
 In its current form the Calendar put most of the Power in the Mendix Developers hands. The Widget tries to be a Minimal as possible while staying powerful.
