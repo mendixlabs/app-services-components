@@ -45,7 +45,8 @@ You can track current status and add feature requests on the
  <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/SwipeDown.gif" target="_blank" />
 </p>
 <p align="center">Display Modes</p>
- <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Light.png" target="_blank" />
+ <a href="#">
+ <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Light.png" target="_blank" /></a>
  <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Dark.png" target="_blank" />
 
 <h2>Usage</h2>
