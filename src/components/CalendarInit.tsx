@@ -28,6 +28,7 @@ const CalendarInit = ({
     buttonText,
     startOfWeek,
     initialDate,
+    isActiveDate,
     volatileDate,
     propertyName,
     incomingDates,
@@ -38,7 +39,8 @@ const CalendarInit = ({
     disablePastDates,
     autoTriggerAction,
     selectedTextColor,
-    disableMonthChange
+    disableMonthChange,
+    takeIsActiveIntoAccount
 }: ExcludedCalendarNativeWidgetProps) => {
     const [weekends, setWeekends] = useState<any>();
     const [startDate, setStartDate] = useState<Date>();
@@ -121,9 +123,11 @@ const CalendarInit = ({
         if (incomingDates) {
             const destructedValues = incomingDates.items?.map((item: any) => {
                 const dateValue = date(item);
+                const isActiveDateValue = isActiveDate(item);
                 const formattedDate = format(new Date(dateValue.displayValue), DATE_FORMAT);
                 return {
                     dateValue,
+                    isActiveDateValue,
                     formattedDate
                 };
             });
@@ -141,6 +145,7 @@ const CalendarInit = ({
                         ...a,
                         [c.formattedDate]: {
                             marked: true,
+                            disabled: takeIsActiveIntoAccount ? !c.isActiveDateValue.value : false,
                             dotColor: defaultDotColor
                         }
                     };

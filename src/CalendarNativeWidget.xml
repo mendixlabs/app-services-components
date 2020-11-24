@@ -20,6 +20,13 @@
                         <attributeType name="DateTime"/>
                     </attributeTypes>
                 </property>
+                <property key="isActiveDate" type="attribute" dataSource="incomingDates">
+                    <caption>Is Date Active</caption>
+                    <description>Is This Date Click</description>
+                    <attributeTypes>
+                        <attributeType name="Boolean"/>
+                    </attributeTypes>
+                </property>
 
                 <property key="volatileDate" type="attribute" required="false" onChange="onClick">
                         <caption>Volatile Date</caption>
@@ -65,6 +72,11 @@
                         <enumerationValue key="DARK">Dark</enumerationValue>
                     </enumerationValues>
                 </property>
+
+                    <property key="takeIsActiveIntoAccount" type="boolean" defaultValue="true">
+                        <caption>Take Is Active Into Account</caption>
+                        <description>Takes the Take Aactive Boolean from DB into Account</description>
+                    </property>
 
                     <property key="activeSwipeDown" type="boolean" defaultValue="false">
                         <caption>Active Swipe Down</caption>
