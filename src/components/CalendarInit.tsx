@@ -10,7 +10,7 @@ import Arrows from "./Arrows";
 import CustomDay from "./CustomDay";
 // Types
 import { CalendarNativeWidgetProps } from "../../typings/CalendarNativeWidgetProps";
-//Utils
+// Utils
 import { witchTheme, DEFAULT_COLORS } from "../utils/theme";
 
 const DATE_FORMAT = "yyy-MM-dd";
@@ -59,7 +59,9 @@ const CalendarInit = ({
          */
         setSelected("");
         _parseIncomingDates();
-        disableWeekends && _disableWeekends();
+        if (disableWeekends) {
+            _disableWeekends();
+        }
     }, [incomingDates]);
     const onMonthChange = (month: any) => {
         const dateObject = new Date(month.timestamp);

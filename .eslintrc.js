@@ -1,5 +1,10 @@
 const base = require("@mendix/pluggable-widgets-tools/configs/eslint.ts.base.json");
 
+// Insert custom eslint rules in here
+
 module.exports = {
-    ...base
+    ...base,
+    rules: {
+        "@typescript-eslint/ban-ts-ignore": "warn"
+    }
 };

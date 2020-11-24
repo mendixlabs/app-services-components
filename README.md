@@ -20,7 +20,7 @@
     <img alt="License: MIT" src="https://img.shields.io/badge/license-Apache%202.0-orange.svg" target="_blank" />
   </a>
   <br>
-  
+
 </p>
 <p align="center">
  <img  align="center" alt="headerIMG" src="./assets/Calendar.png" target="_blank" />
@@ -106,18 +106,3 @@ The Idea at a higher level :
 | Selected Date Color      | String | Custom Background Color of Selected Date |
 | Selected Text Date Color | String | Custom Color of Selected Text Date       |
 | Dot Date Color           | String | Custom color for Dot                     |
-
-<h2>Contribute Notes</h2>
-
-To make the React-Calendar_Widget work you need to point the Mendix `gulp.js` to the updated native webpack config.
-
-Path to file: `~/calendar-native-widget/node_modules/@mendix/pluggable-widgets-tools/scripts/gulp.js`
-
-Changes:
-
-```js
-    if (isNative) {
-        config = require("../../../../webpack.native.config")
-    ...
-
-```
