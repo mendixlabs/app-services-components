@@ -10,5 +10,7 @@ const pngParser = {
 };
 
 baseConfig[0].module.rules.push(pngParser);
+baseConfig[0].mode = "production",
+baseConfig[0].devtool = false,
 
 module.exports = baseConfig;

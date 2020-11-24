@@ -1,6 +1,6 @@
-import { createElement, Fragment, cloneElement, useState, useEffect } from "react";
+import { createElement, Fragment, cloneElement, useState, useEffect, ReactElement } from "react";
 import { View, Button } from "react-native";
-import { Calendar } from "react-native-calendars";
+import { Calendar, DateObject } from "react-native-calendars";
 import { Style } from "@mendix/pluggable-widgets-tools";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { format, isPast, eachWeekendOfMonth, isSunday, isSaturday, addMonths } from "date-fns";
@@ -39,7 +39,7 @@ const CalendarInit = ({
     autoTriggerAction,
     selectedTextColor,
     disableMonthChange
-}: ExcludedCalendarNativeWidgetProps) => {
+}: ExcludedCalendarNativeWidgetProps): ReactElement => {
     const [weekends, setWeekends] = useState<any>();
     const [startDate, setStartDate] = useState<Date>();
     const [selected, setSelected] = useState<string>();
@@ -50,28 +50,8 @@ const CalendarInit = ({
     const defaultDotColor: string = dotColor ? dotColor : DEFAULT_COLORS.blue;
     const defaultTextColor: string = selectedTextColor ? selectedTextColor : DEFAULT_COLORS.white;
     const defaultSelectedColor: string = selectedColor ? selectedColor : DEFAULT_COLORS.blue;
-    useEffect(() => {
-        setStartDate(addMonths(Date.now(), initialDate));
-    }, []);
-    useEffect(() => {
-        /**
-         * Resets Selected Day If a Event Was Added
-         */
-        setSelected("");
-        _parseIncomingDates();
-        if (disableWeekends) {
-            _disableWeekends();
-        }
-    }, [incomingDates]);
-    const onMonthChange = (month: any) => {
-        const dateObject = new Date(month.timestamp);
-        if (disableWeekends) {
-            _disableWeekends(dateObject);
-        } else {
-            _parseIncomingDates();
-        }
-    };
-    const _disableWeekends = (newMonth?: any) => {
+
+    const _disableWeekends = (newMonth?: number | Date): void => {
         if (startDate) {
             const aMonthFromDate = newMonth ? eachWeekendOfMonth(newMonth) : eachWeekendOfMonth(startDate);
             const disabledWeekends =
@@ -90,51 +70,8 @@ const CalendarInit = ({
             setWeekends(disabledWeekends);
         }
     };
-    const _triggerEvent = async (day?: string) => {
-        /**
-         * This could be done Cleaner on Refactor
-         */
-        if (volatileDate) {
-            if (!day && selected) {
-                const dateObject = new Date(selected);
-                await volatileDate.setValue(dateObject);
-            }
-            if (day) {
-                const dateObject = new Date(day);
-                await volatileDate.setValue(dateObject);
-            }
-        }
-    };
 
-    const onDayPress = async (day: any) => {
-        const dateObject = new Date(day.dateString);
-
-        if (disableWeekends && (isSunday(dateObject) || isSaturday(dateObject))) {
-            await setSelected("");
-            return;
-        }
-        await setSelected(day.dateString);
-        if (volatileDate && autoTriggerAction) {
-            await _triggerEvent(day.dateString);
-        }
-    };
-
-    const _parseIncomingDates = () => {
-        if (incomingDates) {
-            const destructedValues = incomingDates.items?.map((item: any) => {
-                const dateValue = date(item);
-                const formattedDate = format(new Date(dateValue.displayValue), DATE_FORMAT);
-                return {
-                    dateValue,
-                    formattedDate
-                };
-            });
-            setRawInComingDates(destructedValues);
-            _formatIncomingDates(destructedValues);
-        }
-    };
-
-    const _formatIncomingDates = async (destructedValues: any) => {
+    const _formatIncomingDates = async (destructedValues: any): Promise<void> => {
         if (destructedValues) {
             const formattedDates = await destructedValues?.reduce((a: any, c: any) => {
                 const isInPastAndDisabled = disablePastDates && isPast(new Date(c.formattedDate));
@@ -154,7 +91,60 @@ const CalendarInit = ({
         }
     };
 
-    function onSwipe(gestureName: any) {
+    const _parseIncomingDates = (): void => {
+        if (incomingDates) {
+            const destructedValues = incomingDates.items?.map((item: any) => {
+                const dateValue = date(item);
+                const formattedDate = format(new Date(dateValue.displayValue), DATE_FORMAT);
+                return {
+                    dateValue,
+                    formattedDate
+                };
+            });
+            setRawInComingDates(destructedValues);
+            _formatIncomingDates(destructedValues);
+        }
+    };
+
+    const onMonthChange = (month: DateObject): void => {
+        const dateObject = new Date(month.timestamp);
+        if (disableWeekends) {
+            _disableWeekends(dateObject);
+        } else {
+            _parseIncomingDates();
+        }
+    };
+
+    const _triggerEvent = async (day?: string): Promise<void> => {
+        /**
+         * This could be done Cleaner on Refactor
+         */
+        if (volatileDate) {
+            if (!day && selected) {
+                const dateObject = new Date(selected);
+                await volatileDate.setValue(dateObject);
+            }
+            if (day) {
+                const dateObject = new Date(day);
+                await volatileDate.setValue(dateObject);
+            }
+        }
+    };
+
+    const onDayPress = async (day: any): Promise<void> => {
+        const dateObject = new Date(day.dateString);
+
+        if (disableWeekends && (isSunday(dateObject) || isSaturday(dateObject))) {
+            await setSelected("");
+            return;
+        }
+        await setSelected(day.dateString);
+        if (volatileDate && autoTriggerAction) {
+            await _triggerEvent(day.dateString);
+        }
+    };
+
+    const onSwipe = (gestureName: string): void => {
         // const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
         switch (gestureName) {
             case "SWIPE_UP":
@@ -164,19 +154,35 @@ const CalendarInit = ({
                 setOpenCalendar(true);
                 break;
         }
-    }
+    };
 
     const config = {
         velocityThreshold: 0.3,
         directionalOffsetThreshold: 80
     };
+
+    useEffect(() => {
+        setStartDate(addMonths(Date.now(), initialDate));
+    }, []);
+
+    useEffect(() => {
+        /**
+         * Resets Selected Day If a Event Was Added
+         */
+        setSelected("");
+        _parseIncomingDates();
+        if (disableWeekends) {
+            _disableWeekends();
+        }
+    }, [incomingDates]);
+
     /**
      *  This is done (with the Clone Element) to be able to pass Conditional Props to the Calendar Components
      * This Helps so that we can keep the CORE Calendar Module with out the need to Fork from Github
      */
     const rendererForActiveSwipeDown = activeSwipeDown
         ? {
-              dayComponent: (day: any) => (
+              dayComponent: (day: any): ReactElement => (
                   <CustomDay
                       day={day}
                       onDayPress={onDayPress}
@@ -191,6 +197,7 @@ const CalendarInit = ({
               )
           }
         : {};
+
     const rendererForMinDate = disablePastDates
         ? {
               minDate: Date.now()
@@ -199,6 +206,7 @@ const CalendarInit = ({
     const rendererForTheme = {
         theme: witchTheme(darkModeOption)
     };
+
     return (
         <View>
             {startDate && (
@@ -206,7 +214,7 @@ const CalendarInit = ({
                     <GestureRecognizer
                         config={config}
                         style={{ paddingBottom: 10 }}
-                        onSwipe={direction => onSwipe(direction)}
+                        onSwipe={(direction): void => onSwipe(direction)}
                     >
                         {cloneElement(
                             <Calendar
@@ -230,14 +238,14 @@ const CalendarInit = ({
                                     },
                                     ...weekends
                                 }}
-                                renderArrow={(direction: string) => (
+                                renderArrow={(direction: string): ReactElement => (
                                     <Arrows
                                         direction={direction}
                                         defaultDotColor={defaultDotColor}
                                         disableMonthChange={disableMonthChange}
                                     />
                                 )}
-                                onMonthChange={month => {
+                                onMonthChange={(month): void => {
                                     onMonthChange(month);
                                 }}
                             />,
@@ -245,7 +253,11 @@ const CalendarInit = ({
                         )}
                     </GestureRecognizer>
                     {!autoTriggerAction && (
-                        <Button title={buttonText} onPress={() => _triggerEvent()} disabled={!selected} />
+                        <Button
+                            title={buttonText}
+                            onPress={(): Promise<void> => _triggerEvent()}
+                            disabled={!selected}
+                        />
                     )}
                 </Fragment>
             )}

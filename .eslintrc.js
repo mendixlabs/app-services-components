@@ -5,6 +5,7 @@ const base = require("@mendix/pluggable-widgets-tools/configs/eslint.ts.base.jso
 module.exports = {
     ...base,
     rules: {
-        "@typescript-eslint/ban-ts-ignore": "warn"
+        "@typescript-eslint/ban-ts-ignore": "warn",
+        "react/display-name": "off"
     }
 };
