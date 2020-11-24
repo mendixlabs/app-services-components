@@ -61,7 +61,6 @@ const CalendarInit = ({
         _parseIncomingDates();
         disableWeekends && _disableWeekends();
     }, [incomingDates]);
-    console.log("darkMode");
     const onMonthChange = (month: any) => {
         const dateObject = new Date(month.timestamp);
         if (disableWeekends) {

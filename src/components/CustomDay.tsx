@@ -28,7 +28,6 @@ const CustomDay = ({
 }: CustomDayProps) => {
     const { marking, date, state } = day;
     const isDarkMode = witchDarkMode(darkModeOption);
-    console.log("isDarkMode", isDarkMode);
     // This is needed as Mon marked days come in as [] and MArked days as {}
     const isMark = !Array.isArray(marking);
 
