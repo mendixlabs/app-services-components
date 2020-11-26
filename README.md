@@ -64,13 +64,14 @@ The Idea at a higher level :
 <h3>Data</h3>
 
 <p align="center">
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Data.png" target="_blank" />
+ <img  align="center"  width="450"  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Data.png" target="_blank" />
 </p>
 
 |                | Type        | Info                                                                                                                                                       |
 | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Incoming Dates | Data Source | List of Dates to Display                                                                                                                                   |
 | Date           | DateTime    | Attribute in Date Source that is of Type Date                                                                                                              |
+| Is Active Date | Boolean     | If `false` the date will be greyed out                                                                                                                     |
 | Volatile Date  | DateTime    | Non Persistable Date that the Widget can Change and Mendix Developer can Observe                                                                           |
 | OnClick        | Action      | Action to Happen when the User Clicks on the Date - Usually a Nano Flow used to Open Page to either Add New Date or Display all entries for selected date. |
 
@@ -79,26 +80,27 @@ The Idea at a higher level :
 <h3>Settings</h3>
 
 <p align="center">
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Settings.png" target="_blank" />
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Settings.png" target="_blank" />
 </p>
 
-|                      | Type    | Info                                                                                                                                                       |
-| -------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name of Property     | String  | Name of Property seen when User swipes down _If Activate Swipe Down is True/Yes_                                                                           |
-| Button Text          | String  | Text on Button _If Auto Trigger Action is set to False/No_                                                                                                 |
-| Start Of Week        | ENUM    | On what day is the start of the week                                                                                                                       |
-| Display Mode         | ENUM    | Changes the Calendar "theme", based on what display mode the users device is on Either System (will take what the current device is on), or Light or Dark. |
-| Active Swipe Down    | Boolean | Activate Swiping down to expand the Calendar - Users will see an count of Calendar entries                                                                 |
-| Disable Month Change | Boolean | Prevent user from changing the Month                                                                                                                       |
-| Auto Trigger Action  | Boolean | Adds a button to the bottom of Calender, Allows user to select dat without triggering onClick action                                                       |
-| Disable Weekends     | Boolean | Prevents user from selecting Weekends                                                                                                                      |
-| Disable Past Dates   | Boolean | Prevents user from selecting dates in the Past                                                                                                             |
-| Months from now      | Integer | Positive or Negative Integer. sets the default starting month from Today.                                                                                  |
+|                             | Type    | Info                                                                                                                                                       |
+| --------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name of Property            | String  | Name of Property seen when User swipes down _If Activate Swipe Down is True/Yes_                                                                           |
+| Button Text                 | String  | Text on Button _If Auto Trigger Action is set to False/No_                                                                                                 |
+| Take Is Active Into Account | Boolean | If `false` Is Active Date will be ignored                                                                                                                  |
+| Start Of Week               | ENUM    | On what day is the start of the week                                                                                                                       |
+| Display Mode                | ENUM    | Changes the Calendar "theme", based on what display mode the users device is on Either System (will take what the current device is on), or Light or Dark. |
+| Active Swipe Down           | Boolean | Activate Swiping down to expand the Calendar - Users will see an count of Calendar entries                                                                 |
+| Disable Month Change        | Boolean | Prevent user from changing the Month                                                                                                                       |
+| Auto Trigger Action         | Boolean | Adds a button to the bottom of Calender, Allows user to select dat without triggering onClick action                                                       |
+| Disable Weekends            | Boolean | Prevents user from selecting Weekends                                                                                                                      |
+| Disable Past Dates          | Boolean | Prevents user from selecting dates in the Past                                                                                                             |
+| Months from now             | Integer | Positive or Negative Integer. sets the default starting month from Today.                                                                                  |
 
 <h3>Appearance</h3>
 
 <p align="center">
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Appearance.png" target="_blank" />
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Appearance.png" target="_blank" />
 </p>
 
 |                          | Type   | Info                                     |

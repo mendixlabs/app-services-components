@@ -19,6 +19,7 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
             buttonText,
             initialDate,
             startOfWeek,
+            isActiveDate,
             propertyName,
             volatileDate,
             incomingDates,
@@ -29,7 +30,8 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
             disablePastDates,
             selectedTextColor,
             autoTriggerAction,
-            disableMonthChange
+            disableMonthChange,
+            takeIsActiveIntoAccount
         } = this.props;
         return (
             <View>
@@ -39,6 +41,7 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                     buttonText={buttonText}
                     startOfWeek={startOfWeek}
                     initialDate={initialDate}
+                    isActiveDate={isActiveDate}
                     volatileDate={volatileDate}
                     propertyName={propertyName}
                     selectedColor={selectedColor}
@@ -50,6 +53,7 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                     selectedTextColor={selectedTextColor}
                     autoTriggerAction={autoTriggerAction}
                     disableMonthChange={disableMonthChange}
+                    takeIsActiveIntoAccount={takeIsActiveIntoAccount}
                 />
             </View>
         );

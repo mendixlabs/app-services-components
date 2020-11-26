@@ -28,6 +28,7 @@ const CalendarInit = ({
     buttonText,
     startOfWeek,
     initialDate,
+    isActiveDate,
     volatileDate,
     propertyName,
     incomingDates,
