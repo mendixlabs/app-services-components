@@ -22,7 +22,17 @@
                         <attributeType name="DateTime"/>
                     </attributeTypes>
                 </property>
+
+                <property key="isActiveDate" type="attribute" dataSource="incomingDates">
+                    <caption>Is Date Active</caption>
+                    <description>Is This Date Click</description>
+                    <attributeTypes>
+                        <attributeType name="Boolean"/>
+                    </attributeTypes>
+                </property>
+
             </propertyGroup>
+
 
             <propertyGroup caption="Interaction">
                 <property key="volatileDate" type="attribute" required="false" onChange="onClick">
@@ -68,6 +78,13 @@
                 <property key="propertyName" type="string" defaultValue="Event" required="false">
                     <caption>Name of Property</caption>
                     <description>Name of Property seen when User swipes down</description>
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Is Date Full">
+                <property key="takeIsActiveIntoAccount" type="boolean" defaultValue="true">
+                        <caption>Take Is Active Into Account</caption>
+                        <description>Takes the Take Aactive Boolean from DB into Account</description>
                 </property>
             </propertyGroup>
 

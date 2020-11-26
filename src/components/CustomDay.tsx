@@ -135,7 +135,6 @@ const CustomDay = ({
                             height: 5,
                             width: 5,
                             borderRadius: 100 / 2,
-                            // marginTop: 2,
                             backgroundColor: markedDay(isMark, marking)
                         }}
                     ></View>

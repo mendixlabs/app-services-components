@@ -21,6 +21,7 @@ export interface CalendarNativeWidgetProps<Style> {
     startOfWeek: StartOfWeekEnum;
     activeSwipeDown: boolean;
     propertyName: string;
+    takeIsActiveIntoAccount: boolean;
     autoTriggerAction: boolean;
     buttonText: string;
     disableMonthChange: boolean;
@@ -44,6 +45,7 @@ export interface CalendarNativeWidgetPreviewProps {
     startOfWeek: StartOfWeekEnum;
     activeSwipeDown: boolean;
     propertyName: string;
+    takeIsActiveIntoAccount: boolean;
     autoTriggerAction: boolean;
     buttonText: string;
     disableMonthChange: boolean;
