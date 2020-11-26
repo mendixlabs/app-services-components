@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import { createElement, ReactElement } from "react";
 import { View, Text, TouchableWithoutFeedback } from "react-native";
 import { isPast, isToday } from "date-fns";
 import { DarkModeOptionEnum } from "../../typings/CalendarNativeWidgetProps";
@@ -25,7 +25,7 @@ const CustomDay = ({
     defaultTextColor,
     rawInComingDates,
     disablePastDates
-}: CustomDayProps) => {
+}: CustomDayProps): ReactElement => {
     const { marking, date, state } = day;
     const isDarkMode = witchDarkMode(darkModeOption);
     // This is needed as Mon marked days come in as [] and MArked days as {}
