@@ -107,12 +107,12 @@ export class TreeTable extends Component<TreeTableProps> {
                                 this.setSelected([]);
                             } else if (isSelected && selectMode === "multi") {
                                 selected.splice(findKey, 1);
-                                this.setSelected(selected);
+                                this.setSelected(selected, { record, selected: !isSelected });
                             } else if (!isSelected && selectMode === "single") {
                                 this.setSelected([record.key]);
                             } else if (!isSelected && selectMode === "multi") {
                                 selected.push(record.key);
-                                this.setSelected(selected);
+                                this.setSelected(selected, { record, selected: !isSelected });
                             }
                         }
                     }, DEBOUNCE);
