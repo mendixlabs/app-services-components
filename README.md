@@ -71,7 +71,7 @@ The Idea at a higher level :
 | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Incoming Dates | Data Source | List of Dates to Display                                                                                                                                   |
 | Date           | DateTime    | Attribute in Date Source that is of Type Date                                                                                                              |
-| Is Active Date | Boolean     | If `false` the date will be greyed out                                                                                                                     |
+| Is Active Date | Boolean     | If `false` the date will be greyed (Coming from data Model)out                                                                                             |
 | Volatile Date  | DateTime    | Non Persistable Date that the Widget can Change and Mendix Developer can Observe                                                                           |
 | OnClick        | Action      | Action to Happen when the User Clicks on the Date - Usually a Nano Flow used to Open Page to either Add New Date or Display all entries for selected date. |
 

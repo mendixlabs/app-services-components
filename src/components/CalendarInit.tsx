@@ -1,6 +1,6 @@
-import { createElement, Fragment, cloneElement, useState, useEffect } from "react";
+import { createElement, Fragment, cloneElement, useState, useEffect, ReactElement } from "react";
 import { View, Button } from "react-native";
-import { Calendar } from "react-native-calendars";
+import { Calendar, DateObject } from "react-native-calendars";
 import { Style } from "@mendix/pluggable-widgets-tools";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { format, isPast, eachWeekendOfMonth, isSunday, isSaturday, addMonths } from "date-fns";
@@ -41,7 +41,7 @@ const CalendarInit = ({
     selectedTextColor,
     disableMonthChange,
     takeIsActiveIntoAccount
-}: ExcludedCalendarNativeWidgetProps) => {
+}: ExcludedCalendarNativeWidgetProps): ReactElement => {
     const [weekends, setWeekends] = useState<any>();
     const [startDate, setStartDate] = useState<Date>();
     const [selected, setSelected] = useState<string>();
@@ -52,25 +52,7 @@ const CalendarInit = ({
     const defaultDotColor: string = dotColor ? dotColor : DEFAULT_COLORS.blue;
     const defaultTextColor: string = selectedTextColor ? selectedTextColor : DEFAULT_COLORS.white;
     const defaultSelectedColor: string = selectedColor ? selectedColor : DEFAULT_COLORS.blue;
-    useEffect(() => {
-        setStartDate(addMonths(Date.now(), initialDate));
-    }, []);
-    useEffect(() => {
-        /**
-         * Resets Selected Day If a Event Was Added
-         */
-        setSelected("");
-        _parseIncomingDates();
-        disableWeekends && _disableWeekends();
-    }, [incomingDates]);
-    const onMonthChange = (month: any) => {
-        const dateObject = new Date(month.timestamp);
-        if (disableWeekends) {
-            _disableWeekends(dateObject);
-        } else {
-            _parseIncomingDates();
-        }
-    };
+
     const _disableWeekends = (newMonth?: any) => {
         if (startDate) {
             const aMonthFromDate = newMonth ? eachWeekendOfMonth(newMonth) : eachWeekendOfMonth(startDate);
@@ -105,37 +87,6 @@ const CalendarInit = ({
             }
         }
     };
-
-    const onDayPress = async (day: any) => {
-        const dateObject = new Date(day.dateString);
-
-        if (disableWeekends && (isSunday(dateObject) || isSaturday(dateObject))) {
-            await setSelected("");
-            return;
-        }
-        await setSelected(day.dateString);
-        if (volatileDate && autoTriggerAction) {
-            await _triggerEvent(day.dateString);
-        }
-    };
-
-    const _parseIncomingDates = () => {
-        if (incomingDates) {
-            const destructedValues = incomingDates.items?.map((item: any) => {
-                const dateValue = date(item);
-                const isActiveDateValue = isActiveDate(item);
-                const formattedDate = format(new Date(dateValue.displayValue), DATE_FORMAT);
-                return {
-                    dateValue,
-                    isActiveDateValue,
-                    formattedDate
-                };
-            });
-            setRawInComingDates(destructedValues);
-            _formatIncomingDates(destructedValues);
-        }
-    };
-
     const _formatIncomingDates = async (destructedValues: any) => {
         if (destructedValues) {
             const formattedDates = await destructedValues?.reduce((a: any, c: any) => {
@@ -154,6 +105,55 @@ const CalendarInit = ({
             }, []);
 
             await setInComingDates(formattedDates);
+        }
+    };
+    const _parseIncomingDates = () => {
+        if (incomingDates) {
+            const destructedValues = incomingDates.items?.map((item: any) => {
+                const dateValue = date(item);
+                const isActiveDateValue = isActiveDate(item);
+                const formattedDate = format(new Date(dateValue.displayValue), DATE_FORMAT);
+                return {
+                    dateValue,
+                    isActiveDateValue,
+                    formattedDate
+                };
+            });
+            setRawInComingDates(destructedValues);
+            _formatIncomingDates(destructedValues);
+        }
+    };
+
+    useEffect(() => {
+        setStartDate(addMonths(Date.now(), initialDate));
+    }, []);
+    useEffect(() => {
+        /**
+         * Resets Selected Day If a Event Was Added
+         */
+        setSelected("");
+        _parseIncomingDates();
+        disableWeekends && _disableWeekends();
+    }, [incomingDates]);
+    const onMonthChange = (month: DateObject) => {
+        const dateObject = new Date(month.timestamp);
+        if (disableWeekends) {
+            _disableWeekends(dateObject);
+        } else {
+            _parseIncomingDates();
+        }
+    };
+
+    const onDayPress = async (day: any) => {
+        const dateObject = new Date(day.dateString);
+
+        if (disableWeekends && (isSunday(dateObject) || isSaturday(dateObject))) {
+            await setSelected("");
+            return;
+        }
+        await setSelected(day.dateString);
+        if (volatileDate && autoTriggerAction) {
+            await _triggerEvent(day.dateString);
         }
     };
 
