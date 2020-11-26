@@ -460,6 +460,15 @@ It should be a non-persistent entity (persistent is not permitted) with a refere
                 </property>
             </propertyGroup>
 
+            <propertyGroup caption="Multi select">
+                <property key="selectMultiChildren" type="boolean" defaultValue="false">
+                    <caption>Select children</caption>
+                    <description>When selecting an element in Multi select mode, you might want to automatically select the children. This is disabled by default.
+
+Note: This only works properly when the whole tree is loaded (Data -> Scenario). If you apply this to a partial tree, it will obviously only send the child nodes that have been loaded.</description>
+                </property>
+            </propertyGroup>
+
             <propertyGroup caption="Selection onChange">
                 <property key="selectOnChangeAction" type="enumeration" defaultValue="nothing">
                     <caption>On Change action</caption>

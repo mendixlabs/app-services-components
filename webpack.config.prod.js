@@ -86,7 +86,37 @@ if (args.length === 5 && args[4] === "--analyze") {
 
 const previewConfig = {
     // Custom configuration goes here
-    // devtool: "source-map"
+    devtool: false,
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                cache: true,
+                parallel: true,
+                terserOptions: {
+                    ecma: undefined,
+                    warnings: false,
+                    parse: {},
+                    compress: {
+                        passes: 2
+                    },
+                    mangle: true, // Note `mangle.properties` is `false` by default.
+                    module: false,
+                    output: {
+                        comments: false,
+                        beautify: false,
+                        preamble: `/* TreeTable Widget (preview) || Version ${pkg.version} || Apache 2 LICENSE || Developer: ${pkg.author} || Please report any issues here: https://github.com/JelteMX/mendix-tree-table/issues */\n`
+                        // comments: false
+                    },
+                    toplevel: false,
+                    nameCache: null,
+                    ie8: false,
+                    keep_classnames: undefined,
+                    keep_fnames: false,
+                    safari10: false,
+                },
+            }),
+          ]
+    },
     plugins: [
         // new BundleAnalyzerPlugin(),
         // We only include the moment locale for en-gb, as this is not used in a lot of places and we don't need all the locales

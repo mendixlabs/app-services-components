@@ -71,6 +71,7 @@ export class NodeStore {
     public hasChildren = this._hasChildren.bind(this);
     public rowChangeHandler = this._rowChangeHandler.bind(this);
     public findParents = this._findParents.bind(this);
+    public findChildren = this._findChildren.bind(this);
     public setSelectedFromExternal = this._setSelectedFromExternal.bind(this);
 
     @observable public contextObject: mendix.lib.MxObject | null;
@@ -582,6 +583,24 @@ export class NodeStore {
                 break;
             }
         }
+        return returnArray;
+    }
+
+    private _findChildren(rowObject: RowObject): RowObject[] {
+        let returnArray: RowObject[] = [];
+
+        const directChildren = this.rowObjects.filter(row => row._parent === rowObject.key);
+
+        if (directChildren.length > 0) {
+            directChildren.forEach(child => {
+                returnArray.push(child);
+                const childChild = this._findChildren(child);
+                returnArray = returnArray.concat(childChild);
+            });
+        } else {
+            return [];
+        }
+
         return returnArray;
     }
 

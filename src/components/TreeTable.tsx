@@ -36,7 +36,7 @@ export interface TreeTableProps {
     showHeader: boolean;
     clickToSelect: boolean;
     selectMode: SelectionMode;
-    onSelect?: (ids: string[]) => void;
+    onSelect?: (ids: string[], childChange?: { record: TableRecord; selected: boolean }) => void;
     buttonBar?: ReactNode;
     hideSelectBoxes?: boolean;
     renderExpandButton?: boolean;
@@ -131,23 +131,29 @@ export class TreeTable extends Component<TreeTableProps> {
             rowSelection = {
                 type: "checkbox",
                 selectedRowKeys: selectedRows,
-                onChange: (keys: string[]) => {
-                    if (selectMode === "multi") {
-                        this.setSelected(keys);
-                    }
-                },
-                onSelectAll: () => {
+                // onChange: (_keys: string[]) => {
+                //     if (selectMode === "multi") {
+                //         this.setSelected(keys);
+                //     }
+                // },
+                onSelectAll: (selected: boolean, selectedRows: TableRecord[]) => {
+                    const keys = selectedRows.map(row => row.key);
                     if (selectMode === "single" && selectedRows.length > 0) {
                         this.setSelected([]);
+                    } else if (selectMode === "multi") {
+                        this.setSelected(selected ? keys : []);
                     }
                 },
                 onSelect: (record: TableRecord, selected: boolean, selectedRows: TableRecord[]) => {
+                    const keys = selectedRows.map(row => row.key);
                     if (selectMode === "single") {
                         if (selected) {
                             this.setSelected([record.key]);
                         } else {
-                            this.setSelected(selectedRows.map(row => row.key));
+                            this.setSelected(keys);
                         }
+                    } else {
+                        this.setSelected(keys, { record, selected });
                     }
                 }
             };
@@ -233,8 +239,8 @@ export class TreeTable extends Component<TreeTableProps> {
         );
     }
 
-    private setSelected(keys: string[]): void {
-        this.onSelectionChange(keys);
+    private setSelected(keys: string[], childChange?: { record: TableRecord; selected: boolean }): void {
+        this.onSelectionChange(keys, childChange);
     }
 
     private rowClassName(record: TableRecord, index: number): string {
@@ -268,9 +274,9 @@ export class TreeTable extends Component<TreeTableProps> {
         }
     }
 
-    private onSelectionChange(ids: string[]): void {
+    private onSelectionChange(ids: string[], childChange?: { record: TableRecord; selected: boolean }): void {
         if (this.props.onSelect) {
-            this.props.onSelect(ids);
+            this.props.onSelect(ids, childChange);
         }
     }
 

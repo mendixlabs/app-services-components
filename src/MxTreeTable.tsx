@@ -703,18 +703,47 @@ Your context object is of type "${contextEntity}". Please check the configuratio
         }
     }
 
-    private onSelect(ids: string[]): void {
-        const { selectMode, mxObject } = this.props;
+    private onSelect(ids: string[], childChange?: { record: TableRecord; selected: boolean }): void {
+        const { selectMode, selectMultiChildren, mxObject } = this.props;
+
+        let selectedIDS = ids;
+
         if (selectMode === "none") {
             return;
         }
         if (mxObject) {
+            let additions: string[] = [];
+            let removals: string[] = [];
+
+            if (selectMode === "multi" && selectMultiChildren && childChange) {
+                const row = this.store.findRowObject(childChange.record.key);
+                if (row) {
+                    const children = this.store.findChildren(row);
+                    if (children.length > 0) {
+                        const ids = children.map(c => c.key);
+                        if (childChange.selected) {
+                            additions = ids;
+                        } else {
+                            removals = ids;
+                        }
+                    }
+                }
+            }
+
             try {
                 const { selectedRows } = this.store;
-                const unTouched = selectedRows.filter(row => ids.indexOf(row) !== -1);
-                const newIds = ids.filter(id => selectedRows.indexOf(id) === -1);
 
-                if (ids.length === 0 || newIds.length === 0) {
+                if (additions.length) {
+                    selectedIDS = [...selectedIDS, ...additions.filter(a => !selectedIDS.includes(a))];
+                }
+                if (removals.length) {
+                    selectedIDS = selectedIDS.filter(id => !removals.includes(id));
+                }
+
+                const unTouched = selectedRows.filter(row => selectedIDS.indexOf(row) !== -1);
+                const newIds = selectedIDS.filter(id => selectedRows.indexOf(id) === -1);
+
+                if (selectedIDS.length === 0 || newIds.length === 0) {
                     this.store.setSelected(unTouched);
                     this.onSelectAction();
                 } else {
