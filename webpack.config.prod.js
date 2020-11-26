@@ -10,8 +10,6 @@ const baseConfig = require("./node_modules/@mendix/pluggable-widgets-tools/confi
 const TerserPlugin = require("terser-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-// We're doing dirty hacking, because our camel case stuff doesn't transpile nicely to ES5. Need another solution, but this works in IE11
-baseConfig[0].module.rules[1].exclude = /node_modules\/(?!(@thi.ng)\/).*/
 baseConfig[0].module.rules[1].use.options.presets[0] = [
     '@babel/preset-env',
     {
@@ -22,7 +20,6 @@ baseConfig[0].module.rules[1].use.options.presets[0] = [
         "corejs": "2"
     }
 ]
-baseConfig[1].module.rules[1].exclude = /node_modules\/(?!(@thi.ng)\/).*/
 baseConfig[1].module.rules[1].use.options.presets[0] = [
     '@babel/preset-env',
     {
@@ -68,16 +65,9 @@ const customConfig = {
           ]
     },
     plugins: [
-        // new BundleAnalyzerPlugin(),
         // We only include the moment locale for en-gb, as this is not used in a lot of places and we don't need all the locales
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en-gb/)
-    ],
-    // We add this to further slim down the package
-    resolve: {
-        alias: {
-            '@ant-design/icons/lib/dist$': path.join(__dirname, 'src/components/icons.js')
-        }
-    }
+    ]
 };
 
 if (args.length === 5 && args[4] === "--analyze") {
@@ -118,15 +108,9 @@ const previewConfig = {
           ]
     },
     plugins: [
-        // new BundleAnalyzerPlugin(),
         // We only include the moment locale for en-gb, as this is not used in a lot of places and we don't need all the locales
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en-gb/)
-    ],
-    resolve: {
-        alias: {
-            '@ant-design/icons/lib/dist$': path.join(__dirname, 'src/components/icons.js')
-        }
-    }
+    ]
 };
 
 module.exports = [merge(baseConfig[0], customConfig), merge(baseConfig[1], previewConfig)];

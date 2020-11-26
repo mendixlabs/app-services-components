@@ -1,7 +1,7 @@
 {
   "name": "mxtreetable",
   "widgetName": "MxTreeTable",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "TreeTable widget",
   "copyright": "Mendix 2019",
   "author": "Jelte Lagendijk <jelte.lagendijk@mendix.com>",
@@ -54,16 +54,14 @@
   },
   "dependencies": {
     "@jeltemx/mendix-react-widget-utils": "^0.7.0",
-    "@thi.ng/strings": "^1.8.3",
-    "antd": "^3.26.7",
+    "antd": "^4.8.5",
     "array-to-tree": "^3.3.2",
     "big.js": "^5.2.2",
     "classnames": "^2.2.6",
     "debounce": "^1.2.0",
-    "mobx": "^4.15.2",
-    "mobx-react": "^6.2.2",
+    "mobx": "^4.15.7",
+    "mobx-react": "^6.3.1",
     "promise-queue": "^2.2.5",
-    "react-icons": "^3.10.0",
-    "store2": "^2.11.1"
+    "store2": "^2.12.0"
   }
 }

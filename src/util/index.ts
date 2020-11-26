@@ -1,4 +1,7 @@
-import { camel } from "@thi.ng/strings";
+const lower = (x: string) => x.toLowerCase();
+const upper = (x: string) => x.toUpperCase();
+const camel = (x: string, delim = "-") =>
+    lower(x).replace(new RegExp(`\\${delim}+(\\w)`, "g"), (_, c: string) => upper(c));
 
 export const createCamelcaseId = (str: string): string => {
     const camelCased = camel(str);

@@ -4,10 +4,6 @@ import { findDOMNode } from "react-dom";
 import { observer } from "mobx-react";
 import store from "store2";
 
-// import * as ls from "local-storage";
-// // @ts-ignore;
-// window.ls = ls;
-
 import {
     IAction,
     getObjectContextFromObjects,
@@ -42,7 +38,7 @@ import { TreeTable } from "./components/TreeTable";
 import { TreeRowObject } from "./store/objects/row";
 import { getReferencePart } from "./util/index";
 import { TableState } from "./store/index";
-import { ColumnProps } from "antd/es/table/interface";
+import { ColumnProps } from "antd/es/table";
 
 export interface Action extends IAction {}
 export type ActionReturn = null | string | number | boolean | mendix.lib.MxObject | mendix.lib.MxObject[] | void;
