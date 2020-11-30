@@ -1,7 +1,7 @@
 {
     "name": "calendarnativewidget",
     "widgetName": "CalendarNativeWidget",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "description": "Calendar Widget for Mendix Native",
     "copyright": "2020 Mendix Technology BV",
     "author": "Arno Welgemoed",
