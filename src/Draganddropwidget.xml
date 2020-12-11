@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.draganddropwidget.Draganddropwidget" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Draganddropwidget</name>
+    <description>My widget description</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+<property key="uuid" type="string">
+	<caption>My string</caption>
+	<description>My string setting</description>
+</property>
+                <!-- <property key="date" type="attribute" dataSource="incomingData"> -->
+                <property key="incomingData" type="datasource" isList="true">
+                <caption>Entries</caption>
+                <description>List of entry objects that are used to populate the calendar</description>
+            </property>
+
+            <property key="data" type="attribute"  dataSource="incomingData">
+                <caption>Order</caption>
+                <description></description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                </attributeTypes>
+            </property>
+
+            <property key="content" type="widgets" required="false" dataSource="incomingData">
+                <caption>Content</caption>
+                <description>Widgets using data source</description>
+            </property>
+
+            <property key="dropDataAttr" type="attribute" onChange="onDropAction">
+                        <caption>Drop data</caption>
+                        <description>JSON data containing the new sequence numbers of items in the column the item was dropped on.</description>
+                        <attributeTypes>
+                            <attributeType name="String"/>
+                        </attributeTypes>
+                    </property>
+                    <property key="onDropAction" type="action">
+                        <caption>On drop action</caption>
+                        <description>Configure the action to handle drops. Use the drop data to update the sequence. Also reset context ID value</description>
+                    </property>
+
+        </propertyGroup>
+    </properties>
+</widget>
+    <!-- <property key="volatileDate" type="attribute" required="false" onChange="onClick">
+                    <caption>Editable date</caption>
+                    <description>This attribute is used when a user clicks on a date in the calendar</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+
+                <property key="onClick" type="action">
+                    <caption>On click</caption>
+                    <description>This action will not be called when secondary buttons are used.</description>
+                </property>
+
+            <property key="dropDataAttr" type="attribute">
+                <caption>Drop data</caption>
+                <description>JSON data containing the new sequence numbers of items in the column the item was dropped on.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="onDropAction" type="action">
+                <caption>On drop action</caption>
+                <description>Configure the action to handle drops. Use the drop data to update the sequence. Also reset context ID value</description>
+            </property> -->
+
+            <!-- 
+
+
+                <property key="onPercentageChange" type="action">
+                    <caption>On change</caption>
+                    <description/>
+                </property> -->
