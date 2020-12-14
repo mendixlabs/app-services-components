@@ -17,6 +17,7 @@ export interface DraganddropwidgetContainerProps {
     content?: ListWidgetValue;
     dropDataAttr: EditableValue<string>;
     onDropAction?: ActionValue;
+    onDifferentColumDrop?: ActionValue;
 }
 
 export interface DraganddropwidgetPreviewProps {
@@ -28,4 +29,5 @@ export interface DraganddropwidgetPreviewProps {
     content: { widgetCount: number; renderer: ComponentType };
     dropDataAttr: string;
     onDropAction: {} | null;
+    onDifferentColumDrop: {} | null;
 }

@@ -24,11 +24,8 @@ function Card({ children, item, index, reorderAfterDrop }: any) {
 
         drop(hoverItem) {
             const currentItem = hoverItem;
-            const hoverOverItem = item;
             reorderAfterDrop({
                 // @ts-ignore
-                currentOrderValue: currentItem.item.orderValue,
-                newOrderValue: hoverOverItem.orderValue,
                 currentItem,
                 index
             });

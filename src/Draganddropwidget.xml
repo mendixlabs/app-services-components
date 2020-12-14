@@ -31,15 +31,20 @@
                 <description>Widgets using data source</description>
             </property>
 
-            <property key="dropDataAttr" type="attribute" onChange="onDropAction">
-                        <caption>Drop data</caption>
-                        <description>JSON data containing the new sequence numbers of items in the column the item was dropped on.</description>
-                        <attributeTypes>
-                            <attributeType name="String"/>
-                        </attributeTypes>
-                    </property>
+            <property key="dropDataAttr" type="attribute">
+                <caption>Drop data</caption>
+                <description>JSON data containing the new sequence numbers of items in the column the item was dropped on.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
                     <property key="onDropAction" type="action">
-                        <caption>On drop action</caption>
+                        <caption>onDropAction</caption>
+                        <description>Configure the action to handle drops. Use the drop data to update the sequence. Also reset context ID value</description>
+                    </property>
+
+                    <property key="onDifferentColumDrop" type="action">
+                        <caption>onDifferentColumDrop</caption>
                         <description>Configure the action to handle drops. Use the drop data to update the sequence. Also reset context ID value</description>
                     </property>
 
