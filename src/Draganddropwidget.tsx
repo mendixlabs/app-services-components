@@ -3,7 +3,6 @@ import DragInit from "./components/DragInit";
 import { DndProvider } from "react-dnd";
 // import { HTML5Backend } from "react-dnd-html5-backend";
 // import { Droppable, Draggable, DragDropContext } from "react-beautiful-dnd";
-import { HelloWorldSample } from "./components/HelloWorldSample";
 // import update from "immutability-helper";
 
 import { DraganddropwidgetContainerProps } from "../typings/DraganddropwidgetProps";
@@ -23,7 +22,6 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
                 myManager: window.myManager
             });
         }
-
         if (
             (this.props.incomingData.items && this.props.incomingData.items?.length !== listOfSortableItems.length) ||
             this.props.incomingData.items?.length !== pP.incomingData.items?.length
@@ -46,39 +44,44 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     };
     reorderAfterDrop = async ({ currentItem, index }: any) => {
         const { listOfSortableItems } = this.state;
-        const { uuid, dropDataAttr, onDropAction, onDifferentColumDrop } = this.props;
+        const { uuid, dropDataAttr, onDropAction, onDifferentColumDrop, dataSourceName } = this.props;
+        console.log("uuid", uuid, currentItem.item.uuid, listOfSortableItems);
         // @ts-ignore
         if (uuid !== currentItem.item.uuid) {
             /**
              * /TODO::Make a Check to see If This UUID can accept THAT UUID
              */
-
             // @ts-ignore
             const modelToSaveFrom = this.props.content(currentItem.item.item).props.object.jsonData.objectType;
             const settingsForSave = {
                 modelToSaveFrom,
+                dataSourceName,
                 whereToPut: index,
-                item: currentItem
+                item: currentItem,
+                comingTo: uuid,
+                comingFrom: currentItem.item.uuid
             };
             const listToMendix = listOfSortableItems;
             // @ts-ignore
             await listToMendix.splice(index, 0, currentItem.item);
             const jsonString = await JSON.stringify({ settingsForSave, listToMendix });
             await dropDataAttr.setValue(jsonString);
-
+            // @ts-ignore
             if (onDifferentColumDrop && onDifferentColumDrop.canExecute && !onDifferentColumDrop.isExecuting) {
                 onDifferentColumDrop.execute();
             }
         } else {
-            // @ts-ignore
             // @ts-ignore
             const movedItem = listOfSortableItems.find(item => item.id == currentItem.item.id);
             // @ts-ignore
             const removedItemList = listOfSortableItems.filter(item => item.id != currentItem.item.id);
             // @ts-ignore
             await removedItemList.splice(index, 0, movedItem);
+
             await this.setState({ listOfSortableItems: removedItemList });
+
             const jsonString = await JSON.stringify(removedItemList);
+
             await dropDataAttr.setValue(jsonString);
             await dropDataAttr.setTextValue(jsonString);
 
@@ -90,9 +93,8 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
 
     render(): ReactNode {
         const { listOfSortableItems, myManager } = this.state;
-        //@ts-ignore
-        console.log("RENERER uuid", this.props.uuid, this.props.incomingData.items?.length);
-        if (listOfSortableItems.length && myManager) {
+
+        if (listOfSortableItems && myManager) {
             return (
                 // @ts-ignore
                 <DndProvider manager={this.state.myManager.current.dragDropManager}>
@@ -105,7 +107,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
                 </DndProvider>
             );
         } else {
-            return <HelloWorldSample sampleText={"World"} />;
+            return null;
         }
     }
 }

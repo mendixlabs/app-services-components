@@ -5,23 +5,11 @@ import { useDrag, useDrop } from "react-dnd";
 function Card({ children, item, index, reorderAfterDrop }: any) {
     const ref = useRef(null);
     // REORDER THE CARDS
-    const [, drop] = useDrop({
+    const [{ isOver }, drop] = useDrop({
         accept: "card",
-        // hover(hoverItem) {
-        //     const currentItem = hoverItem;
-        //     const hoverOverItem = item;
-        //     reorderAfterDrop({
-        //         // @ts-ignore
-        //         currentOrderValue: currentItem.item.orderValue,
-        //         newOrderValue: hoverOverItem.orderValue,
-        //         currentItem
-        //     });
-        // }
-
-        /**
-         * This Hover is when  Card Is Dropped In Same Col
-         */
-
+        collect: monitor => ({
+            isOver: !!monitor.isOver()
+        }),
         drop(hoverItem) {
             const currentItem = hoverItem;
             reorderAfterDrop({
@@ -31,7 +19,7 @@ function Card({ children, item, index, reorderAfterDrop }: any) {
             });
         }
     });
-
+    console.log("isOver", isOver);
     const [{ isDragging }, drag] = useDrag({
         item: {
             type: "card",
@@ -42,15 +30,10 @@ function Card({ children, item, index, reorderAfterDrop }: any) {
             isDragging: monitor.isDragging()
         })
     });
+    console.log("isDragging", isDragging);
     drag(drop(ref));
     return (
-        <div
-            className="card"
-            ref={ref}
-            style={{
-                backgroundColor: isDragging ? "#fbb" : "palegoldenrod"
-            }}
-        >
+        <div className={isDragging ? "isDragging" : ""} ref={ref}>
             {children}
         </div>
     );
@@ -59,13 +42,26 @@ function Card({ children, item, index, reorderAfterDrop }: any) {
 function Column({ listOfSortableItems, content, reorderAfterDrop }: any) {
     return (
         <div className="app">
-            {listOfSortableItems.map((fullItem: any, index: any) => {
-                return (
-                    <Card reorderAfterDrop={reorderAfterDrop} item={fullItem} index={index}>
-                        {content(fullItem.item)}
-                    </Card>
-                );
-            })}
+            {listOfSortableItems.length ? (
+                listOfSortableItems.map((fullItem: any, index: any) => {
+                    return (
+                        <Card reorderAfterDrop={reorderAfterDrop} item={fullItem} index={index}>
+                            {content(fullItem.item)}
+                        </Card>
+                    );
+                })
+            ) : (
+                <Card reorderAfterDrop={reorderAfterDrop} item={null} index={0}>
+                    <div
+                        style={{
+                            border: "1px solid",
+                            padding: 10
+                        }}
+                    >
+                        Empty Drop
+                    </div>
+                </Card>
+            )}
         </div>
     );
 }

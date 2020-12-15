@@ -8,10 +8,14 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-<property key="uuid" type="string">
-	<caption>My string</caption>
-	<description>My string setting</description>
-</property>
+            <property key="uuid" type="string">
+                <caption>My string</caption>
+                <description>My string setting</description>
+            </property>
+            <property key="dataSourceName" type="string">
+                <caption>dataSourceName</caption>
+                <description>My string setting</description>
+            </property>
                 <!-- <property key="date" type="attribute" dataSource="incomingData"> -->
                 <property key="incomingData" type="datasource" isList="true">
                 <caption>Entries</caption>
@@ -23,6 +27,7 @@
                 <description></description>
                 <attributeTypes>
                     <attributeType name="Integer"/>
+                    <attributeType name="AutoNumber"/>
                 </attributeTypes>
             </property>
 

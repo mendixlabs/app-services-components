@@ -12,6 +12,7 @@ export interface DraganddropwidgetContainerProps {
     style?: CSSProperties;
     tabIndex: number;
     uuid: string;
+    dataSourceName: string;
     incomingData: ListValue;
     data: ListAttributeValue<BigJs.Big>;
     content?: ListWidgetValue;
@@ -24,6 +25,7 @@ export interface DraganddropwidgetPreviewProps {
     class: string;
     style: string;
     uuid: string;
+    dataSourceName: string;
     incomingData: {} | null;
     data: string;
     content: { widgetCount: number; renderer: ComponentType };

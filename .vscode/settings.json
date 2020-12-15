@@ -2,5 +2,8 @@
     "workbench.colorCustomizations": {
         "titleBar.activeBackground": "#923e8e",
         "titleBar.inactiveBackground": "#4a1f46"
-    }
+    },
+    "conventionalCommits.scopes": [
+        "add from Same DS"
+    ]
 }
