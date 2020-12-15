@@ -1,20 +1,30 @@
 import { Component, ReactNode, createElement } from "react";
 import DragInit from "./components/DragInit";
-import { DndProvider } from "react-dnd";
-// import { HTML5Backend } from "react-dnd-html5-backend";
-// import { Droppable, Draggable, DragDropContext } from "react-beautiful-dnd";
-// import update from "immutability-helper";
+import { createDndContext, DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
 
 import { DraganddropwidgetContainerProps } from "../typings/DraganddropwidgetProps";
+import { CompState, NewElementDraggedIn, ReorderAfterDropTypes } from "./components/types";
+
+import { is_touch_device, backendOptions } from "./utils";
 
 import "./ui/Draganddropwidget.css";
 
-export default class Draganddropwidget extends Component<DraganddropwidgetContainerProps> {
-    state = { myManager: null, listOfSortableItems: [] };
-    componentDidUpdate(pP: any) {
-        const { listOfSortableItems } = this.state;
-        //@ts-ignore
+const RNDContext = createDndContext(HTML5Backend);
 
+export default class Draganddropwidget extends Component<DraganddropwidgetContainerProps, CompState> {
+    constructor(props: DraganddropwidgetContainerProps) {
+        super(props);
+        this.state = { myManager: null, listOfSortableItems: [] };
+    }
+    componentDidMount() {
+        // @ts-ignore
+        window.myManager = RNDContext;
+    }
+    componentDidUpdate(pP: DraganddropwidgetContainerProps) {
+        const { listOfSortableItems } = this.state;
+        const { incomingData } = this.props;
         //@ts-ignore
         if (window.myManager != this.state.myManager) {
             this.setState({
@@ -23,37 +33,33 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
             });
         }
         if (
-            (this.props.incomingData.items && this.props.incomingData.items?.length !== listOfSortableItems.length) ||
-            this.props.incomingData.items?.length !== pP.incomingData.items?.length
+            (incomingData.items && incomingData.items?.length !== listOfSortableItems.length) ||
+            incomingData.items?.length !== pP.incomingData.items?.length
         ) {
             this.setMendixData();
         }
-        if (this.props.incomingData.status === "available" && pP.incomingData.status === "loading") {
+        if (incomingData.status === "available" && pP.incomingData.status === "loading") {
             this.setMendixData();
         }
     }
     setMendixData = () => {
         const orderList = this.props.incomingData.items?.reduce((a: any, c) => {
-            //@ts-ignore
-            // TODO:: Make this so that the user specifies name of field
             return [...a, { id: c.id, orderValue: this.props.data(c).displayValue, item: c, uuid: this.props.uuid }];
         }, []);
         this.setState({
             listOfSortableItems: orderList
         });
     };
-    reorderAfterDrop = async ({ currentItem, index }: any) => {
+
+    reorderAfterDrop = ({ currentItem, index }: ReorderAfterDropTypes) => {
         const { listOfSortableItems } = this.state;
-        const { uuid, dropDataAttr, onDropAction, onDifferentColumDrop, dataSourceName } = this.props;
-        console.log("uuid", uuid, currentItem.item.uuid, listOfSortableItems);
-        // @ts-ignore
+        const { uuid, dropDataAttr, onDropAction, onDifferentColumDrop, dataSourceName, content } = this.props;
+
         if (uuid !== currentItem.item.uuid) {
-            /**
-             * /TODO::Make a Check to see If This UUID can accept THAT UUID
-             */
             // @ts-ignore
-            const modelToSaveFrom = this.props.content(currentItem.item.item).props.object.jsonData.objectType;
-            const settingsForSave = {
+            const modelToSaveFrom = content && content(currentItem?.item?.item).props.object.jsonData.objectType;
+
+            const settingsForSave: NewElementDraggedIn = {
                 modelToSaveFrom,
                 dataSourceName,
                 whereToPut: index,
@@ -62,28 +68,28 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
                 comingFrom: currentItem.item.uuid
             };
             const listToMendix = listOfSortableItems;
-            // @ts-ignore
-            await listToMendix.splice(index, 0, currentItem.item);
-            const jsonString = await JSON.stringify({ settingsForSave, listToMendix });
-            await dropDataAttr.setValue(jsonString);
-            // @ts-ignore
+
+            listToMendix.splice(index, 0, currentItem.item);
+
+            const jsonString = JSON.stringify({ settingsForSave, listToMendix });
+
+            dropDataAttr.setValue(jsonString);
+
             if (onDifferentColumDrop && onDifferentColumDrop.canExecute && !onDifferentColumDrop.isExecuting) {
                 onDifferentColumDrop.execute();
             }
         } else {
-            // @ts-ignore
             const movedItem = listOfSortableItems.find(item => item.id == currentItem.item.id);
-            // @ts-ignore
+
             const removedItemList = listOfSortableItems.filter(item => item.id != currentItem.item.id);
-            // @ts-ignore
-            await removedItemList.splice(index, 0, movedItem);
 
-            await this.setState({ listOfSortableItems: removedItemList });
+            movedItem && removedItemList.splice(index, 0, movedItem);
 
-            const jsonString = await JSON.stringify(removedItemList);
+            this.setState({ listOfSortableItems: removedItemList });
 
-            await dropDataAttr.setValue(jsonString);
-            await dropDataAttr.setTextValue(jsonString);
+            const jsonString = JSON.stringify(removedItemList);
+
+            dropDataAttr.setValue(jsonString);
 
             if (onDropAction && onDropAction.canExecute && !onDropAction.isExecuting) {
                 onDropAction.execute();
@@ -93,19 +99,28 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
 
     render(): ReactNode {
         const { listOfSortableItems, myManager } = this.state;
-
         if (listOfSortableItems && myManager) {
-            return (
-                // @ts-ignore
-                <DndProvider manager={this.state.myManager.current.dragDropManager}>
-                    <DragInit
-                        uuid={this.props.uuid}
-                        content={this.props.content}
-                        reorderAfterDrop={this.reorderAfterDrop}
-                        listOfSortableItems={listOfSortableItems}
-                    />
-                </DndProvider>
-            );
+            if (is_touch_device()) {
+                return (
+                    <DndProvider backend={TouchBackend} options={backendOptions}>
+                        <DragInit
+                            content={this.props.content}
+                            reorderAfterDrop={this.reorderAfterDrop}
+                            listOfSortableItems={listOfSortableItems}
+                        />
+                    </DndProvider>
+                );
+            } else {
+                return (
+                    <DndProvider manager={this.state.myManager.dragDropManager}>
+                        <DragInit
+                            content={this.props.content}
+                            reorderAfterDrop={this.reorderAfterDrop}
+                            listOfSortableItems={listOfSortableItems}
+                        />
+                    </DndProvider>
+                );
+            }
         } else {
             return null;
         }
