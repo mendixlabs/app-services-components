@@ -8,32 +8,30 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
+
             <property key="uuid" type="string">
-                <caption>My string</caption>
-                <description>My string setting</description>
+                <caption>UUID/Status</caption>
+                <description>Unique Identifyer for Dragable Colum, or If same DS the Enum on what to Filter on (Read Docs)</description>
             </property>
+
             <property key="dataSourceName" type="string">
-                <caption>dataSourceName</caption>
-                <description>My string setting</description>
-            </property>
-                <!-- <property key="date" type="attribute" dataSource="incomingData"> -->
-                <property key="incomingData" type="datasource" isList="true">
-                <caption>Entries</caption>
-                <description>List of entry objects that are used to populate the calendar</description>
+                <caption>Data Source Name</caption>
+                <description>Text Name of the DS</description>
             </property>
 
-            <property key="data" type="attribute"  dataSource="incomingData">
-                <caption>Order</caption>
-                <description></description>
-                <attributeTypes>
-                    <attributeType name="Integer"/>
-                    <attributeType name="AutoNumber"/>
-                </attributeTypes>
+            <property key="incomingData" type="datasource" isList="true">
+                <caption>In Coming Data</caption>
+                <description>List of entry objects that are used to populate the Dragable column</description>
             </property>
 
-            <property key="content" type="widgets" required="false" dataSource="incomingData">
+            <property key="content" type="widgets" required="true" dataSource="incomingData">
                 <caption>Content</caption>
                 <description>Widgets using data source</description>
+            </property>
+
+            <property key="emptyData" type="widgets" required="true">
+                <caption>Displayed when column is empty</caption>
+                <description></description>
             </property>
 
             <property key="dropDataAttr" type="attribute">
@@ -43,6 +41,7 @@
                     <attributeType name="String"/>
                 </attributeTypes>
             </property>
+
                     <property key="onDropAction" type="action">
                         <caption>onDropAction</caption>
                         <description>Configure the action to handle drops. Use the drop data to update the sequence. Also reset context ID value</description>
@@ -50,41 +49,9 @@
 
                     <property key="onDifferentColumDrop" type="action">
                         <caption>onDifferentColumDrop</caption>
-                        <description>Configure the action to handle drops. Use the drop data to update the sequence. Also reset context ID value</description>
+                        <description>Microflow to trigger if Other Cardß Comes in</description>
                     </property>
 
         </propertyGroup>
     </properties>
 </widget>
-    <!-- <property key="volatileDate" type="attribute" required="false" onChange="onClick">
-                    <caption>Editable date</caption>
-                    <description>This attribute is used when a user clicks on a date in the calendar</description>
-                    <attributeTypes>
-                        <attributeType name="String"/>
-                    </attributeTypes>
-                </property>
-
-                <property key="onClick" type="action">
-                    <caption>On click</caption>
-                    <description>This action will not be called when secondary buttons are used.</description>
-                </property>
-
-            <property key="dropDataAttr" type="attribute">
-                <caption>Drop data</caption>
-                <description>JSON data containing the new sequence numbers of items in the column the item was dropped on.</description>
-                <attributeTypes>
-                    <attributeType name="String"/>
-                </attributeTypes>
-            </property>
-            <property key="onDropAction" type="action">
-                <caption>On drop action</caption>
-                <description>Configure the action to handle drops. Use the drop data to update the sequence. Also reset context ID value</description>
-            </property> -->
-
-            <!-- 
-
-
-                <property key="onPercentageChange" type="action">
-                    <caption>On change</caption>
-                    <description/>
-                </property> -->

@@ -1,12 +1,10 @@
 import { ListWidgetValue } from "mendix";
 import { ReactNode } from "react";
 export type CompState = {
-    myManager: any;
     listOfSortableItems: ListOfSortableItemsType[];
 };
 export type ListOfSortableItemsType = {
     id?: string;
-    orderValue?: string;
     uuid?: string;
     item?: any;
 };
@@ -21,6 +19,7 @@ export type NewElementDraggedIn = {
 
 export type DragCardType = {
     item?: ListOfSortableItemsType | undefined;
+    listOfSortableItems?: ListOfSortableItemsType[];
     index: number;
     reorderAfterDrop: ({ currentItem, index }: ReorderAfterDropTypes) => void;
     children: ReactNode;
@@ -32,6 +31,7 @@ export type ReorderAfterDropTypes = {
 
 export type DragListProps = {
     listOfSortableItems: ListOfSortableItemsType[];
+    emptyData?: ReactNode;
     content?: ListWidgetValue;
     reorderAfterDrop: ({ currentItem, index }: ReorderAfterDropTypes) => void;
 };

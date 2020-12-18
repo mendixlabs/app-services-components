@@ -1,6 +1,6 @@
 import { Component, ReactNode, createElement } from "react";
 import DragInit from "./components/DragInit";
-import { createDndContext, DndProvider } from "react-dnd";
+import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 
@@ -11,27 +11,17 @@ import { is_touch_device, backendOptions } from "./utils";
 
 import "./ui/Draganddropwidget.css";
 
-const RNDContext = createDndContext(HTML5Backend);
+// const RNDContext = createDndContext(HTML5Backend);
 
 export default class Draganddropwidget extends Component<DraganddropwidgetContainerProps, CompState> {
     constructor(props: DraganddropwidgetContainerProps) {
         super(props);
-        this.state = { myManager: null, listOfSortableItems: [] };
+        this.state = { listOfSortableItems: [] };
     }
-    componentDidMount() {
-        // @ts-ignore
-        window.myManager = RNDContext;
-    }
+
     componentDidUpdate(pP: DraganddropwidgetContainerProps) {
         const { listOfSortableItems } = this.state;
         const { incomingData } = this.props;
-        //@ts-ignore
-        if (window.myManager != this.state.myManager) {
-            this.setState({
-                //@ts-ignore
-                myManager: window.myManager
-            });
-        }
         if (
             (incomingData.items && incomingData.items?.length !== listOfSortableItems.length) ||
             incomingData.items?.length !== pP.incomingData.items?.length
@@ -44,7 +34,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     }
     setMendixData = () => {
         const orderList = this.props.incomingData.items?.reduce((a: any, c) => {
-            return [...a, { id: c.id, orderValue: this.props.data(c).displayValue, item: c, uuid: this.props.uuid }];
+            return [...a, { id: c.id, item: c, uuid: this.props.uuid }];
         }, []);
         this.setState({
             listOfSortableItems: orderList
@@ -98,13 +88,15 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     };
 
     render(): ReactNode {
-        const { listOfSortableItems, myManager } = this.state;
-        if (listOfSortableItems && myManager) {
+        const { listOfSortableItems } = this.state;
+        const { content, emptyData } = this.props;
+        if (listOfSortableItems) {
             if (is_touch_device()) {
                 return (
                     <DndProvider backend={TouchBackend} options={backendOptions}>
                         <DragInit
-                            content={this.props.content}
+                            content={content}
+                            emptyData={emptyData}
                             reorderAfterDrop={this.reorderAfterDrop}
                             listOfSortableItems={listOfSortableItems}
                         />
@@ -112,9 +104,10 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
                 );
             } else {
                 return (
-                    <DndProvider manager={this.state.myManager.dragDropManager}>
+                    <DndProvider backend={HTML5Backend}>
                         <DragInit
-                            content={this.props.content}
+                            content={content}
+                            emptyData={emptyData}
                             reorderAfterDrop={this.reorderAfterDrop}
                             listOfSortableItems={listOfSortableItems}
                         />

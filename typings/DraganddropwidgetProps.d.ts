@@ -3,8 +3,8 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { ComponentType, CSSProperties } from "react";
-import { ActionValue, EditableValue, ListValue, ListAttributeValue, ListWidgetValue } from "mendix";
+import { ComponentType, CSSProperties, ReactNode } from "react";
+import { ActionValue, EditableValue, ListValue, ListWidgetValue } from "mendix";
 
 export interface DraganddropwidgetContainerProps {
     name: string;
@@ -14,8 +14,8 @@ export interface DraganddropwidgetContainerProps {
     uuid: string;
     dataSourceName: string;
     incomingData: ListValue;
-    data: ListAttributeValue<BigJs.Big>;
-    content?: ListWidgetValue;
+    content: ListWidgetValue;
+    emptyData: ReactNode;
     dropDataAttr: EditableValue<string>;
     onDropAction?: ActionValue;
     onDifferentColumDrop?: ActionValue;
@@ -27,8 +27,8 @@ export interface DraganddropwidgetPreviewProps {
     uuid: string;
     dataSourceName: string;
     incomingData: {} | null;
-    data: string;
     content: { widgetCount: number; renderer: ComponentType };
+    emptyData: { widgetCount: number; renderer: ComponentType };
     dropDataAttr: string;
     onDropAction: {} | null;
     onDifferentColumDrop: {} | null;
