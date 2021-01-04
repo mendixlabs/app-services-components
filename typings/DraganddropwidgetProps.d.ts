@@ -14,11 +14,11 @@ export interface DraganddropwidgetContainerProps {
     uuid: string;
     dataSourceName: string;
     incomingData: ListValue;
-    content: ListWidgetValue;
-    emptyData: ReactNode;
     dropDataAttr: EditableValue<string>;
     onDropAction?: ActionValue;
     onDifferentColumDrop?: ActionValue;
+    content: ListWidgetValue;
+    emptyData: ReactNode;
 }
 
 export interface DraganddropwidgetPreviewProps {
@@ -27,9 +27,9 @@ export interface DraganddropwidgetPreviewProps {
     uuid: string;
     dataSourceName: string;
     incomingData: {} | null;
-    content: { widgetCount: number; renderer: ComponentType };
-    emptyData: { widgetCount: number; renderer: ComponentType };
     dropDataAttr: string;
     onDropAction: {} | null;
     onDifferentColumDrop: {} | null;
+    content: { widgetCount: number; renderer: ComponentType };
+    emptyData: { widgetCount: number; renderer: ComponentType };
 }

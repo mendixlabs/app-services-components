@@ -8,7 +8,6 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-
             <property key="uuid" type="string">
                 <caption>UUID/Status</caption>
                 <description>Unique Identifyer for Dragable Colum, or If same DS the Enum on what to Filter on (Read Docs)</description>
@@ -24,8 +23,30 @@
                 <description>List of entry objects that are used to populate the Dragable column</description>
             </property>
 
+            <property key="dropDataAttr" type="attribute">
+                <caption>Non Persistable Data</caption>
+                <description>JSON String</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Drop Actions">
+            <property key="onDropAction" type="action">
+                <caption>Same Column Drop</caption>
+                <description>Nanoflow to trigger if data comes in from the same column</description>
+            </property>
+
+            <property key="onDifferentColumDrop" type="action">
+                <caption>Different Column Drop</caption>
+                <description>Nanoflow to trigger if data comes in from different column</description>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Layout">
             <property key="content" type="widgets" required="true" dataSource="incomingData">
-                <caption>Content</caption>
+                <caption>Style the List Card</caption>
                 <description>Widgets using data source</description>
             </property>
 
@@ -33,25 +54,6 @@
                 <caption>Displayed when column is empty</caption>
                 <description></description>
             </property>
-
-            <property key="dropDataAttr" type="attribute">
-                <caption>Drop data</caption>
-                <description>JSON data containing the new sequence numbers of items in the column the item was dropped on.</description>
-                <attributeTypes>
-                    <attributeType name="String"/>
-                </attributeTypes>
-            </property>
-
-                    <property key="onDropAction" type="action">
-                        <caption>onDropAction</caption>
-                        <description>Configure the action to handle drops. Use the drop data to update the sequence. Also reset context ID value</description>
-                    </property>
-
-                    <property key="onDifferentColumDrop" type="action">
-                        <caption>onDifferentColumDrop</caption>
-                        <description>Microflow to trigger if Other Cardß Comes in</description>
-                    </property>
-
         </propertyGroup>
     </properties>
 </widget>

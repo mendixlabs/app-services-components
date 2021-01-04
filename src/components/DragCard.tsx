@@ -27,10 +27,11 @@ const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems
             }
             // Dropped on the Bottom Halve of the Card
             if (hoverMiddleY < hoverClientY) {
-                if (hoverIndex == dragIndex) {
+                // Dropped in Empty Col
+                if (hoverIndex == dragIndex && !listOfSortableItems) {
                     return hoverIndex;
                 }
-                //@ts-ignore
+                // @ts-ignore
                 if (!hoverIndex || hoverIndex == listOfSortableItems?.length - 1) {
                     return hoverIndex + 1;
                 }
