@@ -3,7 +3,7 @@
     "widgetName": "Draganddropwidget",
     "version": "1.0.0",
     "description": "My widget description",
-    "copyright": "2020 Mendix Technology BV",
+    "copyright": "2021 Mendix Technology BV",
     "author": "Arno Welgemoed",
     "config": {
         "widgetPath": "./dist/test/widgets",
