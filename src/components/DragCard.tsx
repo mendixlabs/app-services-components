@@ -1,5 +1,6 @@
 import { createElement, useRef } from "react";
 import { useDrag, useDrop, DragObjectWithType, DragSourceMonitor } from "react-dnd";
+import classnames from "classnames";
 import { DragCardType, ListOfSortableItemsType } from "./types";
 
 const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems }: DragCardType) => {
@@ -65,15 +66,20 @@ const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems
             index
         },
         collect: monitor => ({
-            isDragging: monitor.isDragging()
+            isDragging: monitor.isDragging(),
+            canDrag: monitor.canDrag()
         })
     });
-
     drag(drop(ref));
+
+    const customClassNames = classnames({
+        "drag-and-drop__is-over": isOver,
+        "drag-and-drop__is-dragging": isDragging
+    });
 
     return (
         <div
-            className={isDragging ? "isDragging" : ""}
+            className={customClassNames}
             style={{
                 padding: "0.5rem 1rem",
                 marginBottom: ".5rem",

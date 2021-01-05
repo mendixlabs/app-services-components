@@ -10,29 +10,29 @@
         <propertyGroup caption="General">
             <property key="uuid" type="string">
                 <caption>UUID/Status</caption>
-                <description>Unique Identifyer for Dragable Colum, or If same DS the Enum on what to Filter on (Read Docs)</description>
+                <description>Unique identifyer for dragable colum, or if same datasource the entry of the enum to filter on (Read Docs)</description>
             </property>
 
             <property key="dataSourceName" type="string">
                 <caption>Data Source Name</caption>
-                <description>Text Name of the DS</description>
+                <description>Text name of the datasource</description>
             </property>
 
             <property key="incomingData" type="datasource" isList="true">
-                <caption>In Coming Data</caption>
-                <description>List of entry objects that are used to populate the Dragable column</description>
+                <caption>Data</caption>
+                <description>Nanoflow or Microflow of flitered and sorted data to display</description>
             </property>
 
             <property key="dropDataAttr" type="attribute">
                 <caption>Non Persistable Data</caption>
-                <description>JSON String</description>
+                <description>Non persistable attribute to use for widget state</description>
                 <attributeTypes>
                     <attributeType name="String"/>
                 </attributeTypes>
             </property>
         </propertyGroup>
 
-        <propertyGroup caption="Drop Actions">
+        <propertyGroup caption="Drag/Drop Actions">
             <property key="onDropAction" type="action">
                 <caption>Same Column Drop</caption>
                 <description>Nanoflow to trigger if data comes in from the same column</description>

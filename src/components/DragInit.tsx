@@ -20,7 +20,7 @@ function Column({ listOfSortableItems, content, reorderAfterDrop, emptyData }: D
                 })
             ) : (
                 <DragCard reorderAfterDrop={reorderAfterDrop} item={undefined} index={0}>
-                    <div>{emptyData}</div>
+                    <div className={"drag-and-drop__empty-list"}>{emptyData}</div>
                 </DragCard>
             )}
         </div>
