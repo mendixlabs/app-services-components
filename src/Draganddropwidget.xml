@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Draganddropwidget</name>
     <description>My widget description</description>
-    <icon/>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALWSURBVHgB7Zo/aBNRHMe/sfZClCQlVFEzVESwm0JaF0FBdHCqi6OdnFxd1cXVSVenOikO1klQBMVNArZTXbSlREGrxEQpaWM1v5NL7y53zTXJ+73X/t5nSe5Pcu/3fe/35713qb8tIJg9EI4VAMKxAkA4RguwWFtHtbHhfl+qr7ufdOydX6o3A/f0Qsq0NEjG/FzbADXraG448e9IiO3c72GUAL0aEYZEHEknG9xGCOD1+lh2L7jRHgO83lJhPI2obmgdAdsZqqqesevTIBk/t9KIvW5cFlAFpcwoN0skwJvPqxg0i7VmK+KrC3pnj2Q6zkW5Q6IWXHhawU5j7frxRPfZUhiCoOEfTo0BFyiXyzE/zWO3MJIeChyLc4FwELQxAALxT59FCuCtLRAiBfAHQpEC5J1Ns/kn4Phfpk6PZ93vryurePihDk78mYBdgJsTBdw+XWgfT4/ncK6YwbVXX8FBeD7A6gJj2eGA8R4kQtTkhQNWAU6OOrHXpo7tBwdaC6FwGWoCrAI8+/Qr9tr7bw2oJmr/gFUAasCddz86zs8s1FkyQdTaIHsWIAFoeYrSIOXje3NVFuPjFke11AEzCzV3Xk7pT6fxxEAFoIdQr+adodZGxx+3p3XTbVl8oAKQ4U8uHWqlu3T74RT4yMdVLKwmodu+w0CDIM2yJh8v4/58tf1wKnJeXi7iwfmDyjdB/Gy1F+BHSYtuvF3piPYkxIupIpsI3ijshrLWkAAkhB9q1N0zozAJpd1BrjDxaDkQDHXW/VEoH4/z3xvuxopfhFuTBZgCi0NScCQRvMBE+Z8zIG4FWytIhIuzFcx+/O0eXz2RgwmwzwWuPP/iBshTB5JFadVoKYVJAHEuEMZzBd3YnSEIxwoA4VgBIBwrAISTqBI8nO79ffw49qWayKDZ9387joN+CLwoGf+SlLmUSiX0g40BEI6Yl6XjsC4A4VgBIBzxAvwD2a8bqjsAXdIAAAAASUVORK5CYII=</icon>
     <properties>
         <propertyGroup caption="General">
             <property key="uuid" type="string">
@@ -57,3 +57,4 @@
         </propertyGroup>
     </properties>
 </widget>
+
