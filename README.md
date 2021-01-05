@@ -75,16 +75,16 @@ We provide some pre-created actions that you should implement and configure.
     -   After importing the Commons File Find the Folder called `nanoflows` in the `draganddrop` folder. Use the
         nanoflow called `Same_Col_Drop_NF`. Copy it into your project and start setting it up.
 
-            -   Configure the incoming data to be that of your non-persistable data source you wrapped the widget in.
+        -   Configure the incoming data to be that of your non-persistable data source you wrapped the widget in.
 
             -   Configure the 3 Strings:
 
-                -   nonPersistableModelName - Model name of the Non Persistable Model (i.e:
+                -   `nonPersistableModelName` - Model name of the Non Persistable Model (i.e:
                     DragAndDropWidget.SimpleListState)
 
-                -   nonPersistableAttName - Attribute name of the Non Persistable Model (i.e: json)
+                -   `nonPersistableAttName` - Attribute name of the Non Persistable Model (i.e: json)
 
-                -   persistableOrderAtt - Attribute name used to 'sort' the Persistable Model (i.e: Order)
+                -   `persistableOrderAtt` - Attribute name used to 'sort' the Persistable Model (i.e: Order)
 
     -   Then copy over the Javascript Action in the folder `Javascript_Actions` called `Same_Col_Drop_JS` and configure
         the nanoflow to use it, by setting the incoming parameters to that that you created in the nano flow.
@@ -106,18 +106,18 @@ Is called by THAT widget when another widget drops an Object into it.
     -   After importing the Commons File Find the Folder called `nanoflows` in the `draganddrop` folder. Use the
         nanoflow called `Diff_Col_Drop_NF`. Copy it into your project and start setting it up.
 
-            -   Configure the incoming data to be that of your non-persistable data source you wrapped the widget in.
+        -   Configure the incoming data to be that of your non-persistable data source you wrapped the widget in.
 
             -   Configure the 4 Strings:
 
-                -   nonPersistableModelName - Model name of the Non Persistable Model (i.e:
+                -   `nonPersistableModelName` - Model name of the Non Persistable Model (i.e:
                     DragAndDropWidget.SimpleListState)
 
-                -   nonPersistableAttName - Attribute name of the Non Persistable Model (i.e: `json`)
+                -   `nonPersistableAttName` - Attribute name of the Non Persistable Model (i.e: `json`)
 
-                -   persistableOrderAtt - Attribute name used to 'sort' the Persistable Model (i.e: `Order`)
+                -   `persistableOrderAtt` - Attribute name used to 'sort' the Persistable Model (i.e: `Order`)
 
-                -   persistableAttName - Attribute name used to 'filter' the Persistable Model (i.e: `Status`)
+                -   `persistableAttName` - Attribute name used to 'filter' the Persistable Model (i.e: `Status`)
 
     -   Then copy over the Javascript Action in the folder `Javascript_Actions` called `Diff_Col_Drop_JS` and configure
         the nanoflow to use it, by setting the incoming parameters to that that you created in the nano flow.
