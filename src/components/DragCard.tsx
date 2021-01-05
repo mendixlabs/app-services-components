@@ -1,15 +1,14 @@
-import { createElement, useRef } from "react";
+import { createElement, useRef, ReactElement } from "react";
 import { useDrag, useDrop, DragObjectWithType, DragSourceMonitor } from "react-dnd";
 import classnames from "classnames";
 import { DragCardType, ListOfSortableItemsType } from "./types";
 
-const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems }: DragCardType) => {
+const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems }: DragCardType): ReactElement => {
     const ref = useRef<HTMLDivElement>(null);
 
     const findOrder = (hoverItem: any, monitor: DragSourceMonitor): number => {
-        let hoverIndex;
-        let dragIndex = hoverItem.index;
-        hoverIndex = index;
+        const hoverIndex = index;
+        const dragIndex = hoverItem.index;
 
         const hoverBoundingRect = ref.current?.getBoundingClientRect();
         const clientOffset = monitor.getClientOffset();
@@ -29,11 +28,11 @@ const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems
             // Dropped on the Bottom Halve of the Card
             if (hoverMiddleY < hoverClientY) {
                 // Dropped in Empty Col
-                if (hoverIndex == dragIndex && !listOfSortableItems) {
+                if (hoverIndex === dragIndex && !listOfSortableItems) {
                     return hoverIndex;
                 }
-                // @ts-ignore
-                if (!hoverIndex || hoverIndex == listOfSortableItems?.length - 1) {
+
+                if (!hoverIndex || hoverIndex === (listOfSortableItems as any)?.length - 1) {
                     return hoverIndex + 1;
                 }
                 return hoverIndex;

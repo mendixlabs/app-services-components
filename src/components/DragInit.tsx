@@ -1,14 +1,15 @@
-import { createElement } from "react";
+import { createElement, ReactElement } from "react";
 import DragCard from "./DragCard";
 import { DragListProps, ListOfSortableItemsType } from "./types";
 
-function Column({ listOfSortableItems, content, reorderAfterDrop, emptyData }: DragListProps) {
+function Column({ listOfSortableItems, content, reorderAfterDrop, emptyData }: DragListProps): ReactElement {
     return (
         <div className="app">
             {listOfSortableItems.length ? (
                 listOfSortableItems.map((fullItem: ListOfSortableItemsType, index: number) => {
                     return (
                         <DragCard
+                            key={index}
                             item={fullItem}
                             index={index}
                             reorderAfterDrop={reorderAfterDrop}

@@ -7,7 +7,7 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { DraganddropwidgetContainerProps } from "../typings/DraganddropwidgetProps";
 import { CompState, NewElementDraggedIn, ReorderAfterDropTypes } from "./components/types";
 
-import { is_touch_device, backendOptions } from "./utils";
+import { isTouchDevice, backendOptions } from "./utils";
 
 import "./ui/Draganddropwidget.css";
 
@@ -19,7 +19,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
         this.state = { listOfSortableItems: [] };
     }
 
-    componentDidUpdate(pP: DraganddropwidgetContainerProps) {
+    componentDidUpdate(pP: DraganddropwidgetContainerProps): void {
         const { listOfSortableItems } = this.state;
         const { incomingData } = this.props;
         if (
@@ -32,7 +32,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
             this.setMendixData();
         }
     }
-    setMendixData = () => {
+    setMendixData = (): void => {
         const orderList = this.props.incomingData.items?.reduce((a: any, c) => {
             return [...a, { id: c.id, item: c, uuid: this.props.uuid }];
         }, []);
@@ -41,13 +41,13 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
         });
     };
 
-    reorderAfterDrop = ({ currentItem, index }: ReorderAfterDropTypes) => {
+    reorderAfterDrop = ({ currentItem, index }: ReorderAfterDropTypes): void => {
         const { listOfSortableItems } = this.state;
         const { uuid, dropDataAttr, onDropAction, onDifferentColumDrop, dataSourceName, content } = this.props;
 
         if (uuid !== currentItem.item.uuid) {
-            // @ts-ignore
-            const modelToSaveFrom = content && content(currentItem?.item?.item).props.object.jsonData.objectType;
+            const modelToSaveFrom =
+                content && (content(currentItem?.item?.item) as any).props.object.jsonData.objectType;
 
             const settingsForSave: NewElementDraggedIn = {
                 modelToSaveFrom,
@@ -58,31 +58,24 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
                 comingFrom: currentItem.item.uuid
             };
             const listToMendix = listOfSortableItems;
-
             listToMendix.splice(index, 0, currentItem.item);
-
             const jsonString = JSON.stringify({ settingsForSave, listToMendix });
-
             dropDataAttr.setValue(jsonString);
-
             if (onDifferentColumDrop && onDifferentColumDrop.canExecute && !onDifferentColumDrop.isExecuting) {
                 onDifferentColumDrop.execute();
             }
         } else {
-            const movedItem = listOfSortableItems.find(item => item.id == currentItem.item.id);
+            const movedItem = listOfSortableItems.find(item => item.id === currentItem.item.id);
 
-            const removedItemList = listOfSortableItems.filter(item => item.id != currentItem.item.id);
-
-            movedItem && removedItemList.splice(index, 0, movedItem);
-
-            this.setState({ listOfSortableItems: removedItemList });
-
-            const jsonString = JSON.stringify(removedItemList);
-
-            dropDataAttr.setValue(jsonString);
-
-            if (onDropAction && onDropAction.canExecute && !onDropAction.isExecuting) {
-                onDropAction.execute();
+            const removedItemList = listOfSortableItems.filter(item => item.id !== currentItem.item.id);
+            if (movedItem) {
+                removedItemList.splice(index, 0, movedItem);
+                this.setState({ listOfSortableItems: removedItemList });
+                const jsonString = JSON.stringify(removedItemList);
+                dropDataAttr.setValue(jsonString);
+                if (onDropAction && onDropAction.canExecute && !onDropAction.isExecuting) {
+                    onDropAction.execute();
+                }
             }
         }
     };
@@ -91,7 +84,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
         const { listOfSortableItems } = this.state;
         const { content, emptyData } = this.props;
         if (listOfSortableItems) {
-            if (is_touch_device()) {
+            if (isTouchDevice()) {
                 return (
                     <DndProvider backend={TouchBackend} options={backendOptions}>
                         <DragInit

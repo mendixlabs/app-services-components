@@ -99,7 +99,7 @@ We provide some pre-created actions that you should implement and configure.
 
 ### Different Column Drop
 
-Is called by THAT widget when another widget drops an Object into it.
+Is called by THIS widget when THAT (another) widget drops an Object into it.
 
 -   Same Datasource _(Same Entity)_
 
