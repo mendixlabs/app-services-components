@@ -43,9 +43,9 @@ Some key features:
 The idea behind it:
 
 You wrap all the drag and droppable widgets into one containing dataview that is connected to a simple non persistable
-entity with one string attribute. This is used to manage state between the widgets. For every colum you want you
+entity with one string attribute. This is used to manage state between the widgets. For every column you want you
 implement one Widget and configure it as set out below. this will give you the ability to order horizontally inside a
-colum and vertically (drag between one widget and another).
+column and vertically (drag between one widget and another).
 
 <p align="center">
 <h3>Usage</h3>
