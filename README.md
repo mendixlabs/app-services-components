@@ -40,6 +40,7 @@
     <img  align="center" alt="headerIMG" src="./assets/2ds.gif" target="_blank" />
         <br>
         <p>2 Entities in Domain Model</p>
+        <hr>
 </p>
 
 Some key features:
@@ -115,18 +116,18 @@ Is called by THIS widget when THAT (another) widget drops an Object into it.
 
 ---
 
-    -   After importing the Commons File Find the Folder called `nanoflows` in the `draganddrop` folder. Use the
-        nanoflow called `Diff_Col_Drop_NF`. Copy it into your project and start setting it up.
+-   After importing the Commons File Find the Folder called `nanoflows` in the `draganddrop` folder. Use the nanoflow
+    called `Diff_Col_Drop_NF`. Copy it into your project and start setting it up.
 
-        -   Configure the incoming data to be that of your non-persistable data source you wrapped the widget in.
+    -   Configure the incoming data to be that of your non-persistable data source you wrapped the widget in.
 
-            -   Configure the 4 Strings:
+        -   Configure the 4 Strings:
 
-                -   `nonPersistableModelName` - Model name of the Non Persistable Model (i.e:
-                    DragAndDropWidget.SimpleListState)
-                -   `nonPersistableAttName` - Attribute name of the Non Persistable Model (i.e: `json`)
-                -   `persistableOrderAtt` - Attribute name used to 'sort' the Persistable Model (i.e: `Order`)
-                -   `persistableAttName` - Attribute name used to 'filter' the Persistable Model (i.e: `Status`)
+            -   `nonPersistableModelName` - Model name of the Non Persistable Model (i.e:
+                DragAndDropWidget.SimpleListState)
+            -   `nonPersistableAttName` - Attribute name of the Non Persistable Model (i.e: `json`)
+            -   `persistableOrderAtt` - Attribute name used to 'sort' the Persistable Model (i.e: `Order`)
+            -   `persistableAttName` - Attribute name used to 'filter' the Persistable Model (i.e: `Status`)
 
     -   Then copy over the Javascript Action in the folder `Javascript_Actions` called `Diff_Col_Drop_JS` and configure
         the nanoflow to use it, by setting the incoming parameters to that that you created in the nano flow.
