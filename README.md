@@ -70,8 +70,8 @@ column and vertically (drag between one widget and another).
 | Data Source Name      | `string`     | Text Name of the Data Source _(only used for different data sources)_                                                                                                                                                                                                                                                                                                                                                                                                          |
 | In Coming Data        | `datasource` | Specify the Data to display, usually a Micro- or Nano- Flow where the Mendix Dev Limits and sorts the Incoming data.                                                                                                                                                                                                                                                                                                                                                           |
 | Non Persistable Data  | `datasource` | The non persistable data entity you wrap all your widgets in. This is used as state in the widget                                                                                                                                                                                                                                                                                                                                                                              |
-| Same Column Drop      | `action`     | Microflow to trigger if data comes in from the same column                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Different Column Drop | `action`     | Microflow to trigger if data comes in from different column                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Same Column Drop      | `action`     | microflow to trigger if data comes in from the same column                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Different Column Drop | `action`     | microflow to trigger if data comes in from different column                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ## Column Drop Actions
 
@@ -163,11 +163,11 @@ into and sometimes the Widget you are dragging out of.
         **Note** Make sure to set the return object from the JS action to that of the other column (The Column dragged
         from (The object that is going to be deleted)).
 
-    -   Add a Call to a mircroflow after the JS action and call the `Delete` microflow.
+    -   Add a Call to a mircroflow after the JS action and call the `Delete` microflow .
 
-        -   This microflow will delete the object. Pass the retrun object from the Js function into this Microflow call.
+        -   This microflow will delete the object. Pass the retrun object from the Js function into this microflow call.
 
-        -   Inside the delete microflow conficure it to delete the passed down parameter and make sure to check the
+        -   Inside the delete microflow configure it to delete the passed down parameter and make sure to check the
             `refresh client` option.
 
 ## Styling
@@ -186,13 +186,13 @@ The Widget exposes 3 Classnames you can use to style the list items:
  <br>
  <h4>Web Look</h4>
  <img  align="center" alt="headerIMG" src="./assets/widgetToWidget.gif" target="_blank" />
- <h4>Incoming Data (Nano- or Microflow)</h4>
+ <h4>Incoming Data (Nano- or microflow )</h4>
  <img  align="center" alt="headerIMG" src="./assets/get_mf.png" target="_blank" />
- <h4>Create Non Persistable Data (Nano- or Microflow)</h4>
+ <h4>Create Non Persistable Data (Nano- or microflow )</h4>
  <img  align="center" alt="headerIMG" src="./assets/non_state.png" target="_blank" />
- <h4>Same Column Drop (Nanoflow)</h4>
+ <h4>Same Column Drop (nanoflow)</h4>
  <img  align="center" alt="headerIMG" src="./assets/Same_Col_Drop_NF.png" target="_blank" />
- <h4>Different Column Drop (Nanoflow)</h4>
+ <h4>Different Column Drop (nanoflow)</h4>
  <img  align="center" alt="headerIMG" src="./assets/Diff_Col_Drop_NF.png" target="_blank" />
 </p>
 
