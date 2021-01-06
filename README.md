@@ -1,6 +1,9 @@
 <h1 align="center">Drag and Drop Widget for Mendix</h1>
 
 <p align="center">
+    <img  align="center" alt="headerIMG" src="./assets/DragandDrop.png" target="_blank" />
+    <br>
+    <br>
    A Drag and Drop Widget for Mendix (with Touch Support for Mobile Devices)
     <br>
     <br>
@@ -26,17 +29,24 @@
 
 </p>
 <p align="center">
- <img  align="center" alt="headerIMG" src="./assets/simpleList.gif" target="_blank" />
-  <br>
- 
- <img  align="center" alt="headerIMG" src="./assets/widgetToWidget.gif" target="_blank" />
+    <img  align="center" alt="headerIMG" src="./assets/simpleList.gif" target="_blank" />
+        <br>
+        <p>Ordering List</p>
+        <br>
+    <img  align="center" alt="headerIMG" src="./assets/widgetToWidget.gif" target="_blank" />
+        <br>
+        <p>Enum Filtered List</p>
+        <br>
+    <img  align="center" alt="headerIMG" src="./assets/2ds.gif" target="_blank" />
+        <br>
+        <p>2 Entities in Domain Model</p>
 </p>
 
 Some key features:
 
 -   Sort a list.
 -   Drag from one List to another, using enum to divide between Lists.
--   Drag from one entity to another _(alpha)_
+-   Drag from one entity to another
 
 #### [Demo Here](https://widgetcommonsappservices-sandbox.mxapps.io/index.html?profile=Responsive)
 
@@ -56,7 +66,7 @@ column and vertically (drag between one widget and another).
 | Object list group     | List         | List of items to Show cards for                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | --------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | UUID/Status           | `string`     | If the attribute you are filtering on is an ENUM and all the data is coming from the same Data source (i.e same Entity in the domain model) use the same Enum here to give the widget context of what it is displaying. If how ever you are dragging and dropping between 2 different Data sources (Different Entities with data similar structures), this field must be an unique id. In either case this field will be unique to for every instance of the widgets you have. |
-| Data Source Name      | `string`     | Text Name of the Data Source ??\*\* Check if this is Still used.                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Data Source Name      | `string`     | Text Name of the Data Source _(only used for different data sources)_                                                                                                                                                                                                                                                                                                                                                                                                          |
 | In Coming Data        | `datasource` | Specify the Data to display, usually a Micro- or Nano- Flow where the Mendix Dev Limits and sorts the Incoming data.                                                                                                                                                                                                                                                                                                                                                           |
 | Non Persistable Data  | `datasource` | The non persistable data entity you wrap all your widgets in. This is used as state in the widget                                                                                                                                                                                                                                                                                                                                                                              |
 | Same Column Drop      | `action`     | Microflow to trigger if data comes in from the same column                                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -66,7 +76,7 @@ column and vertically (drag between one widget and another).
 
 We provide some pre-created actions that you should implement and configure.
 
-**TO-DO** :: Show where to download it :: **TO-DO**
+You can download it [_here_]()
 
 ### Same Column Drop
 
@@ -81,9 +91,7 @@ We provide some pre-created actions that you should implement and configure.
 
                 -   `nonPersistableModelName` - Model name of the Non Persistable Model (i.e:
                     DragAndDropWidget.SimpleListState)
-
                 -   `nonPersistableAttName` - Attribute name of the Non Persistable Model (i.e: json)
-
                 -   `persistableOrderAtt` - Attribute name used to 'sort' the Persistable Model (i.e: Order)
 
     -   Then copy over the Javascript Action in the folder `Javascript_Actions` called `Same_Col_Drop_JS` and configure
@@ -101,7 +109,11 @@ We provide some pre-created actions that you should implement and configure.
 
 Is called by THIS widget when THAT (another) widget drops an Object into it.
 
--   Same Datasource _(Same Entity)_
+---
+
+#### Same Datasource _(Same Entity)_
+
+---
 
     -   After importing the Commons File Find the Folder called `nanoflows` in the `draganddrop` folder. Use the
         nanoflow called `Diff_Col_Drop_NF`. Copy it into your project and start setting it up.
@@ -112,29 +124,57 @@ Is called by THIS widget when THAT (another) widget drops an Object into it.
 
                 -   `nonPersistableModelName` - Model name of the Non Persistable Model (i.e:
                     DragAndDropWidget.SimpleListState)
-
                 -   `nonPersistableAttName` - Attribute name of the Non Persistable Model (i.e: `json`)
-
                 -   `persistableOrderAtt` - Attribute name used to 'sort' the Persistable Model (i.e: `Order`)
-
                 -   `persistableAttName` - Attribute name used to 'filter' the Persistable Model (i.e: `Status`)
 
     -   Then copy over the Javascript Action in the folder `Javascript_Actions` called `Diff_Col_Drop_JS` and configure
         the nanoflow to use it, by setting the incoming parameters to that that you created in the nano flow.
 
-*   Different Datasource _(Different Entity)_
+---
 
-    This feature is currently in alpha stages. but there is a working demo and will be documented when there is more
-    confedince in this feature.
+#### Different Datasource _(Different Entity)_
+
+---
+
+**NOTE - This Feature Currently only works for 2 widgets at one time (2 Draggable Columns)**
+
+Here you can drag an item from one column to another, the said Nano- & Micro- flows will reorder the list, create the
+entity in the new list and then delete it form the the old list.
+
+Here is gets tricky and you must keep track of naming your flows as at some point you target the Widget you are dragging
+into and sometimes the Widget you are dragging out of.
+
+-   After importing the Commons File Find the Folder called `nanoflows` in the `draganddrop` folder. Use the nanoflow
+    called `Diff_Col_Drop_Diff_Ds_NF`. Copy it into your project and start setting it up. (Same as the rest)
+
+-   Configure the incoming data to be that of your non-persistable data source you wrapped the widget in.
+
+    -   Configure the 3 Strings:
+
+        -   `nonPersistableModelName` - Model name of the Non Persistable Model (i.e: DragAndDropWidget.SimpleListState)
+        -   `nonPersistableAttName` - Attribute name of the Non Persistable Model (i.e: `json`)
+        -   `persistableOrderAtt` - Attribute name used to 'sort' the Persistable Model (i.e: `Order`)
+
+    -   Then copy over the Javascript Action in the folder `Javascript_Actions` called `Diff_Col_Drop_Diff_Ds_JS` and
+        configure the nanoflow to use it, by setting the incoming parameters to that that you created in the nano flow.
+
+        **Note** Make sure to set the return object from the JS action to that of the other column (The Column dragged
+        from (The object that is going to be deleted)).
+
+    -   Add a Call to a mircroflow after the JS action and call the `Delete` microflow.
+
+        -   This microflow will delete the object. Pass the retrun object from the Js function into this Microflow call.
+
+        -   Inside the delete microflow conficure it to delete the passed down parameter and make sure to check the
+            `refresh client` option.
 
 ## Styling
 
 The Widget exposes 3 Classnames you can use to style the list items:
 
 -   `drag-and-drop__is-over` : Classname added when draggable item is hovering over this item
-
 -   `drag-and-drop__is-dragging` : Classname added to draggable item
-
 -   `drag-and-drop__empty-list` : Classname added to an Empty Widget _(no data in column)_
 
 ## Screenshots
@@ -154,3 +194,8 @@ The Widget exposes 3 Classnames you can use to style the list items:
  <h4>Different Column Drop (Nanoflow)</h4>
  <img  align="center" alt="headerIMG" src="./assets/Diff_Col_Drop_NF.png" target="_blank" />
 </p>
+
+## Issues || Track Features
+
+Add issues to [project](https://github.com/ahwelgemoed/drag-and-drop-mendix-widget/projects/1?add_cards_query=is%3Aopen)
+board or open an GH issue.
