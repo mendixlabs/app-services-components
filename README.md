@@ -36,17 +36,19 @@ You can track current status and add feature requests on the
 
 <h2>Examples</h2>
 
-<p align="center">Add a Date</p>
-<p align="center">
+Add a Date
+
  <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/SaveDate.gif" target="_blank" />
-</p>
-<p align="center">Swipe Down for More</p>
-<p align="center">
+
+<p>Swipe Down for More</p>
+
  <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/SwipeDown.gif" target="_blank" />
-</p>
-<p align="center">Display Modes</p>
+
+<p>Display Modes</p>
+<p>Light</p>
  <a href="#">
  <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Light.png" target="_blank" /></a>
+<p>Dark</p>
   <a href="#">
  <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Dark.png" target="_blank" /></a>
 
@@ -63,9 +65,7 @@ The Idea at a higher level :
 
 <h3>Data</h3>
 
-<p align="center">
  <img  align="center"  width="450"  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Data.png" target="_blank" />
-</p>
 
 |                | Type        | Info                                                                                                                                                       |
 | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -79,9 +79,7 @@ The Idea at a higher level :
 
 <h3>Settings</h3>
 
-<p align="center">
  <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Settings.png" target="_blank" />
-</p>
 
 |                             | Type    | Info                                                                                                                                                       |
 | --------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -99,9 +97,7 @@ The Idea at a higher level :
 
 <h3>Appearance</h3>
 
-<p align="center">
  <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Appearance.png" target="_blank" />
-</p>
 
 |                          | Type   | Info                                     |
 | ------------------------ | ------ | ---------------------------------------- |
@@ -111,11 +107,12 @@ The Idea at a higher level :
 
 <h3>Screenshots</h3>
 
-<p align="center">
+ <p align="center">Add Date Page</p>
  <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/add-date-screen.png" target="_blank" />
  <br>
+ <p align="center">On Press Date</p>
  <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/on-Press-Date.png" target="_blank" />
  <br>
+ <p align="center">Create State</p>
  <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/create_state.png" target="_blank" />
  <br>
-</p>
