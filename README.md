@@ -71,7 +71,7 @@ The Idea at a higher level :
 | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Incoming Dates | Data Source | List of Dates to Display                                                                                                                                   |
 | Date           | DateTime    | Attribute in Date Source that is of Type Date                                                                                                              |
-| Is Active Date | Boolean     | If `false` the date will be greyed (Coming from data Model)out                                                                                             |
+| Is Active Date | Boolean     | If `false` the date will be greyed (Coming from data Model)                                                                                                |
 | Volatile Date  | DateTime    | Non Persistable Date that the Widget can Change and Mendix Developer can Observe                                                                           |
 | OnClick        | Action      | Action to Happen when the User Clicks on the Date - Usually a Nano Flow used to Open Page to either Add New Date or Display all entries for selected date. |
 
@@ -108,3 +108,14 @@ The Idea at a higher level :
 | Selected Date Color      | String | Custom Background Color of Selected Date |
 | Selected Text Date Color | String | Custom Color of Selected Text Date       |
 | Dot Date Color           | String | Custom color for Dot                     |
+
+<h3>Screenshots</h3>
+
+<p align="center">
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/add-date-screen.png" target="_blank" />
+ <br>
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/on-Press-Date.png" target="_blank" />
+ <br>
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/create_state.png" target="_blank" />
+ <br>
+</p>
