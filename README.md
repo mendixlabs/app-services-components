@@ -107,12 +107,13 @@ The Idea at a higher level :
 
 <h3>Screenshots</h3>
 
- <p align="center">Add Date Page</p>
+ <p >Add Date Page</p>
  <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/add-date-screen.png" target="_blank" />
  <br>
- <p align="center">On Press Date</p>
+ <p>On Press Date</p>
  <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/on-Press-Date.png" target="_blank" />
  <br>
- <p align="center">Create State</p>
+ <p>Create State</p>
+
  <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/create_state.png" target="_blank" />
  <br>
