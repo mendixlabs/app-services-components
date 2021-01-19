@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.radiobuttonnative.Radiobuttonnative" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Native"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Radiobuttonnative</name>
+    <description>My widget description</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="yourName" type="string" required="false">
+                <caption>Name</caption>
+                <description>Enter your name</description>
+            </property>
+
+            <property key="enumAttribute" type="attribute" required="false">
+                <caption>Enumeration</caption>
+                <description/>
+                <attributeTypes>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>
+            <property key="boolAttribute" type="attribute" required="false">
+                <caption>boolAttribute</caption>
+                <description/>
+                <attributeTypes>
+                    <attributeType name="Boolean"/>
+                </attributeTypes>
+            </property>
+            
+            <property key="booleanNames" type="object" isList="true" required="false">
+            <caption>Names of Boolean</caption>
+            <description/>
+            <properties>
+                <propertyGroup caption="Object list group">
+                    <property key="booleanValue" type="boolean" defaultValue="true">
+                        <caption>Boolean Value</caption>
+                        <description></description>
+                    </property>
+                    <property key="booleanName" type="string">
+                        <caption>Boolean Name</caption>
+                        <description></description>
+                    </property>
+                </propertyGroup>
+            </properties>
+        </property>
+        </propertyGroup>
+    </properties>
+</widget>
