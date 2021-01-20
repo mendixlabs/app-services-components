@@ -8,11 +8,7 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-            <property key="yourName" type="string" required="false">
-                <caption>Name</caption>
-                <description>Enter your name</description>
-            </property>
-
+        
             <property key="enumAttribute" type="attribute" required="false">
                 <caption>Enumeration</caption>
                 <description/>
@@ -44,6 +40,42 @@
                 </propertyGroup>
             </properties>
         </property>
+
+        <property key="formHorizontal" type="boolean" defaultValue="true">
+            <caption>formHorizontal</caption>
+            <description>formHorizontal</description>
+        </property>
+        <property key="labelHorizontal" type="boolean" defaultValue="true">
+            <caption>labelHorizontal</caption>
+            <description>labelHorizontal</description>
+        </property>
+
+           <property key="buttonInnerColor" type="string" required="false">
+                <caption>buttonInnerColor</caption>
+                <description></description>
+            </property>
+
+           <property key="buttonOuterColor" type="string" required="false">
+                <caption>buttonOuterColor</caption>
+                <description></description>
+            </property>
+           <property key="buttonSize" type="string" required="false">
+                <caption>buttonSize</caption>
+                <description></description>
+            </property>
+           <property key="buttonOuterSize" type="string" required="false">
+                <caption>buttonOuterSize</caption>
+                <description></description>
+            </property>
+           <property key="labelFontSize" type="string" required="false">
+                <caption>labelFontSize</caption>
+                <description></description>
+            </property>
+           <property key="labelColor" type="string" required="false">
+                <caption>labelColor</caption>
+                <description></description>
+            </property>
+
         </propertyGroup>
     </properties>
 </widget>

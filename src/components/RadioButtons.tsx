@@ -1,65 +1,55 @@
-import { createElement, Fragment, FunctionComponent, useState, useEffect } from "react";
-import { Text } from "react-native";
+import { createElement, Fragment, FunctionComponent } from "react";
 
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from "react-native-simple-radio-button";
 
-type CardProps = {
-    boolAttribute?: any;
-    booleanNames?: any;
-};
-type RadioButtonProps = {
-    label: string;
-    value: number | string;
-};
+import { RadioButtonProps, ButtonOptions } from "../types";
 
-const RadioButtons: FunctionComponent<CardProps> = ({ boolAttribute, booleanNames }) => {
-    useEffect(() => {
-        if (boolAttribute.status === "available") {
-            setRadioActiveState(boolAttribute.value);
-
-            const q = boolAttribute.universe.reduce((a: any, c: any) => {
-                const foundBooleanName = booleanNames.find((e: any) => e.booleanValue === c);
-                return [...a, { label: foundBooleanName ? foundBooleanName.booleanName : c, value: c }];
-            }, []);
-            setBooleanButtonValues(q);
-        }
-    }, [boolAttribute]);
-
-    const [booleanButtonValues, setBooleanButtonValues] = useState<RadioButtonProps[]>([]);
-    const [stateS, setRadioActiveState] = useState<any>(0);
-
-    const onButtonPress = (value: any) => {
-        setRadioActiveState(value); // This will set Local State to What User Selecte - But If Something goes wrong the UseEffect Should revert and correlate with what is in the DB
-        boolAttribute.setValue(value);
+const RadioButtons: FunctionComponent<RadioButtonProps> = ({
+    labelHorizontal,
+    formHorizontal,
+    buttonOptions,
+    defaultValue,
+    onPress,
+    buttonSize,
+    labelColor,
+    labelFontSize,
+    buttonOuterSize,
+    buttonOuterColor,
+    buttonInnerColor
+}) => {
+    const onButtonPress = (value: boolean | string): void => {
+        onPress(value);
     };
+    const buttonSizeChecked = buttonSize ? +buttonSize : 12;
+    const labelColorChecked = labelColor ? labelColor : "#000";
+    const labelFontSizeChecked = labelFontSize ? +labelFontSize : 12;
+    const buttonInnerColorChecked = buttonInnerColor ? buttonInnerColor : "#000";
+    const buttonOuterColorChecked = buttonOuterColor ? buttonOuterColor : "#000";
+    const buttonOuterSizeChecked = buttonOuterSize ? +buttonOuterSize : (buttonSizeChecked as number) + 8;
     return (
         <Fragment>
-            <Text>Boolean</Text>
-            <RadioForm formHorizontal={true} animation={true}>
-                {/* To create radio buttons, loop through your array of options */}
-                {booleanButtonValues.map((obj, i) => (
-                    <RadioButton labelHorizontal={true} key={i}>
-                        {/*  You can set RadioButtonLabel before RadioButtonInput */}
+            <RadioForm formHorizontal={formHorizontal}>
+                {buttonOptions.map((obj: ButtonOptions, i: number) => (
+                    <RadioButton labelHorizontal={labelHorizontal} key={i}>
                         <RadioButtonInput
                             obj={obj}
                             index={i}
-                            isSelected={stateS === obj.value}
-                            onPress={value => onButtonPress(value)}
-                            //   borderWidth={1}
-                            buttonInnerColor={"#e74c3c"}
-                            //   buttonOuterColor={this.state.value3Index === i ? '#2196f3' : '#000'}
-                            buttonSize={12}
-                            buttonOuterSize={16}
                             buttonStyle={{}}
+                            buttonSize={buttonSizeChecked}
                             buttonWrapStyle={{ marginLeft: 10 }}
+                            isSelected={defaultValue === obj.value}
+                            onPress={value => onButtonPress(value)}
+                            buttonOuterSize={buttonOuterSizeChecked}
+                            buttonInnerColor={buttonInnerColorChecked}
+                            buttonOuterColor={buttonOuterColorChecked}
                         />
                         <RadioButtonLabel
                             obj={obj}
                             index={i}
-                            labelHorizontal={true}
-                            onPress={value => onButtonPress(value)}
-                            labelStyle={{ fontSize: 12, color: "#2ecc71" }}
                             labelWrapStyle={{}}
+                            labelHorizontal={labelHorizontal}
+                            onPress={value => onButtonPress(value)}
+                            labelStyle={{ fontSize: labelFontSizeChecked, color: labelColorChecked }}
                         />
                     </RadioButton>
                 ))}

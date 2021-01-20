@@ -18,17 +18,31 @@ export interface BooleanNamesPreviewType {
 export interface RadiobuttonnativeProps<Style> {
     name: string;
     style: Style[];
-    yourName: string;
     enumAttribute?: EditableValue<string>;
     boolAttribute?: EditableValue<boolean>;
     booleanNames: BooleanNamesType[];
+    formHorizontal: boolean;
+    labelHorizontal: boolean;
+    buttonInnerColor: string;
+    buttonOuterColor: string;
+    buttonSize: string;
+    buttonOuterSize: string;
+    labelFontSize: string;
+    labelColor: string;
 }
 
 export interface RadiobuttonnativePreviewProps {
     class: string;
     style: string;
-    yourName: string;
     enumAttribute: string;
     boolAttribute: string;
     booleanNames: BooleanNamesPreviewType[];
+    formHorizontal: boolean;
+    labelHorizontal: boolean;
+    buttonInnerColor: string;
+    buttonOuterColor: string;
+    buttonSize: string;
+    buttonOuterSize: string;
+    labelFontSize: string;
+    labelColor: string;
 }
