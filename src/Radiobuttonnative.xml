@@ -5,74 +5,90 @@
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Radiobuttonnative</name>
     <description>My widget description</description>
-    <icon/>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQ/SURBVHgB7ZvNa1NZGMafm8+2adM0SRfKMMMsXMzAOIv5oLOYrcWNG0X/AHWp4F4FcS3+AeLKlehacOFGEQV3CorgRhDFamuTtGnSfGh/R46NNdVEPefKvXngwqW5F+77nPe873Oecxq83YBijIRijhEBijlGBCjmSCkkrK+va3V1Vc1mUzSiIAiUTqc1MTGh8fFx+ULguw12Oh0tLy/r9WpTV5629bDS1bP6+0/YsyOp+Z0p/TKVUqlUUjKZlGt4JYDgFxcX9WCppaN3Gx8C70U+HejEbxkd2ZUxJKRSbpPU6xSo1Wp6Wmvp0K2Gqq3+vPP3M/eb5v5osKTZ2VkzPVzBWxFk9NfW1j4bfC/OP1rXm0Zb9XpdLuGNgJWVFd193emb9hb7fs19uIeki09aajQacglvBLTbbd151dn295N/F3V17w5TAC0eVt6a91wiVB1wbHdBhWzCBH/636IO33i5USM2A662uup2u3IJb0WQQkaFtyDw438WdOqforkn+EuPax+9k08nlEi4HSNvGZDJZDRX3uzry82u9l97Ye7P3lv6JHgwvzNp3nMJbzqAVF5YWNDBm2umGFrsLmV1f7H5yfM/TSR0e35c09PTRh26grcMIJVzuZzO/ZXZCG5zKvQLnqlyYS5rRt9l8Oa75BFTU1PaVcrp8v9jOvBz//IzV06Y3/8oplUoFOQaQRiWGIoQXfCs3tX15x3T8xn136cT+m82qWw2q5mZGacK0CIIyxO0ypBVoV0NovsJnssXgpEpGnOMCFDMEZolBig/FEFEEjqBIujDBepFKARYW4zgqf4EDwkQgi+IYPLlC3rvArS+SqViAp2cnPyo5UEMGoFnEE387hpeCWDE8QQJjAC3Q6vVMs/l8/loSWHS/kvBA7IDGUymkBUu4Y0A0ppkG3REx8bGzGKIvQOX8EYAGyAENEyVpz5ExhMklYf1+CEsMlPgR4U3Akj9YUeTrkFBdAlvBDCf7UbooOB511tj3ghA2aH6EDqDwHoFX2qZ3wqvNYDeTlvDDfocCBwNgGZwvTYIRQojiMgINEGv7U2NgCCuQQTT90AojlCv5t+6GIKQrWsElwjVEoMI9v5sdyB410VvK0aeoGKOEQGKOULzBCk9HH+xniCwdphPXzCUIogQ4iJQ2p3dAoMMLjQCGiByx+QACg+Nz7Z3v15vj9IBH2cFvdYARp3gCWw7oUPA5XLZZAWK0TW8GiKov0H0PcqwWCwac5Qp4RJePUECH9QT5FlqQWQ8QUYSo3MY0BUikwH2DMAwYF3g+picNwII/msaTmSOyZHOFLVhQN2IjCVG27NCZxCQLbRM15ukXg9KQkK1Wh1oKljvMFJ7g3iCFDWU3nYWOeRAEusEBJNrhPYvM1bzW7eYz6BGoBYpfByTc70nAEJzhBhh9v16j8kRMNOEFaGPM4JgZIkp5hgRoJjjHfM7PWdcfz1eAAAAAElFTkSuQmCC
+    </icon>
     <properties>
-        <propertyGroup caption="General">
-        
-            <property key="enumAttribute" type="attribute" required="false">
-                <caption>Enumeration</caption>
-                <description/>
-                <attributeTypes>
-                    <attributeType name="Enum"/>
-                </attributeTypes>
-            </property>
-            <property key="boolAttribute" type="attribute" required="false">
-                <caption>boolAttribute</caption>
-                <description/>
-                <attributeTypes>
-                    <attributeType name="Boolean"/>
-                </attributeTypes>
-            </property>
-            
-            <property key="booleanNames" type="object" isList="true" required="false">
-            <caption>Names of Boolean</caption>
-            <description/>
-            <properties>
-                <propertyGroup caption="Object list group">
-                    <property key="booleanValue" type="boolean" defaultValue="true">
-                        <caption>Boolean Value</caption>
-                        <description></description>
-                    </property>
-                    <property key="booleanName" type="string">
-                        <caption>Boolean Name</caption>
-                        <description></description>
-                    </property>
-                </propertyGroup>
-            </properties>
-        </property>
+        <propertyGroup caption="Data">
+            <propertyGroup caption="Boolean Data">
 
-        <property key="formHorizontal" type="boolean" defaultValue="true">
-            <caption>formHorizontal</caption>
-            <description>formHorizontal</description>
-        </property>
-        <property key="labelHorizontal" type="boolean" defaultValue="true">
-            <caption>labelHorizontal</caption>
-            <description>labelHorizontal</description>
-        </property>
+                <property key="boolAttribute" type="attribute" required="false">
+                    <caption>Boolean Attribute</caption>
+                    <description/>
+                    <attributeTypes>
+                        <attributeType name="Boolean"/>
+                    </attributeTypes>
+                </property>
+
+                <property key="booleanNames" type="object" isList="true" required="false">
+                    <caption>Names of Boolean</caption>
+                    <description/>
+                    <properties>
+                        <propertyGroup caption="Object list group">
+                            <property key="booleanValue" type="boolean" defaultValue="true">
+                                <caption>Boolean Value</caption>
+                                <description></description>
+                            </property>
+                            <property key="booleanName" type="string">
+                                <caption>Boolean Name</caption>
+                                <description></description>
+                            </property>
+                        </propertyGroup>
+                    </properties>
+                </property>
+                
+            </propertyGroup>
+            <propertyGroup caption="Enum Data">
+
+                <property key="enumAttribute" type="attribute" required="false">
+                    <caption>Enumeration Attribute</caption>
+                    <description/>
+                    <attributeTypes>
+                        <attributeType name="Enum"/>
+                    </attributeTypes>
+                </property>
+
+            </propertyGroup>
+
+        </propertyGroup>
+
+        <propertyGroup caption="Styling">
+            <property key="formHorizontal" type="boolean" defaultValue="true">
+                <caption>Form Horizontal</caption>
+                <description>Should the form be display Horizontally?</description>
+            </property>
+
+            <property key="labelHorizontal" type="boolean" defaultValue="true">
+                <caption>Label Horizontal</caption>
+                <description>Should the label be display Horizontally?</description>
+            </property>
 
            <property key="buttonInnerColor" type="string" required="false">
-                <caption>buttonInnerColor</caption>
+                <caption>Button Inner Color</caption>
                 <description></description>
             </property>
 
            <property key="buttonOuterColor" type="string" required="false">
-                <caption>buttonOuterColor</caption>
+                <caption>Button Outer Color</caption>
                 <description></description>
             </property>
+
            <property key="buttonSize" type="string" required="false">
-                <caption>buttonSize</caption>
+                <caption>Button Size</caption>
                 <description></description>
             </property>
+
            <property key="buttonOuterSize" type="string" required="false">
-                <caption>buttonOuterSize</caption>
+                <caption>Button Outer Size</caption>
                 <description></description>
             </property>
+
            <property key="labelFontSize" type="string" required="false">
-                <caption>labelFontSize</caption>
+                <caption>Label Font Size</caption>
                 <description></description>
             </property>
+
            <property key="labelColor" type="string" required="false">
-                <caption>labelColor</caption>
+                <caption>Label Color</caption>
                 <description></description>
             </property>
 
