@@ -1,7 +1,7 @@
 <h1 align="center">Radio Button Widget for Mendix Native</h1>
 
 <p align="center">
-    <img  align="center" alt="headerIMG" src="./assets/RadioButton.png" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/RadioButton.png" target="_blank" />
     <br>
     <br>
    A Radio Button Widget for Mendix Native (Booleans || Enums)
@@ -28,22 +28,21 @@
   <br>
 
 </p>
-<img  align="center" alt="headerIMG" src="./assets/p1.png" target="_blank" />
-<img  align="center" alt="headerIMG" src="./assets/Boolean-Example.gif" target="_blank" />
-<img  align="center" alt="headerIMG" src="./assets/Enum-Example.gif" target="_blank" />
+<img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/p1.png" target="_blank" />
+<img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Boolean-Example.gif" target="_blank" />
+<img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Enum-Example.gif" target="_blank" />
 
 Some key features:
 
--   Sort a list.
--   Drag from one List to another, using enum to divide between Lists.
--   Drag from one entity to another
+-   Display Booleans with a "Yes" - "No" radio button option and not just a toggle.
+-   Display Enums as Radio button list.
 
 <p align="center">
 <h3>Data</h3>
  Boolean Setup
- <img  align="center" alt="headerIMG" src="./assets/Bool-Setup.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Bool-Setup.png" target="_blank" />
  Enum Setup
- <img  align="center" alt="headerIMG" src="./assets/Enum-Setup.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Enum-Setup.png" target="_blank" />
 </p>
 
 | Name                  | Type        | Desc.                                                                                                                                                                      |
@@ -54,7 +53,7 @@ Some key features:
 
 <p align="center">
 <h3>Styling</h3>
- <img  align="center" alt="headerIMG" src="./assets/Styling.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Styling.png" target="_blank" />
 </p>
 
 | Name               | Type      | Desc.                                  |
@@ -67,12 +66,6 @@ Some key features:
 | Button Outer Size  | `string`  | Size of Outer Button in `px`           |
 | Label Font Size    | `string`  | Font size of label in `px`             |
 | Label Color        | `string`  | Color of the label                     |
-
-## Screenshots
-
-<p align="center">
-
-</p>
 
 ## Issues || Track Features
 
