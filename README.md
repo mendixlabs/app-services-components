@@ -69,5 +69,5 @@ Some key features:
 
 ## Issues || Track Features
 
-Add issues to [project](https://github.com/ahwelgemoed/drag-and-drop-mendix-widget/projects/1?add_cards_query=is%3Aopen)
-board or open an GH issue.
+Add issues to [project](https://github.com/ahwelgemoed/radio-buttons-native-widget/projects/1?add_cards_query=is%3Aopen)
+board or open an GH [issue](https://github.com/ahwelgemoed/radio-buttons-native-widget/issues/new).
