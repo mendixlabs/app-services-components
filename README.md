@@ -1,7 +1,7 @@
-<h1 align="center">Radio Button Widget for Mendix Native</h1>
+<h1 >Radio Button Widget for Mendix Native</h1>
 
 <p align="center">
-    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/RadioButton.png" target="_blank" />
+    <img align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/RadioButton.png" target="_blank" />
     <br>
     <br>
    A Radio Button Widget for Mendix Native (Booleans || Enums)
@@ -28,21 +28,27 @@
   <br>
 
 </p>
-<img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/p1.png" target="_blank" />
-<img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Boolean-Example.gif" target="_blank" />
-<img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Enum-Example.gif" target="_blank" />
+<p >
+<img  height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/p1.png" target="_blank" />
+</p>
+<p >
+<img  height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Boolean-Example.gif" target="_blank" />
+<img  height='400' alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Enum-Example.gif" target="_blank" />
+</p>
 
 Some key features:
 
 -   Display Booleans with a "Yes" - "No" radio button option and not just a toggle.
 -   Display Enums as Radio button list.
 
-<p align="center">
 <h3>Data</h3>
  Boolean Setup
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Bool-Setup.png" target="_blank" />
+<p>
+ <img height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Bool-Setup.png" target="_blank" />
+</p>
  Enum Setup
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Enum-Setup.png" target="_blank" />
+<p>
+ <img height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Enum-Setup.png" target="_blank" />
 </p>
 
 | Name                  | Type        | Desc.                                                                                                                                                                      |
@@ -51,9 +57,9 @@ Some key features:
 | Names of Boolean      | `object`    | If you want to change the default names of the booleans - Add it in here, Select a `Boolean Value` (true or false) and a `Boolean Name` the name of the radio button label |
 | Enumeration Attribute | `attribute` | Select the Enum attribute coming from the wrapped Data view                                                                                                                |
 
-<p align="center">
+<p >
 <h3>Styling</h3>
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Styling.png" target="_blank" />
+ <img height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Styling.png" target="_blank" />
 </p>
 
 | Name               | Type      | Desc.                                  |
