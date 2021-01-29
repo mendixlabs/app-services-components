@@ -5,7 +5,7 @@ import RadioButtons from "./components/RadioButtons";
 import { Style } from "@mendix/pluggable-widgets-tools";
 
 import { RadiobuttonnativeProps } from "../typings/RadiobuttonnativeProps";
-import { RadioButtonOptionsEnum, ButtonOptions, RadioButtonMainState, EnumFormatterType } from "./types";
+import { RadioButtonOptionsEnum, ButtonOptions, RadioButtonMainState } from "./types";
 export interface CustomStyle extends Style {
     container: ViewStyle;
     label: TextStyle;
@@ -33,12 +33,9 @@ export class Radiobuttonnative extends Component<RadiobuttonnativeProps<CustomSt
     rationalizeEnumOptions = (): void => {
         const { enumAttribute } = this.props;
         if (enumAttribute && enumAttribute.universe) {
-            const enumFormatter = enumAttribute.formatter;
             const reducedOptions = enumAttribute.universe?.reduce((a: ButtonOptions[], c: string): ButtonOptions[] => {
-                const foundName = (enumFormatter as any)?.universe.find((x: EnumFormatterType): boolean => {
-                    return x.key === c;
-                });
-                return [...a, { label: foundName ? foundName.caption : c, value: c }];
+                const formattedName = this.props?.enumAttribute?.formatter.format(c);
+                return [...a, { label: formattedName ? formattedName : c, value: c }];
             }, []);
             this.setState({
                 buttonOptions: reducedOptions,
@@ -61,7 +58,17 @@ export class Radiobuttonnative extends Component<RadiobuttonnativeProps<CustomSt
             }
         }
         // Adds 2 way data binding
-        // console.log("pP", pP);
+        if (isBooleanRadioButton == RadioButtonOptionsEnum.Enum) {
+            if (enumAttribute && enumAttribute.status === "available") {
+                if (this.state.defaultValue !== enumAttribute.value) this.onPressEnum(enumAttribute.value as string);
+            }
+        }
+        if (isBooleanRadioButton == RadioButtonOptionsEnum.Bool) {
+            if (boolAttribute && boolAttribute.status === "available") {
+                if (this.state.defaultValue !== boolAttribute.value)
+                    this.onPressBoolean(boolAttribute.value as boolean);
+            }
+        }
     }
     onPressBoolean = (value: boolean): void => {
         const { boolAttribute } = this.props;
@@ -94,7 +101,6 @@ export class Radiobuttonnative extends Component<RadiobuttonnativeProps<CustomSt
             buttonInnerColor
         } = this.props;
         const { isBooleanRadioButton, buttonOptions, defaultValue } = this.state;
-        console.log("this.state", this.state);
         switch (isBooleanRadioButton) {
             case RadioButtonOptionsEnum.Loading:
                 return (
