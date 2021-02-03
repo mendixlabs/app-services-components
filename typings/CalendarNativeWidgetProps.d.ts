@@ -12,9 +12,11 @@ export type DarkModeOptionEnum = "SYSTEM" | "LIGHT" | "DARK";
 export interface CalendarNativeWidgetProps<Style> {
     name: string;
     style: Style[];
+    showUi: boolean;
+    showLogic: boolean;
     incomingDates?: ListValue;
     date: ListAttributeValue<Date>;
-    isActiveDate: ListAttributeValue<boolean>;
+    isActiveDate?: ListAttributeValue<boolean>;
     volatileDate?: EditableValue<Date>;
     onClick?: ActionValue;
     initialDate: number;
@@ -36,6 +38,8 @@ export interface CalendarNativeWidgetProps<Style> {
 export interface CalendarNativeWidgetPreviewProps {
     class: string;
     style: string;
+    showUi: boolean;
+    showLogic: boolean;
     incomingDates: {} | null;
     date: string;
     isActiveDate: string;

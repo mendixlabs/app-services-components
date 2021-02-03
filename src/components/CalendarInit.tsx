@@ -1,5 +1,5 @@
 import { createElement, Fragment, cloneElement, useState, useEffect, ReactElement } from "react";
-import { View, Button } from "react-native";
+import { View, Button, Text } from "react-native";
 import { Calendar, DateObject } from "react-native-calendars";
 import { Style } from "@mendix/pluggable-widgets-tools";
 import GestureRecognizer from "react-native-swipe-gestures";
@@ -15,7 +15,7 @@ import { witchTheme, DEFAULT_COLORS } from "../utils/theme";
 
 const DATE_FORMAT = "yyy-MM-dd";
 
-type ExcludedCalendarNativeWidgetProps = Omit<CalendarNativeWidgetProps<Style>, "name" | "style">;
+type ExcludedCalendarNativeWidgetProps = Omit<CalendarNativeWidgetProps<Style>, "name" | "style" | "showLogic">;
 
 enum DAYS_OF_THE_WEEK {
     SUNDAY = 0,
@@ -28,6 +28,7 @@ const CalendarInit = ({
     buttonText,
     startOfWeek,
     initialDate,
+    showUi,
     isActiveDate,
     volatileDate,
     propertyName,
@@ -109,14 +110,18 @@ const CalendarInit = ({
     };
     const _parseIncomingDates = () => {
         if (incomingDates) {
+            console.log("incomingDatessss", incomingDates);
             const destructedValues = incomingDates.items?.map((item: any) => {
                 const dateValue = date(item);
-                const isActiveDateValue = isActiveDate(item);
-                const formattedDate = format(new Date(dateValue.displayValue), DATE_FORMAT);
+                console.log("dateValue", dateValue);
+                // const isActiveDateValue = true;
+                const isActiveDateValue = isActiveDate ? isActiveDate(item) : true;
+                const formattedDate = format(dateValue.value as Date, DATE_FORMAT);
+                console.log("formattedDate", formattedDate);
                 return {
                     dateValue,
-                    isActiveDateValue,
-                    formattedDate
+                    formattedDate,
+                    isActiveDateValue
                 };
             });
             setRawInComingDates(destructedValues);
@@ -143,6 +148,7 @@ const CalendarInit = ({
             _parseIncomingDates();
         }
     };
+    console.log("rawInComingDates", rawInComingDates);
 
     const onDayPress = async (day: any) => {
         const dateObject = new Date(day.dateString);
@@ -202,6 +208,13 @@ const CalendarInit = ({
     const rendererForTheme = {
         theme: witchTheme(darkModeOption)
     };
+    if (!showUi) {
+        return (
+            <View>
+                <Text>No UI</Text>
+            </View>
+        );
+    }
     return (
         <View>
             {startDate && (
