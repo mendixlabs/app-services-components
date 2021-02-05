@@ -19,8 +19,6 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
     render(): ReactNode {
         const {
             date,
-            showUi,
-            showLogic,
             dotColor,
             buttonText,
             initialDate,
@@ -39,19 +37,11 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
             disableMonthChange,
             takeIsActiveIntoAccount
         } = this.props;
-        if (!showLogic) {
-            return (
-                <View>
-                    <Text>NO LOGIC</Text>
-                </View>
-            );
-        }
         return (
             <View>
                 {incomingDates && incomingDates.status === "available" ? (
                     <CalendarInit
                         date={date}
-                        showUi={showUi}
                         dotColor={dotColor}
                         buttonText={buttonText}
                         startOfWeek={startOfWeek}

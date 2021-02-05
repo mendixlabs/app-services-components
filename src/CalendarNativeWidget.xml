@@ -10,14 +10,7 @@
         <!-- DATA -->
         <propertyGroup caption="Data">
             <propertyGroup caption="Entries">
-                <property key="showUi" type="boolean" defaultValue="false">
-                    <caption>Show Ui (Test)</caption>
-                <description>If True Logic will Run and UI | If false No Ui but Logic will Run</description>
-                </property>
-                <property key="showLogic" type="boolean" defaultValue="true">
-                    <caption>Run Logic (Test)</caption>
-                    <description>If True Logic will Run | If false No Ui or Logic</description>
-                </property>
+               
                 <property key="incomingDates" type="datasource" isList="true" required="false">
                     <caption>Entries</caption>
                     <description>List of entry objects that are used to populate the calendar</description>
@@ -33,7 +26,7 @@
 
                 <property key="isActiveDate" type="attribute" dataSource="incomingDates" required="false">
                     <caption>Is Date Active</caption>
-                    <description>Used to show if date is active or not</description>
+                    <description>Used to show if date is active or not (Not Required | See Docs)</description>
                     <attributeTypes>
                         <attributeType name="Boolean"/>
                     </attributeTypes>
