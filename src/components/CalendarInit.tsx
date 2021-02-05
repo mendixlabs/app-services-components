@@ -42,6 +42,7 @@ const CalendarInit = ({
     disableMonthChange,
     takeIsActiveIntoAccount
 }: ExcludedCalendarNativeWidgetProps): ReactElement => {
+    const NOT_PROVIDED = "notProvided";
     const [weekends, setWeekends] = useState<any>();
     const [startDate, setStartDate] = useState<Date>();
     const [selected, setSelected] = useState<string>();
@@ -87,6 +88,16 @@ const CalendarInit = ({
             }
         }
     };
+    const isDateDisabled = (c: any) => {
+        if (c.isActiveDateValue === NOT_PROVIDED) {
+            return false;
+        }
+        if (takeIsActiveIntoAccount) {
+            return !c.isActiveDateValue.value;
+        } else {
+            return false;
+        }
+    };
     const _formatIncomingDates = async (destructedValues: any) => {
         if (destructedValues) {
             const formattedDates = await destructedValues?.reduce((a: any, c: any) => {
@@ -96,7 +107,7 @@ const CalendarInit = ({
                         ...a,
                         [c.formattedDate]: {
                             marked: true,
-                            disabled: takeIsActiveIntoAccount ? !c.isActiveDateValue.value : false,
+                            disabled: isDateDisabled(c),
                             dotColor: defaultDotColor
                         }
                     };
@@ -111,12 +122,12 @@ const CalendarInit = ({
         if (incomingDates) {
             const destructedValues = incomingDates.items?.map((item: any) => {
                 const dateValue = date(item);
-                const isActiveDateValue = isActiveDate(item);
-                const formattedDate = format(new Date(dateValue.displayValue), DATE_FORMAT);
+                const isActiveDateValue = isActiveDate ? isActiveDate(item) : NOT_PROVIDED;
+                const formattedDate = format(dateValue.value as Date, DATE_FORMAT);
                 return {
                     dateValue,
-                    isActiveDateValue,
-                    formattedDate
+                    formattedDate,
+                    isActiveDateValue
                 };
             });
             setRawInComingDates(destructedValues);
@@ -202,6 +213,7 @@ const CalendarInit = ({
     const rendererForTheme = {
         theme: witchTheme(darkModeOption)
     };
+
     return (
         <View>
             {startDate && (

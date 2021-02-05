@@ -1,5 +1,5 @@
 import { Component, ReactNode, createElement } from "react";
-import { TextStyle, ViewStyle, View } from "react-native";
+import { TextStyle, ViewStyle, View, Text } from "react-native";
 
 import { Style } from "@mendix/pluggable-widgets-tools";
 
@@ -12,6 +12,10 @@ export interface CustomStyle extends Style {
 }
 
 export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<CustomStyle>> {
+    componentDidUpdate(pP: CalendarNativeWidgetProps<CustomStyle>) {
+        console.log("pP", pP);
+        console.log("this.props", this.props);
+    }
     render(): ReactNode {
         const {
             date,
@@ -35,26 +39,30 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
         } = this.props;
         return (
             <View>
-                <CalendarInit
-                    date={date}
-                    dotColor={dotColor}
-                    buttonText={buttonText}
-                    startOfWeek={startOfWeek}
-                    initialDate={initialDate}
-                    isActiveDate={isActiveDate}
-                    volatileDate={volatileDate}
-                    propertyName={propertyName}
-                    selectedColor={selectedColor}
-                    incomingDates={incomingDates}
-                    darkModeOption={darkModeOption}
-                    activeSwipeDown={activeSwipeDown}
-                    disableWeekends={disableWeekends}
-                    disablePastDates={disablePastDates}
-                    selectedTextColor={selectedTextColor}
-                    autoTriggerAction={autoTriggerAction}
-                    disableMonthChange={disableMonthChange}
-                    takeIsActiveIntoAccount={takeIsActiveIntoAccount}
-                />
+                {incomingDates && incomingDates.status === "available" ? (
+                    <CalendarInit
+                        date={date}
+                        dotColor={dotColor}
+                        buttonText={buttonText}
+                        startOfWeek={startOfWeek}
+                        initialDate={initialDate}
+                        isActiveDate={isActiveDate}
+                        volatileDate={volatileDate}
+                        propertyName={propertyName}
+                        selectedColor={selectedColor}
+                        incomingDates={incomingDates}
+                        darkModeOption={darkModeOption}
+                        activeSwipeDown={activeSwipeDown}
+                        disableWeekends={disableWeekends}
+                        disablePastDates={disablePastDates}
+                        selectedTextColor={selectedTextColor}
+                        autoTriggerAction={autoTriggerAction}
+                        disableMonthChange={disableMonthChange}
+                        takeIsActiveIntoAccount={takeIsActiveIntoAccount}
+                    />
+                ) : (
+                    <Text>Loading</Text>
+                )}
             </View>
         );
     }

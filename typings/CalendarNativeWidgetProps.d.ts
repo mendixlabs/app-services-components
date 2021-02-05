@@ -14,7 +14,7 @@ export interface CalendarNativeWidgetProps<Style> {
     style: Style[];
     incomingDates?: ListValue;
     date: ListAttributeValue<Date>;
-    isActiveDate: ListAttributeValue<boolean>;
+    isActiveDate?: ListAttributeValue<boolean>;
     volatileDate?: EditableValue<Date>;
     onClick?: ActionValue;
     initialDate: number;
