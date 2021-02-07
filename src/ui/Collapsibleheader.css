@@ -1,0 +1,16 @@
+/*
+Place your custom CSS here
+*/
+.widget-hello-world {
+}
+
+.pageheader {
+    height: 100px;
+    background-color: rgb(210, 218, 218);
+    transition: all ease 1s;
+    padding: 20px;
+}
+.mystyle {
+    height: 50px;
+    background-color: rgb(169, 177, 177);
+}

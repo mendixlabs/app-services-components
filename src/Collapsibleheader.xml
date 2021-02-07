@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.collapsibleheader.collapsibleheader" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>collapsibleheader</name>
+    <description>My widget description</description>
+    <icon/>
+    <properties>
+       <propertyGroup caption="Data">
+            <propertyGroup caption="Layout">
+                <property key="pageLayout" type="boolean" defaultValue="true">
+                    <caption>Page Layout</caption>
+                    <description></description>
+                </property>
+                <property key="threshold" type="integer" defaultValue="1" required='true'>
+                    <caption>Threshold</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Page Layout Settings">
+                 <property type="string" key="scrollBodyClassName" required="false">
+                    <caption>Scroll Body Class Name</caption>
+                    <description></description>
+                </property>
+                 <property type="string" key="headerClassName" required="false">
+                    <caption>Header Class Name</caption>
+                    <description>Class Name You add To your Header to identify it(Unique)</description>
+                </property>
+                 <property type="string" key="collapseHeaderClassName" required="false">
+                    <caption>Collapse Header Class Name</caption>
+                    <description>Class Name The Widget adds To your Header to collapse it (Qnique)</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>
