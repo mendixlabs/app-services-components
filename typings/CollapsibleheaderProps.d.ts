@@ -11,7 +11,10 @@ export interface collapsibleheaderContainerProps {
     style?: CSSProperties;
     tabIndex: number;
     pageLayout: boolean;
+    smartCompensator: boolean;
     threshold: number;
+    expandOnLessThreshold: boolean;
+    animationSpeed: number;
     scrollBodyClassName: string;
     headerClassName: string;
     collapseHeaderClassName: string;
@@ -21,7 +24,10 @@ export interface collapsibleheaderPreviewProps {
     class: string;
     style: string;
     pageLayout: boolean;
+    smartCompensator: boolean;
     threshold: number | null;
+    expandOnLessThreshold: boolean;
+    animationSpeed: number | null;
     scrollBodyClassName: string;
     headerClassName: string;
     collapseHeaderClassName: string;

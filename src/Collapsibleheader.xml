@@ -13,8 +13,20 @@
                     <caption>Page Layout</caption>
                     <description></description>
                 </property>
+                <property key="smartCompensator" type="boolean" defaultValue="true">
+                    <caption>smartCompensator</caption>
+                    <description></description>
+                </property>
                 <property key="threshold" type="integer" defaultValue="1" required='true'>
                     <caption>Threshold</caption>
+                    <description></description>
+                </property>
+                 <property key="expandOnLessThreshold" type="boolean" defaultValue="false">
+                    <caption>expandOnThreshold</caption>
+                    <description></description>
+                </property>
+                <property key="animationSpeed" type="integer" defaultValue="1000" required='true'>
+                    <caption>For How Long You set your colapse animation in ms</caption>
                     <description></description>
                 </property>
             </propertyGroup>

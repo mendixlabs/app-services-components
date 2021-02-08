@@ -7,7 +7,7 @@
     "author": "Arno Welgemoed",
     "config": {
         "projectPath": "./tests/testProject/",
-        "mendixHost": "http://10.211.55.3:8080",
+        "mendixHost": "http://10.211.55.4:8080",
         "developmentPort": "3000"
     },
     "packagePath": "mendix",
