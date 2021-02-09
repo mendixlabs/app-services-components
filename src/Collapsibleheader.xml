@@ -5,31 +5,9 @@
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>collapsibleheader</name>
     <description>My widget description</description>
-    <icon/>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMCSURBVHgB7Zu9T1NRGMafln5IkNpICVETrS46tZOTRqMuTvoXwKSjDn5susiqC8ZJFnF0MPYPIFFxkYWyiDHSatREW+wngbbC9T7HXCHQhjL0fUnu+SVwDydn4Lw95/143tuA4wIfE4TPsQaAz1E1wOP5svnRRM0AX2otzBUbeP19BVn3qYajxKWX35xcteWUVtfMWIsAf0GYqYWqeY6dipknT8GbHyu4f/ogpFExQLmxjng0aK6BgwCSgyEzPjYYhjQqPoCbJ1MLNdydKZixxuaJehgsuadBE9/nASEocuX4gHv0Vf8FHSe4l7CpMBRhOCz72QmyDrg+/ROa2DAIn6NqAIbAdCIKTWwYhM8RT8NY9U1kK8jk6u74j5lLDUWRHo645fCQqQwlEb0CDHvjs79xIBI0WgA3TuaXGkYjqDTXjSZwIxWHGI4QE9mSE37yybn1ttBxzYP3S2YN10ohYoB8tekMT342G9wJGohrKZVJIOIEx2dL5th3I3k9OpswTym1WMQAc4XGf/1vM9QCXy0ub5unD/B0w14jYgA6uXYJz/OPVWTy9W3zdI5ehOg1YnkAr0C3xPfJpSfqiVA80gdNVPWoyYsj0MZWg/A51gAQYjdhrbwqpxKJGIAV3m5a4GyUSgklIgYYdbNAJj3dKsAslVOJCCQQMYBX3rIU3glvDbUBCUTyAHaDH55J4Nr0L/M3iyKvQ+zB08HNswh6cfmQmDAiKoiw8Lnz7l87/NyRfpw/3G/G2WLTXBHy9MIIrp4YgBTioiglsUxuGc8+1PC13jJzR/eHzaZ5VbaejF5jVWH4HFUD0ClKCR+dUDVAvtoSEz46Ya8AFEnGQuJefys2CsDnWANAEeb97foCkqgagJtnz0ATewWgiHYIJCphMO9mf94r8t7r8t6cNCqNkcxiHYHAhlLk1QPJNg3UXqNyBm+m46YzzE+dp4DfGxhT2DxRywS58dszRdcP9OGeK5Elld4aV+sN8hsioydjqDTX1DZPbC0An2NflMTeQO0a/gVabw+oquWgjQAAAABJRU5ErkJggg==</icon>
     <properties>
        <propertyGroup caption="Data">
-            <propertyGroup caption="Layout">
-                <property key="pageLayout" type="boolean" defaultValue="true">
-                    <caption>Page Layout</caption>
-                    <description></description>
-                </property>
-                <property key="smartCompensator" type="boolean" defaultValue="true">
-                    <caption>smartCompensator</caption>
-                    <description></description>
-                </property>
-                <property key="threshold" type="integer" defaultValue="1" required='true'>
-                    <caption>Threshold</caption>
-                    <description></description>
-                </property>
-                 <property key="expandOnLessThreshold" type="boolean" defaultValue="false">
-                    <caption>expandOnThreshold</caption>
-                    <description></description>
-                </property>
-                <property key="animationSpeed" type="integer" defaultValue="1000" required='true'>
-                    <caption>For How Long You set your colapse animation in ms</caption>
-                    <description></description>
-                </property>
-            </propertyGroup>
             <propertyGroup caption="Page Layout Settings">
                  <property type="string" key="scrollBodyClassName" required="false">
                     <caption>Scroll Body Class Name</caption>
@@ -43,13 +21,35 @@
                     <caption>Collapse Header Class Name</caption>
                     <description>Class Name The Widget adds To your Header to collapse it (Qnique)</description>
                 </property>
+                 <property key="threshold" type="integer" defaultValue="1" required='true'>
+                    <caption>Threshold</caption>
+                    <description></description>
+                </property>
+                 <property key="expandOnLessThreshold" type="boolean" defaultValue="false">
+                    <caption>Expand On Threshold</caption>
+                    <description></description>
+                </property>
+                 <property key="smartCompensator" type="boolean" defaultValue="true">
+                    <caption>Smart Compensator</caption>
+                    <description></description>
+                </property>
+                <property key="animationSpeed" type="integer" defaultValue="500" required='true'>
+                    <caption>Animation Speed (ms)</caption>
+                    <description></description>
+                </property>
                 <property type="string" key="reactOnClassName" required="false">
                     <caption>React On Class Name</caption>
                     <description>Class Name You add To your Header to identify it(Unique)</description>
                 </property>
                 <property type="string" key="reactOnClassNameToAdd" required="false">
-                    <caption>React On Class Name</caption>
+                    <caption>React Class Name to Add</caption>
                     <description>Class Name You add To your Header to identify it(Unique)</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Layout">
+                <property key="pageLayout" type="boolean" defaultValue="true">
+                    <caption>Page Layout</caption>
+                    <description></description>
                 </property>
             </propertyGroup>
         </propertyGroup>
