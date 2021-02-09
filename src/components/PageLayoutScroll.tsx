@@ -1,32 +1,29 @@
 import { createElement, ReactElement, useEffect } from "react";
 import { useMendixScroll } from "./useScroll";
-type PageLayoutScrollTypes = {
-    collapseHeaderClassName: string;
-    scrollBodyClassName: string;
-    headerClassName: string;
-    smartCompensator: boolean;
-    expandOnLessThreshold: boolean;
-    threshold: number;
-    animationSpeed: number | undefined;
-};
+import { PageLayoutScrollTypes } from "../types";
+
 const PageLayoutScroll = ({
-    collapseHeaderClassName,
+    threshold,
     animationSpeed,
-    scrollBodyClassName,
-    smartCompensator,
     headerClassName,
+    reactOnClassName,
+    smartCompensator,
+    scrollBodyClassName,
+    reactOnClassNameToAdd,
     expandOnLessThreshold,
-    threshold
+    collapseHeaderClassName
 }: PageLayoutScrollTypes): ReactElement => {
-    const [scrollY, scrollDirection] = useMendixScroll(
-        scrollBodyClassName,
-        headerClassName,
+    const [scrollY, scrollDirection] = useMendixScroll({
         threshold,
-        collapseHeaderClassName,
-        smartCompensator,
         animationSpeed,
-        expandOnLessThreshold
-    );
+        headerClassName,
+        smartCompensator,
+        reactOnClassName,
+        scrollBodyClassName,
+        expandOnLessThreshold,
+        reactOnClassNameToAdd,
+        collapseHeaderClassName
+    });
 
     useEffect(() => {}, [scrollDirection, scrollY]);
     return <div></div>;

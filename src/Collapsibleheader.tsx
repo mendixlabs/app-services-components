@@ -8,26 +8,30 @@ import "./ui/Collapsibleheader.css";
 export default class collapsibleheader extends Component<collapsibleheaderContainerProps> {
     render(): ReactNode {
         const {
-            pageLayout,
-            scrollBodyClassName,
-            headerClassName,
             threshold,
+            pageLayout,
             animationSpeed,
-            collapseHeaderClassName,
+            headerClassName,
+            smartCompensator,
+            reactOnClassName,
+            scrollBodyClassName,
+            reactOnClassNameToAdd,
             expandOnLessThreshold,
-            smartCompensator
+            collapseHeaderClassName
         } = this.props;
 
         if (pageLayout) {
             return (
                 <PageLayoutScroll
-                    collapseHeaderClassName={collapseHeaderClassName}
-                    expandOnLessThreshold={expandOnLessThreshold}
-                    scrollBodyClassName={scrollBodyClassName}
-                    smartCompensator={smartCompensator}
-                    headerClassName={headerClassName}
-                    animationSpeed={animationSpeed}
                     threshold={threshold}
+                    animationSpeed={animationSpeed}
+                    headerClassName={headerClassName}
+                    smartCompensator={smartCompensator}
+                    reactOnClassName={reactOnClassName}
+                    scrollBodyClassName={scrollBodyClassName}
+                    reactOnClassNameToAdd={reactOnClassNameToAdd}
+                    expandOnLessThreshold={expandOnLessThreshold}
+                    collapseHeaderClassName={collapseHeaderClassName}
                 />
             );
         }

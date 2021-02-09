@@ -1,8 +1,8 @@
 // https://gist.github.com/joshuacerbito/ea318a6a7ca4336e9fadb9ae5bbb87f4
 import { useState, useEffect, useRef } from "react";
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
-import { ScrollDirectionEnum, HeaderStatusEnum } from "../types";
+import { ScrollDirectionEnum, HeaderStatusEnum, PageLayoutScrollTypes } from "../types";
 
 // Gets unique Class Name and Finds First Scrollable Child
 export function getMendixScrollElement(scrollBodyClassName: string) {
@@ -24,19 +24,21 @@ function isScrollable(e: any) {
     return e.scrollHeight > e.clientHeight && ["scroll", "auto"].indexOf(getComputedStyle(e).overflowY) >= 0;
 }
 
-export function useMendixScroll(
-    scrollBodyClassName: string,
-    headerClassName: string,
-    threshold: number,
-    collapseHeaderClassName: string,
-    smartCompensator: boolean,
-    animationSpeed: number | undefined,
-    expandOnLessThreshold: boolean
-) {
+export function useMendixScroll({
+    threshold,
+    animationSpeed,
+    headerClassName,
+    smartCompensator,
+    reactOnClassName,
+    scrollBodyClassName,
+    reactOnClassNameToAdd,
+    expandOnLessThreshold,
+    collapseHeaderClassName
+}: PageLayoutScrollTypes) {
     const pageHeader = document.getElementsByClassName(headerClassName);
     const [scrollY, setScrollY] = useState<number | undefined>();
     const [changeInHeader, setChangeInHeader] = useState<number | undefined>();
-    const [headerStatus, setHeaderStatus] = useState<HeaderStatusEnum>();
+    const [headerStatus, setHeaderStatus] = useState<HeaderStatusEnum>(HeaderStatusEnum.Expanded);
     const [thresholdReached, setThresholdReached] = useState<boolean>(false);
     const [scrollDirection, setScrollDirection] = useState<ScrollDirectionEnum>();
     const lastScrollTopRef = useRef(0);
@@ -52,14 +54,15 @@ export function useMendixScroll(
         }
     };
 
-    const delay = 0;
-    // useEffect
+    const delay = 250;
     useEffect(() => {
+        console.log("hello");
+
         const scrollElement = getMendixScrollElement(scrollBodyClassName);
         if (scrollElement) {
             const initialScrollY = scrollElement?.scrollTop;
             setScrollY(initialScrollY);
-            scrollElement?.addEventListener("scroll", debounce(listener, delay));
+            scrollElement?.addEventListener("scroll", throttle(listener, delay));
             return () => scrollElement?.removeEventListener("scroll", listener);
         } else {
             console.error("getMendixScrollElement(scrollBodyClassName) - Did Not Return anything");
@@ -75,7 +78,8 @@ export function useMendixScroll(
                 if (scrollY > threshold) {
                     //&& !thresholdReached Fixes multi Page Issue
                     foundPageHeader.classList.add(collapseHeaderClassName);
-                    _smartCompensation(currentScrollHeight);
+                    _throttleSmartCompensation(currentScrollHeight, false);
+                    _classNamesToHide(true);
                     setThresholdReached(true);
                 }
             }
@@ -83,7 +87,8 @@ export function useMendixScroll(
                 if (scrollY && scrollY < threshold) {
                     //&& !thresholdReached Fixes multi Page Issue
                     foundPageHeader.classList.remove(collapseHeaderClassName);
-                    _smartCompensation(currentScrollHeight);
+                    _classNamesToHide(false);
+                    _throttleSmartCompensation(currentScrollHeight, false);
                     setThresholdReached(false);
                 }
             } else {
@@ -91,7 +96,8 @@ export function useMendixScroll(
                     const foundClassNameOnHeader = foundPageHeader.classList.value;
                     if (foundClassNameOnHeader.includes(collapseHeaderClassName)) {
                         foundPageHeader.classList.remove(collapseHeaderClassName);
-                        _smartCompensation(currentScrollHeight, true);
+                        _classNamesToHide(false);
+                        _throttleSmartCompensation(currentScrollHeight, true);
                         setThresholdReached(false);
                     }
                 }
@@ -106,6 +112,22 @@ export function useMendixScroll(
         }
         return undefined;
     };
+    const _classNamesToHide = (toAddClassName: boolean): void => {
+        if (reactOnClassName && reactOnClassNameToAdd) {
+            const foundClassNames = document.getElementsByClassName(reactOnClassName);
+            for (let index = 0; index < foundClassNames.length; index++) {
+                const element = foundClassNames[index];
+                if (toAddClassName) {
+                    element.classList.add(reactOnClassNameToAdd);
+                } else {
+                    element.classList.remove(reactOnClassNameToAdd);
+                }
+            }
+        }
+    };
+    var _throttleSmartCompensation = throttle(function(a: any, b: any): void {
+        _smartCompensation(a, b);
+    }, 1000);
 
     const _smartCompensation = (currentScrollHeight: number | undefined, noTimeout = false): void => {
         if (smartCompensator) {
@@ -120,6 +142,7 @@ export function useMendixScroll(
                         const changeInHeader = pageHeaderHeightBeforeScroll - pageHeaderHeightAfterScroll;
                         setChangeInHeader(changeInHeader);
                         setHeaderStatus(HeaderStatusEnum.Collapsed);
+
                         scrollElement?.setAttribute(
                             "style",
                             `height: ${currentScrollHeight +

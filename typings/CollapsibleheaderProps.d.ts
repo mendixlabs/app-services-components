@@ -18,6 +18,8 @@ export interface collapsibleheaderContainerProps {
     scrollBodyClassName: string;
     headerClassName: string;
     collapseHeaderClassName: string;
+    reactOnClassName: string;
+    reactOnClassNameToAdd: string;
 }
 
 export interface collapsibleheaderPreviewProps {
@@ -31,4 +33,6 @@ export interface collapsibleheaderPreviewProps {
     scrollBodyClassName: string;
     headerClassName: string;
     collapseHeaderClassName: string;
+    reactOnClassName: string;
+    reactOnClassNameToAdd: string;
 }

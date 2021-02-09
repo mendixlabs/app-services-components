@@ -43,6 +43,14 @@
                     <caption>Collapse Header Class Name</caption>
                     <description>Class Name The Widget adds To your Header to collapse it (Qnique)</description>
                 </property>
+                <property type="string" key="reactOnClassName" required="false">
+                    <caption>React On Class Name</caption>
+                    <description>Class Name You add To your Header to identify it(Unique)</description>
+                </property>
+                <property type="string" key="reactOnClassNameToAdd" required="false">
+                    <caption>React On Class Name</caption>
+                    <description>Class Name You add To your Header to identify it(Unique)</description>
+                </property>
             </propertyGroup>
         </propertyGroup>
     </properties>
