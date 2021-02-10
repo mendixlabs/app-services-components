@@ -156,6 +156,13 @@ export class NodeStore {
     @action
     setContext(obj?: mendix.lib.MxObject): void {
         this.debug("Store: setContext", obj);
+
+        if (this.contextObject === null || !obj || (this.contextObject && obj && this.contextObject.getGuid() !== obj.getGuid())) {
+            this.resetState = true;
+            this.calculateInitialParents = true;
+            this.rowObjects = [];
+        }
+
         if (
             this.contextObject !== null &&
             obj &&
@@ -212,13 +219,17 @@ export class NodeStore {
 
     @action
     setRowObjects(mxObjects: mendix.lib.MxObject[], level?: number, parent?: string | null): void {
-        this.debug("store: setRowObjects", mxObjects.length, level);
-        const currentRows: RowObject[] = level === -1 ? [] : [...this.rowObjects];
+        this.debug("store: setRowObjects", mxObjects.length, level, this.resetState);
+        let currentRows: RowObject[] = level === -1 ? [] : [...this.rowObjects];
         let initialState: TableState = { context: this.contextObject?.getGuid() || null, expanded: [], selected: [] };
 
         const objectGuids = mxObjects.map(obj => obj.getGuid());
         const treeMapping: { [key: string]: string } = {};
         const rootObjectGuids: string[] = [];
+
+        if (!this.contextObject) {
+            currentRows = [];
+        }
 
         // Calculate parents when loading a whole tree;
 
@@ -482,14 +493,21 @@ export class NodeStore {
             customID: "key"
         };
 
+        if (!this.contextObject) {
+            return [];
+        }
+
         try {
             const treeObjects = this.rowObjects.map(r => r.treeObject);
             const tree = arrayToTree(treeObjects, arrayToTreeOpts);
+            const filteredTree = tree.filter(treeEl => typeof treeEl._parent === "undefined" && !treeEl._parent);
 
             // When creating the tree, it can be possible to get orphaned children (a node that has a parent id, but parent removed).
             // We filter these top level elements from the tree, as they are no longer relevant
 
-            return tree.filter(treeEl => typeof treeEl._parent === "undefined" && !treeEl._parent);
+            this.debug("store: tree: ", filteredTree);
+
+            return filteredTree;
         } catch (error) {
             console.warn(error);
             return [];
