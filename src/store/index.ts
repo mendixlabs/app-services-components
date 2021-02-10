@@ -510,7 +510,7 @@ export class NodeStore {
             // When creating the tree, it can be possible to get orphaned children (a node that has a parent id, but parent removed).
             // We filter these top level elements from the tree, as they are no longer relevant
 
-            this.debug("store: tree: ", filteredTree);
+            // this.debug("store: tree: ", filteredTree);
 
             return filteredTree;
         } catch (error) {
