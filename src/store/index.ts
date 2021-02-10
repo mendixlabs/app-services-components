@@ -161,7 +161,11 @@ export class NodeStore {
     setContext(obj?: mendix.lib.MxObject): void {
         this.debug("Store: setContext", obj);
 
-        if (this.contextObject === null || !obj || (this.contextObject && obj && this.contextObject.getGuid() !== obj.getGuid())) {
+        if (
+            this.contextObject === null ||
+            !obj ||
+            (this.contextObject && obj && this.contextObject.getGuid() !== obj.getGuid())
+        ) {
             this.resetState = true;
             this.calculateInitialParents = true;
             this.rowObjects = [];
