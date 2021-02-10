@@ -1,11 +1,11 @@
 import { Component, ReactNode, createElement } from "react";
 import PageLayoutScroll from "./components/PageLayoutScroll";
 
-import { collapsibleheaderContainerProps } from "../typings/collapsibleheaderProps";
+import { CollapsibleheaderContainerProps } from "../typings/CollapsibleheaderProps";
 
 import "./ui/Collapsibleheader.css";
 
-export default class collapsibleheader extends Component<collapsibleheaderContainerProps> {
+export default class Collapsibleheader extends Component<CollapsibleheaderContainerProps> {
     render(): ReactNode {
         const {
             threshold,

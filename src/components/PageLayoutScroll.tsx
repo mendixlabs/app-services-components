@@ -1,4 +1,4 @@
-import { createElement, ReactElement, useEffect } from "react";
+import { createElement, ReactElement } from "react";
 import { useMendixScroll } from "./useScroll";
 import { PageLayoutScrollTypes } from "../types";
 
@@ -13,7 +13,7 @@ const PageLayoutScroll = ({
     expandOnLessThreshold,
     collapseHeaderClassName
 }: PageLayoutScrollTypes): ReactElement => {
-    const [scrollY, scrollDirection] = useMendixScroll({
+    useMendixScroll({
         threshold,
         animationSpeed,
         headerClassName,
@@ -25,7 +25,6 @@ const PageLayoutScroll = ({
         collapseHeaderClassName
     });
 
-    useEffect(() => {}, [scrollDirection, scrollY]);
     return <div></div>;
 };
 

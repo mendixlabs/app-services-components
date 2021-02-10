@@ -1,11 +1,11 @@
 /**
- * This file was generated from collapsibleheader.xml
+ * This file was generated from Collapsibleheader.xml
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
 
-export interface collapsibleheaderContainerProps {
+export interface CollapsibleheaderContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
@@ -21,7 +21,7 @@ export interface collapsibleheaderContainerProps {
     smartCompensator: boolean;
 }
 
-export interface collapsibleheaderPreviewProps {
+export interface CollapsibleheaderPreviewProps {
     class: string;
     style: string;
     headerClassName: string;
