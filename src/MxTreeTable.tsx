@@ -133,6 +133,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps> {
             validColumns: this.columnPropsValid,
             selectFirstOnSingle: this.props.selectSelectFirstOnSingle && this.props.selectMode === "single",
             columns,
+            loadScenario: this.props.loadScenario,
             convertMxObjectToRow: this.convertMxObjectToRow,
             childLoader: this.loadChildData,
             resetColumns: this.resetColumns,
@@ -364,6 +365,7 @@ class MxTreeTable extends Component<MxTreeTableContainerProps> {
         level?: number
     ): Promise<void> {
         this.debug("handleData", objects.length, parentKey, level);
+        // this.debug("handleData objects", objects);
 
         try {
             this.store.setRowObjects(objects, level, parentKey);

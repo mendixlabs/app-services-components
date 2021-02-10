@@ -51,6 +51,7 @@ export interface NodeStoreConstructorOptions {
     selectFirstOnSingle: boolean;
     validationMessages: ValidationMessage[];
     calculateInitialParents: boolean;
+    loadScenario: "all" | "partial";
     expandFirstLevel: boolean;
     resetState: boolean;
     rowObjectMxProperties: RowObjectMxProperties;
@@ -94,6 +95,7 @@ export class NodeStore {
     private onSelect: (ids?: string[]) => void;
 
     private selectionMode: SelectionMode;
+    private loadScenario: "all" | "partial";
     private dataResetOnContextChange: boolean;
     private needToCalculateInitialParents: boolean;
     private needToRestoreStateOnContextChange: boolean;
@@ -111,6 +113,7 @@ export class NodeStore {
         validColumns,
         selectFirstOnSingle,
         calculateInitialParents,
+        loadScenario,
         childLoader,
         convertMxObjectToRow,
         rowObjectMxProperties,
@@ -133,6 +136,7 @@ export class NodeStore {
         this.selectFirstOnSingle = selectFirstOnSingle;
         this.needToRestoreSelectFirst = selectFirstOnSingle;
         this.calculateInitialParents = calculateInitialParents;
+        this.loadScenario = loadScenario;
         this.needToCalculateInitialParents = calculateInitialParents;
         this.validationMessages = validationMessages;
         this.rowObjectMxProperties = rowObjectMxProperties;
@@ -219,7 +223,7 @@ export class NodeStore {
 
     @action
     setRowObjects(mxObjects: mendix.lib.MxObject[], level?: number, parent?: string | null): void {
-        this.debug("store: setRowObjects", mxObjects.length, level, this.resetState);
+        this.debug("store: setRowObjects", mxObjects.length, level, this.resetState, this.calculateInitialParents);
         let currentRows: RowObject[] = level === -1 ? [] : [...this.rowObjects];
         let initialState: TableState = { context: this.contextObject?.getGuid() || null, expanded: [], selected: [] };
 
@@ -285,6 +289,7 @@ export class NodeStore {
             const objIndex = currentRows.findIndex(row => row.key === mxObject.getGuid());
             if (objIndex === -1) {
                 const treeParent = treeMapping[mxObject.getGuid()];
+                // console.log(treeMapping, treeParent);
                 const parentObj = this.calculateInitialParents && treeParent ? treeParent : parent;
                 currentRows.push(
                     new RowObject({
@@ -321,10 +326,10 @@ export class NodeStore {
             }
         });
         this.rowObjects = currentRows;
-        if (this.calculateInitialParents) {
+        if (this.calculateInitialParents && this.loadScenario === "partial") {
             this.disableCalculateInitial();
         }
-        if (this.resetState) {
+        if (this.resetState && this.loadScenario === "partial") {
             this.disableResetState();
         }
         if (this.selectFirstOnSingle) {
@@ -428,7 +433,7 @@ export class NodeStore {
                 subscribe({
                     callback: () => {
                         this.debug(`store: subcription fired context ${guid}`);
-                        this.clearSubscriptions("store context subscription");
+                        this.resetSubscriptions("store context subscription");
                         this.reset();
                     },
                     guid
