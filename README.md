@@ -29,7 +29,7 @@
     A Mendix Widget to collapse your Apps Header on Scroll
   </h2>
   <h5 align="center"> 
-    You can choose to implement on every page (Template Level) or on a Per Page Level.
+    You can choose to implement it on every page (Template Level) or on a Per Page Level.
   </h5>
 </p>
 <br/>
@@ -39,26 +39,37 @@
      <img  align="center" alt="headerIMG" width="400" src="https://raw.githubusercontent.com/ahwelgemoed/collapsible-header-widget/main/assets/ButtonMove.gif" target="_blank" />
 </p>
 <br/>
+<h3>How it works</h3>
+You as Mendix Developer have full control, all the widget does at a basic level
+is add and remove class names. There are 2 types of class names a Hook- and a Edit- class name.
+
+-   **Hook Class Names** : Are used to know where that element is in the dom.
+
+    -   `Scroll Body Class Name` to know where the scroll part of the app is.
+    -   `Header Class Name` is used to know where the fixed header is.
+    -   `React On Class Name` is used to know where elements are to affect on scroll.
+
+-   **Edit Class Name**: Is added or removed from its corresponding `Hook Class Name Element`.
+
+    When the Scroll index is **greater** than the Threshold:
+
+    -   `Collapse Header Class Name` is added to `Header Class Name`
+    -   `React Class Name to Add` is added to `React On Class Name`
+
+    When the Scroll index is **less** than the Threshold:
+
+    -   `Collapse Header Class Name` is removed from `Header Class Name`
+    -   `React Class Name to Add` is removed from `React On Class Name`
+
+    You can then style the elements using scss nesting to be very specific. \*_Note_ If you do very fancy stuff your
+    scss file has a chance of becoming messy
+
 <h3>Usage</h3>
-<b>Usage on Every Page of App</b> - Add the Widget anywhere in the Layout your Pages are base on
+<b>Usage on Every Page of App</b> - Add the Widget anywhere in the Master Layout your Pages are base on
 
 <b>Individual Page</b> - Add the Widget anywhere on the page \*_Recommend top of page_
 
-_The basic principal of how it works:_ You as Mendix Developer have full control, all the widget does at a basic level
-is add and remove class names. There are 2 types of class names a Hook- and a Edit- class name.
-
--   **Hook Class Name** : Is used to know where what is in the dom, The widget uses `Scroll Body Class Name` to know
-    where the scroll part of the app is. `Header Class Name` is used to know where the fixed header is.
-    `React On Class Name` is used to know where elements are to affect on scroll
-
--   **Edit Class Name**: Is added or removed from the `Hook Class Name Element`. So when the Threshold is met
-    `Collapse Header Class Name` is added to `Header Class Name` when you scroll up or scroll index is less than
-    threshold (depends on how you configure the widget) `Collapse Header Class Name` is removed from
-    `Header Class Name`, you can then style all elements under `Collapse Header Class Name` using scss nesting to be
-    specific to that element. `React Class Name to Add` is added or removed from `React On Class Name`, here again you
-    can then with scss change or alter any element in the dom.
-
-     <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/collapsible-header-widget/main/assets/usage.png" target="_blank" />
+<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/collapsible-header-widget/main/assets/usage.png" target="_blank" />
 
 |                            | Type      | Info                                                                                                                                                                                                                                                                                                              |
 | -------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,7 +84,7 @@ is add and remove class names. There are 2 types of class names a Hook- and a Ed
 | React Class Name to Add    | `string`  | Class Name that is added to `React On Class Name` once the header collapses and removed when expanded, you can here hid or show or style an element once the header is collapsed                                                                                                                                  |
 
 <br/>
-<h3>A 'BrIeF' Explanation of Smart Compensator </h3>
+<h3>A 'Brief' Explanation of Smart Compensator </h3>
 
 Mendix handles scroll in apps and because of this custom implementation we try to compensate for it.
 
