@@ -37,6 +37,7 @@ export function useMendixScroll({
 }: PageLayoutScrollTypes) {
     const pageHeader = document.getElementsByClassName(headerClassName);
     const [scrollY, setScrollY] = useState<number | undefined>();
+    const [pageHeaderHeightBeforeScroll, setPageHeaderHeightBeforeScroll] = useState<number | undefined>();
     const [changeInHeader, setChangeInHeader] = useState<number | undefined>();
     const [headerStatus, setHeaderStatus] = useState<HeaderStatusEnum>(HeaderStatusEnum.Expanded);
     const [thresholdReached, setThresholdReached] = useState<boolean>(false);
@@ -53,16 +54,68 @@ export function useMendixScroll({
             lastScrollTopRef.current = newScrollY;
         }
     };
+    const _getCurrentHeaderHeight = (): number | undefined => {
+        if (pageHeader) {
+            const foundPageHeader = pageHeader[0];
+            const pageHeaderHeight = foundPageHeader?.getBoundingClientRect().height;
+            return pageHeaderHeight;
+        }
+        return undefined;
+    };
+    const _classNamesToHide = (toAddClassName: boolean): void => {
+        if (reactOnClassName && reactOnClassNameToAdd) {
+            const foundClassNames = document.getElementsByClassName(reactOnClassName);
+            for (let index = 0; index < foundClassNames.length; index++) {
+                const element = foundClassNames[index];
+                if (toAddClassName) {
+                    element.classList.add(reactOnClassNameToAdd);
+                } else {
+                    element.classList.remove(reactOnClassNameToAdd);
+                }
+            }
+        }
+    };
+    const _throttleSmartCompensation = throttle(function(a: any, b: any): void {
+        _smartCompensation(a, b);
+    }, 100);
 
+    const _smartCompensation = (currentScrollHeight: number | undefined, noTimeout = false): void => {
+        if (smartCompensator) {
+            const animationTime = animationSpeed ? animationSpeed : 500;
+            const TIMEOUT_TIME = noTimeout ? 0 : animationTime * 0.8; // Timing Issue Maybe
+            const scrollElement = getMendixScrollElement(scrollBodyClassName);
+            setTimeout(() => {
+                const pageHeaderHeightAfterScroll = _getCurrentHeaderHeight();
+
+                if (currentScrollHeight && pageHeaderHeightBeforeScroll && pageHeaderHeightAfterScroll) {
+                    if (scrollDirection && headerStatus == HeaderStatusEnum.Expanded) {
+                        const changeInHeader = pageHeaderHeightBeforeScroll - pageHeaderHeightAfterScroll;
+                        setChangeInHeader(changeInHeader);
+                        setHeaderStatus(HeaderStatusEnum.Collapsed);
+                        scrollElement?.setAttribute(
+                            "style",
+                            `height: ${currentScrollHeight +
+                                (pageHeaderHeightBeforeScroll - pageHeaderHeightAfterScroll)}px`
+                        );
+                    }
+                    if (!scrollDirection && headerStatus == HeaderStatusEnum.Collapsed) {
+                        setHeaderStatus(HeaderStatusEnum.Expanded);
+                        changeInHeader &&
+                            scrollElement?.setAttribute("style", `height: ${currentScrollHeight - changeInHeader}px`);
+                    }
+                }
+            }, TIMEOUT_TIME as number);
+        }
+    };
     const delay = 250;
     useEffect(() => {
-        console.log("hello");
-
         const scrollElement = getMendixScrollElement(scrollBodyClassName);
         if (scrollElement) {
             const initialScrollY = scrollElement?.scrollTop;
             setScrollY(initialScrollY);
             scrollElement?.addEventListener("scroll", throttle(listener, delay));
+            const headerHeightStart = _getCurrentHeaderHeight();
+            setPageHeaderHeightBeforeScroll(headerHeightStart);
             return () => scrollElement?.removeEventListener("scroll", listener);
         } else {
             console.error("getMendixScrollElement(scrollBodyClassName) - Did Not Return anything");
@@ -103,60 +156,12 @@ export function useMendixScroll({
                 }
             }
         }
+        // When User Navigates Resets Values - Mendix is SPA
+        if (scrollY && scrollY < threshold) {
+            setHeaderStatus(HeaderStatusEnum.Expanded);
+            const headerHeightStart = _getCurrentHeaderHeight();
+            setPageHeaderHeightBeforeScroll(headerHeightStart);
+        }
     }, [scrollY]);
-    const _getCurrentHeaderHeight = (): number | undefined => {
-        if (pageHeader) {
-            const foundPageHeader = pageHeader[0];
-            const pageHeaderHeight = foundPageHeader?.getBoundingClientRect().height;
-            return pageHeaderHeight;
-        }
-        return undefined;
-    };
-    const _classNamesToHide = (toAddClassName: boolean): void => {
-        if (reactOnClassName && reactOnClassNameToAdd) {
-            const foundClassNames = document.getElementsByClassName(reactOnClassName);
-            for (let index = 0; index < foundClassNames.length; index++) {
-                const element = foundClassNames[index];
-                if (toAddClassName) {
-                    element.classList.add(reactOnClassNameToAdd);
-                } else {
-                    element.classList.remove(reactOnClassNameToAdd);
-                }
-            }
-        }
-    };
-    var _throttleSmartCompensation = throttle(function(a: any, b: any): void {
-        _smartCompensation(a, b);
-    }, 1000);
-
-    const _smartCompensation = (currentScrollHeight: number | undefined, noTimeout = false): void => {
-        if (smartCompensator) {
-            const animationTime = animationSpeed ? animationSpeed : 500;
-            const TIMEOUT_TIME = noTimeout ? 0 : animationTime / 4;
-            const scrollElement = getMendixScrollElement(scrollBodyClassName);
-            const pageHeaderHeightBeforeScroll = _getCurrentHeaderHeight();
-            setTimeout(() => {
-                const pageHeaderHeightAfterScroll = _getCurrentHeaderHeight();
-                if (currentScrollHeight && pageHeaderHeightBeforeScroll && pageHeaderHeightAfterScroll) {
-                    if (scrollDirection && headerStatus == HeaderStatusEnum.Expanded) {
-                        const changeInHeader = pageHeaderHeightBeforeScroll - pageHeaderHeightAfterScroll;
-                        setChangeInHeader(changeInHeader);
-                        setHeaderStatus(HeaderStatusEnum.Collapsed);
-
-                        scrollElement?.setAttribute(
-                            "style",
-                            `height: ${currentScrollHeight +
-                                (pageHeaderHeightBeforeScroll - pageHeaderHeightAfterScroll)}px`
-                        );
-                    }
-                    if (!scrollDirection && headerStatus == HeaderStatusEnum.Collapsed) {
-                        setHeaderStatus(HeaderStatusEnum.Expanded);
-                        changeInHeader &&
-                            scrollElement?.setAttribute("style", `height: ${currentScrollHeight - changeInHeader}px`);
-                    }
-                }
-            }, TIMEOUT_TIME as number);
-        }
-    };
     return [scrollY, scrollDirection, thresholdReached];
 }

@@ -10,19 +10,39 @@ Place your custom CSS here
     transition: all ease 500ms;
     padding-top: 20px;
     padding-bottom: 10px;
-    color: white !important;
+    /* color: white !important; */
 }
 .collapsed-pageheader-test {
     padding-top: 8px;
     padding-bottom: 8px;
     background-color: white;
 }
+.shower {
+    visibility: hidden;
+    position: fixed;
+    bottom: 100px;
+    width: 300px;
+    /* background: #efefef;
+    border-radius: 10px;
+    padding: 20px; */
+}
+button {
+    float: right;
+}
+.shower,
+button {
+    display: none;
+    /* visibility: hidden; */
+    /* position: fixed;
+    bottom: 100px;
+    width: 300px; */
+    /* background: #efefef;
+    border-radius: 10px;
+    padding: 20px; */
+}
 
 .to-hide {
     transition-delay: 1s;
-    /* border: none;
-    padding: 10px 0;
-    color: black; */
     transition: 0.3s;
 }
 
@@ -30,7 +50,34 @@ Place your custom CSS here
 .container {
     /* padding: 2px 16px; */
 }
-.remove-card {
+.remove-card.shower {
+    visibility: initial;
+    position: fixed;
+    bottom: 100px;
+    width: 300px;
+    background: #efefef;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 250ms ease;
+}
+.remove-card.shower,
+button {
+    display: grid;
+    /* visibility: initial; */
+    /* position: fixed;
+    bottom: 100px;
+    width: 300px;
+    background: #efefef;
+    border-radius: 10px;
+    padding: 20px; */
+    transition: all 250ms ease;
+}
+.remove-card.card {
+    padding: 0;
+    border: none;
+    transition: all 500ms ease;
+}
+.remove-card.none-show {
     visibility: hidden;
     opacity: 0;
     padding: 0;

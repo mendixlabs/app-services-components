@@ -9,7 +9,6 @@ export default class collapsibleheader extends Component<collapsibleheaderContai
     render(): ReactNode {
         const {
             threshold,
-            pageLayout,
             animationSpeed,
             headerClassName,
             smartCompensator,
@@ -20,23 +19,18 @@ export default class collapsibleheader extends Component<collapsibleheaderContai
             collapseHeaderClassName
         } = this.props;
 
-        if (pageLayout) {
-            return (
-                <PageLayoutScroll
-                    threshold={threshold}
-                    animationSpeed={animationSpeed}
-                    headerClassName={headerClassName}
-                    smartCompensator={smartCompensator}
-                    reactOnClassName={reactOnClassName}
-                    scrollBodyClassName={scrollBodyClassName}
-                    reactOnClassNameToAdd={reactOnClassNameToAdd}
-                    expandOnLessThreshold={expandOnLessThreshold}
-                    collapseHeaderClassName={collapseHeaderClassName}
-                />
-            );
-        }
-        if (!pageLayout) {
-            return <div>!pageLayout</div>;
-        }
+        return (
+            <PageLayoutScroll
+                threshold={threshold}
+                animationSpeed={animationSpeed}
+                headerClassName={headerClassName}
+                smartCompensator={smartCompensator}
+                reactOnClassName={reactOnClassName}
+                scrollBodyClassName={scrollBodyClassName}
+                reactOnClassNameToAdd={reactOnClassNameToAdd}
+                expandOnLessThreshold={expandOnLessThreshold}
+                collapseHeaderClassName={collapseHeaderClassName}
+            />
+        );
     }
 }

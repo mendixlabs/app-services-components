@@ -9,17 +9,17 @@
     <properties>
        <propertyGroup caption="Data">
             <propertyGroup caption="Page Layout Settings">
-                 <property type="string" key="scrollBodyClassName" required="false">
-                    <caption>Scroll Body Class Name</caption>
-                    <description></description>
-                </property>
                  <property type="string" key="headerClassName" required="false">
                     <caption>Header Class Name</caption>
-                    <description>Class Name You add To your Header to identify it(Unique)</description>
+                    <description>Class Name You add To your Header to identify (Hook)(Unique)</description>
+                </property>
+                 <property type="string" key="scrollBodyClassName" required="false">
+                    <caption>Scroll Body Class Name</caption>
+                    <description>Class Name You add To your body to identify (Hook)(Unique)</description>
                 </property>
                  <property type="string" key="collapseHeaderClassName" required="false">
                     <caption>Collapse Header Class Name</caption>
-                    <description>Class Name The Widget adds To your Header to collapse it (Qnique)</description>
+                    <description>Class Name the widget adds to Header Class Name (Unique)</description>
                 </property>
                  <property key="threshold" type="integer" defaultValue="1" required='true'>
                     <caption>Threshold</caption>
@@ -29,26 +29,22 @@
                     <caption>Expand On Threshold</caption>
                     <description></description>
                 </property>
-                 <property key="smartCompensator" type="boolean" defaultValue="true">
-                    <caption>Smart Compensator</caption>
-                    <description></description>
-                </property>
                 <property key="animationSpeed" type="integer" defaultValue="500" required='true'>
-                    <caption>Animation Speed (ms)</caption>
-                    <description></description>
+                    <caption>Animation Speed</caption>
+                    <description>Animation speed in your scss (ms)</description>
                 </property>
                 <property type="string" key="reactOnClassName" required="false">
                     <caption>React On Class Name</caption>
-                    <description>Class Name You add To your Header to identify it(Unique)</description>
+                    <description>Class Name You add to any other elements (Hook)</description>
                 </property>
                 <property type="string" key="reactOnClassNameToAdd" required="false">
-                    <caption>React Class Name to Add</caption>
-                    <description>Class Name You add To your Header to identify it(Unique)</description>
+                    <caption>React Class Name to Add </caption>
+                    <description>Class Name Added to React On Class Name</description>
                 </property>
             </propertyGroup>
-            <propertyGroup caption="Layout">
-                <property key="pageLayout" type="boolean" defaultValue="true">
-                    <caption>Page Layout</caption>
+            <propertyGroup caption="Experimental">
+                <property key="smartCompensator" type="boolean" defaultValue="true">
+                    <caption>Smart Compensator</caption>
                     <description></description>
                 </property>
             </propertyGroup>
