@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="mendix.Collapsibleheader.Collapsibleheader" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+<widget id="mendix.collapsibleheader.Collapsibleheader" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
         supportedPlatform="Web"
         xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
@@ -9,15 +9,15 @@
     <properties>
        <propertyGroup caption="Data">
             <propertyGroup caption="Page Layout Settings">
-                 <property type="string" key="headerClassName" required="false">
+                 <property type="string" key="headerClassName" required="true">
                     <caption>Header Class Name</caption>
                     <description>Class Name You add To your Header to identify (Hook)(Unique)</description>
                 </property>
-                 <property type="string" key="scrollBodyClassName" required="false">
+                 <property type="string" key="scrollBodyClassName" required="true">
                     <caption>Scroll Body Class Name</caption>
                     <description>Class Name You add To your body to identify (Hook)(Unique)</description>
                 </property>
-                 <property type="string" key="collapseHeaderClassName" required="false">
+                 <property type="string" key="collapseHeaderClassName" required="true">
                     <caption>Collapse Header Class Name</caption>
                     <description>Class Name the widget adds to Header Class Name (Unique)</description>
                 </property>
@@ -43,7 +43,7 @@
                 </property>
             </propertyGroup>
             <propertyGroup caption="Experimental">
-                <property key="smartCompensator" type="boolean" defaultValue="true">
+                <property key="smartCompensator" type="boolean" defaultValue="false">
                     <caption>Smart Compensator</caption>
                     <description></description>
                 </property>
