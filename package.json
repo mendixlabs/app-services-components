@@ -3,11 +3,11 @@
     "widgetName": "Collapsibleheader",
     "version": "1.0.0",
     "description": "My widget description",
-    "copyright": "2020 Mendix Technology BV",
-    "author": "Arno Welgemoed",
+    "copyright": "2021 Mendix Technology BV",
+    "author": "ahwelgemoed",
     "config": {
         "projectPath": "./tests/testProject/",
-        "mendixHost": "http://10.211.55.4:8080",
+        "mendixHost": "http://localhost:8080",
         "developmentPort": "3000"
     },
     "packagePath": "mendix",
@@ -22,7 +22,7 @@
     },
     "license": "Apache-2.0",
     "devDependencies": {
-        "@mendix/pluggable-widgets-tools": "8.15.0",
+        "@mendix/pluggable-widgets-tools": "^8.14.0",
         "@types/big.js": "^4.0.5",
         "@types/classnames": "^2.2.4",
         "@types/react": "~16.9.0",
@@ -31,6 +31,9 @@
     "dependencies": {
         "@types/lodash": "^4.14.168",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.20"
+        "date-fns": "^2.17.0",
+        "lodash": "^4.17.20",
+        "tree-changes": "^0.6.1",
+        "usedomlocation": "^0.1.1"
     }
 }

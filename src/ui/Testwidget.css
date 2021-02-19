@@ -1,0 +1,49 @@
+/*
+Place your custom CSS here
+*/
+body {
+    transition: all 500ms ease;
+    transition-delay: 1s;
+    transition: 0.3s;
+}
+.widget-hello-world {
+}
+.headID .backgroundImagePurple {
+    transition: all 500ms ease;
+    transition-delay: 1s;
+    transition: 0.3s;
+    height: 19vh;
+    background-size: 500px auto;
+}
+.headID.collapseMyGrid {
+    transition: all 500ms ease;
+    transition-delay: 1s;
+    transition: 0.3s;
+}
+.headID.collapseMyGrid .backgroundImagePurple {
+    height: 15vh;
+    padding: 20px;
+    background-size: 400px auto;
+    transition: all 500ms ease;
+    transition-delay: 1s;
+    transition: 0.3s;
+    background-color: #7c68ff;
+}
+.textWhiteBoldSmall {
+    opacity: 1;
+}
+.asd.collapseMyGridcollapseMyGrid .rrr {
+    /* visibility: hidden; */
+    /* opacity: 0; */
+    /* display: none; */
+    height: 0;
+    /* font-size: 20px; */
+}
+.asd.collapseMyGridcollapseMyGrid .textWhiteBoldSmall {
+    /* visibility: hidden; */
+    /* opacity: 0; */
+    font-size: 0;
+    /* display: none; */
+    /* height: 0; */
+    /* font-size: 20px; */
+}

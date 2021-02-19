@@ -1,8 +1,10 @@
-import { createElement, ReactElement } from "react";
-import { useMendixScroll } from "./useScroll";
-import { PageLayoutScrollTypes } from "../types";
+import { createElement, useEffect } from "react";
+import { useScroll } from "./useNewScroll";
+import { differenceInMilliseconds } from "date-fns";
+import { useDomLocation } from "usedomlocation";
 
-const PageLayoutScroll = ({
+import { PageLayoutScrollTypes } from "../types";
+export const PageLayoutScroll = ({
     threshold,
     animationSpeed,
     headerClassName,
@@ -12,8 +14,8 @@ const PageLayoutScroll = ({
     reactOnClassNameToAdd,
     expandOnLessThreshold,
     collapseHeaderClassName
-}: PageLayoutScrollTypes): ReactElement => {
-    useMendixScroll({
+}: PageLayoutScrollTypes) => {
+    const { setInitializer } = useScroll({
         threshold,
         animationSpeed,
         headerClassName,
@@ -24,8 +26,19 @@ const PageLayoutScroll = ({
         reactOnClassNameToAdd,
         collapseHeaderClassName
     });
+    const locationCallBack = () => {
+        setInitializer(false);
+    };
+    const { lastUpdateTime } = useDomLocation({ locationCallBack, throttleDuration: 500, useMendixNav: true });
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (differenceInMilliseconds(new Date(), lastUpdateTime) > 100) {
+                setInitializer(true);
+                return clearInterval(interval);
+            }
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [lastUpdateTime]);
     return <div></div>;
 };
-
-export default PageLayoutScroll;

@@ -9,7 +9,7 @@ export interface CollapsibleheaderContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
-    tabIndex: number;
+    tabIndex?: number;
     headerClassName: string;
     scrollBodyClassName: string;
     collapseHeaderClassName: string;
