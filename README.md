@@ -3,14 +3,14 @@
   <a href="">
     <img alt="License: MIT" src="https://img.shields.io/badge/Status-Beta-blue?style=for-the-badge" target="_blank" />
   </a>
-  <a href="">
-    <img alt="License: MIT" src="https://img.shields.io/github/issues/ahwelgemoed/collapsible-header-widget?style=for-the-badge" target="_blank" />
+  <a href="https://github.com/ahwelgemoed/useDomLocation">
+    <img alt="License: MIT" src="https://img.shields.io/github/issues/ahwelgemoed/useDomLocation?style=for-the-badge" target="_blank" />
   </a>
-  <a href="">
-    <img alt="GitHub issues" src="https://img.shields.io/github/release/ahwelgemoed/collapsible-header-widget?style=for-the-badge" target="_blank" />
+  <a href="https://www.npmjs.com/package/usedomlocation">
+    <img alt="GitHub issues" src="https://img.shields.io/github/release/ahwelgemoed/useDomLocation?style=for-the-badge&logo=github" target="_blank" />
   </a>
-  <a href="">
-    <img alt="GitHub issues" src="https://img.shields.io/github/release/ahwelgemoed/collapsible-header-widget?style=for-the-badge&logo=npm" target="_blank" />
+  <a href="https://github.com/ahwelgemoed/useDomLocation">
+    <img alt="NPM" src="https://img.shields.io/github/release/ahwelgemoed/useDomLocation?style=for-the-badge&logo=npm" target="_blank" />
   </a>
   <a href="/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=for-the-badge" target="_blank" />
@@ -56,3 +56,7 @@ const { lastUpdateTime, createObserver, turnOffObserver } = useDomLocation({
 | `lastUpdateTime`  | Date    | Passes back the last time the dom was updated. |
 | `createObserver`  | number  | Manually Create observer                       |
 | `turnOffObserver` | boolean | Manually turn off observer                     |
+
+<h2>Issues</h2>
+
+Please open an GH [issue](https://github.com/ahwelgemoed/useDomLocation/issues/new).
