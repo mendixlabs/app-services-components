@@ -100,7 +100,6 @@ export function useScroll({
         }
         return undefined;
     };
-    console.log("scrollabileElement", scrollabileElement);
     const _smartCompensation = (currentScrollHeight: number | undefined, noTimeout = false): void => {
         if (smartCompensator) {
             const animationTime = animationSpeed ? animationSpeed : 500;
