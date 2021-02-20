@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "license": "APACHE2.0",
+  "version": "1.0.1",
+  "license": "APACHE-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -22,11 +22,7 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
+  "husky": {},
   "prettier": {
     "printWidth": 80,
     "semi": true,
@@ -35,6 +31,7 @@
   },
   "name": "usedomlocation",
   "author": "ahwelgemoed",
+  "repository": "ahwelgemoed/useDomLocation",
   "module": "dist/usedomlocation.esm.js",
   "size-limit": [
     {
@@ -62,5 +59,12 @@
     "@types/lodash": "^4.14.168",
     "lodash": "^4.17.20",
     "lodash-es": "^4.17.20"
-  }
+  },
+  "keywords": [
+    "Mendix-Widget",
+    "Mendix",
+    "Mendix-Nav",
+    "Mendix-Hook",
+    "Mendix-Location"
+  ]
 }

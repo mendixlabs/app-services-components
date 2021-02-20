@@ -6,7 +6,6 @@ import { useDomLocation } from '../.';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
-  const [toggle, setToggle] = React.useState(false);
   const locationCallBack = () => {
     console.log('🔥');
   };
@@ -78,7 +77,28 @@ function App() {
 }
 
 function Home() {
-  return <h2>Home</h2>;
+  const [toggle, setToggle] = React.useState(false);
+  return (
+    <div>
+      <div>
+        <h2>Hello</h2>
+        <button onClick={() => setToggle(!toggle)}>
+          Toggle big Dom Change
+        </button>
+        <button
+          onClick={() => {
+            //@ts-ignore
+            var searchParams = new URLSearchParams(window.location.search);
+            searchParams.set('foo', 'bar');
+            window.location.search = searchParams.toString();
+          }}
+        >
+          Path
+        </button>
+      </div>
+      {toggle ? <h3>Sup</h3> : <h4>Cool</h4>}
+    </div>
+  );
 }
 
 function About() {

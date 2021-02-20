@@ -5,6 +5,15 @@ export type UseDomChangesTimeTypes = {
 };
 export type UseDomChangesReturnTypes = {
   lastUpdateTime: Date;
-  createObserver: () => void;
+  // createObserver: () => void;
   turnOffObserver: () => void;
+};
+export enum TypeEnum {
+  Id,
+  Key,
+}
+
+export type LastWindowIdType = {
+  type: TypeEnum;
+  state: Window;
 };

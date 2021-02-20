@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import throttle from 'lodash/throttle';
-import { UseDomChangesReturnTypes, UseDomChangesTimeTypes } from './types';
+import {
+  UseDomChangesReturnTypes,
+  UseDomChangesTimeTypes,
+  TypeEnum,
+  LastWindowIdType,
+} from './types';
 
 export function useDomLocation({
   locationCallBack,
@@ -9,7 +14,7 @@ export function useDomLocation({
 }: UseDomChangesTimeTypes): UseDomChangesReturnTypes {
   const [lastUpdateTime, setLastUpdateTime] = useState(new Date());
   let lastScrollTopRef = useRef<MutationObserver>();
-  let lastWindowId = useRef<any>();
+  let lastWindowId = useRef<LastWindowIdType>();
   let lastMendixHashId = useRef<string>();
 
   const turnOffObserver = () => {
@@ -18,7 +23,7 @@ export function useDomLocation({
     }
   };
 
-  const onMutation = () => {
+  const onMutation = (): void => {
     setLastUpdateTime(new Date());
     if (useMendixNav) {
       const mxWindow = window.mx.ui.getContentForm();
@@ -26,42 +31,45 @@ export function useDomLocation({
         const mxHash = window.mx.ui.getContentForm().hash;
         if (mxHash !== lastMendixHashId.current) {
           lastMendixHashId.current = mxHash;
-          locationCallBack();
+          return locationCallBack();
         }
       }
     }
     if (!useMendixNav) {
       if (!lastWindowId.current) {
+        if (!window.history.state) return;
         if (window.history.state.id) {
-          return (lastWindowId.current = {
-            type: 'id',
+          lastWindowId.current = {
+            type: TypeEnum.Id,
             state: window.history.state.id,
-          });
+          };
+          return locationCallBack();
         }
         if (window.history.state.key) {
-          return (lastWindowId.current = {
-            type: 'key',
+          lastWindowId.current = {
+            type: TypeEnum.Key,
             state: window.history.state.key,
-          });
+          };
+          return locationCallBack();
         }
       }
       if (lastWindowId.current) {
         if (
-          lastWindowId.current.type === 'id' &&
+          lastWindowId.current.type === TypeEnum.Id &&
           lastWindowId.current.state !== window.history.state.id
         ) {
           lastWindowId.current = {
-            type: 'id',
+            type: TypeEnum.Id,
             state: window.history.state.id,
           };
           return locationCallBack();
         }
         if (
-          lastWindowId.current.type === 'key' &&
+          lastWindowId.current.type === TypeEnum.Key &&
           lastWindowId.current.state !== window.history.state.key
         ) {
           lastWindowId.current = {
-            type: 'key',
+            type: TypeEnum.Key,
             state: window.history.state.key,
           };
           return locationCallBack();
@@ -85,11 +93,11 @@ export function useDomLocation({
   };
   useEffect(() => {
     createObserver();
-  }, []);
+  }, [throttleDuration]);
 
   return {
     lastUpdateTime,
-    createObserver,
+
     turnOffObserver,
   };
 }
