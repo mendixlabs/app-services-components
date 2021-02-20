@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { useEffect, useRef, useState } from 'react';
 import throttle from 'lodash/throttle';
 import {
@@ -91,13 +92,13 @@ export function useDomLocation({
       onMutation();
     };
   };
+
   useEffect(() => {
     createObserver();
   }, [throttleDuration]);
 
   return {
     lastUpdateTime,
-
     turnOffObserver,
   };
 }
