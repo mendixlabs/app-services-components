@@ -8,10 +8,59 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-            <property key="sampleText" type="string" required="false">
-                <caption>Default value</caption>
-                <description>Sample text input</description>
-            </property>
+            <propertyGroup caption="Data">
+                <property key="incomingData" type="datasource" isList="true">
+                    <caption>Data</caption>
+                    <description>Nanoflow or Microflow of flitered and sorted data to display</description>
+                </property>
+                <property key="content" type="widgets" required="true" dataSource="incomingData">
+                    <caption>Style the List Card</caption>
+                    <description>Widgets using data source</description>
+                </property>
+                 <property key="maxHeight" type="integer" defaultValue="0" required='true'>
+                    <caption>Max Height</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Enable/disable">
+                <property key="autoPlay" type="boolean" defaultValue="true">
+                    <caption>Auto Play</caption>
+                    <description></description>
+                </property>
+                <property key="stopOnHover" type="boolean" defaultValue="true">
+                    <caption>DisableWeekends</caption>
+                    <description></description>
+                </property>    
+                <property key="infiniteLoop" type="boolean" defaultValue="true">
+                    <caption>DisableWeekends</caption>
+                    <description></description>
+                </property>    
+                <property key="swipeable" type="boolean" defaultValue="true">
+                    <caption>Swipeable</caption>
+                    <description></description>
+                </property>    
+                <property key="showArrows" type="boolean" defaultValue="true">
+                    <caption>Show Arrows</caption>
+                    <description></description>
+                </property>    
+                <property key="dynamicHeight" type="boolean" defaultValue="true">
+                    <caption>Dynamic Height</caption>
+                    <description></description>
+                </property>    
+                <property key="showThumbs" type="boolean" defaultValue="true">
+                    <caption>Show Thumbs</caption>
+                    <description></description>
+                </property>    
+                <property key="showIndicators" type="boolean" defaultValue="true">
+                    <caption>Show Indicators</caption>
+                    <description></description>
+                </property>    
+                <property key="useKeyboardArrows" type="boolean" defaultValue="true">
+                    <caption>Use Keyboard Arrows</caption>
+                    <description></description>
+                </property>            
+         
+            </propertyGroup>
         </propertyGroup>
     </properties>
 </widget>

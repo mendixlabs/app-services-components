@@ -3,18 +3,41 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { CSSProperties } from "react";
+import { ComponentType, CSSProperties } from "react";
+import { ListValue, ListWidgetValue } from "mendix";
 
 export interface ImagecarouselwidgetContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    sampleText: string;
+    incomingData: ListValue;
+    content: ListWidgetValue;
+    maxHeight: number;
+    autoPlay: boolean;
+    stopOnHover: boolean;
+    infiniteLoop: boolean;
+    swipeable: boolean;
+    showArrows: boolean;
+    dynamicHeight: boolean;
+    showThumbs: boolean;
+    showIndicators: boolean;
+    useKeyboardArrows: boolean;
 }
 
 export interface ImagecarouselwidgetPreviewProps {
     class: string;
     style: string;
-    sampleText: string;
+    incomingData: {} | null;
+    content: { widgetCount: number; renderer: ComponentType };
+    maxHeight: number | null;
+    autoPlay: boolean;
+    stopOnHover: boolean;
+    infiniteLoop: boolean;
+    swipeable: boolean;
+    showArrows: boolean;
+    dynamicHeight: boolean;
+    showThumbs: boolean;
+    showIndicators: boolean;
+    useKeyboardArrows: boolean;
 }
