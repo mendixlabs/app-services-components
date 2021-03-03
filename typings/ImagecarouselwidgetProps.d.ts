@@ -14,13 +14,13 @@ export interface ImagecarouselwidgetContainerProps {
     incomingData: ListValue;
     content: ListWidgetValue;
     maxHeight: number;
+    maxWidth: number;
     autoPlay: boolean;
     stopOnHover: boolean;
     infiniteLoop: boolean;
     swipeable: boolean;
     showArrows: boolean;
     dynamicHeight: boolean;
-    showThumbs: boolean;
     showIndicators: boolean;
     useKeyboardArrows: boolean;
 }
@@ -31,13 +31,13 @@ export interface ImagecarouselwidgetPreviewProps {
     incomingData: {} | null;
     content: { widgetCount: number; renderer: ComponentType };
     maxHeight: number | null;
+    maxWidth: number | null;
     autoPlay: boolean;
     stopOnHover: boolean;
     infiniteLoop: boolean;
     swipeable: boolean;
     showArrows: boolean;
     dynamicHeight: boolean;
-    showThumbs: boolean;
     showIndicators: boolean;
     useKeyboardArrows: boolean;
 }
