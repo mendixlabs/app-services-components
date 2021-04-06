@@ -1,7 +1,7 @@
 <h1 align="center">Drag and Drop Widget for Mendix</h1>
 
 <p align="center">
-    <img  align="center" alt="headerIMG" src="./assets/DragandDrop.png" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/DragandDrop.png" target="_blank" />
     <br>
     <br>
    A Drag and Drop Widget for Mendix (with Touch Support for Mobile Devices)
@@ -29,15 +29,15 @@
 
 </p>
 <p align="center">
-    <img  align="center" alt="headerIMG" src="./assets/simpleList.gif" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/simpleList.gif" target="_blank" />
         <br>
         <p>Ordering List</p>
         <br>
-    <img  align="center" alt="headerIMG" src="./assets/widgetToWidget.gif" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/widgetToWidget.gif" target="_blank" />
         <br>
         <p>Enum Filtered List</p>
         <br>
-    <img  align="center" alt="headerIMG" src="./assets/2ds.gif" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/2ds.gif" target="_blank" />
         <br>
         <p>2 Entities in Domain Model</p>
         <hr>
@@ -60,8 +60,8 @@ column and vertically (drag between one widget and another).
 
 <p align="center">
 <h3>Usage</h3>
- <img  align="center" alt="headerIMG" src="./assets/p1.png" target="_blank" />
- <img  align="center" alt="headerIMG" src="./assets/p2.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/p1.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/p2.png" target="_blank" />
 </p>
 
 | Object list group     | List         | List of items to Show cards for                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -77,7 +77,7 @@ column and vertically (drag between one widget and another).
 
 We provide some pre-created actions that you should implement and configure.
 
-You can download "DragandDrop_Utils.mpk" [_here_](https://github.com/ahwelgemoed/drag-and-drop-mendix-widget/releases)
+You can download "DragandDrop*Utils.mpk" [\_here*](https://github.com/ahwelgemoed/drag-and-drop-mendix-widget/releases)
 
 ### Same Column Drop
 
@@ -182,18 +182,18 @@ The Widget exposes 3 Classnames you can use to style the list items:
 
 <p align="center">
  <h4>Modeler Look</h4>
- <img  align="center" alt="headerIMG" src="./assets/mxOverview.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/mxOverview.png" target="_blank" />
  <br>
  <h4>Web Look</h4>
- <img  align="center" alt="headerIMG" src="./assets/widgetToWidget.gif" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/widgetToWidget.gif" target="_blank" />
  <h4>Incoming Data (Nano- or microflow )</h4>
- <img  align="center" alt="headerIMG" src="./assets/get_mf.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/get_mf.png" target="_blank" />
  <h4>Create Non Persistable Data (Nano- or microflow )</h4>
- <img  align="center" alt="headerIMG" src="./assets/non_state.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/non_state.png" target="_blank" />
  <h4>Same Column Drop (nanoflow)</h4>
- <img  align="center" alt="headerIMG" src="./assets/Same_Col_Drop_NF.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/Same_Col_Drop_NF.png" target="_blank" />
  <h4>Different Column Drop (nanoflow)</h4>
- <img  align="center" alt="headerIMG" src="./assets/Diff_Col_Drop_NF.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/Diff_Col_Drop_NF.png" target="_blank" />
 </p>
 
 ## Issues || Track Features
