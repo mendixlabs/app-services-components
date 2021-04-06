@@ -77,7 +77,7 @@ column and vertically (drag between one widget and another).
 
 We provide some pre-created actions that you should implement and configure.
 
-You can download it [_here_]()
+You can download "DragandDrop_Utils.mpk" [_here_](https://github.com/ahwelgemoed/drag-and-drop-mendix-widget/releases)
 
 ### Same Column Drop
 
@@ -165,7 +165,7 @@ into and sometimes the Widget you are dragging out of.
 
     -   Add a Call to a mircroflow after the JS action and call the `Delete` microflow .
 
-        -   This microflow will delete the object. Pass the retrun object from the Js function into this microflow call.
+        -   This microflow will delete the object. Pass the return object from the Js function into this microflow call.
 
         -   Inside the delete microflow configure it to delete the passed down parameter and make sure to check the
             `refresh client` option.
