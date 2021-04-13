@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.imagecarouselwidget.Imagecarouselwidget" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Imagecarouselwidget</name>
+    <description>My widget description</description>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAL4SURBVHgB7Zo7b9NQFMf/edDISZpYSicYqFjoBF8AwUdgYQ0LWRhYaL9BZsTADAOsLCwsiEqp6BSWdgGJhyhQUJoaEqLYSskDH0tuQ+pr3/i6rZN7f1NkH0c6v3vvOdePxMgGEpOE5CgBkBwlAJKjBEBylABIjhIAyVECIDlKACQnzTrxaLuF4sLs+ylmUoD9xOPmpZzneU8BtR8Wrp/XcHUpg3mABpMFc4gdc3NCcYGdSxocPH3/BzudvvO7vFLA8iLXZTMBp4AONuxlQdDSmCcBqgvwBN1eWcSNC5rz+2LhHDOOHjBblgX3QXM6nUYmc1RIK+t7qO2a+FBeRlzgFFDwPU8Jt9ttJ/lJUqkU8vk8XjVGTi0hqCrfu6IjDggvgcFggGaz6Zm8e57k3N/YOzxWrf9CqzdEHBASQCNvGIaTpB/Pv/bxrXsUQ8mThDggJMA0zcDkv5sjPHx3cOw4LYOt/R54uLPe4I6dFiEB3W43MIaSJwlerL7ZD7rcqRvP7DbMExuG0AKGwyHX6NP0Z0F7i9qu5fsf7lKh2Befg4VPS2gBPO9Uvab+JBV7erMKIiXv7kCJtc1m5MXzxDZCNPJ+o+9CCXrdrOx0/h4rlKxYEUILoP6eTLIv5xl9F0pqcmSr9d/M2C+dYLG8CM2AbDbrefzxxz6z8HlBya/a09tly+gdbpq8Yqt1A1EhJCCXyzkzYRxK/Mkn/tF3oUrvFsRbL39yx4oiJICWQKlU+k+CX9sLgtb8+K13UGwUCBdBSp4kaJoW2PaCoFa3tsnX7ymWtUymIZIuQBJ0XcfdtwOIMk2bI1mibTGyNkijsW2czHaVBSUv2hYjE3BWNzeibTESAZM7ttOEZkHldQNhERYQxTQUheeegkUkTzfLlwtoHYgXQBHCFkNhAXomiQfXljCrqJejkBxPAfocvBQdh5YpiwTra/Eotplxgd4Nst4OJ9Tn8pKjBEBylABIjhIAyVECIDlKACRHCYDkKAGQnLh983rqzyb+AamVY4hxGRlDAAAAAElFTkSuQmCC</icon>
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Data">
+                <property key="incomingData" type="datasource" isList="true">
+                    <caption>Data</caption>
+                    <description>Nanoflow or Microflow of flitered and sorted data to display</description>
+                </property>
+                <property key="content" type="widgets" required="true" dataSource="incomingData">
+                    <caption>Content On Image</caption>
+                    <description>Widgets using data source</description>
+                </property>
+                 <property key="maxHeight" type="integer" defaultValue="0" required='true'>
+                    <caption>Max Height</caption>
+                    <description></description>
+                </property>
+                 <property key="maxWidth" type="integer" defaultValue="0" required='true'>
+                    <caption>Max Width</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Enable/disable">
+                <property key="autoPlay" type="boolean" defaultValue="true">
+                    <caption>Auto Play</caption>
+                    <description></description>
+                </property>
+                <property key="stopOnHover" type="boolean" defaultValue="true">
+                    <caption>Stop OnHover</caption>
+                    <description></description>
+                </property>    
+                <property key="infiniteLoop" type="boolean" defaultValue="true">
+                    <caption>Infinite Loop</caption>
+                    <description></description>
+                </property>    
+                <property key="swipeable" type="boolean" defaultValue="true">
+                    <caption>Swipeable</caption>
+                    <description></description>
+                </property>    
+                <property key="showArrows" type="boolean" defaultValue="true">
+                    <caption>Show Arrows</caption>
+                    <description></description>
+                </property>    
+                <property key="dynamicHeight" type="boolean" defaultValue="true">
+                    <caption>Dynamic Height</caption>
+                    <description></description>
+                </property>    
+              
+                <property key="showIndicators" type="boolean" defaultValue="true">
+                    <caption>Show Indicators</caption>
+                    <description></description>
+                </property>    
+                <property key="useKeyboardArrows" type="boolean" defaultValue="true">
+                    <caption>Use Keyboard Arrows</caption>
+                    <description></description>
+                </property>            
+         
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>

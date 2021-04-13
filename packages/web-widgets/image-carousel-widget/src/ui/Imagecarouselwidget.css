@@ -1,0 +1,27 @@
+/*
+Place your custom CSS here
+*/
+
+.Image-Carousel__Content {
+    width: 100%;
+    position: absolute;
+    /* background-color: aqua; */
+    /* background-color: azure; */
+    color: white;
+    font-size: 30px;
+    bottom: 50px;
+    left: 10px;
+}
+.Image-Carousel__Content__0 {
+    width: 100%;
+    position: absolute;
+    /* background-color: aqua; */
+    /* background-color: azure; */
+    color: white;
+    font-size: 30px;
+    top: 50px;
+    left: 10px;
+}
+.carousel-status {
+    display: none;
+}

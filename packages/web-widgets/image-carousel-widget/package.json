@@ -1,0 +1,35 @@
+{
+    "name": "imagecarouselwidget",
+    "widgetName": "Imagecarouselwidget",
+    "version": "1.0.0",
+    "description": "My widget description",
+    "copyright": "2021 Mendix Technology BV",
+    "author": "ahwelgemoed",
+    "config": {
+        "projectPath": "./tests/testProject/",
+        "mendixHost": "http://localhost:8080",
+        "developmentPort": "3000"
+    },
+    "packagePath": "mendix",
+    "scripts": {
+        "start": "pluggable-widgets-tools start:server --open",
+        "dev": "pluggable-widgets-tools start:web",
+        "build": "pluggable-widgets-tools build:web",
+        "lint": "pluggable-widgets-tools lint",
+        "lint:fix": "pluggable-widgets-tools lint:fix",
+        "prerelease": "npm run lint",
+        "release": "pluggable-widgets-tools release:web"
+    },
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@mendix/pluggable-widgets-tools": "^8.14.0",
+        "@types/big.js": "^4.0.5",
+        "@types/classnames": "^2.2.4",
+        "@types/react": "~16.9.0",
+        "@types/react-dom": "~16.9.0"
+    },
+    "dependencies": {
+        "classnames": "^2.2.6",
+        "react-responsive-carousel": "^3.2.12"
+    }
+}
