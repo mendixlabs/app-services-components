@@ -1,0 +1,28 @@
+{
+  "name": "app-services-components",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/native-widgets/*",
+      "packages/utilities/*",
+      "packages/web-widgets/*"
+    ],
+    "nohoist": [
+      "*/@mendix",
+      "**/@mendix/**"
+    ]
+  },
+  "scripts": {
+    "docs:dev": "npx docsify serve docs",
+    "clean:packages": "npx lerna clean",
+    "clean:all": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "version:ci": "npx lerna version --yes --conventional-commits --create-release github --message 'chore(release): publish'"
+  },
+  "devDependencies": {
+    "eslint": "7.7.0",
+    "jest": "26.4.2",
+    "lerna": "^4.0.0",
+    "typescript": "4.0.2",
+    "prettier": "^2.1.2"
+  }
+}

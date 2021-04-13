@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        coverpage: true,
+        loadSidebar: true,
+        name: 'App Services',
+        themeColor: 'rgb(27, 32, 43)',
+        darkMode: {
+          dark: {
+            background: '#23282e',
+            toggleBtnBg: '#adbac7',
+            textColor: '#adbac7',
+          },
+          light: {
+            background: 'white',
+            toggleBtnBg: 'var(--theme-color)',
+            textColor: 'black',
+          },
+        },
+        plugins: [
+          EditOnGithubPlugin.create(
+            'OUR GH LINK',
+            null,
+            'Edit this file on Github'
+          ),
+        ],
+      };
+    </script>
+    <!-- Docsify v4 -->
+
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
+    <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
+    <style>
+      strong a {
+        font-weight: 700 !important;
+        color: var(--text_color) !important;
+        font-size: 16px !important;
+      }
+      .cover-main {
+        color: #edeeee;
+      }
+      .cover-main span {
+        color: #edeeee;
+      }
+      /* p {color:blue;} */
+    </style>
+  </body>
+</html>
