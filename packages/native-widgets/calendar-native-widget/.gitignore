@@ -3,3 +3,4 @@ node_modules/
 tests/testProject/
 *.log
 .env
+.DS_Store
