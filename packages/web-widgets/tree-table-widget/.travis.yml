@@ -1,0 +1,25 @@
+dist: xenial
+language: node_js
+node_js:
+  - 14
+cache: npm
+branches:
+    only:
+        - master
+        - refactoring_version_2
+env:
+    global:
+        # List of all touched files, excluding paths starting with 'packages'
+        - CHANGED_GLOBAL_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE | grep -v "^packages")
+before_script:
+    - echo $TRAVIS_COMMIT_RANGE
+    - echo $CHANGED_GLOBAL_FILES
+jobs:
+    include:
+        - name: "Lint"
+          script: npm run lint
+        - name: "Build"
+          script: npm run build
+        # Only doing unit tests now as e2e still needs to be finished up
+        - name: "Unit tests"
+          script: npm run test:travis

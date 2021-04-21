@@ -1,0 +1,8 @@
+{
+  "extends": "./node_modules/@mendix/pluggable-widgets-tools/configs/tsconfig.base.json",
+  "compilerOptions": {
+    "module": "es6",
+    "types": ["mendix-client", "jest"],
+    "experimentalDecorators": true
+  }
+}

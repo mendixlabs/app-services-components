@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="com.mendix.widget.custom.mxtreetable.MxTreeTable" needsEntityContext="true" offlineCapable="true"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>TreeTable</name>
+    <description>Mendix TreeTable</description>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAC9UlEQVR4nO2byWsUQRSHv2QSxA0VDUZREY3HXFwQBBUP4hKCS9CDAfHgEgUvLiC4HUT8A9STJxX0JIgXQYnexH2BgCtCRFwwiNEkalxGivk1Nl09YxIzk6T7fdB01auqqbw31TXv9atgGIZhGOklE6N5DXAY2A5MBh4BP7xeCWU9kI1crcCUNCjfIMV/ASuAYVoJTtbs9U4IZSE1rgBLgUbgXEh+CagHZgEvYtSuBo4BY4Eur7W4VAAjgKPAzb7MVBEqT9D9daTPExlgjDc6h9snNnnS0nK5rwYIr4AjwAHgIrBGsmrtAb+BccA37xNyOOONBn56LcWlHOgG3vbHLFVa7u6ZfwqcB76ovsXrnVCcRU+EfgU6gQ1pUT7MSGBSZI8wDMMw0sg84ALwADipX4fUsDkmOvwKzEmDAaZLYecNzpZso2QtXu8hSiFHZ53u7sXIfZXPAAu1MtwquOeNyj0iZxUfdHitxSWjeXfLrf8nhQwwSvfPEXmb7sO9ETmcF7kIqPRaSsfUns5U5kn+Mhe4o80veATcO4Fn+marCkSHFTJA1mspLmWKXL/31yzHpcQn4GFoI2z0eiaYHTJAVt/+sjQpH1A+wM+0YRiGMVhYDtwG2oGrcphSw66QM9QVKtenwQAzpewHYJpkCyRrG6p+QqFgKEqd6nuBVyrfUF5uv6LEa94omAhcV4DS7rUWl4yyW1uBU3Ez9cYAQeAUDXCykfa4cZWhq9QGIM85iF5TI2Xfh84LzJfso9LpiWdPaOPrCJVXpUH5gJXAXb0qa9ZLU8MwDCPtpPYwhTtC80b+wEtgtdcjwRwK5QtbdMjS1XcOFZXz+e89wbnGzxUY1SqD5NJij3WmsFpucxyZAU6cdHstfaBJCmyLDN0neUOejxyv8DmadS7ldTD4Y/5n4woSn9EcYVDv9EbkcNa/BcyIyTsWm3KF5639MU9wctRZdLFkdaq/S0siZW2eZbvE65lganWs1v1jxWllkA3DMAzDGOQAfwBZxLuLwQrMtQAAAABJRU5ErkJggg==</icon>
+    <properties>
+
+        <!-- ****************
+                DATA
+        *********************-->
+        <propertyGroup caption="Data">
+            <propertyGroup caption="General">
+                <property key="nodeEntity" type="entity" required="true" allowNonPersistableEntities="true">
+                    <caption>Node Entity</caption>
+                    <description>Entity for the Node that is displayed in the widget.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Scenario">
+                <property key="loadScenario" type="enumeration" defaultValue="partial">
+                    <caption>Load</caption>
+                    <description>Decide what the widget needs to load when it has a context object.
+- In case of "Whole Tree", make sure you set the "Root" attribute (see bottom) and Child reference (see Data Children)</description>
+                    <enumerationValues>
+                         <enumerationValue key="partial">Partial (Top-level)</enumerationValue>
+                         <enumerationValue key="all">Whole Tree</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Source">
+                <property key="dataSource" type="enumeration" defaultValue="xpath">
+                    <caption>Data Source</caption>
+                    <description>Choose how you retrieve the data. In case Scenario is set to "Partial" this only applies to top-level data.</description>
+                    <enumerationValues>
+                        <enumerationValue key="xpath">XPath</enumerationValue>
+                        <enumerationValue key="mf">Microflow</enumerationValue>
+                        <enumerationValue key="nf">Nanoflow</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="constraint" required="false" type="entityConstraint" entityProperty="nodeEntity">
+                    <caption>Node constraint</caption>
+                    <description>The xpath constraint on the entity.</description>
+                </property>
+                <property key="getDataMf" type="microflow" required="false">
+                    <caption>Microflow</caption>
+                    <description>Choose 'Microflow' in Data Source and choose a microflow here</description>
+                    <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+                </property>
+                <property key="getDataNf" type="nanoflow" required="false">
+                    <caption>Nanoflow</caption>
+                    <description>Choose 'Nanoflow' in Data Source and choose a nanoflow here.
+    NOTE: Non-persistent entities are discouraged as they have unpredictable behavior combined with Nanoflows.
+                    </description>
+                    <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Scenario: Whole Tree">
+                <property key="nodeIsRootAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Root attribute</caption>
+                    <description>When loading the whole tree, the widget needs to know which nodes are considered top-level nodes</description>
+                    <attributeTypes>
+                         <attributeType name="Boolean" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Reset">
+                <property key="dataResetOnContextChange" type="boolean" defaultValue="false">
+                    <caption>Reset on context change</caption>
+                    <description>This should be false by default, because you only want to reload the whole table when the context object is switched (new object guid). If for some reason you need to reset the table whenever the context object changes, set this to true. Use this combined with the 'Whole Tree' scenario and state management.</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <!-- ****************
+                CHILDREN
+        *********************-->
+
+        <propertyGroup caption="Data Children">
+            <property key="childMethod" type="enumeration" defaultValue="disabled">
+                <caption>Child Method</caption>
+                <description>Method how to get the child elements</description>
+                <enumerationValues>
+                    <enumerationValue key="disabled">Disabled</enumerationValue>
+                    <enumerationValue key="reference">Reference</enumerationValue>
+                    <enumerationValue key="microflow">Microflow</enumerationValue>
+                    <enumerationValue key="nanoflow">Nanoflow</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="childReference" type="entity" required="false" allowNonPersistableEntities="true" isPath="yes" pathType="referenceSet" entityProperty="nodeEntity">
+                <caption>Child reference</caption>
+                <description>Set method: 'Reference'. Scenario 1: Child reference entity. Choose this and it will get the data over reference, through a normal mx.data.get call. This needs a complete tree-structure.
+- Note: This reference is needed whatsoever when loading a whole tree (see Data).</description>
+            </property>
+            <property key="childBoolean" type="attribute" entityProperty="nodeEntity" required="false" isPath="optional" pathType="reference">
+                <caption>Has child attr</caption>
+                <description>Set method: 'Microflow/Nanoflow'. Scenario 2/3: Has child attribute. Choose this if you do not have a complete tree-structure available. This will mean you will need to get the data through the getChildren microflow/nanoflow. Make sure the 'Child reference' attribute is NOT set.</description>
+                <attributeTypes>
+                    <attributeType name="Boolean" />
+                </attributeTypes>
+            </property>
+            <property key="getChildMf" type="microflow" required="false" entityProperty="nodeEntity">
+                <caption>Get child Microflow</caption>
+                <description>Set method: 'Microflow'. Scenario 2: Get children through a microflow. Make sure you set the 'Has child attr'. If it detects it has children, it will get the children using this microflow.</description>
+                <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+            </property>
+            <property key="getChildNf" type="nanoflow" required="false" entityProperty="nodeEntity">
+                <caption>Get child Nanoflow</caption>
+                <description>Set method: 'Nanoflow'. Scenario 3: Get children through a nanoflow. Make sure you set the 'Has child attr'. If it detects it has children, it will get the children using this nanoflow.
+NOTE: Non-persistent entities are discouraged as they have unpredictable behavior combined with Nanoflows.
+                </description>
+                <returnType type="Object" isList="true" entityProperty="nodeEntity" />
+            </property>
+        </propertyGroup>
+
+        <!-- ****************
+                Helper
+        *********************-->
+
+        <propertyGroup caption="Helper">
+            <property key="helperEntity" type="entity" required="false" allowNonPersistableEntities="true">
+                <caption>Helper entity</caption>
+                <description>This helper entity is necessary when doing selections/clicks. The reason for that is that when doing a onClick or Selection, you want to know both the Context (your view) as well as the Node that was clicked/selected. This can only be accomplished by introducing a Helper object.
+
+It should be a non-persistent entity (persistent is not permitted) with a reference to your context object, and a reference SET to your node objects. The widget will create the references for you when you click on a Node or on a button when doing selections. If you use this for an onClick/Single Selection, the reference set will contain only 1 Node object</description>
+            </property>
+            <property key="helperContextReference" type="entity" required="false" entityProperty="helperEntity" isPath="yes" pathType="reference" allowNonPersistableEntities="true">
+                <caption>Reference to context</caption>
+                <description />
+            </property>
+            <property key="helperNodeReference" type="entity" required="false" entityProperty="helperEntity" isPath="yes" pathType="referenceSet" allowNonPersistableEntities="true">
+                <caption>Reference to Node Entity</caption>
+                <description />
+            </property>
+        </propertyGroup>
+
+        <!-- ****************
+                COLUMNS
+        *********************-->
+
+        <propertyGroup caption="Columns">
+            <propertyGroup caption="General">
+                <property key="columnMethod" type="enumeration" defaultValue="static">
+                    <caption>Definition</caption>
+                    <description>How you define the columns.
+- You will need to take care of your own sorting when getting columns dynamically.</description>
+                    <enumerationValues>
+                        <enumerationValue key="static">List</enumerationValue>
+                        <enumerationValue key="microflow">Dynamic (Microflow)</enumerationValue>
+                        <!-- Disabled nanoflows, as this results in weird behavior -->
+                        <!-- <enumerationValue key="nanoflow">Nanoflow (Dynamic)</enumerationValue> -->
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="List">
+                <property key="columnList" type="object" isList="true" required="false">
+                    <caption>List</caption>
+                    <description>Define the columns in the Tree Table</description>
+                    <properties>
+                        <!-- ****************
+                                COLUMN DATA
+                        *********************-->
+                        <property key="columnHeader" type="string" required="false" defaultValue="">
+                            <caption>Caption</caption>
+                            <category>Column Data</category>
+                            <description>Title that is above the column</description>
+                        </property>
+                        <property key="columnTitleType" type="enumeration" defaultValue="attr">
+                            <caption>Title type</caption>
+                            <category>Column Data</category>
+                            <description>Choose between attribute or nanoflow.
+- Note: When loading the whole tree (See Data), it is strongly discouraged to use a Nanoflow, because it slows down rendering when loading a lot of objects. Use the Nanoflow very sparsely.</description>
+                            <enumerationValues>
+                                 <enumerationValue key="attr">Attribute</enumerationValue>
+                                 <enumerationValue key="nanoflow">Nanoflow</enumerationValue>
+                            </enumerationValues>
+                        </property>
+                        <property key="columnAttr" type="attribute" entityProperty="../nodeEntity" required="false">
+                            <caption>Attribute</caption>
+                            <category>Column Data</category>
+                            <description>Attribute that holds the value</description>
+                            <attributeTypes>
+                                <attributeType name="AutoNumber" />
+                                <attributeType name="Boolean" />
+                                <attributeType name="DateTime" />
+                                <attributeType name="Decimal" />
+                                <attributeType name="Enum" />
+                                <attributeType name="HashString" />
+                                <attributeType name="Integer" />
+                                <attributeType name="Long" />
+                                <attributeType name="String" />
+                            </attributeTypes>
+                        </property>
+                        <property key="transformNanoflow" type="nanoflow" required="false" entityProperty="../nodeEntity">
+                            <caption>Nanoflow</caption>
+                            <category>Column Data</category>
+                            <description>Use this nanoflow to retrieve a string as the value. See note above.</description>
+                            <returnType type="String" />
+                        </property>
+                        <!-- ****************
+                                COLUMN STYLING
+                        *********************-->
+                        <property key="columnWidth" type="string" required="false" defaultValue="">
+                            <caption>Width</caption>
+                            <category>Column UI</category>
+                            <description>Set this to either a number (like '100' for 100px) or a string ('50%')</description>
+                        </property>
+                        <property key="columnClassName" type="string" required="false" defaultValue="">
+                            <caption>ClassName</caption>
+                            <category>Column UI</category>
+                            <description>Set a classname for this column. This is preferred over setting a certain width</description>
+                        </property>
+                    </properties>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Dynamic">
+                <property key="columnHeaderEntity" type="entity" required="false" allowNonPersistableEntities="true">
+                    <caption>Column entity</caption>
+                    <description>Used when you set the column definition (See Column) to Microflow/Nanoflow</description>
+                </property>
+                <property key="columnHeaderLabelAttribute" type="attribute" entityProperty="columnHeaderEntity" required="false">
+                    <caption>Label</caption>
+                    <description>Attribute that holds the label</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="columnHeaderAttrAttribute" type="attribute" entityProperty="columnHeaderEntity" required="false">
+                    <caption>Attribute</caption>
+                    <description>Attribute that holds the attribute name</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="columnHeaderClassAttribute" type="attribute" entityProperty="columnHeaderEntity" required="false">
+                    <caption>Class</caption>
+                    <description>Attribute that holds the class name</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="columnHeaderMicroflow" type="microflow" required="false">
+                    <caption>Microflow</caption>
+                    <description>Choose 'Microflow' in 'Definition' and choose a microflow here</description>
+                    <returnType type="Object" isList="true" entityProperty="columnHeaderEntity" />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Inline buttons">
+                <property key="inlineActionButtons" type="object" isList="true" required="false">
+                    <caption>Buttons</caption>
+                    <description>These are inline action buttons that are appended to every row. These will be added at the end of the row as separate columns.</description>
+                    <properties>
+                        <property key="actionButtonClass" type="string" required="false" defaultValue="btn actionButton">
+                            <caption>Button class</caption>
+                            <category>UI</category>
+                            <description>Use this to style your buttons. This could be usefull when you have a button without a label</description>
+                        </property>
+                        <property key="actionButttonLabel" type="string" required="false" defaultValue="">
+                            <caption>Button label</caption>
+                            <category>UI</category>
+                            <description>Use this as a label for your individual button</description>
+                        </property>
+                        <property key="actionButtonColumnLabel" type="string" required="false" defaultValue="">
+                            <caption>Column label</caption>
+                            <category>UI</category>
+                            <description>When you add columns, you can optionally set a label for your column</description>
+                        </property>
+                        <property key="actionButtonColumnClass" type="string" required="false" defaultValue="">
+                            <caption>Column class</caption>
+                            <category>UI</category>
+                            <description>When you add columns, you can optionally set a class for your column</description>
+                        </property>
+                        <property key="actionButtonOnClickAction" type="enumeration" defaultValue="mf">
+                            <caption>Button click action</caption>
+                            <category>Action</category>
+                            <description>Note: For pages it uses the Node object, for microflow/nanoflow the Helper object! Make sure you have configured this.</description>
+                            <enumerationValues>
+                                <enumerationValue key="mf">Microflow</enumerationValue>
+                                <enumerationValue key="nf">Nanoflow</enumerationValue>
+                                <enumerationValue key="open">Open page</enumerationValue>
+                            </enumerationValues>
+                        </property>
+                        <property key="actionButtonOnClickMf" type="microflow" required="false" entityProperty="../helperEntity">
+                            <caption>Button click Microflow</caption>
+                            <category>Action</category>
+                            <description></description>
+                            <returnType type="Void" />
+                        </property>
+                        <property key="actionButtonOnClickNf" type="nanoflow" required="false" entityProperty="../helperEntity">
+                            <caption>Button click Nanoflow</caption>
+                            <category>Action</category>
+                            <description></description>
+                            <returnType type="Void" />
+                        </property>
+                        <property key="actionButtonOnClickForm" type="form" required="false">
+                            <caption>Button click page</caption>
+                            <category>Action</category>
+                            <description>The page to open when a row is clicked</description>
+                        </property>
+                        <property key="actionButtonOnClickOpenPageAs" type="enumeration" defaultValue="content">
+                            <caption>Button click open page as</caption>
+                            <category>Action</category>
+                            <description/>
+                            <enumerationValues>
+                                <enumerationValue key="content">Full page</enumerationValue>
+                                <enumerationValue key="popup">Popup</enumerationValue>
+                                <enumerationValue key="modal">Blocking popup</enumerationValue>
+                            </enumerationValues>
+                        </property>
+                    </properties>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <!-- ****************
+                BEHAVIOR
+        *********************-->
+
+        <propertyGroup caption="Events">
+            <propertyGroup caption="Single click">
+                <property key="onClickAction" type="enumeration" defaultValue="nothing">
+                    <caption>Single click action</caption>
+                    <description>Note: For pages it uses the Node object, for microflow/nanoflow the Helper object! Make sure you have configured this.</description>
+                    <enumerationValues>
+                        <enumerationValue key="nothing">Nothing</enumerationValue>
+                        <enumerationValue key="mf">Microflow</enumerationValue>
+                        <enumerationValue key="nf">Nanoflow</enumerationValue>
+                        <enumerationValue key="open">Open page</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="onClickMf" type="microflow" required="false" entityProperty="helperEntity">
+                    <caption>Single click Microflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+                <property key="onClickNf" type="nanoflow" required="false" entityProperty="helperEntity">
+                    <caption>Single click Nanoflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+                <property key="onClickForm" type="form" required="false">
+                    <caption>Single click page</caption>
+                    <description>The page to open when a row is clicked</description>
+                </property>
+                <property key="onClickOpenPageAs" type="enumeration" defaultValue="content">
+                    <caption>Single click open page as</caption>
+                    <description/>
+                    <enumerationValues>
+                        <enumerationValue key="content">Full page</enumerationValue>
+                        <enumerationValue key="popup">Popup</enumerationValue>
+                        <enumerationValue key="modal">Blocking popup</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Double click">
+                <property key="onDblClickAction" type="enumeration" defaultValue="nothing">
+                    <caption>Double click action</caption>
+                    <description>Note: For pages it uses the Node object, for microflow/nanoflow the Helper object! Make sure you have configured this.</description>
+                    <enumerationValues>
+                        <enumerationValue key="nothing">Nothing</enumerationValue>
+                        <enumerationValue key="mf">Microflow</enumerationValue>
+                        <enumerationValue key="nf">Nanoflow</enumerationValue>
+                        <enumerationValue key="open">Open page</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="onDblClickMf" type="microflow" required="false" entityProperty="helperEntity">
+                    <caption>Double click Microflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+                <property key="onDblClickNf" type="nanoflow" required="false" entityProperty="helperEntity">
+                    <caption>Double click Nanoflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+                <property key="onDblClickForm" type="form" required="false">
+                    <caption>Double click page</caption>
+                    <description>The page to open when a row is clicked</description>
+                </property>
+                <property key="onDblClickOpenPageAs" type="enumeration" defaultValue="content">
+                    <caption>Double click open page as</caption>
+                    <description/>
+                    <enumerationValues>
+                        <enumerationValue key="content">Full page</enumerationValue>
+                        <enumerationValue key="popup">Popup</enumerationValue>
+                        <enumerationValue key="modal">Blocking popup</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <!-- ****************
+                UI
+        *********************-->
+
+        <propertyGroup caption="UI">
+            <propertyGroup caption="General">
+                <property key="uiShowHeader" type="boolean" defaultValue="true">
+                    <caption>Show header</caption>
+                    <description>Make header row visible/invisible</description>
+                </property>
+                <property key="uiRowClassAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Row Class Attribute</caption>
+                    <description>Attribute that will set an extra class on a row. This attribute should contain a valid css className, like 'mx-treeview-row'. This className can also be used in styling, where you would define a couple of classNames to set certain statuses and give each a color. This can be a calculated attribute, but keep in mind that performance might go down if you use that too much.</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="uiRowIconAttr" type="attribute" entityProperty="nodeEntity" required="false">
+                    <caption>Icon Attribute</caption>
+                    <description>Attribute that will determine which icon to show in the first column of the row. Can be prefixed (see next)</description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="uiIconPrefix" type="string" required="false" defaultValue="glyphicon glyphicon-">
+                    <caption>Icon class prefix</caption>
+                    <description>When using icons in a row, it will use an &lt;i&gt; element with this className. When empty, it will use the standard 'glyphicon glyphicon-' prefix to use Bootstrap style elements. You can set your own icon prefixes here.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Scenario: Whole Tree">
+                <property key="uiExpandFirstLevelWholeTree" type="boolean" defaultValue="false">
+                    <caption>Expand first level</caption>
+                    <description>Only works while loading the whole tree: Automatically expand the first level of the tree. Currently it is only possible to automatically expand the first level. This will be ignored if the user has already used state management before.</description>
+                </property>
+                <property key="uiRenderExpandButton" type="boolean" defaultValue="false">
+                    <caption>Render expand button</caption>
+                    <description>Render a button to expand/collapse all</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <!-- ****************
+                SELECTION
+        *********************-->
+
+        <propertyGroup caption="Selection">
+            <propertyGroup caption="Selection behavior">
+                <property key="selectMode" type="enumeration" defaultValue="none">
+                    <caption>Select Mode</caption>
+                    <description>- Make sure you add the Selection Helper entity when doing selections!
+- Selection is only enabled when you have added something in the Button Bar or added an On Change Action. If neither is configured, selection will be disabled.</description>
+                    <enumerationValues>
+                        <enumerationValue key="none">None</enumerationValue>
+                        <enumerationValue key="single">Single</enumerationValue>
+                        <enumerationValue key="multi">Multi</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="selectClickSelect" type="boolean" defaultValue="true">
+                    <caption>Click to select</caption>
+                    <description>If enabled, you can select a row by simply clicking on it. If disabled, you will need to click the checkbox.</description>
+                </property>
+                <property key="selectHideCheckboxes" type="boolean" defaultValue="false">
+                    <caption>Hide checkboxes</caption>
+                    <description>Hides the left column containing the checkboxes.</description>
+                </property>
+                <property key="selectSelectFirstOnSingle" type="boolean" defaultValue="false">
+                    <caption>Select first on single</caption>
+                    <description>If enabled, it will automatically select the first row on load. Note: this might not always work when the columns change.</description>
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Multi select">
+                <property key="selectMultiChildren" type="boolean" defaultValue="false">
+                    <caption>Select children</caption>
+                    <description>When selecting an element in Multi select mode, you might want to automatically select the children. This is disabled by default.
+
+Note: This only works properly when the whole tree is loaded (Data -> Scenario). If you apply this to a partial tree, it will obviously only send the child nodes that have been loaded.</description>
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Selection onChange">
+                <property key="selectOnChangeAction" type="enumeration" defaultValue="nothing">
+                    <caption>On Change action</caption>
+                    <description>Execute this action when the selection changes</description>
+                    <enumerationValues>
+                        <enumerationValue key="nothing">Nothing</enumerationValue>
+                        <enumerationValue key="mf">Microflow</enumerationValue>
+                        <enumerationValue key="nf">Nanoflow</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="selectOnChangeMicroflow" type="microflow" required="false" entityProperty="helperEntity">
+                    <caption>Microflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+                <property key="selectOnChangeNanoflow" type="nanoflow" required="false" entityProperty="helperEntity">
+                    <caption>Nanoflow</caption>
+                    <description></description>
+                    <returnType type="Void" />
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Selection UI">
+                <property key="selectActionButtons" type="object" isList="true" required="false">
+                    <caption>Button bar</caption>
+                    <description>Buttons that can be triggered when you have selected something. If no buttons are configured, Select Mode will be ignored. This is a button bar that will appear on top of the table.</description>
+                    <properties>
+                        <propertyGroup caption="Button UI">
+                            <property key="selectABLabel" type="string" required="true" defaultValue="">
+                                <caption>Caption</caption>
+                                <description></description>
+                            </property>
+                            <property key="selectABClass" type="string" required="false" defaultValue="">
+                                <caption>Class</caption>
+                                <description>Extra class names</description>
+                            </property>
+                            <property key="selectABHideOnNotApplicable" type="boolean" defaultValue="true">
+                                <caption>Hide when disabled</caption>
+                                <description>If this is set to 'true', it will hide the button when it is disabled</description>
+                            </property>
+                        </propertyGroup>
+                        <propertyGroup caption="Button events">
+                            <property key="selectABAction" type="enumeration" defaultValue="mf">
+                                <caption>Click action</caption>
+                                <description>Note: For the microflow/nanoflow you will need to define the Helper entity!</description>
+                                <enumerationValues>
+                                    <enumerationValue key="mf">Microflow</enumerationValue>
+                                    <enumerationValue key="nf">Nanoflow</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                            <property key="selectABMicroflow" type="microflow" required="false" entityProperty="../helperEntity">
+                                <caption>Microflow</caption>
+                                <description></description>
+                                <returnType type="Void" />
+                            </property>
+                            <property key="selectABNanoflow" type="nanoflow" required="false" entityProperty="../helperEntity">
+                                <caption>Nanoflow</caption>
+                                <description></description>
+                                <returnType type="Void" />
+                            </property>
+                        </propertyGroup>
+                    </properties>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <!-- ****************
+            MISC
+        *********************-->
+
+        <propertyGroup caption="Misc">
+            <propertyGroup caption="State Management">
+                <property key="stateManagementType" type="enumeration" defaultValue="disabled">
+                    <caption>State Type</caption>
+                    <description>
+Note: State management (currently) ONLY works when you load a whole tree (see Data section). In case of 'Top level', it will be disabled.
+                    </description>
+                    <enumerationValues>
+                         <enumerationValue key="disabled">Disabled</enumerationValue>
+                         <enumerationValue key="localStorage">Browser</enumerationValue>
+                         <!-- <enumerationValue key="mendix">Mendix (server) NOT WORKING YET!!</enumerationValue> -->
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Browser">
+                <property key="stateLocalStorageType" type="enumeration" defaultValue="session">
+                    <caption>Storage type</caption>
+                    <description>If you use session (default), it will only apply to current session. If you use local storage, it will stay in the browser as local storage, persisting over multiple sessions. This does mean the local storage can get polluted with a lot of states.</description>
+                    <enumerationValues>
+                         <enumerationValue key="session">Session</enumerationValue>
+                         <enumerationValue key="local">Local Storage</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="stateLocalStorageTime" type="integer" required="true" defaultValue="60">
+                    <caption>Timeout</caption>
+                    <description>Storage Timeout for State Management is set in MINUTES. When the state is older, it will be ignored</description>
+                </property>
+                <property key="stateLocalStorageKey" type="string" required="false" defaultValue="">
+                    <caption>Key</caption>
+                    <description>When storing the state in local storage, it will choose a specific key, based on the the GUID of your context. If you happen to use a non-persistent context, this will change every time. In that case you can set a key here (make it unique for your current view). Otherwise, leave it empty.</description>
+                </property>
+                <property key="stateLocalStorageKeyIncludeGUID" type="boolean" defaultValue="false">
+                    <caption>Include guid</caption>
+                    <description>When you set a key you can still add the GUID if needed. This is not useful when using non-persistent objects</description>
+                </property>
+                <property key="stateExecuteSelectActionOnRestore" type="boolean" defaultValue="true">
+                    <caption>Restore selection action</caption>
+                    <description>When you restore your state, and you have an On Change action defined for your selection (see Selection tab), you can execute this. This is enabled by default.</description>
+                </property>
+            </propertyGroup>
+            <!-- <propertyGroup caption="Mendix">
+                <property key="stateEntity" type="entity" required="false" allowNonPersistableEntities="true">
+                    <caption>State entity</caption>
+                    <description>This state entity will help you keep the state of the table.
+
+- State should only be set for the current view and current user, so you can keep track of any changes in expand/selection for a certain user. That's the reason
+- It will determine which references (selection/expand) need to be set. When loading the tree for the first time, it will try to restore the old state.</description>
+                </property>
+                <property key="getStateObjectMicroflow" type="microflow" required="false">
+                    <caption>Get state Microflow</caption>
+                    <description>Load the state object for this particular view</description>
+                    <returnType type="Object" entityProperty="stateEntity" />
+                </property>
+                <property key="stateNodeSelectionReference" type="entity" required="false" entityProperty="stateEntity" isPath="yes" pathType="referenceSet" allowNonPersistableEntities="true">
+                    <caption>Selection reference</caption>
+                    <description>Reference to Node Entity (reference set) that shows which nodes are SELECTED</description>
+                </property>
+                <property key="stateNodeExpandReference" type="entity" required="false" entityProperty="stateEntity" isPath="yes" pathType="referenceSet" allowNonPersistableEntities="true">
+                    <caption>Expand reference</caption>
+                    <description>Reference to Node Entity (reference set) that shows which nodes are EXPANDED</description>
+                </property>
+            </propertyGroup> -->
+            <propertyGroup caption="Experimental">
+                <property key="experimentalExposeSetSelected" type="boolean" defaultValue="false">
+                    <caption>Expose setSelected</caption>
+                    <description>This is an EXPERIMENTAL feature. It will expose the function to select a certain object/list of objects in the Tree Table, so you can target it with a Nanoflow + Javascript Action.
+
+Notes:
+- This is EXPERIMENTAL. Please debug in the console when having problems. No guarantees that this feature will stay in the widget.
+- This only works properly when the whole tree is loaded, or at least all parents + selected node. It will try to expand the parents if possible.
+- The name of the function will depend on the context. This is done to make sure the function is unique. The name of the function is "window.__TreeTable_{guid}_select", where "{guid}" is the ID of the context object. When executing this in a Javascript action, please verify that the function exists.</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+    </properties>
+</widget>
