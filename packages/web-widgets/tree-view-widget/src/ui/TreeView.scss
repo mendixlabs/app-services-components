@@ -1,0 +1,170 @@
+.treeview-widget {
+	//* Copied from else where to make animations work
+
+	[class^=ant-]::-ms-clear,
+	[class*= ant-]::-ms-clear,
+	[class^=ant-] input::-ms-clear,
+	[class*= ant-] input::-ms-clear,
+	[class^=ant-] input::-ms-reveal,
+	[class*= ant-] input::-ms-reveal {
+	display: none;
+	}
+	[class^=ant-],
+	[class*= ant-],
+	[class^=ant-] *,
+	[class*= ant-] *,
+	[class^=ant-] *::before,
+	[class*= ant-] *::before,
+	[class^=ant-] *::after,
+	[class*= ant-] *::after {
+	-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+	}
+
+	.anticon {
+	display: inline-block;
+	color: inherit;
+	font-style: normal;
+	line-height: 0;
+	text-align: center;
+	text-transform: none;
+	vertical-align: -0.125em;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	}
+	.anticon > * {
+	line-height: 1;
+	}
+	.anticon svg {
+	display: inline-block;
+	}
+	.anticon::before {
+	display: none;
+	}
+	.anticon .anticon-icon {
+	display: block;
+	}
+	.anticon[tabindex] {
+	cursor: pointer;
+	}
+	.anticon-spin::before {
+	display: inline-block;
+	-webkit-animation: loadingCircle 1s infinite linear;
+			animation: loadingCircle 1s infinite linear;
+	}
+	.anticon-spin {
+	display: inline-block;
+	-webkit-animation: loadingCircle 1s infinite linear;
+			animation: loadingCircle 1s infinite linear;
+	}
+
+	.fade-enter,
+	.fade-appear {
+	-webkit-animation-duration: 0.2s;
+			animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+			animation-play-state: paused;
+	}
+	.fade-leave {
+	-webkit-animation-duration: 0.2s;
+			animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+	-webkit-animation-play-state: paused;
+			animation-play-state: paused;
+	}
+	.fade-enter.fade-enter-active,
+	.fade-appear.fade-appear-active {
+	-webkit-animation-name: antFadeIn;
+			animation-name: antFadeIn;
+	-webkit-animation-play-state: running;
+			animation-play-state: running;
+	}
+	.fade-leave.fade-leave-active {
+	-webkit-animation-name: antFadeOut;
+			animation-name: antFadeOut;
+	-webkit-animation-play-state: running;
+			animation-play-state: running;
+	pointer-events: none;
+	}
+	.fade-enter,
+	.fade-appear {
+	opacity: 0;
+	-webkit-animation-timing-function: linear;
+			animation-timing-function: linear;
+	}
+	.fade-leave {
+	-webkit-animation-timing-function: linear;
+			animation-timing-function: linear;
+	}
+
+	.ant-motion-collapse-legacy {
+		overflow: hidden;
+	  }
+	  .ant-motion-collapse-legacy-active {
+		-webkit-transition: height 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+		transition: height 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+	  }
+	  .ant-motion-collapse {
+		overflow: hidden;
+		-webkit-transition: height 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+		transition: height 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+	  }
+
+	// CUSTOM
+
+	.ant-tree {
+		background: transparent;
+	}
+
+	.has-icon {
+		.ant-tree-iconEle {
+			float: left;
+		}
+		.ant-tree-title {
+			float: left;
+		}
+	}
+
+	.treeview-widget-control {
+		margin-bottom: 10px;
+	}
+
+	.ant-empty {
+		padding: 10px 0;
+	}
+
+	.ant-tree-show-line {
+		.ant-tree-switcher {
+			background: var(--switcher-icon-bg);
+			&.ant-tree-switcher-noop {
+				background: transparent;
+				position: relative;
+				&:before {
+					content: " ";
+					display: block;
+					border-left: 1px solid #d9d9d9;
+					height: 24px;
+					left: 11px;
+					width: 1px;
+					position: absolute;
+				}
+			}
+		}
+	}
+
+	.anticon.anticon-file.ant-tree-switcher-line-icon {
+		display: none;
+	}
+
+	li.has-icon > .ant-tree-node-content-wrapper {
+		padding-right: 20px;
+	}
+
+	.highlight > .ant-tree-node-content-wrapper .ant-tree-title {
+		font-weight: bold;
+	}
+}
