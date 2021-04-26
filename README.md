@@ -1,4 +1,6 @@
-# App Services Components
+# 🏠 App Services Components
+
+This read me is for Developing on this repo. If you are looking for documentation on a package or a widget please go [here](https://mendixlabs.github.io/app-services-components/)
 
 ## 📂 Basic Folder Structure
 
