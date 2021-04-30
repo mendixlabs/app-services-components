@@ -3,7 +3,7 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { EditableValue } from "mendix";
+import { ActionValue, EditableValue } from "mendix";
 
 export interface BooleanNamesType {
     booleanValue: boolean;
@@ -21,6 +21,7 @@ export interface RadiobuttonnativeProps<Style> {
     boolAttribute?: EditableValue<boolean>;
     booleanNames: BooleanNamesType[];
     enumAttribute?: EditableValue<string>;
+    onChangeAction?: ActionValue;
     formHorizontal: boolean;
     labelHorizontal: boolean;
     buttonInnerColor: string;
@@ -37,6 +38,7 @@ export interface RadiobuttonnativePreviewProps {
     boolAttribute: string;
     booleanNames: BooleanNamesPreviewType[];
     enumAttribute: string;
+    onChangeAction: {} | null;
     formHorizontal: boolean;
     labelHorizontal: boolean;
     buttonInnerColor: string;
