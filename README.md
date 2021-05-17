@@ -1,5 +1,3 @@
-<h1 >Collapsible Native Header Widget</h1>
-
 <p align="center">
     <img align="center" alt="headerIMG" src="./assets/Collapsible Header GH.png" target="_blank" />
     <br>
@@ -11,10 +9,10 @@
     <img alt="License: MIT" src="https://img.shields.io/badge/Status-Production-blue" target="_blank" />
   </a>
   <a href="">
-    <img alt="License: MIT" src="https://img.shields.io/github/issues/ahwelgemoed/drag-and-drop-mendix-widget" target="_blank" />
+    <img alt="License: MIT" src="https://img.shields.io/github/issues/ahwelgemoed/collapsible-native-header-widget" target="_blank" />
   </a>
   <a href="">
-    <img alt="GitHub issues" src="https://img.shields.io/github/release/ahwelgemoed/drag-and-drop-mendix-widget" target="_blank" />
+    <img alt="GitHub issues" src="https://img.shields.io/github/release/ahwelgemoed/collapsible-native-header-widget" target="_blank" />
   </a>
   <a href="https://appstore.home.mendix.com/link/modeler/">
     <img alt="GitHub issues" src="https://img.shields.io/badge/Studio%20version-8.12%2B-blue.svg" target="_blank" />

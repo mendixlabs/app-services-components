@@ -1,4 +1,4 @@
-import { Component, createElement, cloneElement, Fragment, ReactElement } from "react";
+import { Component, createElement, Fragment, ReactElement } from "react";
 import { View, ViewStyle, SafeAreaView, StatusBar } from "react-native";
 
 import Parallax from "./components/Parallax";
