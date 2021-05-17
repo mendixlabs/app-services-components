@@ -1,4 +1,6 @@
-# 🏠 App Services Components
+<img  align="center" alt="headerIMG" src="./assets/ASCM-Logo.png" target="_blank" />
+<br/>
+<br/>
 
 This read me is for Developing on this repo. If you are looking for documentation on a package or a widget please go [here](https://mendixlabs.github.io/app-services-components/)
 
@@ -78,7 +80,9 @@ TBA
 
 ## 💻 Versioning and Release your Widget
 
-TBA
+This packages uses a Github action to build and maintain versioning with lerna version.
+
+For details on the Action see [here]()
 
 ---
 
@@ -86,4 +90,4 @@ TBA
 
 - Licence
 - First Pull - Docs
-- Look into Build Script and release
+- Look into Build Script and release (semi done!)
