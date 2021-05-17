@@ -1,5 +1,5 @@
 <p align="center">
-    <img align="center" alt="headerIMG" src="./assets/Collapsible Header GH.png" target="_blank" />
+    <img align="center" alt="headerIMG" src="./assets/CollapsibleHeaderGH.png" target="_blank" />
     <br>
     <br>
    A Collapsible Header for Mendix Native
