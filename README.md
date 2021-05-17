@@ -72,5 +72,6 @@ export const mendix_collapsibleheader_CollapsibleHeader = {
 
 -   Long Titles break overflow
 
-Add issues to [project](https://github.com/ahwelgemoed/radio-buttons-native-widget/projects/1?add_cards_query=is%3Aopen)
-board or open an GH [issue](https://github.com/ahwelgemoed/radio-buttons-native-widget/issues/new).
+Add issues to
+[project](https://github.com/ahwelgemoed/collapsible-native-header-widget/projects/1?add_cards_query=is%3Aopen) board or
+open an GH [issue](https://github.com/ahwelgemoed/collapsible-native-header-widget/issues/new).
