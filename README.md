@@ -19,7 +19,7 @@ This read me is for Developing on this repo. If you are looking for documentatio
     |   |- * Web Widgets
 ```
 
-## 💅🏽 Initial Setup
+## 💅 Initial Setup
 
 After cloning the repo, in the Root file run `yarn` - That will install the all the dependencies
 
@@ -27,7 +27,7 @@ After cloning the repo, in the Root file run `yarn` - That will install the all 
 
 ---
 
-## Adding Dependency
+## 🧒 Adding Dependency
 
 ```bash
 npx lerna add PACKAGE-TO-ADD --scope=PACKAGE-TO-ADD-IT-TOO
@@ -45,7 +45,7 @@ npx lerna add @app-services-components/usedomlocation --scope=draganddropwidget
 
 Remove `node_modules` from packages - `yarn clean:packages`
 
-Remove ALL `node_modules` - `yarn clean:all`
+Remove ALL `node_modules` Hoisted and non Hoisted - `yarn clean:all` _mac and linux only_
 
 ---
 
@@ -57,7 +57,7 @@ Remove ALL `node_modules` - `yarn clean:all`
 
 ---
 
-## ➕ Adding an exsisting Repo to the Mono Repo
+## ➕ Adding an existing Repo to the Mono Repo
 
 Basic command Structure
 
@@ -82,7 +82,7 @@ TBA
 
 This packages uses a Github action to build and maintain versioning with lerna version.
 
-For details on the Action see [here]()
+For details on the Action see [here](https://github.com/ahwelgemoed/widget-build-monorepo-action)
 
 ---
 
