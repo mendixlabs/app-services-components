@@ -5,11 +5,10 @@
 * **[Native Widgets](/native-widgets/index.md)**
 
   - [Radio Button Native](/native-widgets/RadioButtonNativeWidget.md)
-  - [Native Widget Two](/native-widgets/Native-Widget-Two.md)
 
 * **[Web Widgets](/web-widgets/index.md)**
 
-  - [Web Widgets One](/web-widgets/web-Widget-One.md)
+  - [Count Downtimer Widget](/web-widgets/Countdowntimerwidget.md)
 
 * **[Utilities](/utilities/index.md)**
 
