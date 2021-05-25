@@ -8,10 +8,51 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-            <property key="sampleText" type="string" required="false">
-                <caption>Default value</caption>
-                <description>Sample text input</description>
+            <property key="incomingDate" type="attribute">
+                <caption>End Date Time</caption>
+                <description>Time The Count Down Should End</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
             </property>
+            <property key="whenDone" type="action">
+                <caption>When Done</caption>
+                <description>Action called if Count Down Timer is or hits 0</description>
+            </property>
+            <property key="content" type="widgets" required="false" >
+                <caption>Displayed When Widget is Done</caption>
+                <description>Displayed When Widget is Done</description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Display">
+            <propertyGroup caption="Main Display">
+                <property key="showDays" type="boolean" defaultValue="true">
+                    <caption>Display Days</caption>
+                    <description></description>
+                </property>
+                <property key="showHours" type="boolean" defaultValue="true">
+                    <caption>Display Hours</caption>
+                    <description></description>
+                </property>
+                <property key="showMinutes" type="boolean" defaultValue="true">
+                    <caption>Display Minutes</caption>
+                    <description></description>
+                </property>
+                <property key="showSeconds" type="boolean" defaultValue="true">
+                    <caption>Display Seconds</caption>
+                    <description></description>
+                </property>
+                <property key="showMilliseconds" type="boolean" defaultValue="false">
+                    <caption>Display Milliseconds</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Aux Display">
+                <property key="showLegends" type="boolean" defaultValue="true">
+                    <caption>Display Legends</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
         </propertyGroup>
     </properties>
 </widget>

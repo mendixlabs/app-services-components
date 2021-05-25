@@ -1,6 +1,18 @@
 /*
 Place your custom CSS here
 */
-.widget-hello-world {
-
+.widget_countDownTimer__container {
+    display: flex;
+}
+.widget_countDownTimer__value {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.widget_countDownTimer__separator {
+    padding-top: 10px;
+    font-size: 16px;
+}
+.widget_countDownTimer__legend {
+    font-size: 10px;
 }
