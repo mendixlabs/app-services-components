@@ -11,6 +11,7 @@ export interface CollapsibleHeaderProps<Style> {
     headerArea: ReactNode;
     headerActionArea?: ReactNode;
     contentArea: ReactNode;
+    headerFontSize: number;
     uiMinHeight: number;
     uiMaxHeight: number;
     uiPaddingSides: number;
@@ -22,6 +23,7 @@ export interface CollapsibleHeaderPreviewProps {
     headerArea: { widgetCount: number; renderer: ComponentType };
     headerActionArea: { widgetCount: number; renderer: ComponentType };
     contentArea: { widgetCount: number; renderer: ComponentType };
+    headerFontSize: number | null;
     uiMinHeight: number | null;
     uiMaxHeight: number | null;
     uiPaddingSides: number | null;

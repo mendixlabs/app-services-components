@@ -10021,7 +10021,7 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-anchor-point@^1.0.2:
+react-native-anchor-point@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-native-anchor-point/-/react-native-anchor-point-1.0.3.tgz#bcd3267e349e7af8a5eab56ee3fb039740fd7808"
   integrity sha512-ThCTlq6a+hJOYWWfX3nrklN+d8Eypvc9McQe96gob7/aQulAGMxvN17BBtp4hDDw33L/Hq1m9ZbY+1juoop3KA==

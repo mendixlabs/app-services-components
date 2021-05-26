@@ -22,6 +22,10 @@
             </property>
         </propertyGroup>
         <propertyGroup caption="UI">
+            <property key="headerFontSize" type="integer" required="true" defaultValue="30">
+                <caption>Header Font Size</caption>
+                <description></description>
+            </property>
             <property key="uiMinHeight" type="integer" required="true" defaultValue="90">
                 <caption>Min height</caption>
                 <description>Minimum height. This is default set to 90, but can be overridden by setting it here OR using the native-styles in your theme.</description>

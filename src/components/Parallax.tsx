@@ -17,6 +17,7 @@ import {
     ScrollView,
     Dimensions,
     Platform,
+    Text,
     StatusBar,
     NativeModules,
     findNodeHandle
@@ -24,6 +25,7 @@ import {
 import { CollapsibleHeaderStyle } from "../ui/styles";
 import Svg, { Path } from "react-native-svg";
 import { deepForEach } from "react-children-utilities";
+import { withAnchorPoint } from "react-native-anchor-point";
 
 const { width } = Dimensions.get("screen");
 const { StatusBarManager } = NativeModules;
@@ -43,6 +45,7 @@ export interface CollapsibleHeaderProps {
     navigation: any;
     uiPaddingSides: any;
     headerArea: any;
+    headerFontSize: any;
 }
 
 const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
@@ -50,17 +53,17 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
     minHeight,
     children,
     style,
-    headerActionArea,
     navigation,
+    headerArea,
     uiPaddingSides,
-    headerArea
+    headerFontSize,
+    headerActionArea
 }: PropsWithChildren<CollapsibleHeaderProps>) => {
+    const SET_FONT_SIZE = headerFontSize || 30;
     const [statusBarHeight, setStatusBarHeight] = useState<number | undefined>(0);
     const [showBackButton, setShowBackButton] = useState<boolean>(false);
     const scrollPositionY = useRef(new Animated.Value(0)).current;
     const scrollViewRef = useRef<Animated.AnimatedComponent<ScrollView>>(null);
-    const testREf = useRef(null);
-    console.log(`statusBarHeight`, statusBarHeight);
     const HEADER_MAX_HEIGHT = useMemo(
         () => (maxHeight ? maxHeight : style?.header.maxHeight ? style.header.maxHeight : 400),
         [maxHeight, style]
@@ -100,28 +103,31 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
             if (node) {
                 setTimeout(() => {
                     node.scrollTo({ x: 0, y: HEADER_SCROLL_DISTANCE, animated: false });
-                }, 1);
+                }, 10);
             }
         }
     }, []);
 
-    const ScalePageTitle = scrollPositionY.interpolate({
+    const TranslateHeaderXWithBackButton = scrollPositionY.interpolate({
         inputRange: [0, HEADER_SCROLL_DISTANCE],
-        outputRange: [1, 0.7],
+        outputRange: [0, SET_FONT_SIZE * 0.6],
+        extrapolate: "clamp"
+    });
+    const TranslateHeaderXNoBackButton = scrollPositionY.interpolate({
+        inputRange: [0, HEADER_SCROLL_DISTANCE],
+        outputRange: [0, -SET_FONT_SIZE / 2],
         extrapolate: "clamp"
     });
 
-    const TranslateX = scrollPositionY.interpolate({
+    const TranslateBackbuttonY = scrollPositionY.interpolate({
         inputRange: [0, HEADER_SCROLL_DISTANCE],
-        outputRange: [
-            showBackButton ? -HEADER_PADDING_SIDES * 1.5 : 0,
-            showBackButton ? -HEADER_PADDING_SIDES * 1.5 : -HEADER_PADDING_SIDES - 20
-        ],
+        outputRange: [-SET_FONT_SIZE, 8],
         extrapolate: "clamp"
     });
-    const TranslateY = scrollPositionY.interpolate({
+
+    const ScalePageTitle = scrollPositionY.interpolate({
         inputRange: [0, HEADER_SCROLL_DISTANCE],
-        outputRange: [HEADER_PADDING_SIDES * 2, 2],
+        outputRange: [1, 0.9],
         extrapolate: "clamp"
     });
 
@@ -160,88 +166,98 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
                 <Animated.View
                     style={[
                         {
-                            width,
-                            bottom: 0,
                             marginBottom: 10,
-                            position: "absolute",
                             flexDirection: "row",
-                            alignItems: "center",
-                            height: headerTranslate,
+                            height: "100%",
+                            alignItems: "flex-end",
                             paddingTop: statusBarHeight,
-                            justifyContent: "space-between",
-                            paddingLeft: HEADER_PADDING_SIDES / 2,
-                            paddingRight: HEADER_PADDING_SIDES / 2
+                            paddingLeft: HEADER_PADDING_SIDES,
+                            paddingRight: HEADER_PADDING_SIDES
                         }
                     ]}
                 >
                     <View
                         style={[
                             {
-                                height: "100%",
-                                flexDirection: "row",
-                                alignItems: "center"
+                                flexDirection: "column",
+                                width: "100%"
                             }
                         ]}
                     >
-                        {showBackButton && (
-                            <TouchableHighlight onPress={(): void => navigation.goBack()}>
-                                <Svg height="24" width="24" fill={"white"} viewBox="0 0 512 512">
-                                    {Platform.select({
-                                        ios: (
-                                            <Path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z" />
-                                        ),
-                                        android: (
-                                            <Path d="M427 234.625H167.296l119.702-119.702L256 85 85 256l171 171 29.922-29.924-118.626-119.701H427v-42.75z" />
-                                        )
-                                    })}
-                                </Svg>
-                            </TouchableHighlight>
-                        )}
-
-                        {headerArea && (
+                        <View
+                            style={[
+                                {
+                                    flexDirection: "row"
+                                }
+                            ]}
+                        >
                             <Animated.View
                                 // @ts-ignore
-                                ref={testREf}
+                                style={[{ transform: [{ translateY: TranslateBackbuttonY }] }]}
+                            >
+                                {showBackButton && (
+                                    <TouchableHighlight onPress={(): void => navigation.goBack()}>
+                                        <Svg
+                                            height={SET_FONT_SIZE}
+                                            width={SET_FONT_SIZE}
+                                            fill={"white"}
+                                            viewBox="0 0 512 512"
+                                        >
+                                            <Path d="M427 234.625H167.296l119.702-119.702L256 85 85 256l171 171 29.922-29.924-118.626-119.701H427v-42.75z" />
+                                        </Svg>
+                                    </TouchableHighlight>
+                                )}
+                            </Animated.View>
+
+                            {headerArea && (
+                                <Animated.View
+                                    // @ts-ignore
+                                    style={[
+                                        {
+                                            width: showBackButton ? "74%" : "80%",
+                                            marginLeft: showBackButton ? -SET_FONT_SIZE + 2 : 0,
+                                            transform: [
+                                                {
+                                                    translateX: showBackButton
+                                                        ? TranslateHeaderXWithBackButton
+                                                        : TranslateHeaderXNoBackButton
+                                                },
+
+                                                { scale: ScalePageTitle }
+                                            ]
+                                        }
+                                    ]}
+                                >
+                                    {headerArea}
+                                </Animated.View>
+                            )}
+                            <View
                                 style={[
                                     {
-                                        width: width / 1.6,
+                                        width: "20%",
                                         alignSelf: "center",
-                                        transform: [
-                                            { translateX: TranslateX },
-                                            { translateY: TranslateY },
-                                            { scale: ScalePageTitle }
-                                        ]
+                                        flexDirection: "row",
+                                        justifyContent: "flex-end"
                                     }
                                 ]}
                             >
-                                {headerArea}
-                            </Animated.View>
-                        )}
-                    </View>
-                    <View
-                        style={[
-                            {
-                                flexDirection: "row"
-                            }
-                        ]}
-                    >
-                        {headerActionArea}
+                                {headerActionArea}
+                            </View>
+                        </View>
                     </View>
                 </Animated.View>
             </Animated.View>
 
             <Animated.View
                 style={{
-                    marginTop: Platform.OS === "ios" ? scrollTranslateIos : scrollTranslateAndroid
-                    // height: "100%"
+                    marginTop: Platform.OS === "ios" ? scrollTranslateIos : scrollTranslateAndroid,
+                    height: "100%"
                 }}
             >
                 <ScrollView
-                    style={
-                        {
-                            // height: "100%"
-                        }
-                    }
+                    style={{
+                        height: "100%"
+                    }}
                     // @ts-ignore
                     ref={scrollViewRef}
                     scrollEventThrottle={16}

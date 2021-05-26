@@ -36,7 +36,7 @@
         "@types/react-navigation": "^3.4.0",
         "pubsub-js": "^1.9.3",
         "react-children-utilities": "^2.5.1",
-        "react-native-anchor-point": "^1.0.2",
+        "react-native-anchor-point": "^1.0.3",
         "react-native-svg": "^12.1.1",
         "react-navigation": "^4.4.4",
         "sweet-pubsub": "^1.1.2"

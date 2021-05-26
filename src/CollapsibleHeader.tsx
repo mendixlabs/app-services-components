@@ -46,8 +46,9 @@ class CollapsibleHeaders extends Component<WithNavigationProps> {
             <SafeAreaView style={{ flex: 1 }}>
                 <Parallax
                     headerActionArea={this.props.headerActionArea}
-                    headerArea={this.props.headerArea}
                     uiPaddingSides={this.props.uiPaddingSides}
+                    headerFontSize={this.props.headerFontSize}
+                    headerArea={this.props.headerArea}
                     minHeight={this.props.uiMinHeight}
                     maxHeight={this.props.uiMaxHeight}
                     navigation={this.props.navigation}
