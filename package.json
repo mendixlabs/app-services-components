@@ -3,8 +3,8 @@
     "widgetName": "CollapsibleHeader",
     "version": "1.0.3",
     "description": "My widget description",
-    "copyright": "2020 Mendix Technology BV",
-    "author": "J.W. Lagendijk <jelte.lagendijk@mendix.com>",
+    "copyright": "2021 Mendix Technology BV",
+    "author": "A.H. Welgemoed <arno.welgemoed@outlook.com>",
     "config": {
         "projectPath": "./tests/testProject/"
     },
