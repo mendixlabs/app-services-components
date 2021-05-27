@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.collapsibleheader.CollapsibleHeader" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Native"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Collapsible Header</name>
+    <description>My widget description</description>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAACs0lEQVR4nO2bu2tUQRSHv7soYgiyIQlGUIhbWajxhZ0WPkIKRdDWyiJ/gJW1vZ2NqL2ipFFYwRgVFVEhYFotLHzl4TbiE3UtJsIG7kzmzsy9Z3adD06zd2bO7/yYvXNndy6sZBQ4D8wAi0A7svgJTAMNSuAs8D2CIm2iBewNWfy5CIoSM2E78CuCgsRMuBJBIb4m7PEx4E0ERfjGJ1cTMtSdda2hzTXgEeprUiWngQMF2reAo8Bs0UQmZyeLDhaQSwZdppmwu2gi3WAzvhV44mJAG1gCdtkmqRmuTbuojoBBlHYrE0wGLAWRI8MgcB/Yt1pDkwHdTh24yyomrPFM0gAGHPq9BeY9c9tQB+4Ah4GXukYuK0ADeGHoaxM3gX5DDtebYF4sAmMhDXgWSNjFigzQmuByD9gM7Hfol8epQOPYMIRaHXZ2fuhiwMYgchQjAceyYQh4QMcGqpdXAR0DQBPYAf+nAQDDwD1gNGYDfpc8/jBwIWYDPlaQ41DMBlSxGau7GPAloADTWE+AxwFz5eJiwCvUQ0UITAW2UT+KvAuUy5io6JPgceCroa9NvAe2WejbBEwBfzzz5YbrZugWah09tiywKK+Xi2pZtP0AnAS2ojY1W4B1BfONARO6iy4zoNuYRFNnzKtAJSQDpAVIkwyQFiBNMkBagDTJAGkB0iQDpAVIkwyQFiBNMkBagDTJAGkB0iQDpAVIkwyQFiBNMkBagDTJAGkB0iQDpAVIYzLA9xRpTGhrMRmgPVnZhRhPjuv+Hf4BHCldWvmMo96Kya0zQx08yDSd28BDYA74VrrUsKxHzeKDGOrLUIcUXE589wILNRxeMuohnteAq9IqBLkM6vvRpIQDSJHHjU4nNgC3IxBVVVwH+mDl3TEDTgBnUO8D1IDP9Ab9qNXuKWraN/9d+Auevowo5Lnc5QAAAABJRU5ErkJggg==</icon>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="headerActionArea" type="widgets" required="false">
+                <caption>Header Action Area</caption>
+                <description></description>
+            </property>
+            <property key="contentArea" type="widgets" required="true">
+                <caption>Content area</caption>
+                <description></description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="UI">
+            <property key="headerTextColor" type="string">
+                <caption>Color Of Header Text</caption>
+                <description></description>
+            </property>
+            <property key="headerFontSize" type="integer" required="true" defaultValue="28">
+                <caption>Header Font Size</caption>
+                <description></description>
+            </property>
+            <property key="collapsedFontSize" type="integer" required="true" defaultValue="18">
+                <caption>Collapsed Font Size</caption>
+                <description></description>
+            </property>
+            <property key="backButtonSize" type="integer" required="true" defaultValue="26">
+                <caption>Back Button Font Size</caption>
+                <description></description>
+            </property>
+            <property key="uiMinHeight" type="integer" required="true" defaultValue="90">
+                <caption>Min height</caption>
+                <description>Minimum height. This is default set to 90, but can be overridden by setting it here OR using the native-styles in your theme.</description>
+            </property>
+            <property key="uiMaxHeight" type="integer" required="true" defaultValue="140">
+                <caption>Max height</caption>
+                <description>Maximum height. This is default set to 140, but can be overridden by setting it here OR using the native-styles in your theme</description>
+            </property>
+            <property key="uiPaddingSides" type="integer" required="true" defaultValue="16">
+                <caption>Padding Sides</caption>
+                <description>Padding on the Left and right side of the Header</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

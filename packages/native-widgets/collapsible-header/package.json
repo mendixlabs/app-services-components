@@ -1,0 +1,43 @@
+{
+    "name": "collapsibleheader",
+    "widgetName": "CollapsibleHeader",
+    "version": "1.0.3",
+    "description": "My widget description",
+    "copyright": "2021 Mendix Technology BV",
+    "author": "A.H. Welgemoed <arno.welgemoed@outlook.com>",
+    "config": {
+        "projectPath": "./tests/testProject/"
+    },
+    "packagePath": "mendix",
+    "scripts": {
+        "start": "npm run dev",
+        "build": "pluggable-widgets-tools build:native",
+        "dev": "pluggable-widgets-tools start:native",
+        "lint": "pluggable-widgets-tools lint",
+        "lint:fix": "pluggable-widgets-tools lint:fix",
+        "prerelease": "npm run lint",
+        "release": "pluggable-widgets-tools release:native"
+    },
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/jeltemx/collapsibleheader/issues"
+    },
+    "devDependencies": {
+        "@mendix/pluggable-widgets-tools": "^8.14.0",
+        "@types/big.js": "^4.0.5",
+        "@types/react": "~16.9.0",
+        "@types/react-native": "~0.61.23",
+        "webpack-bundle-analyzer": "^4.2.0"
+    },
+    "dependencies": {
+        "@expo/status-bar-height": "^0.0.1",
+        "@types/pubsub-js": "^1.8.2",
+        "@types/react-navigation": "^3.4.0",
+        "pubsub-js": "^1.9.3",
+        "react-children-utilities": "^2.5.1",
+        "react-native-anchor-point": "^1.0.3",
+        "react-native-svg": "^12.1.1",
+        "react-navigation": "^4.4.4",
+        "sweet-pubsub": "^1.1.2"
+    }
+}
