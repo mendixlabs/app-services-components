@@ -1,7 +1,7 @@
 {
     "name": "collapsibleheader",
     "widgetName": "CollapsibleHeader",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "My widget description",
     "copyright": "2020 Mendix Technology BV",
     "author": "J.W. Lagendijk <jelte.lagendijk@mendix.com>",
