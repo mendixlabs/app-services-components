@@ -1,5 +1,5 @@
 <p align="center">
-    <img align="center" alt="headerIMG" src="./assets/CollapsibleHeaderGH.png" target="_blank" />
+    <img align="center" alt="headerIMG" src="./assets/CollapsibleHeaderMarketPlace.png" target="_blank" />
     <br>
     <br>
    A Collapsible Header for Mendix Native
@@ -32,29 +32,38 @@
 This widget was developed to follow a very specific Design Pattern, and was made for apps that use the Mendix Design
 System.
 
-The header follows a "2 Row to 1 Row" principal. When the header is expanded there are 2 Rows. The first row with
-Actions , eg. System Back Button if available and Developer Defined Actions Buttons (max 2), the second row is the Page
-Title. On Scroll the header will collapses based on the scroll index of the ScrollView. This will trigger the Title to
-scale down and move on the x and y axis. The header will now be inline with the Action buttons, thus taking it from a 2
-Row to a 1 Row.
+The header follows a "2 Row to 1 Row" principal. When the header is expanded there are 2 Rows. The first row with System
+Back Button if available, the second row is the Page Title and Developer Defined Actions Buttons (max 2). On Scroll the
+header collapses based on the scroll index of the ScrollView. This will trigger the Title to scale down and move on the
+x and y axis. The Page title and action buttons will now be inline with the Back button.
 
-Like any Native Widget this comes with some limitations and some Issues. Click here to see
+<h3>Let Op! | Things to Note</h3>
+
+The widget should work as Long as Mendix Native uses ReactNavigation 4.
+
+The Widget gets the Page title from the Page Property `General > Title`
+
+The Max Length for Titles are 2 Lines if **NO** Back button and 1 If there is.
 
 <h3>Data</h3>
 <p>
 <img height='400'  alt="headerIMG" src="./assets/ds1.png" target="_blank" />
 </p>
 
-| Name          | Type        | Desc.                                                                                                                         |
-| ------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| Min height    | `attribute` | Minimum height. This is default set to 90, but can be overridden by setting it here OR using the native-styles in your theme. |  |
-| Max height    | `attribute` | Maximum height. This is default set to 140, but can be overridden by setting it here OR using the native-styles in your theme |  |
-| Padding Sides | `attribute` | Padding on the Left and right side of the Header                                                                              |  |
+| Name                 | Type      | Desc.                                                                                                                         |
+| -------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Color of Header Text | `string`  | Color of Back button and Text                                                                                                 |
+| Header Font Size     | `integer` | Font Size of Header Text Expanded (Best Not Changed)                                                                          |
+| Collapsed Font Size  | `integer` | Font Size of Header Text Collapsed (Best Not Changed)                                                                         |
+| Back Button Size     | `integer` | Font Size of Back Button (Best Not Changed)                                                                                   |
+| Min height           | `integer` | Minimum height. This is default set to 90, but can be overridden by setting it here OR using the native-styles in your theme. |  |
+| Max height           | `integer` | Maximum height. This is default set to 140, but can be overridden by setting it here OR using the native-styles in your theme |  |
+| Padding Sides        | `integer` | Padding on the Left and right side of the Header                                                                              |  |
 
 <p >
 <h3>Usage</h3>
- <img height='400'  alt="headerIMG" src="./assets/ss1.png" target="_blank" />
- <img height='400'  alt="headerIMG" src="./assets/ss2.png" target="_blank" />
+ <img width='200'  alt="headerIMG" src="./assets/ss1.png" target="_blank" />
+ <img height='200'  alt="headerIMG" src="./assets/ss2.png" target="_blank" />
 </p>
 Add this code to your natives Styles
 

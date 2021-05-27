@@ -1,5 +1,5 @@
-import { Component, createElement, Fragment, ReactElement } from "react";
-import { View, ViewStyle, SafeAreaView, StatusBar } from "react-native";
+import { Component, createElement, ReactElement } from "react";
+import { ViewStyle, SafeAreaView, StatusBar } from "react-native";
 
 import Parallax from "./components/Parallax";
 
@@ -25,30 +25,23 @@ export interface WithNavigationProps extends CollapsibleHeaderProps<CustomStyle>
 class CollapsibleHeaders extends Component<WithNavigationProps> {
     private readonly styles = mergeNativeStyles(defaultCollapsibleHeaderStyle, this.props.style);
 
-    renderHeader = this._renderHeader.bind(this);
-
     componentDidMount() {
-        // setBar To Light On Time Out as It get missed/overridden somewhere in the render process
+        // setBar To Light On Time Out as It gets missed/overridden somewhere in the render process
         setTimeout(() => {
             StatusBar.setBarStyle("light-content", true);
         }, 0);
-    }
-    _renderHeader(): ReactElement {
-        return (
-            <Fragment>
-                <View>{this.props.headerArea}</View>
-            </Fragment>
-        );
     }
 
     render(): ReactElement {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <Parallax
-                    headerActionArea={this.props.headerActionArea}
+                    collapsedFontSize={this.props.collapsedFontSize}
+                    headerActionArea={this.props.headerActionArea as any[]}
+                    headerTextColor={this.props.headerTextColor}
                     uiPaddingSides={this.props.uiPaddingSides}
+                    backButtonSize={this.props.backButtonSize}
                     headerFontSize={this.props.headerFontSize}
-                    headerArea={this.props.headerArea}
                     minHeight={this.props.uiMinHeight}
                     maxHeight={this.props.uiMaxHeight}
                     navigation={this.props.navigation}

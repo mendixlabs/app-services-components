@@ -8,10 +8,12 @@ import { ComponentType, ReactNode } from "react";
 export interface CollapsibleHeaderProps<Style> {
     name: string;
     style: Style[];
-    headerArea: ReactNode;
     headerActionArea?: ReactNode;
     contentArea: ReactNode;
+    headerTextColor: string;
     headerFontSize: number;
+    collapsedFontSize: number;
+    backButtonSize: number;
     uiMinHeight: number;
     uiMaxHeight: number;
     uiPaddingSides: number;
@@ -20,10 +22,12 @@ export interface CollapsibleHeaderProps<Style> {
 export interface CollapsibleHeaderPreviewProps {
     class: string;
     style: string;
-    headerArea: { widgetCount: number; renderer: ComponentType };
     headerActionArea: { widgetCount: number; renderer: ComponentType };
     contentArea: { widgetCount: number; renderer: ComponentType };
+    headerTextColor: string;
     headerFontSize: number | null;
+    collapsedFontSize: number | null;
+    backButtonSize: number | null;
     uiMinHeight: number | null;
     uiMaxHeight: number | null;
     uiPaddingSides: number | null;
