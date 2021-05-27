@@ -46,6 +46,7 @@ The Widget gets the Page title from the Page Property `General > Title`
 The Max Length for Titles are 2 Lines if **NO** Back button and 1 If there is.
 
 <h3>Data</h3>
+<img height='400'  alt="headerIMG" src="./assets/iphone1.gif" target="_blank" />
 <p>
 <img height='400'  alt="headerIMG" src="./assets/ds1.png" target="_blank" />
 </p>
