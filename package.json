@@ -1,7 +1,7 @@
 {
     "name": "collapsibleheader",
     "widgetName": "CollapsibleHeader",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "My widget description",
     "copyright": "2020 Mendix Technology BV",
     "author": "J.W. Lagendijk <jelte.lagendijk@mendix.com>",
@@ -31,7 +31,6 @@
     },
     "dependencies": {
         "@expo/status-bar-height": "^0.0.1",
-        "@types/": "expo/status-bar-height",
         "@types/pubsub-js": "^1.8.2",
         "@types/react-navigation": "^3.4.0",
         "pubsub-js": "^1.9.3",

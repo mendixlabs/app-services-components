@@ -17,7 +17,7 @@ jobs:
             - name: Install dependencies
               run: |
                   npm install
-            - uses: ahwelgemoed/widget-build-monorepo-action@main
+            - uses: ahwelgemoed/single-widget-build@main
               with:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   author_name: JACKY

@@ -41,7 +41,7 @@ x and y axis. The Page title and action buttons will now be inline with the Back
 
 The widget should work as Long as Mendix Native uses ReactNavigation 4.
 
-The Widget gets the Page title from the Page Property `General > Title`
+The Widget gets the Page title from the Page Property `General>Title`
 
 The Max Length for Titles are 2 Lines if **NO** Back button and 1 If there is.
 
