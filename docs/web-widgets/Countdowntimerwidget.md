@@ -1,28 +1,5 @@
-<h1 align="center">Count Down Timer</h1>
-
 <p align="center">
-  <a href="">
-    <img alt="License: MIT" src="https://img.shields.io/badge/Status-Beta-blue?style=for-the-badge" target="_blank" />
-  </a>
-  <a href="">
-    <img alt="License: MIT" src="https://img.shields.io/github/issues/mendixlabs/app-services-components?style=for-the-badge" target="_blank" />
-  </a>
-  <a href="">
-    <img alt="GitHub issues" src="https://img.shields.io/github/release/mendixlabs/app-services-components?style=for-the-badge" target="_blank" />
-  </a>
-  <a href="https://appstore.home.mendix.com/link/modeler/">
-    <img alt="GitHub issues" src="https://img.shields.io/badge/Studio%20version-8.12%2B-blue.svg?style=for-the-badge" target="_blank" />
-  </a>
-  <a href="https://docs.mendix.com/developerportal/app-store/app-store-content-support">
-    <img alt="GitHub issues" src="https://img.shields.io/badge/Support-Community%20(no%20active%20support)-orange.svg?style=for-the-badge" target="_blank" />
-  </a>
-  <a href="/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=for-the-badge" target="_blank" />
-  </a>
-  <br/>
-</p>
-<p align="center">
- <img  align="center" alt="headerIMG"  width="600" src="_media/CountdowntimerwidgetAssets/CountdownTimer.png" target="_blank" />
+ <img  align="center" alt="headerIMG"  width="600" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/countdown-timer-widget/CountdowntimerwidgetAssets/CountdownTimer.png" target="_blank" />
   <br/>
   <br/>
   <h2 align="center">
@@ -30,15 +7,22 @@
   </h2>
  
 </p>
+<p align="center">
+  <a href="https://appstore.home.mendix.com/link/modeler/">
+    <img alt="GitHub issues" src="https://img.shields.io/badge/Studio%20version-8.12%2B-blue.svg?style=for-the-badge" target="_blank" />
+  </a>
+  <a href="/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=for-the-badge" target="_blank" />
+  </a>
+  <br/>
+</p>
 <br/>
 <h3>Examples</h3>
-<p align="center">
-     <img  align="center" alt="headerIMG" width="400" src="_media/CountdowntimerwidgetAssets/ds3.gif" target="_blank" />
-</p>
+  <img  alt="headerIMG" width="400" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/countdown-timer-widget/CountdowntimerwidgetAssets/ds3.gif" target="_blank" />
 <br/>
 <h3>Usage</h3>
 
-<img align="center" width="550" src="_media/CountdowntimerwidgetAssets/ds1.png" target="_blank" />
+<img align="center" width="550" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/countdown-timer-widget/CountdowntimerwidgetAssets/ds1.png" target="_blank" />
 
 |               | Type       | Info                                               |
 | ------------- | ---------- | -------------------------------------------------- |
@@ -46,7 +30,7 @@
 | When Done     | `action`   | An action that is called when Date Time is reached |
 
 <br/>
-<img align="center" width="550" src="_media/CountdowntimerwidgetAssets/ds2.png" target="_blank" />
+<img align="center" width="550" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/countdown-timer-widget/CountdowntimerwidgetAssets/ds2.png" target="_blank" />
 
 |                 | Type      | Info                                           |
 | --------------- | --------- | ---------------------------------------------- |

@@ -1,39 +1,27 @@
 <h1 >Radio Button Widget for Mendix Native</h1>
 
 <p align="center">
-    <img align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/RadioButton.png" target="_blank" />
+    <img align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/native-widgets/radio-buttons-native-widget/assets/RadioButton.png" target="_blank" />
     <br>
     <br>
    A Radio Button Widget for Mendix Native (Booleans || Enums)
     <br>
     <br>
-  <a href="">
-    <img alt="License: MIT" src="https://img.shields.io/badge/Status-Production-blue" target="_blank" />
-  </a>
-  <a href="">
-    <img alt="License: MIT" src="https://img.shields.io/github/issues/ahwelgemoed/drag-and-drop-mendix-widget" target="_blank" />
-  </a>
-  <a href="">
-    <img alt="GitHub issues" src="https://img.shields.io/github/release/ahwelgemoed/drag-and-drop-mendix-widget" target="_blank" />
-  </a>
   <a href="https://appstore.home.mendix.com/link/modeler/">
-    <img alt="GitHub issues" src="https://img.shields.io/badge/Studio%20version-8.12%2B-blue.svg" target="_blank" />
-  </a>
-  <a href="https://docs.mendix.com/developerportal/app-store/app-store-content-support">
-    <img alt="GitHub issues" src="https://img.shields.io/badge/Support-Community%20(no%20active%20support)-orange.svg" target="_blank" />
+    <img alt="GitHub issues" src="https://img.shields.io/badge/Studio%20version-8.12%2B-blue.svg?style=for-the-badge" target="_blank" />
   </a>
   <a href="/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/license-Apache%202.0-orange.svg" target="_blank" />
+    <img alt="License: MIT" src="https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=for-the-badge" target="_blank" />
   </a>
-  <br>
+  <br/>
 
 </p>
 <p >
-<img  height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/p1.png" target="_blank" />
+<img  height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/native-widgets/radio-buttons-native-widget/assets/p1.png" target="_blank" />
 </p>
 <p >
-<img  height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Boolean-Example.gif" target="_blank" />
-<img  height='400' alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Enum-Example.gif" target="_blank" />
+<img  height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/native-widgets/radio-buttons-native-widget/assets/Boolean-Example.gif" target="_blank" />
+<img  height='400' alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/native-widgets/radio-buttons-native-widget/assets/Enum-Example.gif" target="_blank" />
 </p>
 
 Some key features:
@@ -51,7 +39,7 @@ Some key features:
 </p>
  Enum Setup
 <p>
- <img height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Enum-Setup.png" target="_blank" />
+ <img height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/native-widgets/radio-buttons-native-widget/assets/Enum-Setup.png" target="_blank" />
 </p>
 
 | Name                  | Type        | Desc.                                                                                                                                                                      |
@@ -62,7 +50,7 @@ Some key features:
 
 <p >
 <h3>Styling</h3>
- <img height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/radio-buttons-native-widget/main/assets/Styling.png" target="_blank" />
+ <img height='400'  alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/native-widgets/radio-buttons-native-widget/assets/Styling.png" target="_blank" />
 </p>
 
 | Name               | Type      | Desc.                                  |
