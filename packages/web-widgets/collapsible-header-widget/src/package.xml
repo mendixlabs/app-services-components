@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <package xmlns="http://www.mendix.com/package/1.0/">
-    <clientModule name="Collapsibleheader" version="1.1.0" xmlns="http://www.mendix.com/clientModule/1.0/">
+    <clientModule name="collapsiblewebheader" version="1.1.0" xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
-            <widgetFile path="Collapsibleheader.xml"/>
+            <widgetFile path="collapsiblewebheader.xml"/>
         </widgetFiles>
         <files>
-            <file path="mendix/Collapsibleheader"/>
+            <file path="mendix/collapsiblewebheader"/>
         </files>
     </clientModule>
 </package>

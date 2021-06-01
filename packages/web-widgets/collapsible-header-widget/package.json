@@ -1,6 +1,6 @@
 {
-    "name": "Collapsibleheader",
-    "widgetName": "Collapsibleheader",
+    "name": "collapsiblewebheader",
+    "widgetName": "collapsiblewebheader",
     "version": "1.1.0",
     "description": "My widget description",
     "copyright": "2021 Mendix Technology BV",

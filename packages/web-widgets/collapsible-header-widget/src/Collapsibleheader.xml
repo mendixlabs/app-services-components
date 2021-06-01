@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="mendix.collapsibleheader.Collapsibleheader" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+<widget id="mendix.collapsiblewebheader.collapsiblewebheader" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
         supportedPlatform="Web"
         xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
-    <name>Collapsibleheader</name>
+    <name>collapsiblewebheader</name>
     <description>My widget description</description>
     <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMCSURBVHgB7Zu9T1NRGMafln5IkNpICVETrS46tZOTRqMuTvoXwKSjDn5susiqC8ZJFnF0MPYPIFFxkYWyiDHSatREW+wngbbC9T7HXCHQhjL0fUnu+SVwDydn4Lw95/143tuA4wIfE4TPsQaAz1E1wOP5svnRRM0AX2otzBUbeP19BVn3qYajxKWX35xcteWUVtfMWIsAf0GYqYWqeY6dipknT8GbHyu4f/ogpFExQLmxjng0aK6BgwCSgyEzPjYYhjQqPoCbJ1MLNdydKZixxuaJehgsuadBE9/nASEocuX4gHv0Vf8FHSe4l7CpMBRhOCz72QmyDrg+/ROa2DAIn6NqAIbAdCIKTWwYhM8RT8NY9U1kK8jk6u74j5lLDUWRHo645fCQqQwlEb0CDHvjs79xIBI0WgA3TuaXGkYjqDTXjSZwIxWHGI4QE9mSE37yybn1ttBxzYP3S2YN10ohYoB8tekMT342G9wJGohrKZVJIOIEx2dL5th3I3k9OpswTym1WMQAc4XGf/1vM9QCXy0ub5unD/B0w14jYgA6uXYJz/OPVWTy9W3zdI5ehOg1YnkAr0C3xPfJpSfqiVA80gdNVPWoyYsj0MZWg/A51gAQYjdhrbwqpxKJGIAV3m5a4GyUSgklIgYYdbNAJj3dKsAslVOJCCQQMYBX3rIU3glvDbUBCUTyAHaDH55J4Nr0L/M3iyKvQ+zB08HNswh6cfmQmDAiKoiw8Lnz7l87/NyRfpw/3G/G2WLTXBHy9MIIrp4YgBTioiglsUxuGc8+1PC13jJzR/eHzaZ5VbaejF5jVWH4HFUD0ClKCR+dUDVAvtoSEz46Ya8AFEnGQuJefys2CsDnWANAEeb97foCkqgagJtnz0ATewWgiHYIJCphMO9mf94r8t7r8t6cNCqNkcxiHYHAhlLk1QPJNg3UXqNyBm+m46YzzE+dp4DfGxhT2DxRywS58dszRdcP9OGeK5Elld4aV+sN8hsioydjqDTX1DZPbC0An2NflMTeQO0a/gVabw+oquWgjQAAAABJRU5ErkJggg==</icon>
     <properties>

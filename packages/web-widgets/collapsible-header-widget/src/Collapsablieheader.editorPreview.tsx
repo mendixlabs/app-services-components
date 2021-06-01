@@ -1,9 +1,9 @@
 import { Component, ReactNode, createElement } from "react";
-import { CollapsibleheaderPreviewProps } from "../typings/CollapsibleheaderProps";
+import { CollapsiblewebheaderContainerProps } from "../typings/CollapsiblewebheaderProps";
 
 declare function require(name: string): string;
 
-export class preview extends Component<CollapsibleheaderPreviewProps> {
+export class preview extends Component<CollapsiblewebheaderContainerProps> {
     render(): ReactNode {
         return <div />;
     }
