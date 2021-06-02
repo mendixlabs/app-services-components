@@ -42,6 +42,8 @@ export interface CollapsibleHeaderProps {
     collapsedFontSize: any;
     headerTextColor: any;
     backButtonSize: number;
+    bottomFooterHeight: number;
+    headerBackgroundColor: string;
 }
 
 const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
@@ -50,9 +52,11 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
     children,
     style,
     navigation,
+    headerBackgroundColor,
     headerTextColor,
     uiPaddingSides,
     collapsedFontSize,
+    bottomFooterHeight,
     backButtonSize,
     headerFontSize,
     headerActionArea
@@ -72,15 +76,9 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
     const [canViewScroll, setCanViewScroll] = useState<boolean>(true);
     const scrollPositionY = useRef(new Animated.Value(0)).current;
     const scrollViewRef = useRef<Animated.AnimatedComponent<ScrollView>>(null);
-    const HEADER_MAX_HEIGHT = useMemo(
-        () => (maxHeight ? maxHeight : style?.header.maxHeight ? style.header.maxHeight : 400),
-        [maxHeight, style]
-    );
-    const HEADER_MIN_HEIGHT = useMemo(
-        () => (minHeight ? minHeight : style?.header.minHeight ? style.header.minHeight : 300),
-        [minHeight, style]
-    );
-    const BG_COLOR = useMemo(() => style?.header.backgroundColor || "rgba(255,255,255,1)", [style]);
+    const HEADER_MAX_HEIGHT = useMemo(() => (maxHeight ? maxHeight : 400), [maxHeight]);
+    const HEADER_MIN_HEIGHT = useMemo(() => (minHeight ? minHeight : 300), [minHeight]);
+    const BG_COLOR = useMemo(() => headerBackgroundColor || "rgba(255,255,255,1)", [headerBackgroundColor]);
 
     const HEADER_SCROLL_DISTANCE = useMemo(() => HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT, [
         HEADER_MAX_HEIGHT,
@@ -129,8 +127,8 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
         }
     };
     const onContentSizeChange = (contentWidth: any, contentHeight: any) => {
-        // Device Height - HeaderHeight -FooterHeight = Available Space
-        const availableSpace = height - HEADER_MAX_HEIGHT - 100;
+        // Device Height - HeaderHeight - FooterHeight = Available Space
+        const availableSpace = height - HEADER_MAX_HEIGHT - bottomFooterHeight;
 
         if (availableSpace > contentHeight) {
             if (canViewScroll) {
@@ -288,14 +286,15 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
             <Animated.View
                 style={{
                     flex: 1,
+                    height: "100%",
                     marginTop: Platform.OS === "ios" ? scrollTranslateIos : scrollTranslateAndroid
                 }}
             >
                 <ScrollView
                     style={{
                         flex: 1,
-                        height: "100%",
-                        paddingBottom: HEADER_MAX_HEIGHT
+                        height: "100%"
+                        // marginBottom: HEADER_MAX_HEIGHT,
                     }}
                     // @ts-ignore
                     ref={scrollViewRef}
@@ -303,7 +302,10 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
                     scrollEnabled={canViewScroll}
                     showsVerticalScrollIndicator={false}
                     onContentSizeChange={onContentSizeChange}
-                    contentContainerStyle={{ paddingBottom: canViewScroll ? HEADER_MIN_HEIGHT : 0 }} // Try and Compensate for half Scrolling
+                    contentContainerStyle={{
+                        flexGrow: 1,
+                        paddingBottom: canViewScroll ? HEADER_MIN_HEIGHT : 0
+                    }} // Try and Compensate for half Scrolling
                     onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollPositionY } } }], {
                         useNativeDriver: false
                     })}

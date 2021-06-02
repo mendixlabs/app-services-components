@@ -22,6 +22,10 @@
                 <caption>Color Of Header Text</caption>
                 <description></description>
             </property>
+            <property key="headerBackgroundColor" type="string">
+                <caption>Color Of Header Background</caption>
+                <description></description>
+            </property>
             <property key="headerFontSize" type="integer" required="true" defaultValue="28">
                 <caption>Header Font Size</caption>
                 <description></description>
@@ -44,6 +48,10 @@
             </property>
             <property key="uiPaddingSides" type="integer" required="true" defaultValue="16">
                 <caption>Padding Sides</caption>
+                <description>Padding on the Left and right side of the Header</description>
+            </property>
+            <property key="bottomFooterHeight" type="integer" required="true" defaultValue="50">
+                <caption>Footer Height</caption>
                 <description>Padding on the Left and right side of the Header</description>
             </property>
         </propertyGroup>

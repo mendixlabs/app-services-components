@@ -36,6 +36,8 @@ class CollapsibleHeaders extends Component<WithNavigationProps> {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <Parallax
+                    headerBackgroundColor={this.props.headerBackgroundColor}
+                    bottomFooterHeight={this.props.bottomFooterHeight}
                     collapsedFontSize={this.props.collapsedFontSize}
                     headerActionArea={this.props.headerActionArea as any[]}
                     headerTextColor={this.props.headerTextColor}
