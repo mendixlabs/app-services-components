@@ -1,33 +1,55 @@
-import { createElement, Fragment } from "react";
+import { createElement, Fragment, ReactNode } from "react";
 import Separator from "./Separator";
-import Timer from "react-compound-timer";
+
+import Countdown from "react-countdown";
 
 import { TimerDisplayInterface } from "../types";
 
 const TimerDisplay = ({
-    displayHelper,
+    incomingTime,
+    whenDone,
     showDays,
+    content,
     showHours,
     showSeconds,
     showLegends,
-    showMinutes,
-    showMilliseconds
+    showMinutes
 }: TimerDisplayInterface) => {
-    return (
-        <Fragment>
-            <Timer
-                initialTime={displayHelper?.timeDifference}
-                direction="backward"
-                formatValue={value => `${value < 10 ? `0${value}` : value}`}
-            >
-                {() => (
+    const formatValues = (value: number, name: string): ReactNode => {
+        const digits = ("" + value).split("");
+        if (digits.length === 1) {
+            return (
+                <Fragment>
+                    <span className={`widget_countDownTimer__digit widget_countDownTimer__${name}__0`}>0</span>
+                    <span className={`widget_countDownTimer__digit widget_countDownTimer__${name}__1`}>
+                        {digits[0]}
+                    </span>
+                </Fragment>
+            );
+        }
+        if (digits.length >= 2) {
+            return digits.map((digit: string, index: number) => {
+                return (
+                    <Fragment>
+                        <span className={`widget_countDownTimer__digit widget_countDownTimer__${name}__${index}`}>
+                            {digit}
+                        </span>
+                    </Fragment>
+                );
+            });
+        }
+    };
+    const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
+        if (completed) {
+            return content;
+        } else {
+            return (
+                <Fragment>
                     <div className="widget_countDownTimer__container">
                         {showDays && (
                             <Fragment>
                                 <div className="widget_countDownTimer__value">
-                                    <span className="widget_countDownTimer__days">
-                                        <Timer.Days />
-                                    </span>
+                                    <span className="widget_countDownTimer__days">{formatValues(days, "days")}</span>
                                     {showLegends && <span className="widget_countDownTimer__legend">Days</span>}
                                 </div>
                             </Fragment>
@@ -36,9 +58,7 @@ const TimerDisplay = ({
                             <Fragment>
                                 {showDays && <Separator />}
                                 <div className="widget_countDownTimer__value">
-                                    <span className="widget_countDownTimer__hours">
-                                        <Timer.Hours />
-                                    </span>
+                                    <span className="widget_countDownTimer__hours">{formatValues(hours, "hours")}</span>
                                     {showLegends && <span className="widget_countDownTimer__legend">Hours</span>}
                                 </div>
                             </Fragment>
@@ -48,7 +68,7 @@ const TimerDisplay = ({
                                 {showHours && <Separator />}
                                 <div className="widget_countDownTimer__value">
                                     <span className="widget_countDownTimer__minutes">
-                                        <Timer.Minutes />
+                                        {formatValues(minutes, "minutes")}
                                     </span>
                                     {showLegends && <span className="widget_countDownTimer__legend">Minutes</span>}
                                 </div>
@@ -59,26 +79,24 @@ const TimerDisplay = ({
                                 {showMinutes && <Separator />}
                                 <div className="widget_countDownTimer__value">
                                     <span className="widget_countDownTimer__seconds">
-                                        <Timer.Seconds />
+                                        {formatValues(seconds, "seconds")}
                                     </span>
                                     {showLegends && <span className="widget_countDownTimer__legend">Seconds</span>}
                                 </div>
                             </Fragment>
                         )}
-                        {showMilliseconds && (
-                            <Fragment>
-                                {showSeconds && <Separator />}
-                                <div className="widget_countDownTimer__value">
-                                    <span className="widget_countDownTimer__milliseconds">
-                                        <Timer.Milliseconds />
-                                    </span>
-                                    {showLegends && <span className="widget_countDownTimer__legend">Milliseconds</span>}
-                                </div>
-                            </Fragment>
-                        )}
                     </div>
-                )}
-            </Timer>
+                </Fragment>
+            );
+        }
+    };
+    return (
+        <Fragment>
+            <Countdown
+                renderer={renderer}
+                date={incomingTime as Date}
+                onComplete={() => whenDone && whenDone.canExecute && whenDone.execute()}
+            />
         </Fragment>
     );
 };

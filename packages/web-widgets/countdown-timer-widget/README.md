@@ -57,17 +57,17 @@
 <br/>
 <h4>Class Names Available</h4>
 
-| Class Name                            | Info                                           |
-| ------------------------------------- | ---------------------------------------------- |
-| `widget_countDownTimer__container`    | Container Class Name (Wrapped Whole Widget)    |
-| `widget_countDownTimer__value`        | Value Class Name (Wrapped Value and Separator) |
-| `widget_countDownTimer__separator`    | Separator Class Name                           |
-| `widget_countDownTimer__legend`       | Legend Class Name                              |
-| `widget_countDownTimer__days`         | Days Class Name                                |
-| `widget_countDownTimer__hours`        | Hours Class Name                               |
-| `widget_countDownTimer__minutes`      | Minutes Class Name                             |
-| `widget_countDownTimer__seconds`      | Seconds Class Name                             |
-| `widget_countDownTimer__milliseconds` | Milliseconds Class Name                        |
+| Class Name                         | Info                                           |
+| ---------------------------------- | ---------------------------------------------- |
+| `widget_countDownTimer__container` | Container Class Name (Wrapped Whole Widget)    |
+| `widget_countDownTimer__value`     | Value Class Name (Wrapped Value and Separator) |
+| `widget_countDownTimer__separator` | Separator Class Name                           |
+| `widget_countDownTimer__legend`    | Legend Class Name                              |
+| `widget_countDownTimer__days`      | Days Class Name                                |
+| `widget_countDownTimer__hours`     | Hours Class Name                               |
+| `widget_countDownTimer__minutes`   | Minutes Class Name                             |
+| `widget_countDownTimer__seconds`   | Seconds Class Name                             |
+| `widget_countDownTimer__digit`     | Class Name on Individual Numbers               |
 
 ## Known Issues
 
