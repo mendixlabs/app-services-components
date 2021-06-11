@@ -32,6 +32,7 @@
 </p>
 <br/>
 <h3>Examples</h3>
+A Mendix widget to display a count down, that you can style. You also have the ability to model our own end message and fire an action
 <p align="center">
      <img  align="center" alt="headerIMG" width="400" src="./CountdowntimerwidgetAssets/ds3.gif" target="_blank" />
 

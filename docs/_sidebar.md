@@ -18,4 +18,4 @@
 
 * **[Utilities](/utilities/index.md)**
 
-  - [Utility One](/utilities/Utility-One.md)
+  - [Use Dom Location](/utilities/useDomLocation.md)

@@ -1,5 +1,6 @@
 import { Component, createElement, ReactElement } from "react";
 import { ViewStyle, SafeAreaView, StatusBar } from "react-native";
+import { NativeModules } from "react-native";
 
 import Parallax from "./components/Parallax";
 
@@ -33,6 +34,7 @@ class CollapsibleHeaders extends Component<WithNavigationProps> {
     }
 
     render(): ReactElement {
+        // console.log(`this.props.navigation`, this.props.navigation, NativeModules);
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <Parallax

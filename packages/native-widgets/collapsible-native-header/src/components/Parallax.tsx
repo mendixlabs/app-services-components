@@ -10,6 +10,7 @@ import React, {
 } from "react";
 import {
     Animated,
+    Text,
     TouchableWithoutFeedback,
     View,
     ScrollView,
@@ -286,7 +287,6 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
             <Animated.View
                 style={{
                     flex: 1,
-                    height: "100%",
                     marginTop: Platform.OS === "ios" ? scrollTranslateIos : scrollTranslateAndroid
                 }}
             >
@@ -294,6 +294,8 @@ const Parallax: React.FC<PropsWithChildren<CollapsibleHeaderProps>> = ({
                     style={{
                         flex: 1,
                         height: "100%"
+                        // backgroundColor: "orange"
+                        //    marginTop: Platform.OS === "ios" ? scrollTranslateIos : scrollTranslateAndroid
                         // marginBottom: HEADER_MAX_HEIGHT,
                     }}
                     // @ts-ignore

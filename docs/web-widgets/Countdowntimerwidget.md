@@ -3,7 +3,7 @@
   <br/>
   <br/>
   <h2 align="center">
-    A Mendix Widget to display a Count Down Widget
+A Mendix widget to display a count down, that you can style. You also have the ability to model our own end message and fire an action
   </h2>
  
 </p>
@@ -40,21 +40,21 @@
 <br/>
 <h4>Class Names Available</h4>
 
-| Class Name                            | Info                                           |
-| ------------------------------------- | ---------------------------------------------- |
-| `widget_countDownTimer__container`    | Container Class Name (Wrapped Whole Widget)    |
-| `widget_countDownTimer__value`        | Value Class Name (Wrapped Value and Separator) |
-| `widget_countDownTimer__separator`    | Separator Class Name                           |
-| `widget_countDownTimer__legend`       | Legend Class Name                              |
-| `widget_countDownTimer__days`         | Days Class Name                                |
-| `widget_countDownTimer__hours`        | Hours Class Name                               |
-| `widget_countDownTimer__minutes`      | Minutes Class Name                             |
-| `widget_countDownTimer__seconds`      | Seconds Class Name                             |
-| `widget_countDownTimer__milliseconds` | Milliseconds Class Name                        |
+| Class Name                         | Info                                           |
+| ---------------------------------- | ---------------------------------------------- |
+| `widget_countDownTimer__container` | Container Class Name (Wrapped Whole Widget)    |
+| `widget_countDownTimer__value`     | Value Class Name (Wrapped Value and Separator) |
+| `widget_countDownTimer__separator` | Separator Class Name                           |
+| `widget_countDownTimer__legend`    | Legend Class Name                              |
+| `widget_countDownTimer__days`      | Days Class Name                                |
+| `widget_countDownTimer__hours`     | Hours Class Name                               |
+| `widget_countDownTimer__minutes`   | Minutes Class Name                             |
+| `widget_countDownTimer__seconds`   | Seconds Class Name                             |
+| `widget_countDownTimer__digit`     | Class Name on Individual Numbers               |
 
 ## Known Issues
 
-None
+Fast Scrolling causes Issue if Smart Compensator is on
 
 ## Issues || Track Features
 
