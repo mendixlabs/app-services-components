@@ -14,6 +14,7 @@ export interface CountdowntimerwidgetContainerProps {
     incomingDate: EditableValue<Date>;
     whenDone?: ActionValue;
     content?: ReactNode;
+    displayDoneContent: boolean;
     showDays: boolean;
     showHours: boolean;
     showMinutes: boolean;
@@ -28,6 +29,7 @@ export interface CountdowntimerwidgetPreviewProps {
     incomingDate: string;
     whenDone: {} | null;
     content: { widgetCount: number; renderer: ComponentType };
+    displayDoneContent: boolean;
     showDays: boolean;
     showHours: boolean;
     showMinutes: boolean;

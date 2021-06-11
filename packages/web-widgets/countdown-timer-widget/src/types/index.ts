@@ -12,6 +12,7 @@ export interface TimerDisplayInterface {
     incomingTime: Date | null;
     showHours: boolean;
     showSeconds: boolean;
+    displayDoneContent: boolean;
     showLegends: boolean;
     showMinutes: boolean;
     showMilliseconds: boolean;

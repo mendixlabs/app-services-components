@@ -26,6 +26,10 @@
         </propertyGroup>
         <propertyGroup caption="Display">
             <propertyGroup caption="Main Display">
+                <property key="displayDoneContent" type="boolean" defaultValue="true">
+                    <caption>Display Content</caption>
+                    <description>Displays Content when True, displays 0:0:0 when false</description>
+                </property>
                 <property key="showDays" type="boolean" defaultValue="true">
                     <caption>Display Days</caption>
                     <description></description>

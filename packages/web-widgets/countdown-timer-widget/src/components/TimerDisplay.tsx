@@ -6,14 +6,15 @@ import Countdown from "react-countdown";
 import { TimerDisplayInterface } from "../types";
 
 const TimerDisplay = ({
-    incomingTime,
+    content,
     whenDone,
     showDays,
-    content,
     showHours,
     showSeconds,
     showLegends,
-    showMinutes
+    showMinutes,
+    incomingTime,
+    displayDoneContent
 }: TimerDisplayInterface) => {
     const formatValues = (value: number, name: string): ReactNode => {
         const digits = ("" + value).split("");
@@ -40,7 +41,7 @@ const TimerDisplay = ({
         }
     };
     const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
-        if (completed) {
+        if (completed && displayDoneContent) {
             return content;
         } else {
             return (

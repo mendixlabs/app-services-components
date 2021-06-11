@@ -12,6 +12,7 @@ const Countdowntimerwidget = ({
     showLegends,
     showMinutes,
     incomingDate,
+    displayDoneContent,
     showMilliseconds
 }: CountdowntimerwidgetContainerProps): ReactNode => {
     const [incomingTime, setIncomingTime] = useState<Date | null>(null);
@@ -42,6 +43,7 @@ const Countdowntimerwidget = ({
                     showLegends={showLegends}
                     incomingTime={incomingTime}
                     showMilliseconds={showMilliseconds}
+                    displayDoneContent={displayDoneContent}
                 />
             </Fragment>
         );
