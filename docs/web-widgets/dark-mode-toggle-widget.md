@@ -51,4 +51,4 @@ Fast Scrolling causes Issue if Smart Compensator is on
 
 ## Issues || Track Features
 
-Add issues [here](https://github.com/ahwelgemoed/collapsible-header-widget/issues/new).
+Open an GH [issue](https://github.com/mendixlabs/app-services-components/issues/new/choose).
