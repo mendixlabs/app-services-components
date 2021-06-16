@@ -91,6 +91,7 @@ const TimerDisplay = ({
             );
         }
     };
+    console.log(`whenDone`, whenDone);
     return (
         <Fragment>
             <Countdown

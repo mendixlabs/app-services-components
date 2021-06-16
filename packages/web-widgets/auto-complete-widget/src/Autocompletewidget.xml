@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.autocompletewidget.Autocompletewidget" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Autocompletewidget</name>
+    <description>My widget description</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="sampleText" type="string" required="false">
+                <caption>Default value</caption>
+                <description>Sample text input</description>
+            </property>
+            <property key="dataSourceOptions" type="datasource" isList="true" required="true">
+                <caption>Data source</caption>
+                <description />
+            </property>
+            <property key="titleAttr" type="attribute" dataSource="dataSourceOptions" required="true">
+                <caption>Title</caption>
+                <description>String attribute where the title is stored to be shown in the dropdown. Should be unique to be able to make a distinction between the items.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>
