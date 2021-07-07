@@ -25,6 +25,8 @@ export function useDomLocation({
   };
 
   const onMutation = (): void => {
+    console.log('Mute Me Buddy 🧎🏽‍♂️🧎🏽‍♂️🧎🏽‍♂️🧎🏽‍♂️');
+
     setLastUpdateTime(new Date());
     if (useMendixNav) {
       const mxWindow = window.mx.ui.getContentForm();
@@ -88,7 +90,7 @@ export function useDomLocation({
       subtree: true,
     });
     lastScrollTopRef.current = observer;
-    window.onpopstate = function() {
+    window.onpopstate = function () {
       onMutation();
     };
   };

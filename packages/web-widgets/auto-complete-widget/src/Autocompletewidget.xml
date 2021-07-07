@@ -23,6 +23,17 @@
                     <attributeType name="String"/>
                 </attributeTypes>
             </property>
+            <property key="volatileDate" type="attribute" required="false" onChange="onClick">
+                  <caption>Editable date</caption>
+                  <description>This attribute is used when a user clicks on a date in the calendar</description>
+                  <attributeTypes>
+                      <attributeType name="String"/>
+                  </attributeTypes>
+            </property>
+            <property key="onClick" type="action">
+                <caption>On click</caption>
+                <description>This action will not be called when secondary buttons are used.</description>
+            </property>
         </propertyGroup>
     </properties>
 </widget>
