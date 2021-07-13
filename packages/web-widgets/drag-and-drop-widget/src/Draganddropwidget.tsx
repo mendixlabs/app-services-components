@@ -1,13 +1,17 @@
-import { Component, ReactNode, createElement } from "react";
+import { Component, ReactNode, createElement, Fragment } from "react";
 import DragInit from "./components/DragInit";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 
+import { attribute, equals, literal } from "mendix/filters/builders";
+
 import { DraganddropwidgetContainerProps } from "../typings/DraganddropwidgetProps";
 import { CompState, NewElementDraggedIn, ReorderAfterDropTypes } from "./components/types";
 
 import { isTouchDevice, backendOptions } from "./utils";
+
+import { greaterOrEqualToMendixVersion } from "@app-services-components/mendixhelpers";
 
 import "./ui/Draganddropwidget.css";
 
@@ -17,6 +21,29 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     constructor(props: DraganddropwidgetContainerProps) {
         super(props);
         this.state = { listOfSortableItems: [] };
+    }
+    componentDidMount() {
+        // @ts-ignore
+        const isGreaterThan93 = greaterOrEqualToMendixVersion({
+            minVersion: "9.3"
+        });
+        console.log(`isGreaterThan93`, isGreaterThan93);
+        // console.log(`window.mx`, window.mx.version.split("."));
+        // Auto Sorts List
+        if (this.props.sortOn.sortable) {
+            this.props.incomingData.setSortOrder([[this.props.sortOn.id, "asc"]]);
+        }
+        // Auto Filter List
+        if (this.props.filterOn.filterable) {
+            if (this.props.filterOn.universe?.includes(this.props.uuid)) {
+                const filterCond = equals(attribute(this.props.filterOn.id), literal(this.props.uuid));
+                this.props.incomingData.setFilter(filterCond);
+            } else {
+                console.log("UUID NOT ENUM");
+            }
+        } else {
+            console.log("Attribute is not filterable");
+        }
     }
 
     componentDidUpdate(pP: DraganddropwidgetContainerProps): void {
@@ -44,10 +71,10 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     reorderAfterDrop = ({ currentItem, index }: ReorderAfterDropTypes): void => {
         const { listOfSortableItems } = this.state;
         const { uuid, dropDataAttr, onDropAction, onDifferentColumDrop, dataSourceName, content } = this.props;
-
+        console.log(`uuid !== currentItem.item.uuid`, uuid !== currentItem.item.uuid);
         if (uuid !== currentItem.item.uuid) {
             const modelToSaveFrom =
-                content && (content(currentItem?.item?.item) as any).props.object.jsonData.objectType;
+                content && (content.get(currentItem?.item?.item) as any).props.object.jsonData.objectType;
 
             const settingsForSave: NewElementDraggedIn = {
                 modelToSaveFrom,
@@ -65,6 +92,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
                 onDifferentColumDrop.execute();
             }
         } else {
+            // Same Col Drop (Re Order)
             const movedItem = listOfSortableItems.find(item => item.id === currentItem.item.id);
 
             const removedItemList = listOfSortableItems.filter(item => item.id !== currentItem.item.id);
@@ -97,14 +125,16 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
                 );
             } else {
                 return (
-                    <DndProvider backend={HTML5Backend}>
-                        <DragInit
-                            content={content}
-                            emptyData={emptyData}
-                            reorderAfterDrop={this.reorderAfterDrop}
-                            listOfSortableItems={listOfSortableItems}
-                        />
-                    </DndProvider>
+                    <Fragment>
+                        <DndProvider backend={HTML5Backend}>
+                            <DragInit
+                                content={content}
+                                emptyData={emptyData}
+                                reorderAfterDrop={this.reorderAfterDrop}
+                                listOfSortableItems={listOfSortableItems}
+                            />
+                        </DndProvider>
+                    </Fragment>
                 );
             }
         } else {

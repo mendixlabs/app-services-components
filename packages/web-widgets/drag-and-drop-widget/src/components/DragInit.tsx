@@ -15,7 +15,7 @@ function Column({ listOfSortableItems, content, reorderAfterDrop, emptyData }: D
                             reorderAfterDrop={reorderAfterDrop}
                             listOfSortableItems={listOfSortableItems}
                         >
-                            {content && content(fullItem.item)}
+                            {content && content.get(fullItem.item)}
                         </DragCard>
                     );
                 })

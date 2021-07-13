@@ -80,15 +80,15 @@ const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems
         <div
             className={customClassNames}
             // Used For Testing Only
-            // style={{
-            //     padding: "0.5rem 1rem",
-            //     marginBottom: ".5rem",
-            //     cursor: "move",
-            //     borderRadius: 10,
-            //     border: "1px dashed",
-            //     borderColor: isOver ? "#c6c6c6" : "#fff",
-            //     backgroundColor: isDragging ? "#ddd" : "#fff"
-            // }}
+            style={{
+                padding: "0.5rem 1rem",
+                marginBottom: ".5rem",
+                cursor: "move",
+                borderRadius: 10,
+                border: "1px dashed",
+                borderColor: isOver ? "#c6c6c6" : "#fff",
+                backgroundColor: isDragging ? "#ddd" : "#fff"
+            }}
             ref={ref}
         >
             {children}
