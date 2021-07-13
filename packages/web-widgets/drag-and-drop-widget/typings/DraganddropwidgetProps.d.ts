@@ -13,9 +13,9 @@ export interface DraganddropwidgetContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     uuid: string;
+    dataSourceName: string;
     sortOn: ListAttributeValue<Big>;
     filterOn: ListAttributeValue<string>;
-    dataSourceName: string;
     incomingData: ListValue;
     dropDataAttr: EditableValue<string>;
     onDropAction?: ActionValue;
@@ -28,9 +28,9 @@ export interface DraganddropwidgetPreviewProps {
     class: string;
     style: string;
     uuid: string;
+    dataSourceName: string;
     sortOn: string;
     filterOn: string;
-    dataSourceName: string;
     incomingData: {} | null;
     dropDataAttr: string;
     onDropAction: {} | null;

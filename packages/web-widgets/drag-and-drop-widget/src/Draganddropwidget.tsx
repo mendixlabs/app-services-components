@@ -7,6 +7,7 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import { attribute, equals, literal } from "mendix/filters/builders";
 
 import { DraganddropwidgetContainerProps } from "../typings/DraganddropwidgetProps";
+
 import { CompState, NewElementDraggedIn, ReorderAfterDropTypes } from "./components/types";
 
 import { isTouchDevice, backendOptions } from "./utils";
@@ -23,12 +24,11 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
         this.state = { listOfSortableItems: [] };
     }
     componentDidMount() {
-        // @ts-ignore
+        //   To Do - Add option for User to do Auto filter
         const isGreaterThan93 = greaterOrEqualToMendixVersion({
             minVersion: "9.3"
         });
         console.log(`isGreaterThan93`, isGreaterThan93);
-        // console.log(`window.mx`, window.mx.version.split("."));
         // Auto Sorts List
         if (this.props.sortOn.sortable) {
             this.props.incomingData.setSortOrder([[this.props.sortOn.id, "asc"]]);
@@ -70,21 +70,19 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
 
     reorderAfterDrop = ({ currentItem, index }: ReorderAfterDropTypes): void => {
         const { listOfSortableItems } = this.state;
-        const { uuid, dropDataAttr, onDropAction, onDifferentColumDrop, dataSourceName, content } = this.props;
-        console.log(`uuid !== currentItem.item.uuid`, uuid !== currentItem.item.uuid);
+        const { uuid, dropDataAttr, onDropAction, onDifferentColumDrop, dataSourceName } = this.props;
         if (uuid !== currentItem.item.uuid) {
-            const modelToSaveFrom =
-                content && (content.get(currentItem?.item?.item) as any).props.object.jsonData.objectType;
-
+            // Diff Col Drop
             const settingsForSave: NewElementDraggedIn = {
-                modelToSaveFrom,
+                modelToSaveFrom: dataSourceName, // Was needed for Drop from Different DS  (Not Supported Anymore)
                 dataSourceName,
                 whereToPut: index,
                 item: currentItem,
                 comingTo: uuid,
                 comingFrom: currentItem.item.uuid
             };
-            const listToMendix = listOfSortableItems;
+            // Clone Array
+            const listToMendix = Array.from(listOfSortableItems);
             listToMendix.splice(index, 0, currentItem.item);
             const jsonString = JSON.stringify({ settingsForSave, listToMendix });
             dropDataAttr.setValue(jsonString);
@@ -94,7 +92,6 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
         } else {
             // Same Col Drop (Re Order)
             const movedItem = listOfSortableItems.find(item => item.id === currentItem.item.id);
-
             const removedItemList = listOfSortableItems.filter(item => item.id !== currentItem.item.id);
             if (movedItem) {
                 removedItemList.splice(index, 0, movedItem);
