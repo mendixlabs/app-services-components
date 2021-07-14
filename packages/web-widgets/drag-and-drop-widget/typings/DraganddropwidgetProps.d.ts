@@ -14,6 +14,7 @@ export interface DraganddropwidgetContainerProps {
     tabIndex?: number;
     uuid: string;
     dataSourceName: string;
+    autoSortFilter: boolean;
     sortOn: ListAttributeValue<Big>;
     filterOn: ListAttributeValue<string>;
     incomingData: ListValue;
@@ -29,6 +30,7 @@ export interface DraganddropwidgetPreviewProps {
     style: string;
     uuid: string;
     dataSourceName: string;
+    autoSortFilter: boolean;
     sortOn: string;
     filterOn: string;
     incomingData: {} | null;

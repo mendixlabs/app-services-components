@@ -24,25 +24,31 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
         this.state = { listOfSortableItems: [] };
     }
     componentDidMount() {
-        //   To Do - Add option for User to do Auto filter
+        const { incomingData, autoSortFilter, sortOn, filterOn, uuid } = this.props;
         const isGreaterThan93 = greaterOrEqualToMendixVersion({
             minVersion: "9.3"
         });
-        console.log(`isGreaterThan93`, isGreaterThan93);
-        // Auto Sorts List
-        if (this.props.sortOn.sortable) {
-            this.props.incomingData.setSortOrder([[this.props.sortOn.id, "asc"]]);
-        }
-        // Auto Filter List
-        if (this.props.filterOn.filterable) {
-            if (this.props.filterOn.universe?.includes(this.props.uuid)) {
-                const filterCond = equals(attribute(this.props.filterOn.id), literal(this.props.uuid));
-                this.props.incomingData.setFilter(filterCond);
-            } else {
-                console.log("UUID NOT ENUM");
+        if (autoSortFilter && isGreaterThan93) {
+            // Auto Sorts List
+            if (sortOn.sortable) {
+                incomingData.setSortOrder([[sortOn.id, "asc"]]);
             }
-        } else {
-            console.log("Attribute is not filterable");
+            // Auto Filter List
+            if (filterOn.filterable) {
+                if (filterOn.universe?.includes(uuid)) {
+                    const filterCondition = equals(attribute(filterOn.id), literal(uuid));
+                    incomingData.setFilter(filterCondition);
+                } else {
+                    console.error("uuid does not match enum - Please make sure uuid matches Enum used");
+                }
+            } else {
+                console.warn("Attribute is not filterable");
+            }
+        }
+        if (this.props.autoSortFilter && !isGreaterThan93) {
+            console.error(
+                "Mendix Version Too Low for Auto Sort/Filter. Mendix 9.3 and Up Only. See Here (https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis-list-values#listvalue-sorting)"
+            );
         }
     }
 
@@ -83,15 +89,19 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
             };
             // Clone Array
             const listToMendix = Array.from(listOfSortableItems);
+            // Add New Object Into Cloned Array
             listToMendix.splice(index, 0, currentItem.item);
             const jsonString = JSON.stringify({ settingsForSave, listToMendix });
+            // Set json to non Persist Object
             dropDataAttr.setValue(jsonString);
             if (onDifferentColumDrop && onDifferentColumDrop.canExecute && !onDifferentColumDrop.isExecuting) {
                 onDifferentColumDrop.execute();
             }
         } else {
             // Same Col Drop (Re Order)
+
             const movedItem = listOfSortableItems.find(item => item.id === currentItem.item.id);
+
             const removedItemList = listOfSortableItems.filter(item => item.id !== currentItem.item.id);
             if (movedItem) {
                 removedItemList.splice(index, 0, movedItem);

@@ -16,6 +16,11 @@
                 <description>Text name of the datasource</description>
             </property>
 
+            <property key="autoSortFilter" type="boolean" defaultValue="true">
+                <caption>Auto Sort/Filter</caption>
+                <description>Use Auto Filter (Mx9.3 and Up)</description>
+            </property>
+
             <property key="sortOn" type="attribute" dataSource="incomingData">
                 <caption>Sort On</caption>
                  <description>Attribure To Sort Data On (Mx9.3 and Up)</description>
