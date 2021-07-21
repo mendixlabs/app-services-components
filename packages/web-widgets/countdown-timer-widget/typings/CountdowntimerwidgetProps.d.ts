@@ -28,7 +28,7 @@ export interface CountdowntimerwidgetPreviewProps {
     style: string;
     incomingDate: string;
     whenDone: {} | null;
-    content: { widgetCount: number; renderer: ComponentType };
+    content: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
     displayDoneContent: boolean;
     showDays: boolean;
     showHours: boolean;
