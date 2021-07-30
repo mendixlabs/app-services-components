@@ -16,8 +16,6 @@ import { greaterOrEqualToMendixVersion } from "@app-services-components/mendixhe
 
 import "./ui/Draganddropwidget.css";
 
-// const RNDContext = createDndContext(HTML5Backend);
-
 export default class Draganddropwidget extends Component<DraganddropwidgetContainerProps, CompState> {
     constructor(props: DraganddropwidgetContainerProps) {
         super(props);
@@ -25,6 +23,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     }
     componentDidMount() {
         const { incomingData, autoSortFilter, sortOn, filterOn, uuid } = this.props;
+        // Added in V1.0.2 for Mendix 9
         const isGreaterThan93 = greaterOrEqualToMendixVersion({
             minVersion: "9.3"
         });
@@ -118,6 +117,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     render(): ReactNode {
         const { listOfSortableItems } = this.state;
         const { content, emptyData } = this.props;
+        console.log(`this.props`, this.props);
         if (listOfSortableItems) {
             if (isTouchDevice()) {
                 return (

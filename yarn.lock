@@ -3104,10 +3104,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@mendix/pluggable-widgets-tools@>=9.0.0":
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/@mendix/pluggable-widgets-tools/-/pluggable-widgets-tools-9.3.1.tgz#6affeb30c4723bf4ecfcc735316d22b2f7d10811"
-  integrity sha512-FNU7ieijMmtWJ5qh/j0cVjpsrnKnwV52fPjhvvQeh44D6IxXyFkgreJc0rDlV/uk/V9VcOVN36+1hGesVMkNUw==
+"@mendix/pluggable-widgets-tools@9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@mendix/pluggable-widgets-tools/-/pluggable-widgets-tools-9.3.0.tgz#d206d31b1db1f22adc93c57bb87d7434665da53e"
+  integrity sha512-NI7jcSWZ4IFm2RSIQoDqcbtF0JdEIHUs2pJh/5UpHqIFpQvdwhjtoizJ1Rn0qV3ogqSnU6LFgY7v1uQQC0ARLA==
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/plugin-proposal-class-properties" "^7.12.1"
@@ -3186,9 +3186,9 @@
     zip-a-folder "^0.0.12"
 
 "@mendix/pluggable-widgets-tools@^1.0.0":
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/@mendix/pluggable-widgets-tools/-/pluggable-widgets-tools-9.3.0.tgz#d206d31b1db1f22adc93c57bb87d7434665da53e"
-  integrity sha512-NI7jcSWZ4IFm2RSIQoDqcbtF0JdEIHUs2pJh/5UpHqIFpQvdwhjtoizJ1Rn0qV3ogqSnU6LFgY7v1uQQC0ARLA==
+  version "9.3.1"
+  resolved "https://registry.yarnpkg.com/@mendix/pluggable-widgets-tools/-/pluggable-widgets-tools-9.3.1.tgz#6affeb30c4723bf4ecfcc735316d22b2f7d10811"
+  integrity sha512-FNU7ieijMmtWJ5qh/j0cVjpsrnKnwV52fPjhvvQeh44D6IxXyFkgreJc0rDlV/uk/V9VcOVN36+1hGesVMkNUw==
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/plugin-proposal-class-properties" "^7.12.1"

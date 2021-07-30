@@ -33,7 +33,7 @@ export interface DraganddropwidgetPreviewProps {
     autoSortFilter: boolean;
     sortOn: string;
     filterOn: string;
-    incomingData: {} | null;
+    incomingData: {} | { type: string } | null;
     dropDataAttr: string;
     onDropAction: {} | null;
     onDifferentColumDrop: {} | null;
