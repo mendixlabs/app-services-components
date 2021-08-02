@@ -1,36 +1,39 @@
 {
     "name": "draganddropwidget",
     "widgetName": "Draganddropwidget",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "My widget description",
     "copyright": "2021 Mendix Technology BV",
     "author": "Arno Welgemoed",
     "config": {
-        "widgetPath": "./dist/test/widgets",
-        "projectPath": "./dist/test/",
-        "mendixHost": "http://10.211.55.3:8080",
-        "developmentPort": "3000"
+        "mendixHost": "http://localhost:8080",
+        "developmentPort": 3000,
+        "projectPath": "/Users/ahwelgemoed/Documents/MendixApps/Mx-Nine-Widgets-main"
     },
-    "packagePath": "mendix",
+    "packagePath": "com.mendix.widget.custom",
     "scripts": {
-        "start": "pluggable-widgets-tools start:server --open",
+        "start": "pluggable-widgets-tools start:server",
         "dev": "pluggable-widgets-tools start:web",
         "build": "pluggable-widgets-tools build:web",
-        "lint": "pluggable-widgets-tools lint",
-        "lint:fix": "pluggable-widgets-tools lint:fix",
-        "prerelease": "npm run lint",
+        "format": "pluggable-widgets-tools format",
+        "lint": "eslint --config ../../../.eslintrc.js --ext .jsx,.js,.ts,.tsx src/",
+        "test": "pluggable-widgets-tools test:unit:web",
+        "pretest:e2e": "node ../../../scripts/test/updateAtlas.js --latest-atlas",
+        "test:e2e": "pluggable-widgets-tools test:e2e:web",
+        "test:e2e:dev": "pluggable-widgets-tools test:e2e:web:dev",
         "release": "pluggable-widgets-tools release:web"
     },
     "license": "Apache-2.0",
     "devDependencies": {
-        "@mendix/pluggable-widgets-tools": "^8.12.0",
+        "@mendix/pluggable-widgets-tools": ">=9.0.0",
         "@types/big.js": "^4.0.5",
         "@types/classnames": "^2.2.11",
         "@types/react": "~16.9.0",
         "@types/react-dom": "~16.9.0"
     },
     "dependencies": {
-        "@app-services-components/usedomlocation": "^1.0.1",
+        "@app-services-components/usedomlocation": "^1.0.2",
+        "@mendix/pluggable-widgets-tools": "^1.0.0",
         "@types/react-beautiful-dnd": "^13.0.0",
         "@types/react-dnd-multi-backend": "^6.0.0",
         "classnames": "^2.2.6",

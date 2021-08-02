@@ -4,7 +4,7 @@ import { DragListProps, ListOfSortableItemsType } from "./types";
 
 function Column({ listOfSortableItems, content, reorderAfterDrop, emptyData }: DragListProps): ReactElement {
     return (
-        <div className="app">
+        <div role="list" className="drag-and-drop__list">
             {listOfSortableItems.length ? (
                 listOfSortableItems.map((fullItem: ListOfSortableItemsType, index: number) => {
                     return (
@@ -15,7 +15,7 @@ function Column({ listOfSortableItems, content, reorderAfterDrop, emptyData }: D
                             reorderAfterDrop={reorderAfterDrop}
                             listOfSortableItems={listOfSortableItems}
                         >
-                            {content && content(fullItem.item)}
+                            {content && content.get(fullItem.item)}
                         </DragCard>
                     );
                 })

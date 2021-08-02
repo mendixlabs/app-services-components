@@ -21,13 +21,10 @@ const Countdowntimerwidget = ({
         if (incomingDate.value) {
             setIncomingTime(incomingDate.value);
         }
-        if (!incomingDate.value) {
-            setIncomingTime(null);
-        }
     }, [incomingDate]);
 
     // No Incoming Date
-    if (incomingDate.status !== "available") {
+    if (!incomingTime) {
         return <Fragment></Fragment>;
     }
     if (incomingTime) {

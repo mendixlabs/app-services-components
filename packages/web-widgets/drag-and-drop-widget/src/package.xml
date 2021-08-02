@@ -5,7 +5,7 @@
             <widgetFile path="Draganddropwidget.xml"/>
         </widgetFiles>
         <files>
-            <file path="mendix/draganddropwidget"/>
+            <file path="com/mendix/widget/custom/draganddropwidget"/>
         </files>
     </clientModule>
 </package>
