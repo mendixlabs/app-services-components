@@ -115,9 +115,9 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     };
 
     render(): ReactNode {
+        console.log(`this.props`, this.props);
         const { listOfSortableItems } = this.state;
         const { content, emptyData } = this.props;
-        console.log(`this.props`, this.props);
         if (listOfSortableItems) {
             if (isTouchDevice()) {
                 return (

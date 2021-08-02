@@ -1,16 +1,14 @@
 import { createElement, useRef, ReactElement } from "react";
 import { useDrag, useDrop, DragObjectWithType, DragSourceMonitor } from "react-dnd";
-import { useDragDropManager } from "react-dnd";
 
 import classnames from "classnames";
 import { DragCardType, ListOfSortableItemsType } from "./types";
 
 const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems }: DragCardType): ReactElement => {
-    const t = useDragDropManager();
-    console.log(`useDragDropManager()`, t.getActions());
     const ref = useRef<HTMLDivElement>(null);
 
     const findOrder = (hoverItem: any, monitor: DragSourceMonitor): number => {
+        console.log(`isOver`, monitor.getItem());
         const hoverIndex = index;
         const dragIndex = hoverItem.index;
 
@@ -79,24 +77,11 @@ const DragCard = ({ children, item, index, reorderAfterDrop, listOfSortableItems
         "drag-and-drop__is-over": isOver,
         "drag-and-drop__is-dragging": isDragging
     });
-    const u = t.getMonitor();
     return (
         <div
-            onKeyPress={event => {
-                if (event.key === "Enter") {
-                    console.log("1");
-
-                    const y = t.getMonitor().getSourceId();
-                    console.log(`y`, y);
-                    if (y) {
-                        console.log("2");
-                        console.log("enter press here! ", t.getActions().beginDrag([y]));
-                        console.log("enter press here! ", t.getActions().hover([y]));
-                    }
-                }
-            }}
-            className={customClassNames}
+            role="listitem"
             tabIndex={0}
+            className={customClassNames}
             // Used For Testing Only
             style={{
                 padding: "0.5rem 1rem",
