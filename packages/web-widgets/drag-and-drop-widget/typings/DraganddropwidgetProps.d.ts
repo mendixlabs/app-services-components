@@ -4,15 +4,19 @@
  * @author Mendix UI Content Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { ActionValue, EditableValue, ListValue, ListWidgetValue } from "mendix";
+import { ActionValue, EditableValue, ListValue, ListAttributeValue, ListWidgetValue } from "mendix";
+import { Big } from "big.js";
 
 export interface DraganddropwidgetContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
-    tabIndex: number;
+    tabIndex?: number;
     uuid: string;
     dataSourceName: string;
+    autoSortFilter: boolean;
+    sortOn: ListAttributeValue<Big>;
+    filterOn: ListAttributeValue<string>;
     incomingData: ListValue;
     dropDataAttr: EditableValue<string>;
     onDropAction?: ActionValue;
@@ -26,10 +30,13 @@ export interface DraganddropwidgetPreviewProps {
     style: string;
     uuid: string;
     dataSourceName: string;
-    incomingData: {} | null;
+    autoSortFilter: boolean;
+    sortOn: string;
+    filterOn: string;
+    incomingData: {} | { type: string } | null;
     dropDataAttr: string;
     onDropAction: {} | null;
     onDifferentColumDrop: {} | null;
-    content: { widgetCount: number; renderer: ComponentType };
-    emptyData: { widgetCount: number; renderer: ComponentType };
+    content: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
+    emptyData: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
 }
