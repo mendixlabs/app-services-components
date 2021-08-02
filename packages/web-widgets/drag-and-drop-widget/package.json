@@ -1,7 +1,7 @@
 {
     "name": "draganddropwidget",
     "widgetName": "Draganddropwidget",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "My widget description",
     "copyright": "2021 Mendix Technology BV",
     "author": "Arno Welgemoed",
@@ -32,7 +32,7 @@
         "@types/react-dom": "~16.9.0"
     },
     "dependencies": {
-        "@app-services-components/usedomlocation": "^1.0.1",
+        "@app-services-components/usedomlocation": "^1.0.2",
         "@mendix/pluggable-widgets-tools": "^1.0.0",
         "@types/react-beautiful-dnd": "^13.0.0",
         "@types/react-dnd-multi-backend": "^6.0.0",

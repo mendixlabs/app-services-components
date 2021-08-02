@@ -1,7 +1,7 @@
 {
   "name": "autocompletewidget",
   "widgetName": "Autocompletewidget",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "My widget description",
   "copyright": "2020 Mendix Technology BV",
   "author": "ahwelgemoed",
