@@ -1,3 +1,5 @@
+### Mendix 9.3 and lower use Version `1.0.xx` for Mendix 9.3 and Up use Version `2.0.xx`
+
 <h1 align="center">Drag and Drop Widget for Mendix</h1>
 
 <p align="center">
@@ -14,7 +16,7 @@
     <img alt="License: MIT" src="https://img.shields.io/github/issues/ahwelgemoed/drag-and-drop-mendix-widget" target="_blank" />
   </a>
   <a href="">
-    <img alt="GitHub issues" src="https://img.shields.io/github/release/ahwelgemoed/drag-and-drop-mendix-widget" target="_blank" />
+    <img alt="GitHub issues" src="https://img.shields.io/github/release/mendixlabs/app-services-components" target="_blank" />
   </a>
   <a href="https://appstore.home.mendix.com/link/modeler/">
     <img alt="GitHub issues" src="https://img.shields.io/badge/Studio%20version-8.12%2B-blue.svg" target="_blank" />
@@ -72,6 +74,11 @@ column and vertically (drag between one widget and another).
 | Non Persistable Data  | `datasource` | The non persistable data entity you wrap all your widgets in. This is used as state in the widget                                                                                                                                                                                                                                                                                                                                                                              |
 | Same Column Drop      | `action`     | microflow to trigger if data comes in from the same column                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Different Column Drop | `action`     | microflow to trigger if data comes in from different column                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Auto Sort/Filter      | `boolean`    | If true you don't have to sort or filter the list in the Microflow that brings in the Data                                                                                                                                                                                                                                                                                                                                                                                     |
+| Sort On               | `attribute`  | Attribute To Sort Data On                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Filter on             | `attribute`  | Attribute To Filter Data On                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+---
 
 ## Column Drop Actions
 
@@ -134,42 +141,6 @@ Is called by THIS widget when THAT (another) widget drops an Object into it.
 
 ---
 
-#### Different Datasource _(Different Entity)_
-
----
-
-**NOTE - This Feature Currently only works for 2 widgets at one time (2 Draggable Columns)**
-
-Here you can drag an item from one column to another, the said Nano- & Micro- flows will reorder the list, create the
-entity in the new list and then delete it form the the old list.
-
-Here is gets tricky and you must keep track of naming your flows as at some point you target the Widget you are dragging
-into and sometimes the Widget you are dragging out of.
-
--   After importing the Commons File Find the Folder called `nanoflows` in the `draganddrop` folder. Use the nanoflow
-    called `Diff_Col_Drop_Diff_Ds_NF`. Copy it into your project and start setting it up. (Same as the rest)
-
--   Configure the incoming data to be that of your non-persistable data source you wrapped the widget in.
-
-    -   Configure the 3 Strings:
-
-        -   `nonPersistableModelName` - Model name of the Non Persistable Model (i.e: DragAndDropWidget.SimpleListState)
-        -   `nonPersistableAttName` - Attribute name of the Non Persistable Model (i.e: `json`)
-        -   `persistableOrderAtt` - Attribute name used to 'sort' the Persistable Model (i.e: `Order`)
-
-    -   Then copy over the Javascript Action in the folder `Javascript_Actions` called `Diff_Col_Drop_Diff_Ds_JS` and
-        configure the nanoflow to use it, by setting the incoming parameters to that that you created in the nano flow.
-
-        **Note** Make sure to set the return object from the JS action to that of the other column (The Column dragged
-        from (The object that is going to be deleted)).
-
-    -   Add a Call to a mircroflow after the JS action and call the `Delete` microflow .
-
-        -   This microflow will delete the object. Pass the return object from the Js function into this microflow call.
-
-        -   Inside the delete microflow configure it to delete the passed down parameter and make sure to check the
-            `refresh client` option.
-
 ## Styling
 
 The Widget exposes 3 Classnames you can use to style the list items:
@@ -198,5 +169,4 @@ The Widget exposes 3 Classnames you can use to style the list items:
 
 ## Issues || Track Features
 
-Add issues to [project](https://github.com/ahwelgemoed/drag-and-drop-mendix-widget/projects/1?add_cards_query=is%3Aopen)
-board or open an GH issue.
+Add issues to [project](https://github.com/mendixlabs/app-services-components/issues) board or open an GH issue.

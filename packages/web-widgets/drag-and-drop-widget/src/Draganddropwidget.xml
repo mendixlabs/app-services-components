@@ -23,7 +23,7 @@
 
             <property key="sortOn" type="attribute" dataSource="incomingData">
                 <caption>Sort On</caption>
-                 <description>Attribure To Sort Data On (Mx9.3 and Up)</description>
+                 <description>Attribute To Sort Data On (Mx9.3 and Up)</description>
                 <attributeTypes>
                     <attributeType name="Integer"/>
                 </attributeTypes>
@@ -31,7 +31,7 @@
 
             <property key="filterOn" type="attribute" dataSource="incomingData">
                 <caption>Filter On</caption>
-                 <description>Attribure To Filter Data On (Mx9.3 and Up)</description>
+                 <description>Attribute To Filter Data On (Mx9.3 and Up)</description>
                 <attributeTypes>
                     <attributeType name="Enum"/>
                 </attributeTypes>
