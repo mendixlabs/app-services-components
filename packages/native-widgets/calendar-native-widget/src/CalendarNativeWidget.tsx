@@ -12,10 +12,7 @@ export interface CustomStyle extends Style {
 }
 
 export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<CustomStyle>> {
-    componentDidUpdate(pP: CalendarNativeWidgetProps<CustomStyle>) {
-        console.log("pP", pP);
-        console.log("this.props", this.props);
-    }
+    componentDidUpdate() {}
     render(): ReactNode {
         const {
             date,
@@ -26,6 +23,7 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
             isActiveDate,
             propertyName,
             volatileDate,
+            dynamicOffset,
             incomingDates,
             selectedColor,
             darkModeOption,
@@ -50,6 +48,7 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                         volatileDate={volatileDate}
                         propertyName={propertyName}
                         selectedColor={selectedColor}
+                        dynamicOffset={dynamicOffset}
                         incomingDates={incomingDates}
                         darkModeOption={darkModeOption}
                         activeSwipeDown={activeSwipeDown}
@@ -61,7 +60,7 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                         takeIsActiveIntoAccount={takeIsActiveIntoAccount}
                     />
                 ) : (
-                    <Text>Loading</Text>
+                    <Text>Loading Calendar...</Text>
                 )}
             </View>
         );

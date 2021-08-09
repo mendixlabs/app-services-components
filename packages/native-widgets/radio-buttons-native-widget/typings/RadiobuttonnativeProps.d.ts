@@ -21,7 +21,7 @@ export interface RadiobuttonnativeProps<Style> {
     boolAttribute?: EditableValue<boolean>;
     booleanNames: BooleanNamesType[];
     enumAttribute?: EditableValue<string>;
-    onChangeAction?: ActionValue;
+    onClickAction?: ActionValue;
     formHorizontal: boolean;
     labelHorizontal: boolean;
     buttonInnerColor: string;
@@ -38,7 +38,7 @@ export interface RadiobuttonnativePreviewProps {
     boolAttribute: string;
     booleanNames: BooleanNamesPreviewType[];
     enumAttribute: string;
-    onChangeAction: {} | null;
+    onClickAction: {} | null;
     formHorizontal: boolean;
     labelHorizontal: boolean;
     buttonInnerColor: string;

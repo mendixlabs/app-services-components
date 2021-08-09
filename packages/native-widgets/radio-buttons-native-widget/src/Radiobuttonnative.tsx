@@ -1,7 +1,6 @@
 import { Component, ReactNode, createElement, Fragment } from "react";
 import { TextStyle, ViewStyle, Text } from "react-native";
 import RadioButtons from "./components/RadioButtons";
-
 import { Style } from "@mendix/pluggable-widgets-tools";
 
 import { RadiobuttonnativeProps } from "../typings/RadiobuttonnativeProps";
@@ -58,7 +57,6 @@ export class Radiobuttonnative extends Component<RadiobuttonnativeProps<CustomSt
             if (boolAttribute && boolAttribute.status === "available") {
                 this.rationalizeBooleanOptions();
             }
-            console.log(`enumAttribute 0`, enumAttribute);
             if (enumAttribute && enumAttribute.status === "available") {
                 this.rationalizeEnumOptions();
             }
@@ -93,7 +91,10 @@ export class Radiobuttonnative extends Component<RadiobuttonnativeProps<CustomSt
         }
     };
     onPressBoolean = (value: boolean): void => {
-        const { boolAttribute } = this.props;
+        const { boolAttribute, onClickAction } = this.props;
+        if (onClickAction) {
+            onClickAction.execute();
+        }
         if (boolAttribute) {
             boolAttribute.setValue(value);
             this.setState({
@@ -102,14 +103,16 @@ export class Radiobuttonnative extends Component<RadiobuttonnativeProps<CustomSt
         }
     };
     onPressEnum = (value: string): void => {
-        const { enumAttribute } = this.props;
+        const { enumAttribute, onClickAction } = this.props;
+        if (onClickAction?.canExecute) {
+            onClickAction.execute();
+        }
         if (enumAttribute) {
             enumAttribute.setValue(value as string);
             this.setState({
                 defaultValue: value
             });
         }
-        // console.log(`this.props.onChangeAction`, this.props.onChangeAction?.execute());
     };
 
     render(): ReactNode {
@@ -123,14 +126,13 @@ export class Radiobuttonnative extends Component<RadiobuttonnativeProps<CustomSt
             buttonOuterColor,
             buttonInnerColor
         } = this.props;
+        console.log(`this.props`, this.props);
         const { isBooleanRadioButton, buttonOptions, defaultValue } = this.state;
-        console.log(`this.props.onChangeAction`, this.props);
-
         switch (isBooleanRadioButton) {
             case RadioButtonOptionsEnum.Loading:
                 return (
                     <Fragment>
-                        <Text>Loading</Text>
+                        <Text>Loading Radio Buttons...</Text>
                     </Fragment>
                 );
 

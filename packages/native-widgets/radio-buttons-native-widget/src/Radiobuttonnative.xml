@@ -39,7 +39,7 @@
             </propertyGroup>
             <propertyGroup caption="Enum Data">
 
-                <property key="enumAttribute" type="attribute" required="false" onChange="onChangeAction">
+                <property key="enumAttribute" type="attribute" required="false" >
                     <caption>Enumeration Attribute</caption>
                     <description/>
                     <attributeTypes>
@@ -50,9 +50,9 @@
             </propertyGroup>
 
             <propertyGroup caption="Events">
-                <property key="onChangeAction" type="action" required="false">
-                    <caption>On change</caption>
-                    <description/>
+                <property key="onClickAction" type="action" required="false">
+                    <caption>On Press</caption>
+                    <description>On Press/On Change Action to call after Value has changed</description>
                 </property>
             </propertyGroup>
 

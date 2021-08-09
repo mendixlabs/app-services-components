@@ -53,8 +53,15 @@
 
         <!-- SETTINGS -->
         <propertyGroup caption="Settings">
-
             <propertyGroup caption="Dates">
+                <property key="dynamicOffset" type="attribute" required="false" >
+                    <caption>Dynamic Month Offset</caption>
+                    <description>Set Offest of calender Dynamically. (If empty will fall back on Month offset integer)</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime"/>
+                    </attributeTypes>
+                </property>
+                
                 <property key="initialDate" type="integer" defaultValue="0">
                     <caption>Month offset</caption>
                     <description>Number of months from 'today'. This can be negative.</description>

@@ -17,6 +17,7 @@ export interface CalendarNativeWidgetProps<Style> {
     isActiveDate?: ListAttributeValue<boolean>;
     volatileDate?: EditableValue<Date>;
     onClick?: ActionValue;
+    dynamicOffset?: EditableValue<Date>;
     initialDate: number;
     startOfWeek: StartOfWeekEnum;
     activeSwipeDown: boolean;
@@ -41,6 +42,7 @@ export interface CalendarNativeWidgetPreviewProps {
     isActiveDate: string;
     volatileDate: string;
     onClick: {} | null;
+    dynamicOffset: string;
     initialDate: number | null;
     startOfWeek: StartOfWeekEnum;
     activeSwipeDown: boolean;

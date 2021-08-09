@@ -31,6 +31,7 @@ const CalendarInit = ({
     isActiveDate,
     volatileDate,
     propertyName,
+    dynamicOffset,
     incomingDates,
     selectedColor,
     darkModeOption,
@@ -136,8 +137,16 @@ const CalendarInit = ({
     };
 
     useEffect(() => {
-        setStartDate(addMonths(Date.now(), initialDate));
+        if (dynamicOffset) {
+            if (dynamicOffset.status == "available") {
+                setStartDate(dynamicOffset.value);
+            }
+        }
+        if (!dynamicOffset) {
+            setStartDate(addMonths(Date.now(), initialDate));
+        }
     }, []);
+
     useEffect(() => {
         /**
          * Resets Selected Day If a Event Was Added
@@ -213,7 +222,7 @@ const CalendarInit = ({
     const rendererForTheme = {
         theme: witchTheme(darkModeOption)
     };
-
+    console.log(`startDate`, startDate);
     return (
         <View>
             {startDate && (
