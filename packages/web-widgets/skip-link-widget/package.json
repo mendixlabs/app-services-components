@@ -1,0 +1,36 @@
+{
+  "name": "skiplinkwidget",
+  "widgetName": "Skiplinkwidget",
+  "version": "1.0.0",
+  "description": "My widget description",
+  "copyright": "2021 Mendix Technology BV",
+  "author": "A.H.Welgemoed",
+  "engines": {
+    "node": ">=12"
+  },
+  "config": {
+    "projectPath": "/Users/ahwelgemoed/Documents/MendixApps/MX9 - DesignSystem Workspace-main_2",
+    "mendixHost": "http://localhost:8080",
+    "developmentPort": "3000"
+  },
+  "packagePath": "mendix",
+  "scripts": {
+    "start": "pluggable-widgets-tools start:web",
+    "build": "pluggable-widgets-tools build:web",
+    "lint": "pluggable-widgets-tools lint",
+    "lint:fix": "pluggable-widgets-tools lint:fix",
+    "prerelease": "npm run lint",
+    "release": "pluggable-widgets-tools release:web"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@mendix/pluggable-widgets-tools": "^9.0.0",
+    "@types/big.js": "^6.0.2",
+    "@types/classnames": "^2.2.4",
+    "@types/react": "~17.0.1",
+    "@types/react-dom": "~17.0.1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
+  }
+}

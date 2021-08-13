@@ -1,0 +1,14 @@
+/*
+Place your custom CSS here
+*/
+.widget-hello-world {
+}
+#MAIN_CONTENT_SKIP_TO {
+    background-color: aqua;
+}
+#MAIN_CONTENT_SKIP_TO:focus {
+    background-color: red;
+}
+a:focus {
+    background-color: brown;
+}

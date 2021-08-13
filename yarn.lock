@@ -3185,23 +3185,23 @@
     xml2js "^0.4.23"
     zip-a-folder "^0.0.12"
 
-"@mendix/pluggable-widgets-tools@^1.0.0":
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/@mendix/pluggable-widgets-tools/-/pluggable-widgets-tools-9.3.1.tgz#6affeb30c4723bf4ecfcc735316d22b2f7d10811"
-  integrity sha512-FNU7ieijMmtWJ5qh/j0cVjpsrnKnwV52fPjhvvQeh44D6IxXyFkgreJc0rDlV/uk/V9VcOVN36+1hGesVMkNUw==
+"@mendix/pluggable-widgets-tools@^1.0.0", "@mendix/pluggable-widgets-tools@^9.0.0":
+  version "9.4.3"
+  resolved "https://registry.yarnpkg.com/@mendix/pluggable-widgets-tools/-/pluggable-widgets-tools-9.4.3.tgz#e5ff4d704222a631cd089cc0518e571c1ab1a941"
+  integrity sha512-7/6961h0ma1eMCJes+XFoP1Eo9a8lEtS5XCUw+a2xsl03D24zByYneqhzvKJUKQQjtStNv110h7QET0sTN9ZkQ==
   dependencies:
     "@babel/core" "^7.12.3"
     "@babel/plugin-proposal-class-properties" "^7.12.1"
     "@babel/preset-env" "^7.12.1"
     "@babel/preset-react" "^7.12.1"
-    "@rollup/plugin-alias" "^3.1.1"
-    "@rollup/plugin-babel" "^5.2.1"
-    "@rollup/plugin-commonjs" "^16.0.0"
-    "@rollup/plugin-image" "^2.0.6"
+    "@rollup/plugin-alias" "^3.1.5"
+    "@rollup/plugin-babel" "^5.3.0"
+    "@rollup/plugin-commonjs" "^20.0.0"
+    "@rollup/plugin-image" "^2.1.0"
     "@rollup/plugin-json" "^4.1.0"
-    "@rollup/plugin-node-resolve" "^9.0.0"
-    "@rollup/plugin-typescript" "^6.0.0"
-    "@rollup/plugin-url" "^5.0.1"
+    "@rollup/plugin-node-resolve" "^13.0.4"
+    "@rollup/plugin-typescript" "^8.2.5"
+    "@rollup/plugin-url" "^6.1.0"
     "@typescript-eslint/eslint-plugin" "^4.15.2"
     "@typescript-eslint/parser" "^4.15.2"
     "@wdio/cli" "^7.5.3"
@@ -3210,7 +3210,7 @@
     "@wdio/selenium-standalone-service" "^7.5.3"
     "@wdio/spec-reporter" "^7.5.3"
     "@wdio/sync" "^7.5.3"
-    "@wojtekmaj/enzyme-adapter-react-17" "^0.1.1"
+    "@wojtekmaj/enzyme-adapter-react-17" "^0.6.3"
     babel-eslint "^10.1.0"
     babel-jest "^26.6.1"
     big.js "^6.0.2"
@@ -3237,7 +3237,7 @@
     jest-junit "^12.0.0"
     jest-react-hooks-shallow "^1.4.1"
     jest-svg-transformer "^1.0.0"
-    mendix "^9.2.20531"
+    mendix "^9.4.24572"
     metro-react-native-babel-preset "~0.63.0"
     node-fetch "^2.6.1"
     postcss "^8.1.10"
@@ -3250,7 +3250,7 @@
     react-test-renderer "~17.0.1"
     recursive-copy "^2.0.11"
     resolve "^1.19.0"
-    rollup "^2.28.2"
+    rollup "^2.56.2"
     rollup-plugin-clear "^2.0.7"
     rollup-plugin-command "^1.1.3"
     rollup-plugin-livereload "^2.0.0"
@@ -3820,7 +3820,14 @@
   dependencies:
     slash "^3.0.0"
 
-"@rollup/plugin-babel@^5.1.0", "@rollup/plugin-babel@^5.2.1":
+"@rollup/plugin-alias@^3.1.5":
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.5.tgz#73356a3a1eab2e1e2fd952f9f53cd89fc740d952"
+  integrity sha512-yzUaSvCC/LJPbl9rnzX3HN7vy0tq7EzHoEiQl1ofh4n5r2Rd5bj/+zcJgaGA76xbw95/JjWQyvHg9rOJp2y0oQ==
+  dependencies:
+    slash "^3.0.0"
+
+"@rollup/plugin-babel@^5.1.0", "@rollup/plugin-babel@^5.2.1", "@rollup/plugin-babel@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.0.tgz#9cb1c5146ddd6a4968ad96f209c50c62f92f9879"
   integrity sha512-9uIC8HZOnVLrLHxayq/PTzw+uS25E14KPUBh5ktF+18Mjo5yK0ToMMx6epY0uEgkjwJw0aBW4x2horYXh8juWw==
@@ -3854,10 +3861,31 @@
     magic-string "^0.25.7"
     resolve "^1.17.0"
 
+"@rollup/plugin-commonjs@^20.0.0":
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-20.0.0.tgz#3246872dcbcb18a54aaa6277a8c7d7f1b155b745"
+  integrity sha512-5K0g5W2Ol8hAcTHqcTBHiA7M58tfmYi1o9KxeJuuRNpGaTa5iLjcyemBitCBcKXaHamOBBEH2dGom6v6Unmqjg==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    commondir "^1.0.1"
+    estree-walker "^2.0.1"
+    glob "^7.1.6"
+    is-reference "^1.2.1"
+    magic-string "^0.25.7"
+    resolve "^1.17.0"
+
 "@rollup/plugin-image@^2.0.6":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-image/-/plugin-image-2.0.6.tgz#2e6d7a72b25df81aa80c8c0866d45a45c1e6a265"
   integrity sha512-bB+spXogbPiFjhBS7i8ajUOgOnVwWK3bnJ6VroxKey/q8/EPRkoSh+4O1qPCw97qMIDspF4TlzXVBhZ7nojIPw==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    mini-svg-data-uri "^1.2.3"
+
+"@rollup/plugin-image@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-image/-/plugin-image-2.1.0.tgz#55a477f07af04b1b0caf63f098568a8bf8b1fa8f"
+  integrity sha512-IiRhjv65A4Rb/9R+gTP2JdIciumkc8c+3xFoUfw3PUkX77SqqzvJ028AfX856E3ZdExMrqY9C9ZVXN46w6rh9A==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     mini-svg-data-uri "^1.2.3"
@@ -3868,6 +3896,18 @@
   integrity sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
   dependencies:
     "@rollup/pluginutils" "^3.0.8"
+
+"@rollup/plugin-node-resolve@^13.0.4":
+  version "13.0.4"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-13.0.4.tgz#b10222f4145a019740acb7738402130d848660c0"
+  integrity sha512-eYq4TFy40O8hjeDs+sIxEH/jc9lyuI2k9DM557WN6rO5OpnC2qXMBNj4IKH1oHrnAazL49C5p0tgP0/VpqJ+/w==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    "@types/resolve" "1.17.1"
+    builtin-modules "^3.1.0"
+    deepmerge "^4.2.2"
+    is-module "^1.0.0"
+    resolve "^1.19.0"
 
 "@rollup/plugin-node-resolve@^9.0.0":
   version "9.0.0"
@@ -3897,6 +3937,14 @@
     "@rollup/pluginutils" "^3.1.0"
     resolve "^1.17.0"
 
+"@rollup/plugin-typescript@^8.2.5":
+  version "8.2.5"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-typescript/-/plugin-typescript-8.2.5.tgz#e0319761b2b5105615e5a0c371ae05bc2984b7de"
+  integrity sha512-QL/LvDol/PAGB2O0S7/+q2HpSUNodpw7z6nGn9BfoVCPOZ0r4EALrojFU29Bkoi2Hr2jgTocTejJ5GGWZfOxbQ==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    resolve "^1.17.0"
+
 "@rollup/plugin-url@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-url/-/plugin-url-5.0.1.tgz#77fc9f56100cd83cfb45109adf7d48af1c8ecdbf"
@@ -3905,6 +3953,15 @@
     "@rollup/pluginutils" "^3.0.4"
     make-dir "^3.0.0"
     mime "^2.4.4"
+
+"@rollup/plugin-url@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-url/-/plugin-url-6.1.0.tgz#1234bba9aa30b5972050bdfcf8fcbb1cb8070465"
+  integrity sha512-FJNWBnBB7nLzbcaGmu1no+U/LlRR67TtgfRFP+VEKSrWlDTE6n9jMns/N4Q/VL6l4x6kTHQX4HQfwTcldaAfHQ==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    make-dir "^3.1.0"
+    mime "^2.4.6"
 
 "@rollup/pluginutils@^3.0.4", "@rollup/pluginutils@^3.0.8", "@rollup/pluginutils@^3.0.9", "@rollup/pluginutils@^3.1.0":
   version "3.1.0"
@@ -5179,6 +5236,31 @@
     react-is "^16.13.1"
     react-test-renderer "^17.0.0-0"
     semver "^5.7.0"
+
+"@wojtekmaj/enzyme-adapter-react-17@^0.6.3":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@wojtekmaj/enzyme-adapter-react-17/-/enzyme-adapter-react-17-0.6.3.tgz#bf7cd6007d99996bd7d98c843644b213a3ecc74e"
+  integrity sha512-Kp1ZJxtHkKEnUksaWrcMABNTOgL4wOt8VI6k2xOek2aH9PtZcWRXJNUEgnKrdJrqg5UqIjRslbVF9uUqwQJtFg==
+  dependencies:
+    "@wojtekmaj/enzyme-adapter-utils" "^0.1.1"
+    enzyme-shallow-equal "^1.0.0"
+    has "^1.0.0"
+    object.assign "^4.1.0"
+    object.values "^1.1.0"
+    prop-types "^15.7.0"
+    react-is "^17.0.2"
+    react-test-renderer "^17.0.0"
+
+"@wojtekmaj/enzyme-adapter-utils@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@wojtekmaj/enzyme-adapter-utils/-/enzyme-adapter-utils-0.1.1.tgz#17773cf264570fbcfc0d33bb74e4002c17f2f1ec"
+  integrity sha512-bNPWtN/d8huKOkC6j1E3EkSamnRrHHT7YuR6f9JppAQqtoAm3v4/vERe4J14jQKmHLCyEBHXrlgb7H6l817hVg==
+  dependencies:
+    function.prototype.name "^1.1.0"
+    has "^1.0.0"
+    object.assign "^4.1.0"
+    object.fromentries "^2.0.0"
+    prop-types "^15.7.0"
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -8940,7 +9022,7 @@ enzyme-adapter-utils@^1.13.1, enzyme-adapter-utils@^1.14.0:
     prop-types "^15.7.2"
     semver "^5.7.1"
 
-enzyme-shallow-equal@^1.0.1, enzyme-shallow-equal@^1.0.4:
+enzyme-shallow-equal@^1.0.0, enzyme-shallow-equal@^1.0.1, enzyme-shallow-equal@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/enzyme-shallow-equal/-/enzyme-shallow-equal-1.0.4.tgz#b9256cb25a5f430f9bfe073a84808c1d74fced2e"
   integrity sha512-MttIwB8kKxypwHvRynuC3ahyNc+cFbR8mjVIltnmzQ0uKGqmsfO4bfBuLxb0beLNPhjblUEYvEbsg+VSygvF1Q==
@@ -10443,7 +10525,7 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-function.prototype.name@^1.1.2, function.prototype.name@^1.1.3:
+function.prototype.name@^1.1.0, function.prototype.name@^1.1.2, function.prototype.name@^1.1.3:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/function.prototype.name/-/function.prototype.name-1.1.4.tgz#e4ea839b9d3672ae99d0efd9f38d9191c5eaac83"
   integrity sha512-iqy1pIotY/RmhdFZygSSlW0wko2yxkSCKqsuv4pr8QESohpYyG/Z7B/XXvPRKTJS//960rgguE5mSRUsDdaJrQ==
@@ -14132,6 +14214,15 @@ mendix@^9.2.20531:
     "@types/react" "~17.0.0"
     "@types/react-native" "~0.63.23"
 
+mendix@^9.4.24572:
+  version "9.4.24572"
+  resolved "https://registry.yarnpkg.com/mendix/-/mendix-9.4.24572.tgz#5aa2fd1d034c62c53557189a2c6bd517085bceb8"
+  integrity sha512-1+rkdRhDDl9nR9BZKFSdIMHO+kTtMTgvQYqLHlrI2ogHw/y5UJOqoMC+vgEzp9F7FHf7E/uxphicBJX3frp9OA==
+  dependencies:
+    "@types/big.js" "^6.0.0"
+    "@types/react" "~17.0.0"
+    "@types/react-native" "~0.63.23"
+
 meow@^3.3.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-3.7.0.tgz#72cb668b425228290abbfa856892587308a801fb"
@@ -14809,7 +14900,7 @@ mime@1.6.0:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
-mime@^2.0.3, mime@^2.3.1, mime@^2.4.1, mime@^2.4.4, mime@~2.5.2:
+mime@^2.0.3, mime@^2.3.1, mime@^2.4.1, mime@^2.4.4, mime@^2.4.6, mime@~2.5.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/mime/-/mime-2.5.2.tgz#6e3dc6cc2b9510643830e5f19d5cb753da5eeabe"
   integrity sha512-tqkh47FzKeCPD2PUiPB6pkbMzsCasjxAfC62/Wap5qrUWcb+sFasXUC5I3gYM5iBM8v/Qpn4UK0x+j0iHyFPDg==
@@ -15631,7 +15722,7 @@ object.entries@^1.1.4:
     define-properties "^1.1.3"
     es-abstract "^1.18.2"
 
-object.fromentries@^2.0.3, object.fromentries@^2.0.4:
+object.fromentries@^2.0.0, object.fromentries@^2.0.3, object.fromentries@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/object.fromentries/-/object.fromentries-2.0.4.tgz#26e1ba5c4571c5c6f0890cef4473066456a120b8"
   integrity sha512-EsFBshs5RUUpQEY1D4q/m59kMfz4YJvxuNCJcv/jWwOJr34EaVnG11ZrZa0UHB3wnzV1wx8m58T4hQL8IuNXlQ==
@@ -17239,7 +17330,7 @@ prop-types-exact@^1.2.0:
     object.assign "^4.1.0"
     reflect.ownkeys "^0.2.0"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.0, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -17847,7 +17938,7 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.8.6"
     scheduler "^0.19.1"
 
-react-test-renderer@^17.0.0-0, react-test-renderer@~17.0.1:
+react-test-renderer@^17.0.0, react-test-renderer@^17.0.0-0, react-test-renderer@~17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-17.0.2.tgz#4cd4ae5ef1ad5670fc0ef776e8cc7e1231d9866c"
   integrity sha512-yaQ9cB89c17PUb0x6UfWRs7kQCorVdHlutU1boVPEsB8IDZH6n9tHxMacc3y0JoXOJUsZb/t/Mb8FUWMKaM7iQ==
@@ -18632,6 +18723,13 @@ rollup@^2.28.2:
   version "2.52.8"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.52.8.tgz#b6462f9c16ffe8995b9a2b313f2e4247fa75e4d9"
   integrity sha512-IjAB0C6KK5/lvqzJWAzsvOik+jV5Bt907QdkQ/gDP4j+R9KYNI1tjqdxiPitGPVrWC21Mf/ucXgowUjN/VemaQ==
+  optionalDependencies:
+    fsevents "~2.3.2"
+
+rollup@^2.56.2:
+  version "2.56.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.56.2.tgz#a045ff3f6af53ee009b5f5016ca3da0329e5470f"
+  integrity sha512-s8H00ZsRi29M2/lGdm1u8DJpJ9ML8SUOpVVBd33XNeEeL3NVaTiUcSBHzBdF3eAyR0l7VSpsuoVUGrRHq7aPwQ==
   optionalDependencies:
     fsevents "~2.3.2"
 
