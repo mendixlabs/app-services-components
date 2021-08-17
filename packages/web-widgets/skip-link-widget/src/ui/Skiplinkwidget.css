@@ -3,29 +3,26 @@ Place your custom CSS here
 */
 .widget-hello-world {
 }
-#MAIN_CONTENT_SKIP_TO {
-    background-color: aqua;
-}
-#MAIN_CONTENT_SKIP_TO:focus {
-    background-color: red;
-}
 a:focus,
 div:focus,
 h2:focus,
 button:focus {
-    background-color: rgb(163, 42, 165) !important;
+    outline-color: darkblue;
+    outline: 2px solid darkblue !important;
+    /* background-color: rgb(163, 42, 165)  */
 }
 
-.skip {
+#skip_link {
     position: absolute;
     left: -10000px;
     top: auto;
     width: 1px;
     height: 1px;
     overflow: hidden;
+    background-color: white;
 }
 
-.skip:focus {
+#skip_link:focus {
     position: static;
     width: auto;
     height: auto;

@@ -8,9 +8,17 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-            <property key="sampleText" type="string" required="false">
-                <caption>Default value</caption>
-                <description>Sample text input</description>
+           <property key="before" type="boolean" defaultValue="true">
+                <caption>Before</caption>
+                <description>Insert skip link button before or after targeted element</description>
+            </property>
+            <property key="addButtonTo" type="string" required="false">
+                <caption>Button Class</caption>
+                <description>Class to add Skip Link Button to</description>
+            </property>
+            <property key="mainContentArea" type="string" required="false">
+                <caption>Main Content Class</caption>
+                <description>Main Content Area Class Name To Target (Default: 'region-content')</description>
             </property>
         </propertyGroup>
     </properties>

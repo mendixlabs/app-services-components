@@ -1,12 +1,81 @@
-import { Component, ReactNode, createElement } from "react";
-import { HelloWorldSample } from "./components/HelloWorldSample";
+import { createElement, useEffect, Fragment } from "react";
 
 import { SkiplinkwidgetContainerProps } from "../typings/SkiplinkwidgetProps";
 
 import "./ui/Skiplinkwidget.css";
 
-export default class Skiplinkwidget extends Component<SkiplinkwidgetContainerProps> {
-    render(): ReactNode {
-        return <HelloWorldSample sampleText={this.props.sampleText ? this.props.sampleText : "World"} />;
-    }
-}
+const ID_TO_ADD_TO_ELEMENT: string = "MAIN_CONTENT_SKIP_TO";
+
+const Skiplinkwidget: React.FC<SkiplinkwidgetContainerProps> = ({ before, addButtonTo, mainContentArea }) => {
+    useEffect(() => {
+        addSkipLinkButton();
+        findMainContentAndAddIdToIt();
+    }, []);
+
+    const addSkipLinkButton = () => {
+        const r = document.getElementById("skip_link");
+        console.log(`r`, r?.remove());
+        // Create Skip Link Div
+        const newDiv = document.createElement("div");
+        // Create Skip Link Button
+        const button = document.createElement("button");
+        // Skip Link Text
+        button.textContent = "Skip to main content";
+        // Function To Go To Main Content
+        button.onclick = () => onClickFunction();
+        // Set Id
+        button.setAttribute("id", "skip_link");
+        // Set Classnames
+        button.setAttribute("class", "btn");
+        // Set Role
+        button.setAttribute("role", "link");
+        // add A Tag to Created Div
+        newDiv.appendChild(button);
+
+        let mainButtonElementToTarget: HTMLCollectionOf<Element>;
+        // If user specifies class name to target
+        if (addButtonTo) {
+            mainButtonElementToTarget = document.getElementsByClassName(addButtonTo);
+        } else {
+            mainButtonElementToTarget = document.getElementsByClassName("navbar-brand");
+        }
+        if (!mainButtonElementToTarget.length) {
+            throw new Error("addButtonTo class not found");
+        }
+        console.log(`before`, before);
+        if (before) {
+            mainButtonElementToTarget[0].before(newDiv);
+        } else {
+            mainButtonElementToTarget[0].after(newDiv);
+        }
+    };
+
+    const findMainContentAndAddIdToIt = () => {
+        let mainArea: HTMLCollectionOf<HTMLDivElement>;
+
+        if (mainContentArea) {
+            mainArea = document.getElementsByClassName(mainContentArea) as HTMLCollectionOf<HTMLDivElement>;
+        } else {
+            mainArea = document.getElementsByClassName("region-content") as HTMLCollectionOf<HTMLDivElement>;
+        }
+
+        if (!mainArea.length) {
+            throw new Error("Main Content Area class not found");
+        }
+
+        const mainAreaId: HTMLDivElement = mainArea[0];
+        mainAreaId.id = ID_TO_ADD_TO_ELEMENT;
+        mainAreaId.setAttribute("tabindex", "0");
+    };
+
+    const onClickFunction = () => {
+        const mainAreaContent = document.getElementById(ID_TO_ADD_TO_ELEMENT);
+        if (mainAreaContent) {
+            mainAreaContent.focus();
+        }
+    };
+
+    return <Fragment></Fragment>;
+};
+
+export default Skiplinkwidget;
