@@ -12,8 +12,6 @@ import { CompState, NewElementDraggedIn, ReorderAfterDropTypes } from "./compone
 
 import { isTouchDevice, backendOptions } from "./utils";
 
-import { greaterOrEqualToMendixVersion } from "@app-services-components/mendixhelpers";
-
 import "./ui/Draganddropwidget.css";
 
 export default class Draganddropwidget extends Component<DraganddropwidgetContainerProps, CompState> {
@@ -24,10 +22,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     componentDidMount() {
         const { incomingData, autoSortFilter, sortOn, filterOn, uuid } = this.props;
         // Added in V1.0.2 for Mendix 9
-        const isGreaterThan93 = greaterOrEqualToMendixVersion({
-            minVersion: "9.3"
-        });
-        if (autoSortFilter && isGreaterThan93) {
+        if (autoSortFilter && sortOn.sortable) {
             // Auto Sorts List
             if (sortOn.sortable) {
                 incomingData.setSortOrder([[sortOn.id, "asc"]]);
@@ -44,7 +39,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
                 console.warn("Attribute is not filterable");
             }
         }
-        if (this.props.autoSortFilter && !isGreaterThan93) {
+        if (this.props.autoSortFilter && !sortOn.sortable) {
             console.error(
                 "Mendix Version Too Low for Auto Sort/Filter. Mendix 9.3 and Up Only. See Here (https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis-list-values#listvalue-sorting)"
             );
@@ -115,7 +110,6 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     };
 
     render(): ReactNode {
-        console.log(`this.props`, this.props);
         const { listOfSortableItems } = this.state;
         const { content, emptyData } = this.props;
         if (listOfSortableItems) {

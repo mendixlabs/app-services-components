@@ -13,5 +13,7 @@ export const greaterOrEqualToMendixVersion = ({
     parsedMinVersion as SemVer,
     parsedWindowsVersion as string
   );
+
+  console.log(`comparedVersion`, comparedVersion);
   return comparedVersion;
 };

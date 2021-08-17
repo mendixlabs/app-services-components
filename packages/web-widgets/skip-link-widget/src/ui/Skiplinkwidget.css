@@ -9,6 +9,24 @@ Place your custom CSS here
 #MAIN_CONTENT_SKIP_TO:focus {
     background-color: red;
 }
-a:focus {
-    background-color: brown;
+a:focus,
+div:focus,
+h2:focus,
+button:focus {
+    background-color: rgb(163, 42, 165) !important;
+}
+
+.skip {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip:focus {
+    position: static;
+    width: auto;
+    height: auto;
 }
