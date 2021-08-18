@@ -8,13 +8,13 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-           <property key="before" type="boolean" defaultValue="true">
-                <caption>Before</caption>
-                <description>Insert skip link button before or after targeted element</description>
-            </property>
             <property key="addButtonTo" type="string" required="false">
                 <caption>Button Class</caption>
                 <description>Class to add Skip Link Button to</description>
+            </property>
+           <property key="before" type="boolean" defaultValue="true">
+                <caption>Before</caption>
+                <description>Insert skip link button before or after targeted element</description>
             </property>
             <property key="mainContentArea" type="string" required="false">
                 <caption>Main Content Class</caption>

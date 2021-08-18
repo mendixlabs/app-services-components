@@ -10,15 +10,15 @@ export interface SkiplinkwidgetContainerProps {
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    before: boolean;
     addButtonTo: string;
+    before: boolean;
     mainContentArea: string;
 }
 
 export interface SkiplinkwidgetPreviewProps {
     class: string;
     style: string;
-    before: boolean;
     addButtonTo: string;
+    before: boolean;
     mainContentArea: string;
 }

@@ -1,20 +1,23 @@
-import { createElement, useEffect, Fragment } from "react";
+import React, { createElement, useEffect, Fragment } from "react";
 
 import { SkiplinkwidgetContainerProps } from "../typings/SkiplinkwidgetProps";
 
 import "./ui/Skiplinkwidget.css";
 
-const ID_TO_ADD_TO_ELEMENT: string = "MAIN_CONTENT_SKIP_TO";
+const ID_TO_ADD_TO_ELEMENT = "MAIN_CONTENT_SKIP_TO";
+const ID_FOR_SKIP_LINK = "skip_link";
 
 const Skiplinkwidget: React.FC<SkiplinkwidgetContainerProps> = ({ before, addButtonTo, mainContentArea }) => {
     useEffect(() => {
         addSkipLinkButton();
         findMainContentAndAddIdToIt();
-    }, []);
+    });
 
-    const addSkipLinkButton = () => {
-        const r = document.getElementById("skip_link");
-        console.log(`r`, r?.remove());
+    const addSkipLinkButton = (): void => {
+        const foundSkipLink = document.getElementById(ID_FOR_SKIP_LINK);
+        if (foundSkipLink) {
+            foundSkipLink.remove();
+        }
         // Create Skip Link Div
         const newDiv = document.createElement("div");
         // Create Skip Link Button
@@ -24,7 +27,7 @@ const Skiplinkwidget: React.FC<SkiplinkwidgetContainerProps> = ({ before, addBut
         // Function To Go To Main Content
         button.onclick = () => onClickFunction();
         // Set Id
-        button.setAttribute("id", "skip_link");
+        button.setAttribute("id", ID_FOR_SKIP_LINK);
         // Set Classnames
         button.setAttribute("class", "btn");
         // Set Role
@@ -42,7 +45,6 @@ const Skiplinkwidget: React.FC<SkiplinkwidgetContainerProps> = ({ before, addBut
         if (!mainButtonElementToTarget.length) {
             throw new Error("addButtonTo class not found");
         }
-        console.log(`before`, before);
         if (before) {
             mainButtonElementToTarget[0].before(newDiv);
         } else {
@@ -50,7 +52,7 @@ const Skiplinkwidget: React.FC<SkiplinkwidgetContainerProps> = ({ before, addBut
         }
     };
 
-    const findMainContentAndAddIdToIt = () => {
+    const findMainContentAndAddIdToIt = (): void => {
         let mainArea: HTMLCollectionOf<HTMLDivElement>;
 
         if (mainContentArea) {
@@ -68,7 +70,7 @@ const Skiplinkwidget: React.FC<SkiplinkwidgetContainerProps> = ({ before, addBut
         mainAreaId.setAttribute("tabindex", "0");
     };
 
-    const onClickFunction = () => {
+    const onClickFunction = (): void => {
         const mainAreaContent = document.getElementById(ID_TO_ADD_TO_ELEMENT);
         if (mainAreaContent) {
             mainAreaContent.focus();
