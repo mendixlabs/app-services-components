@@ -1,4 +1,4 @@
-<h1 align="center">Collapsible Header on Scroll (Mendix Widget)</h1>
+<h1 align="center">Image Carousel Widget (Mendix Widget)</h1>
 
 <p align="center">
   <a href="">
