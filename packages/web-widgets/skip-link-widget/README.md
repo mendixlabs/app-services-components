@@ -1,5 +1,7 @@
 # Skip links | Skip Navigation | Skip to Content
 
+<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/skip-link-widget/assets/SkipLink.png" target="_blank" />
+
 An Implementation of Skip links for Mendix.
 
 Skip links or Skip Navigation links are used to help assistive technologies skip long navigation and lets users get to
