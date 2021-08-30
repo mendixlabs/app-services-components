@@ -14,11 +14,11 @@ export interface DraganddropwidgetContainerProps {
     tabIndex?: number;
     uuid: string;
     dataSourceName: string;
+    dropDataAttr: EditableValue<string>;
+    incomingData: ListValue;
     autoSortFilter: boolean;
     sortOn: ListAttributeValue<Big>;
     filterOn: ListAttributeValue<string>;
-    incomingData: ListValue;
-    dropDataAttr: EditableValue<string>;
     onDropAction?: ActionValue;
     onDifferentColumDrop?: ActionValue;
     content: ListWidgetValue;
@@ -30,11 +30,11 @@ export interface DraganddropwidgetPreviewProps {
     style: string;
     uuid: string;
     dataSourceName: string;
+    dropDataAttr: string;
+    incomingData: {} | { type: string } | null;
     autoSortFilter: boolean;
     sortOn: string;
     filterOn: string;
-    incomingData: {} | { type: string } | null;
-    dropDataAttr: string;
     onDropAction: {} | null;
     onDifferentColumDrop: {} | null;
     content: { widgetCount: number; renderer: ComponentType<{caption?: string}> };

@@ -1,14 +1,14 @@
 {
     "name": "draganddropwidget",
     "widgetName": "Draganddropwidget",
-    "version": "2.0.1",
+    "version": "2.0.3",
     "description": "My widget description",
     "copyright": "2021 Mendix Technology BV",
     "author": "Arno Welgemoed",
     "config": {
         "mendixHost": "http://localhost:8080",
         "developmentPort": 3000,
-        "projectPath": "/Users/ahwelgemoed/Documents/MendixApps/Mx-Nine-Widgets-main"
+        "projectPath": "/Users/ahwelgemoed/Documents/MendixApps/Dnd-9-Demo-main"
     },
     "packagePath": "com.mendix.widget.custom",
     "scripts": {

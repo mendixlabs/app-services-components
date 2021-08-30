@@ -21,7 +21,7 @@ export default class Draganddropwidget extends Component<DraganddropwidgetContai
     }
     componentDidMount() {
         const { incomingData, autoSortFilter, sortOn, filterOn, uuid } = this.props;
-        // Added in V1.0.2 for Mendix 9
+        // Added in V1.0.2 for Mendix 9.3
         if (autoSortFilter && sortOn.sortable) {
             // Auto Sorts List
             if (sortOn.sortable) {
