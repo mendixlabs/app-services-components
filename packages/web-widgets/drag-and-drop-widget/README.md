@@ -2,8 +2,13 @@
 
 <h1 align="center">Drag and Drop Widget for Mendix</h1>
 
+Demo Projects for Mendix 8
+[here](https://github.com/mendixlabs/app-services-components/packages/web-widgets/drag-and-drop-widget/testProjects/Dnd_8_Demo.mpk)
+and Mendix 9
+[here](https://github.com/mendixlabs/app-services-components/packages/web-widgets/drag-and-drop-widget/testProjects/Dnd_9_Demo.mpk)
+
 <p align="center">
-    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/DragandDrop.png" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/drag-and-drop-mendix-widget/main/assets/dnd.png" target="_blank" />
     <br>
     <br>
    A Drag and Drop Widget for Mendix (with Touch Support for Mobile Devices)
