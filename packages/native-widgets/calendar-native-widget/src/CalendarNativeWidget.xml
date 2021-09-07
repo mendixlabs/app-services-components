@@ -24,6 +24,21 @@
                     </attributeTypes>
                 </property>
 
+                <property key="dateSelectColor" type="attribute" dataSource="incomingDates" required="false">
+                    <caption>Date Color</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="dateDotColor" type="attribute" dataSource="incomingDates" required="false">
+                    <caption>Date Color</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+
                 <property key="isActiveDate" type="attribute" dataSource="incomingDates" required="false">
                     <caption>Is Date Active</caption>
                     <description>Used to show if date is active or not (Not Required | See Docs)</description>

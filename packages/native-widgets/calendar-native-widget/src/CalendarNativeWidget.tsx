@@ -27,6 +27,8 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
             incomingDates,
             selectedColor,
             darkModeOption,
+            dateDotColor,
+            dateSelectColor,
             activeSwipeDown,
             disableWeekends,
             disablePastDates,
@@ -41,6 +43,8 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                     <CalendarInit
                         date={date}
                         dotColor={dotColor}
+                        dateDotColor={dateDotColor}
+                        dateSelectColor={dateSelectColor}
                         buttonText={buttonText}
                         startOfWeek={startOfWeek}
                         initialDate={initialDate}

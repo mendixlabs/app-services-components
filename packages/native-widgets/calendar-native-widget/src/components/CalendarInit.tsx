@@ -1,5 +1,5 @@
 import { createElement, Fragment, cloneElement, useState, useEffect, ReactElement } from "react";
-import { View, Button } from "react-native";
+import { View, Button, Text } from "react-native";
 import { Calendar, DateObject } from "react-native-calendars";
 import { Style } from "@mendix/pluggable-widgets-tools";
 import GestureRecognizer from "react-native-swipe-gestures";
@@ -32,6 +32,8 @@ const CalendarInit = ({
     volatileDate,
     propertyName,
     dynamicOffset,
+    dateDotColor,
+    dateSelectColor,
     incomingDates,
     selectedColor,
     darkModeOption,
@@ -108,8 +110,9 @@ const CalendarInit = ({
                         ...a,
                         [c.formattedDate]: {
                             marked: true,
-                            disabled: isDateDisabled(c),
-                            dotColor: defaultDotColor
+                            dateSelectedColorAtt: c.dateSelectColorAtt ? c.dateSelectColorAtt : defaultSelectedColor,
+                            dotColor: c.dateDotColorAtt ? c.dateDotColorAtt : defaultDotColor,
+                            disabled: isDateDisabled(c)
                         }
                     };
                     return internalDate;
@@ -123,10 +126,14 @@ const CalendarInit = ({
         if (incomingDates) {
             const destructedValues = incomingDates.items?.map((item: any) => {
                 const dateValue = date(item);
+                const dateSelectColorAtt = dateSelectColor && dateSelectColor(item).value;
+                const dateDotColorAtt = dateDotColor && dateDotColor(item).value;
                 const isActiveDateValue = isActiveDate ? isActiveDate(item) : NOT_PROVIDED;
                 const formattedDate = format(dateValue.value as Date, DATE_FORMAT);
                 return {
                     dateValue,
+                    dateDotColorAtt,
+                    dateSelectColorAtt,
                     formattedDate,
                     isActiveDateValue
                 };
@@ -195,7 +202,7 @@ const CalendarInit = ({
     };
     /**
      *  This is done (with the Clone Element) to be able to pass Conditional Props to the Calendar Components
-     * This Helps so that we can keep the CORE Calendar Module with out the need to Fork from Github
+     *  This Helps so that we can keep the CORE Calendar Module with out the need to Fork from Github
      */
     const rendererForActiveSwipeDown = activeSwipeDown
         ? {
@@ -214,6 +221,7 @@ const CalendarInit = ({
               )
           }
         : {};
+
     const rendererForMinDate = disablePastDates
         ? {
               minDate: Date.now()
@@ -222,11 +230,12 @@ const CalendarInit = ({
     const rendererForTheme = {
         theme: witchTheme(darkModeOption)
     };
-    console.log(`startDate`, startDate);
+    console.log(`activeSwipeDown`, rendererForActiveSwipeDown);
     return (
         <View>
             {startDate && (
                 <Fragment>
+                    <Text> {activeSwipeDown ? "yes" : "no"}</Text>
                     <GestureRecognizer
                         config={config}
                         style={{ paddingBottom: 10 }}
@@ -249,7 +258,12 @@ const CalendarInit = ({
                                         selected: true,
                                         userSelected: true,
                                         disableTouchEvent: true,
-                                        selectedColor: defaultSelectedColor,
+                                        selectedColor:
+                                            // @ts-ignore
+                                            inComingDates[selected] && inComingDates[selected].dateSelectedColorAtt
+                                                ? // @ts-ignore
+                                                  inComingDates[selected].dateSelectedColorAtt
+                                                : defaultSelectedColor,
                                         selectedTextColor: defaultTextColor
                                     },
                                     ...weekends
@@ -265,7 +279,7 @@ const CalendarInit = ({
                                     onMonthChange(month);
                                 }}
                             />,
-                            { ...rendererForActiveSwipeDown, ...rendererForMinDate, ...rendererForTheme }
+                            { ...rendererForMinDate, ...rendererForTheme }
                         )}
                     </GestureRecognizer>
                     {!autoTriggerAction && (
