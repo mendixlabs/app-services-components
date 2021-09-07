@@ -25,14 +25,14 @@
                 </property>
 
                 <property key="dateSelectColor" type="attribute" dataSource="incomingDates" required="false">
-                    <caption>Date Color</caption>
+                    <caption>Date Select Color</caption>
                     <description></description>
                     <attributeTypes>
                         <attributeType name="String"/>
                     </attributeTypes>
                 </property>
                 <property key="dateDotColor" type="attribute" dataSource="incomingDates" required="false">
-                    <caption>Date Color</caption>
+                    <caption>Date Dot Color</caption>
                     <description></description>
                     <attributeTypes>
                         <attributeType name="String"/>
