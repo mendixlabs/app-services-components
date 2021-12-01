@@ -1,5 +1,5 @@
 import { createElement, useEffect } from "react";
-import { useDomLocation } from "@app-services-components/usedomlocation";
+import { useDomLocation } from "@usedomlocations";
 
 const Callonland = ({ buttonAction }: any) => {
     const locationCallBack = () => {

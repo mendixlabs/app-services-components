@@ -37,6 +37,6 @@ export interface DraganddropwidgetPreviewProps {
     filterOn: string;
     onDropAction: {} | null;
     onDifferentColumDrop: {} | null;
-    content: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
-    emptyData: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
+    content: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    emptyData: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
 }

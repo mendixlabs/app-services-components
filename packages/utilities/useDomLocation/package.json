@@ -29,7 +29,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@app-services-components/usedomlocation",
+  "name": "usedomlocation",
   "author": "ahwelgemoed",
   "module": "dist/usedomlocation.esm.js",
   "size-limit": [

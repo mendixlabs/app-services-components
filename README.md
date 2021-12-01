@@ -34,7 +34,7 @@ npx lerna add PACKAGE-TO-ADD --scope=PACKAGE-TO-ADD-IT-TOO
 
 # Example
 
-npx lerna add @app-services-components/usedomlocation --scope=draganddropwidget
+npx lerna add @usedomlocations --scope=draganddropwidget
 ```
 
 **Note** This works for local or hosted packages

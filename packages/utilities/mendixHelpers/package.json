@@ -30,7 +30,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@app-services-components/mendixhelpers",
+  "name": "mendixhelpers",
   "author": "ahwelgemoed",
   "module": "dist/mendixhelpers.esm.js",
   "size-limit": [
