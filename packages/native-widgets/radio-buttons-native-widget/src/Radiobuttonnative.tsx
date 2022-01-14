@@ -126,7 +126,6 @@ export class Radiobuttonnative extends Component<RadiobuttonnativeProps<CustomSt
             buttonOuterColor,
             buttonInnerColor
         } = this.props;
-        console.log(`this.props`, this.props);
         const { isBooleanRadioButton, buttonOptions, defaultValue } = this.state;
         switch (isBooleanRadioButton) {
             case RadioButtonOptionsEnum.Loading:
