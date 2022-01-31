@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.dndwidget.DndWidget" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>DndWidget</name>
+    <description>My widget description</description>
+    <icon>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
+</icon>
+    <properties>
+        <propertyGroup caption="General">
+
+            <property key="widgetJsonState" type="attribute">
+                <caption>Widget Json State</caption>
+                <description></description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+             <property key="hasDataContent" type="widgets" required="true" dataSource="incomingData">
+                <caption>Displayed When There is Data</caption>
+                <description>Widgets using data source</description>
+            </property>
+
+             <property key="hasNoDataContent" type="widgets" >
+                <caption>Displayed When There is No Data</caption>
+                <description>Widgets using data source</description>
+            </property>
+
+        </propertyGroup>
+
+        <propertyGroup caption="Actions">
+            
+            <property key="newParentAction" type="action">
+                <caption>Dragged To New Parent</caption>
+                <description>Action called when dragged to new Parent</description>
+            </property>
+            
+            <property key="sameParentAction" type="action">
+                <caption>Dragged in Same Parent</caption>
+                <description>Action called when dragged to same Parent (Re-Order)</description>
+            </property>
+
+        </propertyGroup>
+
+        <propertyGroup caption="Data and UUIDs">
+
+            <property key="incomingData" type="datasource" isList="true">
+                <caption>Data</caption>
+                <description>Nanoflow or Microflow of flitered and sorted data to display</description>
+            </property>
+
+            <property key="sortOn" type="attribute" dataSource="incomingData">
+                <caption>Sort On</caption>
+                    <description>Integer To Sort On</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                </attributeTypes>
+            </property>
+
+            <property key="isColumn" type="boolean" defaultValue="true">
+                <caption>Display as Column</caption>
+                <description>True - Flex Column || False - Flex Row</description>
+            </property>
+
+             <property key="sortAsc" type="boolean" defaultValue="true">
+                <caption>Sort Ascending</caption>
+                <description></description>
+            </property>
+
+            <property key="uuidStringParent" type="attribute" required="false">
+                <caption>Unique Parent</caption>
+                <description></description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+
+            <property key="uuidStringCurrent" type="attribute" dataSource="incomingData">
+                <caption>Unique Iteration</caption>
+                 <description>Story UUID</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+            </attributeTypes>
+            </property>
+
+            <property key="uuidStringContainer" type="string" required="true">
+                <caption>Unique Container Name</caption>
+                <description></description>
+            </property>
+            
+            <property key="acceptedUuid" type="object" isList="true">
+                <caption>UUIDs Accepts</caption>
+                <description>UUIDs Accepts Drags/Drops From</description>
+                <properties>
+                    <propertyGroup caption="Object list group">
+                        <property key="uuids" type="string" defaultValue="uuid">
+                            <caption>UUIDs</caption>
+                            <description>UUIDs Accepts Drags/Drops From</description>
+                        </property>
+                    </propertyGroup>
+                </properties>
+            </property>
+
+        </propertyGroup>
+    </properties>
+</widget>

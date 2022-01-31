@@ -1,0 +1,42 @@
+.dnd_draggable_container_not_dragging {
+    .dnd_draggable_item {
+        cursor: grab;
+    }
+}
+.dnd_draggable_container_dragging {
+    .dnd_draggable_item_with_hover_space {
+        cursor: grabbing !important; //Sorry 🪛
+    }
+}
+
+// .STORY_dnd_draggable_hover {
+//     background-color: rgba(61, 208, 120, 0.399);
+// }
+// .STORY_dnd_draggable_dragging {
+//     background-color: rgba(208, 154, 61, 0.399);
+// }
+// .SWIMLANE_dnd_spacer {
+//     background-color: rgba(208, 61, 61, 0.399);
+//     height: 100%;
+//     width: 40px;
+// }
+// .STORY_dnd_spacer {
+//     background-color: rgba(193, 61, 208, 0.399);
+//     height: 40px;
+// }
+// .SWIMLANE {
+//     height: 600px;
+// }
+// .STORY {
+//     height: 100%;
+// }
+// .STORY_dnd_draggable_container_droppable {
+//     background-color: aqua;
+// }
+
+// #isBelow {
+//     background-color: red;
+// }
+// #isAbove {
+//     background-color: blue;
+// }
