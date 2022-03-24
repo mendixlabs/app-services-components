@@ -14,6 +14,24 @@
     <icon />
     <properties>
         <propertyGroup caption="General">
+            <property key="pageSize" type="enumeration" defaultValue="a4">
+                <caption>Page Size</caption>
+                <description>Standard Page Sizes</description>
+                <enumerationValues>
+                    <enumerationValue key="letter">Letter</enumerationValue>
+                    <enumerationValue key="a4">A4</enumerationValue>
+                    <enumerationValue key="a5">A5</enumerationValue>
+                    <enumerationValue key="a6">A6</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="pageOrientation" type="enumeration" defaultValue="p">
+                <caption>Page Orientation</caption>
+                <description />
+                <enumerationValues>
+                    <enumerationValue key="l">Portrait</enumerationValue>
+                    <enumerationValue key="p">Landscape</enumerationValue>
+                </enumerationValues>
+            </property>
             <property key="classNameToFound" type="string" required="false">
                 <caption>Class Name to Print</caption>
                 <description />

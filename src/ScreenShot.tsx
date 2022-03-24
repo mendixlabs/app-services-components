@@ -1,7 +1,7 @@
 import { createElement, FC } from "react";
-import { ScreenShotContainerProps } from "../typings/ScreenShotProps";
 import { jsPDF } from "jspdf";
 import { toCanvas } from "html-to-image";
+import { ScreenShotContainerProps } from "../typings/ScreenShotProps";
 
 import "./ui/ScreenShot.css";
 import { getToday } from "./utils";
@@ -11,17 +11,24 @@ const BACKGROUND_COLOR = "#fff";
 
 const ScreenShot: FC<ScreenShotContainerProps> = props => {
     const onClick = async () => {
-        const doc = new jsPDF({ orientation: "p", unit: "px", format: "a4", hotfixes: ["px_scaling"] });
-
+        const newDoc = new jsPDF({
+            orientation: props.pageOrientation,
+            unit: "px",
+            format: props.pageSize,
+            hotfixes: ["px_scaling"]
+        });
         // Get Accurate PX size of A4 page
-        const { pageSize } = doc.internal;
-        const pageWidth = pageSize.getWidth();
-        const pageHeight = pageSize.getHeight();
+        const { getWidth, getHeight } = newDoc.internal.pageSize;
+        const pageWidth = getWidth();
+        const pageHeight = getHeight();
+
+        if (props.classNameToFound) {
+        }
 
         const foundPrintableClassName = document.getElementsByClassName(props.classNameToFound)[0] as HTMLElement;
 
         if (!foundPrintableClassName) {
-            throw new Error("No Printable Class name found");
+            throw new Error(`⚠️ No Printable Class name found - Cant find class ${props.classNameToFound}`);
         }
 
         /**
@@ -51,14 +58,13 @@ const ScreenShot: FC<ScreenShotContainerProps> = props => {
             //Set Empty Canvas Height and Widget to the of A4 Page
             pageCanvas.width = pageWidth;
             pageCanvas.height = pageHeight;
-            // Get context of Canvas
 
+            // Get context of Canvas
             const ctx = await pageCanvas.getContext("2d");
 
             if (!ctx) {
-                return;
+                throw new Error("⚠️ No Context for Canvas Found");
             }
-
             // Set Background to White (TODO for PNG ect. we would want to expand this)
             ctx.fillStyle = BACKGROUND_COLOR;
             // Draw a White square the size of an A4 Page
@@ -78,16 +84,16 @@ const ScreenShot: FC<ScreenShotContainerProps> = props => {
             // Covert Canvas to JPEG
             const pageImgData = await pageCanvas.toDataURL("image/jpeg", 1.0);
             // Add Image to PDF
-            doc.addImage(pageImgData, "JPEG", 0, 0, 0, 0);
+            newDoc.addImage(pageImgData, "JPEG", 0, 0, 0, 0);
             //Update Canvas left to print
             canvasHeight = canvasHeight - pageHeightRatio;
             if (pagesAdded < amountOfPagesNeeded) {
                 pagesAdded = pagesAdded + 1;
-                doc.addPage();
+                newDoc.addPage();
             }
         }
-        // Add Save PDF
-        doc.save(`${props.prefixPageName}_${getToday()}.pdf`);
+        // And Finally Save PDF
+        newDoc.save(`${props.prefixPageName}_${getToday()}.pdf`);
     };
 
     return <div onClick={onClick}>{props.printButton}</div>;
