@@ -3,7 +3,6 @@ import { jsPDF } from "jspdf";
 import { toCanvas } from "html-to-image";
 import { ScreenShotContainerProps } from "../typings/ScreenShotProps";
 
-import "./ui/ScreenShot.css";
 import { getToday } from "./utils";
 
 const PAGE_MARGIN = 10;
