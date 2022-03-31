@@ -1,7 +1,6 @@
 import { createElement, Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { DndProvider } from "react-dnd-multi-backend";
 import { v4 as uuidv4 } from "uuid";
-
 import "./ui/DndWidget.scss";
 
 import DroppableItem from "./components/DroppableItem";
@@ -64,7 +63,7 @@ const DndWidget = (props: DndWidgetContainerProps) => {
                 const [removed] = result.splice(findCurrentArray, 1);
                 result.splice(params.index, 0, removed);
 
-                setAllData(result);
+                setAllData(result); // Update Local State to give the impression of ... SPEED
                 const stringifyJson = JSON.stringify(params);
                 props.widgetJsonState.setValue(stringifyJson);
                 if (props.sameParentAction?.canExecute) {
@@ -91,10 +90,13 @@ const DndWidget = (props: DndWidgetContainerProps) => {
     if (props.incomingData.status === ValueStatus.Loading && !allData.length) {
         return <div>Loading..</div>;
     }
+    // DND_OPTIONS(props.uuidStringContainer)
     return (
         <div className={`${props.uuidStringContainer}`}>
-            {/* @ts-ignore */}
-            <DndProvider options={DND_OPTIONS(props.uuidStringContainer)}>
+            <DndProvider
+                // @ts-ignore
+                options={DND_OPTIONS(props.uuidStringContainer)}
+            >
                 <div
                     style={{
                         height: "100%",

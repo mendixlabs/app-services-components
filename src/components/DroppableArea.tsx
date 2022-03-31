@@ -1,11 +1,10 @@
-import { createElement, useMemo, useRef } from "react";
+import { createElement, useMemo } from "react";
 import { useDrop } from "react-dnd";
 
 import { getClassNames } from "../utils/general";
 import { Custom_DragObject, Type_Content_Area_Props } from "../userTypes";
 
 const DroppableArea = (props: Type_Content_Area_Props) => {
-    const ref = useRef<HTMLDivElement>(null);
     const classNames = useMemo(() => getClassNames(props.droppedOnUUID), [props.droppedOnUUID]);
 
     const [{ isOver }, drop] = useDrop({

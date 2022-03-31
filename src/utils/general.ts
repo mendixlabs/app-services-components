@@ -36,8 +36,8 @@ export const getClassNames = (prefix: string): Enum_DND_ClassNames => {
 };
 
 export const KeyboardTransition = createTransition("keydown", event => {
+    console.log("event", event, isKeyboardDragTrigger(event as KeyboardEvent));
     if (!isKeyboardDragTrigger(event as KeyboardEvent)) return false;
-
     event.preventDefault();
     return true;
 });
@@ -64,7 +64,7 @@ export const DND_OPTIONS = (id: string) => {
                 options: {
                     announcerClassName: "announcer"
                 },
-                preview: true,
+                preview: false,
                 transition: KeyboardTransition
             }
         ]
