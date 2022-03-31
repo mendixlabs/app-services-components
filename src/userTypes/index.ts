@@ -8,9 +8,8 @@ export type Type_Card_Props = {
     isColumn: boolean;
     children: ReactNode;
     isDragging: boolean;
-    isA11yBackend: boolean;
     droppedOnUUID: string;
-    acceptedUUids: string[];
+    // acceptedUUids: string[];
     uuidStringParent: string;
     isOverIndex: number | null;
     item: Type_Parsed_Incoming_Data;
@@ -39,7 +38,6 @@ export type Type_Content_Area_Props = {
     isColumn: boolean;
     id: string;
     droppedOnUUID: string;
-    acceptedUUids: string[];
     uuidStringParent: string;
     children?: ReactNode;
     onDrop: (x: OnDropTypes) => void;
@@ -56,8 +54,10 @@ export type Type_Parsed_Incoming_Data = {
     id: GUID;
     index: number;
     item: ObjectItem;
+    ariaTitle: string;
     uuidParent: string;
     uuidCurrent: string;
+    ariaOfParent: string | undefined;
     isNewInHere: boolean;
     uuidContainer: string;
 };
@@ -82,6 +82,8 @@ export type Enum_DND_ClassNames = {
     dnd_draggable_container_dragging: string;
     dnd_draggable_container_droppable: string;
     dnd_draggable_container_not_dragging: string;
+    dnd_at_end_not_over: string;
+    dnd_at_end_over: string;
 };
 export interface Custom_DragObject extends DragObjectWithType {
     item: Type_Card_Props;

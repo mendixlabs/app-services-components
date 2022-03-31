@@ -32,11 +32,13 @@ const DroppableArea = (props: Type_Content_Area_Props) => {
 
     return (
         <div
+            data-dnd-name={"Empty Item Container"}
             ref={drop}
-            className={classNames.dnd_draggable_container_droppable}
+            className={`${classNames.dnd_draggable_container_droppable} ${
+                isOver ? classNames.dnd_at_end_over : classNames.dnd_at_end_not_over
+            }`}
             style={{
-                height: "100%",
-                width: "100%"
+                flex: 1
             }}
         >
             {props.children}

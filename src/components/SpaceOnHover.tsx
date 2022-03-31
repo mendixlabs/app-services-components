@@ -9,7 +9,6 @@ const SpaceOnHover = (props: Type_SpaceOnHover_Props) => {
                 style={{
                     height: "100%",
                     width: "100%"
-                    // background: "red"
                 }}
                 id={props.id}
                 animate={{
@@ -18,9 +17,6 @@ const SpaceOnHover = (props: Type_SpaceOnHover_Props) => {
                 }}
                 transition={{ duration: 0.1 }}
             />
-            {/* width:{props.width}
-            height:{props.height} */}
-            <Fragment />
         </Fragment>
     );
 };

@@ -1,7 +1,7 @@
 import { createElement, useMemo, useRef, useState, CSSProperties } from "react";
 import { DropTargetMonitor, useDrag, useDrop } from "react-dnd";
 import { Type_Card_Props } from "../userTypes";
-import { getClassNames } from "../utils/general";
+import { findOrder, getClassNames } from "../utils/general";
 
 import SpaceOnHover from "./SpaceOnHover";
 
@@ -17,34 +17,6 @@ const DroppableItem = (props: Type_Card_Props) => {
     const height = useMemo(() => ref.current?.getBoundingClientRect().height, [ref.current]);
     const width = useMemo(() => ref.current?.getBoundingClientRect().width, [ref.current]);
 
-    const findOrder = (hoverItem: any, monitor: any): number | null => {
-        if (!hoverItem) {
-            return null;
-        }
-        const hoverIndex = props.index; // Item hovered over
-
-        const hoverBoundingRect = ref.current?.getBoundingClientRect();
-        const clientOffset = monitor.getClientOffset();
-
-        // Get vertical middle
-        if (clientOffset && hoverBoundingRect) {
-            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-            // Get pixels to the top
-            const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-            // Dropped on the Top Halve of the Card
-            if (hoverMiddleY > hoverClientY) {
-                if (!hoverIndex) {
-                    return hoverIndex;
-                }
-                return hoverIndex;
-            }
-            // Dropped on the Bottom Halve of the Card
-            if (hoverMiddleY < hoverClientY) {
-                return hoverIndex + 1;
-            }
-        }
-        return hoverIndex;
-    };
     const witchHalveHover = (_hoverItem: any, monitor: DropTargetMonitor): [boolean, boolean] => {
         const hoverBoundingRect = ref.current?.getBoundingClientRect();
         const clientOffset = monitor.getClientOffset();
@@ -69,13 +41,12 @@ const DroppableItem = (props: Type_Card_Props) => {
         return [isTopHalve, isBottomHalve];
     };
     // Props is dropped on
-    // draggingItem
     const [{ isTopHalve, isBottomHalve, calculatedIndex, isNewParent, isOver, isAbove, isBelow }, drop] = useDrop({
         accept: props.droppedOnUUID,
         collect(monitor) {
             const dragIndex = monitor.getItem()?.item.index ?? -1;
             const isNewParent = props.item.uuidParent !== monitor.getItem()?.item.item.uuidParent;
-            const calculatedIndex = findOrder(monitor.getItem(), monitor);
+            const calculatedIndex = findOrder(monitor.getItem(), monitor, props.index, ref);
             const [isTopHalve, isBottomHalve] = witchHalveHover(monitor.getItem(), monitor);
             return {
                 isOver: monitor.isOver(),
@@ -121,18 +92,19 @@ const DroppableItem = (props: Type_Card_Props) => {
     });
 
     const showHoverStyle = mouseOver && !props.isDragging;
+
     drag(drop(ref));
 
     return (
         <div
             ref={ref}
-            className={`  ${isDragging ? classNames.dnd_draggable_dragging : classNames.dnd_draggable_not_dragging}`}
+            draggable="true"
+            aria-label={props.item.ariaTitle + " inside " + props.item.ariaOfParent}
+            aria-grabbed={isDragging ? "true" : "false"}
             style={{ ...(containerFlex as CSSProperties) }}
+            className={`${isDragging ? classNames.dnd_draggable_dragging : classNames.dnd_draggable_not_dragging}`}
         >
-            <div
-                // className={`${classNames.dnd_draggable_without_spacer}`}
-                style={{ ...(containerFlex as CSSProperties), width: "100%" }}
-            >
+            <div style={{ ...(containerFlex as CSSProperties), width: "100%" }}>
                 <SpaceOnHover
                     id="isAbove"
                     isColumn={props.isColumn}
@@ -142,10 +114,9 @@ const DroppableItem = (props: Type_Card_Props) => {
                 />
                 <div
                     tabIndex={0}
-                    // style={{ width: props.isColumn ? "column" : 300 }}
-                    // style={{ width: "300px" }}
                     onMouseEnter={() => setMouseOver(true)}
                     onMouseLeave={() => setMouseOver(false)}
+                    style={{ display: "flex", flexDirection: "column" }}
                     className={`${classNames.dnd_draggable_item}
                     ${isDragging ? classNames.dnd_draggable_dragging : classNames.dnd_draggable_not_dragging}
                     ${props.item.isNewInHere ? classNames.dnd_draggable_new : classNames.dnd_draggable_not_new}

@@ -31,12 +31,14 @@ export const getClassNames = (prefix: string): Enum_DND_ClassNames => {
         dnd_draggable_not_hover: `${prefix + "_dnd_draggable_not_hover dnd_draggable_not_hover"}`,
         dnd_draggable_with_spacer: `${prefix + "_dnd_draggable_with_spacer dnd_draggable_with_spacer"}`,
         dnd_draggable_without_spacer: `${prefix + "_dnd_draggable_without_spacer dnd_draggable_without_spacer"}`,
-        dnd_spacer: `${prefix + "_dnd_spacer dnd_spacer"}`
+        dnd_spacer: `${prefix + "_dnd_spacer dnd_spacer"}`,
+        dnd_at_end_not_over: `${prefix + "_dnd_at_end_not_over dnd_at_end_not_over"}`,
+        dnd_at_end_over: `${prefix + "_dnd_at_end_over dnd_at_end_over"}`
     };
 };
 
 export const KeyboardTransition = createTransition("keydown", event => {
-    console.log("event", event, isKeyboardDragTrigger(event as KeyboardEvent));
+    // console.log("event", event, isKeyboardDragTrigger(event as KeyboardEvent));
     if (!isKeyboardDragTrigger(event as KeyboardEvent)) return false;
     event.preventDefault();
     return true;
@@ -51,10 +53,11 @@ export const DND_OPTIONS = (id: string) => {
     return {
         backends: [
             {
+                id: `html5_${id}`,
                 preview: false,
                 handleKey: "html5",
                 backend: TouchBackend,
-                options: { enableTouchEvents: false, enableMouseEvents: true },
+                options: { enableTouchEvents: true, enableMouseEvents: true },
                 transition: MouseTransition
             },
             {
@@ -70,10 +73,29 @@ export const DND_OPTIONS = (id: string) => {
         ]
     };
 };
+export const findOrder = (hoverItem: any, monitor: any, hoverIndex: number, ref: any): number | null => {
+    if (!hoverItem) {
+        return null;
+    }
+    const hoverBoundingRect = ref.current?.getBoundingClientRect();
+    const clientOffset = monitor.getClientOffset();
 
-// id: string;
-// backend: BackendFactory;
-// transition?: Transition;
-// preview?: boolean;
-// skipDispatchOnTransition?: boolean;
-// options?: unknown;
+    // Get vertical middle
+    if (clientOffset && hoverBoundingRect) {
+        const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+        // Get pixels to the top
+        const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+        // Dropped on the Top Halve of the Card
+        if (hoverMiddleY > hoverClientY) {
+            if (!hoverIndex) {
+                return hoverIndex;
+            }
+            return hoverIndex;
+        }
+        // Dropped on the Bottom Halve of the Card
+        if (hoverMiddleY < hoverClientY) {
+            return hoverIndex + 1;
+        }
+    }
+    return hoverIndex;
+};

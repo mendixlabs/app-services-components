@@ -1,5 +1,5 @@
 /**
- * This file was generated from DndWidget.xml
+ * This file was generated from Draganddropwidget.xml
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
@@ -7,15 +7,7 @@ import { ComponentType, CSSProperties, ReactNode } from "react";
 import { ActionValue, EditableValue, ListValue, ListAttributeValue, ListWidgetValue } from "mendix";
 import { Big } from "big.js";
 
-export interface AcceptedUuidType {
-    uuids: string;
-}
-
-export interface AcceptedUuidPreviewType {
-    uuids: string;
-}
-
-export interface DndWidgetContainerProps {
+export interface DraganddropwidgetContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
@@ -25,17 +17,19 @@ export interface DndWidgetContainerProps {
     hasNoDataContent: ReactNode;
     newParentAction?: ActionValue;
     sameParentAction?: ActionValue;
+    uuidStringContainer: string;
+    isParent: boolean;
     incomingData: ListValue;
     sortOn: ListAttributeValue<Big>;
     isColumn: boolean;
     sortAsc: boolean;
     uuidStringParent?: EditableValue<string>;
     uuidStringCurrent: ListAttributeValue<string>;
-    uuidStringContainer: string;
-    acceptedUuid: AcceptedUuidType[];
+    readParentTitle?: EditableValue<string>;
+    readTitle?: ListAttributeValue<string>;
 }
 
-export interface DndWidgetPreviewProps {
+export interface DraganddropwidgetPreviewProps {
     class: string;
     style: string;
     widgetJsonState: string;
@@ -43,12 +37,14 @@ export interface DndWidgetPreviewProps {
     hasNoDataContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     newParentAction: {} | null;
     sameParentAction: {} | null;
+    uuidStringContainer: string;
+    isParent: boolean;
     incomingData: {} | { type: string } | null;
     sortOn: string;
     isColumn: boolean;
     sortAsc: boolean;
     uuidStringParent: string;
     uuidStringCurrent: string;
-    uuidStringContainer: string;
-    acceptedUuid: AcceptedUuidPreviewType[];
+    readParentTitle: string;
+    readTitle: string;
 }

@@ -154,7 +154,7 @@ Note - We are using the Swimlane and Story Example again.
 
 ```scss
 //  Mouse Hover Over Item
-.STORY_dnd_draggable_hover {
+.dnd_draggable_hover {
     background-color: rgba(61, 208, 120, 0.399); // Light Green
 }
 ```
@@ -177,9 +177,11 @@ Note - We are using the Swimlane and Story Example again.
 **Dragging Event**
 
 ```scss
-.STORY_dnd_draggable_dragging {
+.dnd_draggable_dragging {
     background-color: rgba(208, 154, 61, 0.399); // Brown
 }
 ```
 
 <img src='./assets/dragging.gif'/>
+
+How to link 2 entities to eachother
