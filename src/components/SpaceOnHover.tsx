@@ -6,11 +6,11 @@ const SpaceOnHover = (props: Type_SpaceOnHover_Props) => {
     return (
         <Fragment>
             <motion.div
+                id={props.id}
                 style={{
                     height: "100%",
                     width: "100%"
                 }}
-                id={props.id}
                 animate={{
                     width: !props.isColumn ? (props.activateHeight ? props.width / 2 : 0) : "initial",
                     height: props.isColumn ? (props.activateHeight ? props.height : 0) : "initial"

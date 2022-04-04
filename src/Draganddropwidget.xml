@@ -55,7 +55,7 @@
 
             <property key="incomingData" type="datasource" isList="true">
                 <caption>Data</caption>
-                <description>Nanoflow or Microflow of flitered and sorted data to display</description>
+                <description></description>
             </property>
 
             <property key="sortOn" type="attribute" dataSource="incomingData">
@@ -64,6 +64,15 @@
                 <attributeTypes>
                     <attributeType name="Integer"/>
                 </attributeTypes>
+            </property>
+
+            <property key="sort" type="enumeration" defaultValue="asc">
+                <caption>Sort Asc or Desc</caption>
+                <description />
+                <enumerationValues>
+                    <enumerationValue key="asc">Ascending</enumerationValue>
+                    <enumerationValue key="desc">Descending</enumerationValue>
+                </enumerationValues>
             </property>
 
             <property key="isColumn" type="boolean" defaultValue="true">

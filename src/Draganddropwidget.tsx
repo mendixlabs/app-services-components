@@ -15,16 +15,15 @@ import MyDragProvider from "./components/MyDragProvider";
 import "./ui/DndWidget.scss";
 
 const IF_NO_PARENT_UUID = nanoid();
-const EMPTY_ID = nanoid();
 const END_ID = nanoid();
 
 const DndWidget = (props: DraganddropwidgetContainerProps) => {
     // Sort
-    props.incomingData.setSortOrder([[props.sortOn.id, props.sortAsc ? "asc" : "desc"]]);
+    props.incomingData.setSortOrder([[props.sortOn.id, props.sort]]);
     const uuidParent = props.uuidStringParent ? props.uuidStringParent.value : IF_NO_PARENT_UUID;
     const htmlElRef = useRef<HTMLDivElement>(null);
     const [allData, setAllData] = useState<Type_Parsed_Incoming_Data[]>([]);
-    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(true); // Is used to reset Widget on Keyboard use to prevent fallover ove a11y backend
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [isOverIndex, setIsOverIndex] = useState<null | number>(null);
     const classNames = useMemo(() => getClassNames(props.uuidStringContainer), [props.uuidStringContainer]);
@@ -60,21 +59,14 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
             }
         }
     };
-    /**
-     * This is done to prevent fall over of A11y backend. As we are stretching the ability of RDnD
-     */
     useEffect(() => {
-        if (props.uuidStringContainer !== "PART") {
+        if (props.isParent) {
             document.addEventListener("keyup", e => {
                 if (e.code === "Enter" || e.code === "Escape") {
                     ent();
                 }
             });
         }
-        setTimeout(() => {
-            setIsLoaded(true);
-        }, 50);
-
         return () => {
             document.removeEventListener("keyup", () => {});
         };
@@ -92,7 +84,7 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
                 const [removed] = result.splice(findCurrentArray, 1);
                 result.splice(params.index, 0, removed);
 
-                // setAllData(result); // Update Local State to give the impression of ... SPEED
+                setAllData(result); // Update Local State to give the impression of ... SPEED 🦥
                 const stringifyJson = JSON.stringify(params);
                 props.widgetJsonState.setValue(stringifyJson);
                 if (props.sameParentAction?.canExecute) {
@@ -167,17 +159,7 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
                                     );
                                 })
                             ) : (
-                                <DroppableArea
-                                    key={EMPTY_ID}
-                                    id={EMPTY_ID}
-                                    index={-1}
-                                    onDrop={onDrop}
-                                    isColumn={props.isColumn}
-                                    droppedOnUUID={props.uuidStringContainer}
-                                    uuidStringParent={uuidParent as string}
-                                >
-                                    <div>{props.hasNoDataContent}</div>
-                                </DroppableArea>
+                                <Fragment></Fragment>
                             )}
                         </Fragment>
                     </div>
@@ -188,7 +170,9 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
                         isColumn={props.isColumn}
                         droppedOnUUID={props.uuidStringContainer}
                         uuidStringParent={uuidParent as string}
-                    />
+                    >
+                        {!allData.length && props.hasNoDataContent}
+                    </DroppableArea>
                 </div>
                 <DragPreview displayItem={props.hasDataContent} {...props} />
             </MyDragProvider>

@@ -62,7 +62,7 @@ const DroppableItem = (props: Type_Card_Props) => {
 
         drop() {
             /**
-             * Runs correct microflow to Save changes
+             * Runs microflow to Save changes
              */
             props.onDrop({
                 droppedOnParentUUID: props.item.uuidParent,

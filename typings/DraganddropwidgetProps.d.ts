@@ -7,6 +7,8 @@ import { ComponentType, CSSProperties, ReactNode } from "react";
 import { ActionValue, EditableValue, ListValue, ListAttributeValue, ListWidgetValue } from "mendix";
 import { Big } from "big.js";
 
+export type SortEnum = "asc" | "desc";
+
 export interface DraganddropwidgetContainerProps {
     name: string;
     class: string;
@@ -21,6 +23,7 @@ export interface DraganddropwidgetContainerProps {
     isParent: boolean;
     incomingData: ListValue;
     sortOn: ListAttributeValue<Big>;
+    sort: SortEnum;
     isColumn: boolean;
     sortAsc: boolean;
     uuidStringParent?: EditableValue<string>;
@@ -41,6 +44,7 @@ export interface DraganddropwidgetPreviewProps {
     isParent: boolean;
     incomingData: {} | { type: string } | null;
     sortOn: string;
+    sort: SortEnum;
     isColumn: boolean;
     sortAsc: boolean;
     uuidStringParent: string;
