@@ -28,7 +28,7 @@ Get a ☕️ and lets go...
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example1/exm1demo.gif" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example1/exm1demo.gif" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -39,7 +39,7 @@ Get a ☕️ and lets go...
 </tr>
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example1/ex1m.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example1/ex1m.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -50,7 +50,7 @@ Get a ☕️ and lets go...
 </tr>
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example1/ex1micro.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example1/ex1micro.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -80,7 +80,7 @@ Get a ☕️ and lets go...
     <table style="width:100%">
         <tr>
             <td  style="width:50%">
-                <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/communication.png" target="_blank" /></td>
+                <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/communication.png" target="_blank" /></td>
             <td>
             <table style="width:100%">
                 <tr>
@@ -106,7 +106,7 @@ Get a ☕️ and lets go...
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example1/json.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example1/json.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -127,7 +127,7 @@ Get a ☕️ and lets go...
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example1/actions.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example1/actions.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -152,7 +152,7 @@ Get a ☕️ and lets go...
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example1/data.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example1/data.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -197,7 +197,7 @@ Get a ☕️ and lets go...
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example1/a11y.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example1/a11y.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -337,7 +337,7 @@ Get a ☕️ and lets go...
 <table style="width:100%">
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2demo.gif" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2demo.gif" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -347,7 +347,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2page.png" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2page.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -357,7 +357,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2db.png" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2db.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -367,7 +367,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2pm.png" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2pm.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -377,7 +377,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2csp.png" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2csp.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -387,7 +387,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2cdp.png" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2cdp.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -410,7 +410,7 @@ respectively called `ACT_Drag_Child_To_New_Child` and `ACT_Drag_Child_Same_Child
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2pa.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2pa.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -421,7 +421,7 @@ respectively called `ACT_Drag_Child_To_New_Child` and `ACT_Drag_Child_Same_Child
 </tr>
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2pd.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2pd.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -438,7 +438,7 @@ respectively called `ACT_Drag_Child_To_New_Child` and `ACT_Drag_Child_Same_Child
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2ca.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2ca.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -449,7 +449,7 @@ respectively called `ACT_Drag_Child_To_New_Child` and `ACT_Drag_Child_Same_Child
 </tr>
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/example2/ex2cd.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example2/ex2cd.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -625,7 +625,7 @@ So lets see some practical examples
 }
 ```
 
-<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/hover.gif'/>
+<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/hover.gif'/>
 
 ```scss
 //  Space Created Above on Drag Over
@@ -638,7 +638,7 @@ So lets see some practical examples
 }
 ```
 
-<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/above-below.gif'/>
+<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/above-below.gif'/>
 
 **Dragging Event**
 
@@ -648,6 +648,6 @@ So lets see some practical examples
 }
 ```
 
-<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widgetassets/dragging.gif'/>
+<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/dragging.gif'/>
 
 </detail>
