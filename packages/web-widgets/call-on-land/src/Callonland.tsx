@@ -1,11 +1,9 @@
 import { createElement, useEffect } from "react";
-import { useDomLocation } from "@usedomlocations";
 
 const Callonland = ({ buttonAction }: any) => {
     const locationCallBack = () => {
         console.log(`🚀🚀🚀🚀`, document.location + ", state: ", window.history.state.pageInfo);
     };
-    const { lastUpdateTime } = useDomLocation({ locationCallBack, throttleDuration: 500, useMendixNav: true });
     useEffect(() => {
         window.onbeforeunload = function () {
             return "You will  leave this page";
@@ -20,7 +18,6 @@ const Callonland = ({ buttonAction }: any) => {
         //     }
         // };
     }, []);
-    console.log(`object`, lastUpdateTime);
     return <div>hello</div>;
 };
 
