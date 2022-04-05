@@ -15,13 +15,13 @@
   - [Count Down / Timer Widget](/web-widgets/Countdowntimerwidget.md)
   - [Dark Mode Toggle Widget](/web-widgets/dark-mode-toggle-widget.md)
   - [Drag & Drop Widget](/web-widgets/drag-and-drop-widget.md)
-  - [Example 1](/web-widgets/dndExamples/example1.md)
-    - [Example 2](/web-widgets/dndExamples/example2.md)
-    - [Example 3](/web-widgets/dndExamples/example3.md)
+
   - [Drag & Drop Widget (OLD)](/web-widgets/drag-and-drop-widget-old.md)
   - [Image Carousel Widget](/web-widgets/image-carousel-widget.md)
   - [Skip Link Widget](/web-widgets/skip-link-widget.md)
 
-<!-- * **[Utilities](/utilities/index.md)**
+* **[Darg and Drop Examples]()**
 
-  - [Use Dom Location](/utilities/useDomLocation.md) -->
+  - [Example 1](/web-widgets/dndExamples/example1.md)
+  - [Example 2](/web-widgets/dndExamples/example2.md)
+  - [Example 3](/web-widgets/dndExamples/example3.md)

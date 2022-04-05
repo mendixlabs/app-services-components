@@ -1,4 +1,6 @@
-## How to use the Widget via examples
+# Example 1
+
+### [Live Demo](https://dnd-lts-sandbox.mxapps.io/p/example_1?profile=Responsive)
 
 To show how to use the widget I will be using the examples in the test project. You can find the Example Project
 [here](https://github.com/mendixlabs/app-services-components/releases/download/draganddropwidget%403.0.0/dnd_lts.mpk) or
