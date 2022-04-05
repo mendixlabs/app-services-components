@@ -4,7 +4,8 @@
 >
 > Mendix 9.6^ and up use version 3.xx of the widget
 >
-> Any other version see [here](https://mendixlabs.github.io/app-services-components/#/web-widgets/drag-and-drop-widget)
+> Any other version see
+> [here](https://mendixlabs.github.io/app-services-components/#/web-widgets/drag-and-drop-widget-old)
 
 This is a complete rewrite of the Drag and Drop Widget.
 
