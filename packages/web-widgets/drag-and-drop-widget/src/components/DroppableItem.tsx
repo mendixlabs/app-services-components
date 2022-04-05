@@ -42,7 +42,7 @@ const DroppableItem = (props: Type_Card_Props) => {
     };
     // Props is dropped on
     const [{ isTopHalve, isBottomHalve, calculatedIndex, isNewParent, isOver, isAbove, isBelow }, drop] = useDrop({
-        accept: props.droppedOnUUID,
+        accept: [props.droppedOnUUID, ...props.acceptedUUids],
         collect(monitor) {
             const dragIndex = monitor.getItem()?.item.index ?? -1;
             const isNewParent = props.item.uuidParent !== monitor.getItem()?.item.item.uuidParent;

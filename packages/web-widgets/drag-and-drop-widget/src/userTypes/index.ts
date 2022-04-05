@@ -9,7 +9,7 @@ export type Type_Card_Props = {
     children: ReactNode;
     isDragging: boolean;
     droppedOnUUID: string;
-    // acceptedUUids: string[];
+    acceptedUUids: string[];
     uuidStringParent: string;
     isOverIndex: number | null;
     item: Type_Parsed_Incoming_Data;
@@ -34,12 +34,13 @@ export type Type_DragPreview_Props = {
 };
 
 export type Type_Content_Area_Props = {
+    id: string;
     index: number;
     isColumn: boolean;
-    id: string;
-    droppedOnUUID: string;
-    uuidStringParent: string;
     children?: ReactNode;
+    droppedOnUUID: string;
+    acceptedUUids: string[];
+    uuidStringParent: string;
     onDrop: (x: OnDropTypes) => void;
 };
 

@@ -7,10 +7,9 @@ import { getClassNames } from "../utils/general";
 const DragPreview = (props: Type_DragPreview_Props) => {
     const { display, item, style } = usePreview();
 
-    const classNames = useMemo(
-        () => getClassNames((item?.item as Type_Card_Props)?.item.uuidContainer),
-        [(item?.item as Type_Card_Props)?.item.uuidContainer]
-    );
+    const classNames = useMemo(() => getClassNames((item?.item as Type_Card_Props)?.item.uuidContainer), [
+        (item?.item as Type_Card_Props)?.item.uuidContainer
+    ]);
 
     if (!display) {
         return null;
@@ -22,7 +21,8 @@ const DragPreview = (props: Type_DragPreview_Props) => {
                 style={{
                     ...style,
                     width: (item.item as any).ref.current?.getBoundingClientRect().width,
-                    height: (item.item as any).ref.current?.getBoundingClientRect().height
+                    height: (item.item as any).ref.current?.getBoundingClientRect().height,
+                    zIndex: 999
                 }}
             >
                 <div className={`${classNames.dnd_draggable_item}${classNames.dnd_drag_preview_item}`}>

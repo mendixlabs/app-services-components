@@ -30,8 +30,8 @@
         <propertyGroup caption="Actions">
             
             <property key="newParentAction" type="action">
-                <caption>Dragged To New Parent</caption>
-                <description>Action called when dragged to new Parent</description>
+                <caption>Dragged Into New Parent</caption>
+                <description>Action called when dragged into from different Parent</description>
             </property>
             
             <property key="sameParentAction" type="action">
@@ -80,17 +80,31 @@
                 <description>True - Flex Column || False - Flex Row</description>
             </property>
 
-             <property key="sortAsc" type="boolean" defaultValue="true">
-                <caption>Sort Ascending</caption>
-                <description></description>
-            </property>
-
             <property key="uuidStringParent" type="attribute" required="false">
                 <caption>Unique Parent</caption>
                 <description>Unique UUID of Parent</description>
                 <attributeTypes>
                     <attributeType name="String"/>
                 </attributeTypes>
+            </property>
+
+            <property key="acceptedUuid" type="object" isList="true" required="false">
+                    <caption>Unique Container Name Accepts</caption>
+                    <description>Unique Container Name Accepts Drags/Drops From</description>
+                    <properties>
+                        <propertyGroup caption="Object list group">
+                            <property key="uuids" type="string" defaultValue=" ">
+                                <caption>Unique Container Name</caption>
+                                <description>Unique Container Name Accepts Drags/Drops From</description>
+                            </property>
+                        </propertyGroup>
+                    </properties>
+            </property>
+
+            <property key="uuidStringParentExpression" type="expression" defaultValue="" required="false">
+                <caption>Unique Parent Expression</caption>
+                <description></description>
+                <returnType type="String" />
             </property>
 
             <property key="uuidStringCurrent" type="attribute" dataSource="incomingData">

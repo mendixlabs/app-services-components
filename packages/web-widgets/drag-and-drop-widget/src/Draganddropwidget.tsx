@@ -14,13 +14,23 @@ import MyDragProvider from "./components/MyDragProvider";
 
 import "./ui/DndWidget.scss";
 
-const IF_NO_PARENT_UUID = nanoid();
-const END_ID = nanoid();
-
 const DndWidget = (props: DraganddropwidgetContainerProps) => {
-    // Sort
+    // Sort Incoming Data
     props.incomingData.setSortOrder([[props.sortOn.id, props.sort]]);
-    const uuidParent = props.uuidStringParent ? props.uuidStringParent.value : IF_NO_PARENT_UUID;
+
+    const IF_NO_PARENT_UUID = useMemo(() => nanoid(), []);
+    const END_ID = useMemo(() => nanoid(), []);
+
+    const arrayOfAcceptedUUids = useMemo(() => props.acceptedUuid.flatMap(x => [x.uuids]), [props.acceptedUuid]);
+
+    const uuidParent = useMemo(() => {
+        return props.isParent
+            ? props.uuidStringParentExpression?.value
+                ? props.uuidStringParentExpression?.value
+                : IF_NO_PARENT_UUID
+            : props.uuidStringParent?.value;
+    }, [props.uuidStringParentExpression]);
+
     const htmlElRef = useRef<HTMLDivElement>(null);
     const [allData, setAllData] = useState<Type_Parsed_Incoming_Data[]>([]);
     const [isLoaded, setIsLoaded] = useState<boolean>(true); // Is used to reset Widget on Keyboard use to prevent fallover ove a11y backend
@@ -84,7 +94,7 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
                 const [removed] = result.splice(findCurrentArray, 1);
                 result.splice(params.index, 0, removed);
 
-                setAllData(result); // Update Local State to give the impression of ... SPEED 🦥
+                // setAllData(result); // Update Local State to give the impression of ... SPEED 🦥
                 const stringifyJson = JSON.stringify(params);
                 props.widgetJsonState.setValue(stringifyJson);
                 if (props.sameParentAction?.canExecute) {
@@ -151,6 +161,7 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
                                             isColumn={props.isColumn}
                                             setIsDragging={setIsDragging}
                                             setIsOverIndex={setIsOverIndex}
+                                            acceptedUUids={arrayOfAcceptedUUids}
                                             droppedOnUUID={props.uuidStringContainer}
                                             uuidStringParent={props.uuidStringParent?.value as string}
                                         >
@@ -168,6 +179,7 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
                         index={-1}
                         onDrop={onDrop}
                         isColumn={props.isColumn}
+                        acceptedUUids={arrayOfAcceptedUUids}
                         droppedOnUUID={props.uuidStringContainer}
                         uuidStringParent={uuidParent as string}
                     >

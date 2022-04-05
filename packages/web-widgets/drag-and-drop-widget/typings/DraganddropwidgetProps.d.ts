@@ -4,10 +4,18 @@
  * @author Mendix UI Content Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { ActionValue, EditableValue, ListValue, ListAttributeValue, ListWidgetValue } from "mendix";
+import { ActionValue, DynamicValue, EditableValue, ListValue, ListAttributeValue, ListWidgetValue } from "mendix";
 import { Big } from "big.js";
 
 export type SortEnum = "asc" | "desc";
+
+export interface AcceptedUuidType {
+    uuids: string;
+}
+
+export interface AcceptedUuidPreviewType {
+    uuids: string;
+}
 
 export interface DraganddropwidgetContainerProps {
     name: string;
@@ -25,8 +33,9 @@ export interface DraganddropwidgetContainerProps {
     sortOn: ListAttributeValue<Big>;
     sort: SortEnum;
     isColumn: boolean;
-    sortAsc: boolean;
     uuidStringParent?: EditableValue<string>;
+    acceptedUuid: AcceptedUuidType[];
+    uuidStringParentExpression?: DynamicValue<string>;
     uuidStringCurrent: ListAttributeValue<string>;
     readParentTitle?: EditableValue<string>;
     readTitle?: ListAttributeValue<string>;
@@ -36,8 +45,8 @@ export interface DraganddropwidgetPreviewProps {
     class: string;
     style: string;
     widgetJsonState: string;
-    hasDataContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
-    hasNoDataContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    hasDataContent: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
+    hasNoDataContent: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
     newParentAction: {} | null;
     sameParentAction: {} | null;
     uuidStringContainer: string;
@@ -46,8 +55,9 @@ export interface DraganddropwidgetPreviewProps {
     sortOn: string;
     sort: SortEnum;
     isColumn: boolean;
-    sortAsc: boolean;
     uuidStringParent: string;
+    acceptedUuid: AcceptedUuidPreviewType[];
+    uuidStringParentExpression: string;
     uuidStringCurrent: string;
     readParentTitle: string;
     readTitle: string;

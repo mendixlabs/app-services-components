@@ -8,7 +8,7 @@ const DroppableArea = (props: Type_Content_Area_Props) => {
     const classNames = useMemo(() => getClassNames(props.droppedOnUUID), [props.droppedOnUUID]);
 
     const [{ isOver }, drop] = useDrop({
-        accept: props.droppedOnUUID,
+        accept: [props.droppedOnUUID, ...props.acceptedUUids],
         collect(monitor) {
             return {
                 isOver: monitor.isOver()
