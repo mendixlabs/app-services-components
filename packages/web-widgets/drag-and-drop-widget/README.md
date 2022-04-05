@@ -24,26 +24,30 @@ To show how to use the widget I will be using the examples in the test project. 
 [here](https://github.com/mendixlabs/app-services-components/releases/download/draganddropwidget%403.0.0/dnd_lts.mpk) or
 if you only want the Helpers
 [here](https://github.com/mendixlabs/app-services-components/releases/download/draganddropwidget%403.0.0/DnD_HelpersModule.mpk)
-and the Examples [here](https://git
+and the Examples [here](https://dnd-lts-sandbox.mxapps.io/p/example_1?profile=Responsive)
 
 ## Examples
 
 <table style="width:100%">
         <tr>
             <th>Name</th>
-            <th>Link</th>
+            <th>Docs</th>
+            <th>Demo</th>
         </tr>
         <tr>
             <td>Example 1</td>
             <td><a target="_blank" href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example1">Simple List</a></td>
+            <td><a target="_blank" href="https://dnd-lts-sandbox.mxapps.io/p/example_1?profile=Responsive">Demo</a></td>
         </tr>
         <tr>
             <td>Example 2</td>
             <td><a target="_blank" href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example2">Nested List</a></td>
+            <td><a target="_blank" href="https://dnd-lts-sandbox.mxapps.io/p/example_2?profile=Responsive">Demo</a></td>
         </tr>
         <tr>
             <td>Example 3</td>
             <td><a target="_blank" href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example3">Enum List</a></td>
+            <td><a target="_blank" href="https://dnd-lts-sandbox.mxapps.io/p/example_3?profile=Responsive">Demo</a></td>
         </tr>
 
 </table>
