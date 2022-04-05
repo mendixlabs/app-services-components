@@ -35,15 +35,15 @@ and the Examples [here](https://git
         </tr>
         <tr>
             <td>Example 1</td>
-            <td><a href="">Simple List</a></td>
+            <td><a href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example1">Simple List</a></td>
         </tr>
         <tr>
             <td>Example 2</td>
-            <td><a href="">Nested List</a></td>
+            <td><a href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example2">Nested List</a></td>
         </tr>
         <tr>
             <td>Example 3</td>
-            <td><a href="">Enum List</a></td>
+            <td><a href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example3">Enum List</a></td>
         </tr>
 
 </table>
