@@ -1,28 +1,27 @@
 {
   "name": "app-services-components",
+  "version": "0.0.0",
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/native-widgets/*",
-      "packages/utilities/*",
-      "packages/web-widgets/*"
-    ],
-    "nohoist": [
-      "*/@mendix",
-      "**/@mendix/**"
+      "apps/**/*",
+      "packages/*"
     ]
   },
   "scripts": {
     "docs:dev": "npx docsify serve docs",
-    "clean:packages": "npx lerna clean",
-    "clean:all": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
-    "version:ci": "npx lerna version --yes --conventional-commits --create-release github --message 'chore(release): publish'"
+    "build": "turbo run build --force",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "eslint": "7.7.0",
-    "jest": "26.4.2",
-    "lerna": "^4.0.0",
-    "typescript": "4.0.2",
-    "prettier": "^2.1.2"
-  }
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": "14"
+  },
+  "packageManager": "yarn@1.22.5"
 }

@@ -16,8 +16,10 @@ export interface SkiplinkwidgetContainerProps {
 }
 
 export interface SkiplinkwidgetPreviewProps {
-    class: string;
+    className: string;
     style: string;
+    styleObject?: CSSProperties;
+    readOnly: boolean;
     addButtonTo: string;
     before: boolean;
     mainContentArea: string;
