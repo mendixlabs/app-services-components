@@ -7,7 +7,7 @@ This read me is for Developing on this repo. If you are looking for documentatio
 ## 📂 Basic Folder Structure
 
 ```bash
-|-- packages
+|-- apps
     |
     |-- native-widgets
     |    |- * Native Widgets
@@ -23,21 +23,8 @@ This read me is for Developing on this repo. If you are looking for documentatio
 
 After cloning the repo, in the Root file run `yarn` - That will install the all the dependencies
 
-`npx lerna bootstrap` is also an option but has not been tested.
+The repos uses [Terborepo](https://turborepo.org/) under the hood, the migration from [lerna](https://github.com/lerna/lerna) to Terborepo is still WIP
 
----
-
-## 🧒 Adding Dependency
-
-```bash
-npx lerna add PACKAGE-TO-ADD --scope=PACKAGE-TO-ADD-IT-TOO
-
-# Example
-
-npx lerna add @usedomlocations --scope=draganddropwidget
-```
-
-**Note** This works for local or hosted packages
 
 ---
 
@@ -93,9 +80,20 @@ For details on the Action see [here](https://github.com/ahwelgemoed/widget-build
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/JelteMX"><img src="https://avatars.githubusercontent.com/u/14937393?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jelte Lagendijk</b></sub></a><br />🤔💻⚠️📖💡🚧</td>
     <td align="center"><a href="https://github.com/ahwelgemoed"><img src="https://avatars.githubusercontent.com/u/29273599?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arno Welgemoed</b></sub></a><br />🤔💻⚠️📖💡🚧</td>
-    <td align="center"><a href="https://github.com/justinroy-mx"><img src="https://avatars.githubusercontent.com/u/81809936?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Justin Roy Tamaela</b></sub></a><br />🤔💻⚠️📖💡🚧</td>
+    <td align="center"><a href="https://github.com/justinroy-mx"><img src="https://avatars.githubusercontent.com/u/81809936?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Justin Roy Tamaela</b></sub></a><br />🤔</td>
+  </tr>
+
+</table>
+
+## ✨ Past Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/JelteMX"><img src="https://avatars.githubusercontent.com/u/14937393?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jelte Lagendijk</b></sub></a><br />🤔💻⚠️📖💡🚧</td>
   </tr>
 
 </table>
