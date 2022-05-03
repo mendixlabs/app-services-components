@@ -3,6 +3,7 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
+import { CSSProperties } from "react";
 import { ActionValue, EditableValue, ListValue, ListAttributeValue } from "mendix";
 
 export type StartOfWeekEnum = "SUNDAY" | "MONDAY";
@@ -13,12 +14,13 @@ export interface CalendarNativeWidgetProps<Style> {
     name: string;
     style: Style[];
     incomingDates?: ListValue;
-    date: ListAttributeValue<Date>;
+    date?: ListAttributeValue<Date>;
     dateSelectColor?: ListAttributeValue<string>;
     dateDotColor?: ListAttributeValue<string>;
     isActiveDate?: ListAttributeValue<boolean>;
     volatileDate?: EditableValue<Date>;
-    onClick?: ActionValue;
+    onLeftArrow?: ActionValue;
+    onRightArrow?: ActionValue;
     dynamicOffset?: EditableValue<Date>;
     initialDate: number;
     startOfWeek: StartOfWeekEnum;
@@ -37,15 +39,19 @@ export interface CalendarNativeWidgetProps<Style> {
 }
 
 export interface CalendarNativeWidgetPreviewProps {
-    class: string;
+    className: string;
     style: string;
-    incomingDates: {} | null;
+    styleObject?: CSSProperties;
+    readOnly: boolean;
+    incomingDates: {} | { type: string } | null;
     date: string;
     dateSelectColor: string;
     dateDotColor: string;
     isActiveDate: string;
     volatileDate: string;
     onClick: {} | null;
+    onLeftArrow: {} | null;
+    onRightArrow: {} | null;
     dynamicOffset: string;
     initialDate: number | null;
     startOfWeek: StartOfWeekEnum;

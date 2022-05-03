@@ -1,40 +1,49 @@
 {
     "name": "calendarnativewidget",
     "widgetName": "CalendarNativeWidget",
-    "version": "1.0.6",
-    "description": "Calendar Widget for Mendix Native",
-    "copyright": "2021 Mendix Technology BV",
-    "author": "Arno Welgemoed",
+    "version": "1.0.7",
+    "description": "My widget description",
+    "copyright": "2022 Mendix Technology BV",
+    "author": "ahwelgemoed",
+    "engines": {
+        "node": ">=12"
+    },
     "config": {
         "projectPath": "./tests/testProject/"
     },
     "packagePath": "mendix",
     "scripts": {
-        "start": "npm run dev",
+        "start": "pluggable-widgets-tools start:native",
         "build": "pluggable-widgets-tools build:native",
-        "dev": "pluggable-widgets-tools start:native",
         "lint": "pluggable-widgets-tools lint",
         "lint:fix": "pluggable-widgets-tools lint:fix",
+        "test": "pluggable-widgets-tools test:unit:native --no-cache --ci",
+        "test:unit": "pluggable-widgets-tools test:unit:native --coverage",
         "prerelease": "npm run lint",
         "release": "pluggable-widgets-tools release:native"
     },
+    "jest-junit": {
+        "output": "./dist/testresults/TESTS-Jest.xml"
+    },
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/Arno Welgemoed/calendarnativewidget/issues"
+        "url": "https://github.com/ahwelgemoed/calendarnativewidget/issues"
     },
     "devDependencies": {
-        "@mendix/pluggable-widgets-tools": "^8.12.0",
-        "@types/big.js": "^4.0.5",
-        "@types/react": "~16.9.0",
-        "@types/react-native": "~0.61.23",
-        "webpack-merge": "^5.3.0"
+        "@mendix/pluggable-widgets-tools": "^9.0.0",
+        "@types/big.js": "^6.0.2",
+        "@types/enzyme": "^3.10.8",
+        "@types/jest": "^26.0.22",
+        "@types/ramda": "^0.27.32",
+        "@types/react": "~17.0.1",
+        "@types/react-native": "~0.63.52",
+        "@types/react-native-calendars": "^1.20.11"
     },
     "dependencies": {
-        "@types/ramda": "^0.27.32",
-        "@types/react-native-calendars": "^1.20.11",
         "date-fns": "^2.16.1",
         "ramda": "^0.27.1",
         "react-native-calendars": "^1.403.0",
-        "react-native-swipe-gestures": "^1.0.5"
+        "react-native-swipe-gestures": "^1.0.5",
+        "rollup-plugin-typescript2": "^0.31.2"
     }
 }

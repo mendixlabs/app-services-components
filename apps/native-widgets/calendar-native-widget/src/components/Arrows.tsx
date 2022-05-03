@@ -2,6 +2,7 @@ import { createElement, ReactElement } from "react";
 import { View, Text } from "react-native";
 interface Props {
     direction: string;
+
     defaultDotColor: string;
     disableMonthChange: boolean;
 }
@@ -13,7 +14,7 @@ const Arrows = ({ direction, disableMonthChange, defaultDotColor }: Props): Reac
     if (!disableMonthChange) {
         return (
             <View>
-                {direction == "left" ? (
+                {direction === "left" ? (
                     <Text style={[arrowStyles]}>{"<"}</Text>
                 ) : (
                     <Text style={[arrowStyles]}>{">"}</Text>

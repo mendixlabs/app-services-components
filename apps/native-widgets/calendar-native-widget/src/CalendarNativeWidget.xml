@@ -63,6 +63,17 @@
                     <caption>On click</caption>
                     <description>This action will not be called when secondary buttons are used.</description>
                 </property>
+
+                 <property key="onLeftArrow" type="action">
+                    <caption>On Left Arrow</caption>
+                    <description></description>
+                </property>
+
+                 <property key="onRightArrow" type="action">
+                    <caption>On Right Arrow</caption>
+                    <description></description>
+                </property>
+                
             </propertyGroup>
         </propertyGroup>
 

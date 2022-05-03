@@ -1,16 +1,16 @@
-import { createElement, Fragment, cloneElement, useState, useEffect, ReactElement } from "react";
-import { View, Button, Text } from "react-native";
-import { Calendar, DateObject } from "react-native-calendars";
+import { createElement, Fragment, cloneElement, useState, useEffect } from "react";
+import { View, Button } from "react-native";
+import { Calendar } from "react-native-calendars";
 import { Style } from "@mendix/pluggable-widgets-tools";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { format, isPast, eachWeekendOfMonth, isSunday, isSaturday, addMonths } from "date-fns";
 
 // Custom Components
 import Arrows from "./Arrows";
-import CustomDay from "./CustomDay";
+// import CustomDay from "./CustomDay";
 // Types
 import { CalendarNativeWidgetProps } from "../../typings/CalendarNativeWidgetProps";
-//Utils
+// Utils
 import { witchTheme, DEFAULT_COLORS } from "../utils/theme";
 
 const DATE_FORMAT = "yyy-MM-dd";
@@ -30,27 +30,29 @@ const CalendarInit = ({
     initialDate,
     isActiveDate,
     volatileDate,
-    propertyName,
+    // propertyName,
     dynamicOffset,
     dateDotColor,
+    onLeftArrow,
+    onRightArrow,
     dateSelectColor,
     incomingDates,
     selectedColor,
     darkModeOption,
-    activeSwipeDown,
+    // activeSwipeDown,
     disableWeekends,
     disablePastDates,
     autoTriggerAction,
     selectedTextColor,
     disableMonthChange,
     takeIsActiveIntoAccount
-}: ExcludedCalendarNativeWidgetProps): ReactElement => {
+}: ExcludedCalendarNativeWidgetProps) => {
     const NOT_PROVIDED = "notProvided";
     const [weekends, setWeekends] = useState<any>();
     const [startDate, setStartDate] = useState<Date>();
     const [selected, setSelected] = useState<string>();
-    const [rawInComingDates, setRawInComingDates] = useState<any>();
-    const [openCalendar, setOpenCalendar] = useState<boolean>(false);
+    const [_rawInComingDates, setRawInComingDates] = useState<any>();
+    const [_openCalendar, setOpenCalendar] = useState<boolean>(false);
     const [inComingDates, setInComingDates] = useState<any>({ weekends: null, appDates: null });
 
     const defaultDotColor: string = dotColor ? dotColor : DEFAULT_COLORS.blue;
@@ -122,21 +124,23 @@ const CalendarInit = ({
             await setInComingDates(formattedDates);
         }
     };
-    const _parseIncomingDates = () => {
+    const _parseIncomingDates = (): void => {
         if (incomingDates) {
             const destructedValues = incomingDates.items?.map((item: any) => {
-                const dateValue = date(item);
-                const dateSelectColorAtt = dateSelectColor && dateSelectColor(item).value;
-                const dateDotColorAtt = dateDotColor && dateDotColor(item).value;
-                const isActiveDateValue = isActiveDate ? isActiveDate(item) : NOT_PROVIDED;
-                const formattedDate = format(dateValue.value as Date, DATE_FORMAT);
-                return {
-                    dateValue,
-                    dateDotColorAtt,
-                    dateSelectColorAtt,
-                    formattedDate,
-                    isActiveDateValue
-                };
+                if (date) {
+                    const dateValue = date(item);
+                    const dateSelectColorAtt = dateSelectColor && dateSelectColor(item).value;
+                    const dateDotColorAtt = dateDotColor && dateDotColor(item).value;
+                    const isActiveDateValue = isActiveDate ? isActiveDate(item) : NOT_PROVIDED;
+                    const formattedDate = format(dateValue.value as Date, DATE_FORMAT);
+                    return {
+                        dateValue,
+                        dateDotColorAtt,
+                        dateSelectColorAtt,
+                        formattedDate,
+                        isActiveDateValue
+                    };
+                }
             });
             setRawInComingDates(destructedValues);
             _formatIncomingDates(destructedValues);
@@ -145,7 +149,7 @@ const CalendarInit = ({
 
     useEffect(() => {
         if (dynamicOffset) {
-            if (dynamicOffset.status == "available") {
+            if (dynamicOffset.status === "available") {
                 setStartDate(dynamicOffset.value);
             }
         }
@@ -160,9 +164,11 @@ const CalendarInit = ({
          */
         setSelected("");
         _parseIncomingDates();
-        disableWeekends && _disableWeekends();
+        if (disableWeekends) {
+            _disableWeekends();
+        }
     }, [incomingDates]);
-    const onMonthChange = (month: DateObject) => {
+    const onMonthChange = (month: any) => {
         const dateObject = new Date(month.timestamp);
         if (disableWeekends) {
             _disableWeekends(dateObject);
@@ -204,23 +210,23 @@ const CalendarInit = ({
      *  This is done (with the Clone Element) to be able to pass Conditional Props to the Calendar Components
      *  This Helps so that we can keep the CORE Calendar Module with out the need to Fork from Github
      */
-    const rendererForActiveSwipeDown = activeSwipeDown
-        ? {
-              dayComponent: (day: any) => (
-                  <CustomDay
-                      day={day}
-                      onDayPress={onDayPress}
-                      propertyName={propertyName}
-                      openCalendar={openCalendar}
-                      darkModeOption={darkModeOption}
-                      defaultDotColor={defaultDotColor}
-                      disablePastDates={disablePastDates}
-                      rawInComingDates={rawInComingDates}
-                      defaultTextColor={defaultTextColor}
-                  />
-              )
-          }
-        : {};
+    // const rendererForActiveSwipeDown = activeSwipeDown
+    //     ? {
+    //           dayComponent: (day: any) => (
+    //               <CustomDay
+    //                   day={day}
+    //                   onDayPress={onDayPress}
+    //                   propertyName={propertyName}
+    //                   openCalendar={openCalendar}
+    //                   darkModeOption={darkModeOption}
+    //                   defaultDotColor={defaultDotColor}
+    //                   disablePastDates={disablePastDates}
+    //                   rawInComingDates={rawInComingDates}
+    //                   defaultTextColor={defaultTextColor}
+    //               />
+    //           )
+    //       }
+    //     : {};
 
     const rendererForMinDate = disablePastDates
         ? {
@@ -230,12 +236,11 @@ const CalendarInit = ({
     const rendererForTheme = {
         theme: witchTheme(darkModeOption)
     };
-    console.log(`activeSwipeDown`, rendererForActiveSwipeDown);
     return (
         <View>
             {startDate && (
                 <Fragment>
-                    <Text> {activeSwipeDown ? "yes" : "no"}</Text>
+                    {/* @ts-ignore */}
                     <GestureRecognizer
                         config={config}
                         style={{ paddingBottom: 10 }}
@@ -243,7 +248,7 @@ const CalendarInit = ({
                     >
                         {cloneElement(
                             <Calendar
-                                current={startDate}
+                                current={startDate as any}
                                 hideArrows={false}
                                 hideExtraDays={false}
                                 onDayPress={onDayPress}
@@ -275,6 +280,18 @@ const CalendarInit = ({
                                         disableMonthChange={disableMonthChange}
                                     />
                                 )}
+                                onPressArrowLeft={subtractMonth => {
+                                    subtractMonth();
+                                    if (onLeftArrow?.canExecute) {
+                                        onLeftArrow.execute();
+                                    }
+                                }}
+                                onPressArrowRight={addMonth => {
+                                    addMonth();
+                                    if (onRightArrow?.canExecute) {
+                                        onRightArrow.execute();
+                                    }
+                                }}
                                 onMonthChange={month => {
                                     onMonthChange(month);
                                 }}

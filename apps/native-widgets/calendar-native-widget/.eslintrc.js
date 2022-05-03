@@ -1,11 +1,5 @@
-const base = require("@mendix/pluggable-widgets-tools/configs/eslint.ts.base.json");
-
-// Insert custom eslint rules in here
+const base = require("@mendix/pluggable-widgets-tools/configs/eslint.ts.base");
 
 module.exports = {
-    ...base,
-    rules: {
-        "@typescript-eslint/ban-ts-ignore": "warn",
-        "react/display-name": "off"
-    }
+    ...base
 };

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.calendarnativewidget.CalendarNativeWidget" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Native"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Calendar Native Widget</name>
+    <description>My widget description</description>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAP0SURBVHgB7Zs7TBRRFIb/XfbBLg8RURYJDxEfjdCAjcaEqIk0YGGwEWNiZ9QCSx+NlQk2SmdsxMREjREbY7DxUZhggzYqRtGIECG6wLLsW/dcMuvM7OzM3AF3zd75CjJzh3tmzn/vnHvO3V3H7zQQGCcExxYAgmMLAMGxBYDgCC+AS34SCoVx/skEHnxLIhhLothwxZbR01KOK10NCAQ2sjaHPBMcuPMKQ79qUOx0+4MYOdHBjhWvwPD7BYjAaLAUMzOz7FghQKSs2pSBni1l+HGyBR+ONaFtgxeFpKnCjbG+BsROteL0ripTfRKe0syxpSB4pq0KVV4nmivduNhpTrR/xfGdFWivWRmES7v5n8WSAM+/L2seF4IviwnZcRy8uGCBy2M/2Y2D0SQefV5CIbn1bgHz6RWrsdxtKYZZEkC68f/CyCfrg2AnQvKTwb018K0vbFDLH1H2VyFAb3p5CwQqIQKaeYCI2AJAcOxVwMw/ybMtI9Z5nCxNXq2dpgrtR6PiNZVKwSwlJSW61w0FOPdyDtffBMHDvUN16G0pU7RtG57kFMCNp4frFUKQ4+FwGDyf5TidTvj9fjgcDu3rep2D0ZSm8xc6qlkFNtpbj32bfVnX1Skp1Qtq52mWXE3nHRP9zcyOesQpr1dnm/F4HLwfZJFoiURu4XVnwLzGrtDgnhqcbV8pO0kgGqUDD6cURRG1G0FOS1UcOT/W14jttydN9V1LuIOg3Pkjj6fZsXq6G0HTW3J+ciHOiiuaEf078p+EcRdD5DhNT3rom/trsRqujQfT03yRzaIV2/nfh+SeARQTaPTud9dl3ltyhAcS8NnUMptNr482sNGnmVCIvQXuGSDtBdBOjBQkeaK7xMGRKbazRK/P+FyUiWjFjhlyrQDsmnxXmAoEabtYYuDFHIbemh9hGs0bXbWKuEBCdd79WpBlkPIAn8+XJYLkq6EAkgPzMXPROVcCs5Z2eBIhygO0kHw19QrQqObK7nhYKzu5nLJkC4JjF0NG/5BMJlkKyoPX680KOmSDbJmFgpfb7c5qj8Vi3MWQlh0JXQEoPlLUtUJp6d9PX8jxSCQCHqS83+PxKNqi0Si3HYoZuapC3VfA6jfo1CPEM/J69+cZebP97CAIwbEFgODoCqBXROgaVWVqRvtyZu1YfR69fi6jjlRI6G0paUF5gBwSgJZFntWA7q1ev2lJpJWBd0/Q5crtpmEiRJ31DJiFnNFLSMyiFne12DEAgmMLID8JLRb26y75IhRaymz8KAQI1G1CsUPOf5yYzJw71L8ZmpmeTbeiKKFtsNatzSiv8GfaHPaPpgTHFgCCYwsAwbEFgODYAkBwhBfgD2qnn2mXECVEAAAAAElFTkSuQmCC</icon>
+    <properties>
+
+        <!-- DATA -->
+        <propertyGroup caption="Data">
+            <propertyGroup caption="Entries">
+               
+                <property key="incomingDates" type="datasource" isList="true" required="false">
+                    <caption>Entries</caption>
+                    <description>List of entry objects that are used to populate the calendar</description>
+                </property>
+
+                <property key="date" type="attribute" dataSource="incomingDates">
+                    <caption>Entry date</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="DateTime"/>
+                    </attributeTypes>
+                </property>
+
+                <property key="dateSelectColor" type="attribute" dataSource="incomingDates" required="false">
+                    <caption>Date Select Color</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="dateDotColor" type="attribute" dataSource="incomingDates" required="false">
+                    <caption>Date Dot Color</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+
+                <property key="isActiveDate" type="attribute" dataSource="incomingDates" required="false">
+                    <caption>Is Date Active</caption>
+                    <description>Used to show if date is active or not (Not Required | See Docs)</description>
+                    <attributeTypes>
+                        <attributeType name="Boolean"/>
+                    </attributeTypes>
+                </property>
+
+            </propertyGroup>
+
+
+            <propertyGroup caption="Interaction">
+                <property key="volatileDate" type="attribute" required="false" onChange="onClick">
+                    <caption>Editable date</caption>
+                    <description>This attribute is used when a user clicks on a date in the calendar</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime"/>
+                    </attributeTypes>
+                </property>
+
+                <property key="onClick" type="action">
+                    <caption>On click</caption>
+                    <description>This action will not be called when secondary buttons are used.</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+
+        <!-- SETTINGS -->
+        <propertyGroup caption="Settings">
+            <propertyGroup caption="Dates">
+                <property key="dynamicOffset" type="attribute" required="false" >
+                    <caption>Dynamic Month Offset</caption>
+                    <description>Set Offest of calender Dynamically. (If empty will fall back on Month offset integer)</description>
+                    <attributeTypes>
+                        <attributeType name="DateTime"/>
+                    </attributeTypes>
+                </property>
+                
+                <property key="initialDate" type="integer" defaultValue="0">
+                    <caption>Month offset</caption>
+                    <description>Number of months from 'today'. This can be negative.</description>
+                </property>
+
+                <property key="startOfWeek" type="enumeration" defaultValue="SUNDAY">
+                    <caption>Start Of Week</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="SUNDAY">Sunday</enumerationValue>
+                        <enumerationValue key="MONDAY">Monday</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Swipe down">
+                <property key="activeSwipeDown" type="boolean" defaultValue="false">
+                    <caption>Active Swipe Down</caption>
+                    <description>Activate Swiping down to expand the Calendar</description>
+                </property>
+
+                <property key="propertyName" type="string" defaultValue="Event" required="false">
+                    <caption>Name of Property</caption>
+                    <description>Name of Property seen when User swipes down</description>
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Is Date Full">
+                <property key="takeIsActiveIntoAccount" type="boolean" defaultValue="true">
+                        <caption>Take Is Active Into Account</caption>
+                        <description>Takes the Take Aactive Boolean from DB into Account</description>
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Auto trigger">
+                <property key="autoTriggerAction" type="boolean" defaultValue="true">
+                    <caption>Auto Trigger Action </caption>
+                    <description>Automatically trigger action when user presses on a date (see Data)</description>
+                </property>
+
+                <property key="buttonText" type="string" defaultValue="Add Event" required="false">
+                    <caption>Button Text</caption>
+                    <description>Text on Button for if Auto Trigger Action is set to False</description>
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Enable/disable">
+                <property key="disableMonthChange" type="boolean" defaultValue="false">
+                    <caption>Disable Month Change</caption>
+                    <description>Prevent user from changing the Month</description>
+                </property>
+
+                <property key="disableWeekends" type="boolean" defaultValue="false">
+                    <caption>Disable Weekends</caption>
+                    <description>Unable to Select Weekends</description>
+                </property>
+
+                <property key="disablePastDates" type="boolean" defaultValue="false">
+                    <caption>Disable Past Dates</caption>
+                    <description>Unable to Select Past Dates</description>
+                </property>
+            </propertyGroup>
+
+
+        </propertyGroup>
+
+        <!-- APPEARANCE -->
+        <propertyGroup caption="Appearance">
+            <propertyGroup caption="Display">
+                <property key="darkModeOption" type="enumeration" defaultValue="SYSTEM">
+                    <caption>Display Mode</caption>
+                    <description>This can be either defined by the developer (light/dark), or automatically set by the user system</description>
+                    <enumerationValues>
+                        <enumerationValue key="SYSTEM">System</enumerationValue>
+                        <enumerationValue key="LIGHT">Light</enumerationValue>
+                        <enumerationValue key="DARK">Dark</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+
+            <propertyGroup caption="Colors">
+                <property type="string" key="selectedColor" required="false">
+                    <caption>Selected Date Color</caption>
+                    <description>Custom Background Color of Selected Date</description>
+                </property>
+                <property type="string" key="selectedTextColor" required="false">
+                    <caption>Selected Text Date Color</caption>
+                    <description>Custom Color of Selected Text Date</description>
+                </property>
+                <property type="string" key="dotColor" required="false">
+                    <caption>Dot Date Color</caption>
+                    <description>Custom color for Dot</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>

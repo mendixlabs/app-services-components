@@ -1,0 +1,5323 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 3,
+    "total": 3,
+    "workspacePrefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "app-services-components",
+      "version": "0.0.0",
+      "private": true,
+      "scripts": {
+        "docs:dev": "npx docsify serve docs",
+        "build": "turbo run build --force",
+        "dev": "turbo run dev --parallel",
+        "lint": "turbo run lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+      },
+      "devDependencies": {
+        "prettier": "latest",
+        "turbo": "latest"
+      },
+      "engines": {
+        "npm": ">=7.0.0",
+        "node": "14"
+      }
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "2 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "config",
+      "version": "0.0.0",
+      "main": "index.js",
+      "license": "MIT",
+      "files": [
+        "eslint-preset.js"
+      ],
+      "dependencies": {
+        "eslint-config-next": "^12.0.8",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-react": "7.28.0"
+      }
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components/packages/config"
+  },
+  "3 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "tsconfig",
+      "version": "0.0.0",
+      "private": true,
+      "main": "index.js",
+      "files": [
+        "base.json",
+        "nextjs.json",
+        "react-library.json"
+      ]
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components/packages/tsconfig"
+  },
+  "4 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/Users/ahwelgemoed/Library/pnpm/store/v3",
+    "virtualStoreDir": "/Users/ahwelgemoed/Documents/repos/app-services-components/node_modules/.pnpm"
+  },
+  "5 debug pnpm:stage": {
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "stage": "resolution_started"
+  },
+  "6 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-config-prettier/8.5.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-config-prettier",
+      "rawSpec": "^8.3.0"
+    }
+  },
+  "7 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-prettier/8.5.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "8 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-react/7.28.0",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-plugin-react",
+      "rawSpec": "7.28.0"
+    }
+  },
+  "9 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-react/7.28.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "10 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prettier/2.6.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "prettier",
+      "rawSpec": "latest"
+    }
+  },
+  "11 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier/2.6.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "12 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-config-prettier/8.5.0",
+    "size": 5284,
+    "status": "started"
+  },
+  "13 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-plugin-react/7.28.0",
+    "size": 134397,
+    "status": "started"
+  },
+  "14 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/prettier/2.6.2",
+    "size": 4156871,
+    "status": "started"
+  },
+  "15 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-prettier/8.5.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "16 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-config-next/12.1.5",
+    "wanted": {
+      "dependentId": "packages/config",
+      "name": "eslint-config-next",
+      "rawSpec": "^12.0.8"
+    }
+  },
+  "17 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-next/12.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "18 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-react/7.28.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "19 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array-includes/3.1.4",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "array-includes",
+      "rawSpec": "^3.1.4"
+    }
+  },
+  "20 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/array-includes/3.1.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "21 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/string.prototype.matchall/4.0.7",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "string.prototype.matchall",
+      "rawSpec": "^4.0.6"
+    }
+  },
+  "22 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/string.prototype.matchall/4.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "23 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-config-next/12.1.5",
+    "size": 2594,
+    "status": "started"
+  },
+  "24 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array.prototype.flatmap/1.3.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "array.prototype.flatmap",
+      "rawSpec": "^1.2.5"
+    }
+  },
+  "25 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/array.prototype.flatmap/1.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "26 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-next/12.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "27 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/doctrine/2.1.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "doctrine",
+      "rawSpec": "^2.1.0"
+    }
+  },
+  "28 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/doctrine/2.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "29 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.hasown/1.1.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "object.hasown",
+      "rawSpec": "^1.1.0"
+    }
+  },
+  "30 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.hasown/1.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "31 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prop-types/15.8.1",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "prop-types",
+      "rawSpec": "^15.7.2"
+    }
+  },
+  "32 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prop-types/15.8.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "33 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/estraverse/5.3.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "estraverse",
+      "rawSpec": "^5.3.0"
+    }
+  },
+  "34 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/estraverse/5.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "35 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.values/1.1.5",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "object.values",
+      "rawSpec": "^1.1.5"
+    }
+  },
+  "36 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.values/1.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "37 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.fromentries/2.0.5",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "object.fromentries",
+      "rawSpec": "^2.0.5"
+    }
+  },
+  "38 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.fromentries/2.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "39 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/array.prototype.flatmap/1.3.0",
+    "size": 6092,
+    "status": "started"
+  },
+  "40 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/string.prototype.matchall/4.0.7",
+    "size": 10073,
+    "status": "started"
+  },
+  "41 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/semver/6.3.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "semver",
+      "rawSpec": "^6.3.0"
+    }
+  },
+  "42 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/semver/6.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "43 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/array-includes/3.1.4",
+    "size": 7449,
+    "status": "started"
+  },
+  "44 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve/2.0.0-next.3",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "resolve",
+      "rawSpec": "^2.0.0-next.3"
+    }
+  },
+  "45 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/resolve/2.0.0-next.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "46 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/array.prototype.flatmap/1.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "47 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/array-includes/3.1.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "48 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/string.prototype.matchall/4.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "49 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/doctrine/2.1.0",
+    "size": 22263,
+    "status": "started"
+  },
+  "50 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/object.hasown/1.1.0",
+    "size": 5253,
+    "status": "started"
+  },
+  "51 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/prop-types/15.8.1",
+    "size": 22651,
+    "status": "started"
+  },
+  "52 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-import-resolver-node/0.3.4",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "eslint-import-resolver-node",
+      "rawSpec": "0.3.4"
+    }
+  },
+  "53 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-import-resolver-node/0.3.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "54 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/object.values/1.1.5",
+    "size": 9856,
+    "status": "started"
+  },
+  "55 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/object.fromentries/2.0.5",
+    "size": 5059,
+    "status": "started"
+  },
+  "56 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.values/1.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "57 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.fromentries/2.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "58 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/resolve/2.0.0-next.3",
+    "size": 21996,
+    "status": "started"
+  },
+  "59 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-react/7.29.1",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "eslint-plugin-react",
+      "rawSpec": "7.29.1"
+    }
+  },
+  "60 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-react/7.29.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "61 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/resolve/2.0.0-next.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "62 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/doctrine/2.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "63 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prop-types/15.8.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "64 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-jsx-a11y/6.5.1",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "eslint-plugin-jsx-a11y",
+      "rawSpec": "6.5.1"
+    }
+  },
+  "65 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-jsx-a11y/6.5.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "66 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-plugin-react/7.29.1",
+    "size": 139206,
+    "status": "started"
+  },
+  "67 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.hasown/1.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "68 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/semver/6.3.0",
+    "size": 18921,
+    "status": "started"
+  },
+  "69 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-import/2.25.2",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "eslint-plugin-import",
+      "rawSpec": "2.25.2"
+    }
+  },
+  "70 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-import/2.25.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "71 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@rushstack/eslint-patch/1.0.8",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "@rushstack/eslint-patch",
+      "rawSpec": "1.0.8"
+    }
+  },
+  "72 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rushstack/eslint-patch/1.0.8",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "73 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-plugin-import/2.25.2",
+    "size": 302199,
+    "status": "started"
+  },
+  "74 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-import-resolver-node/0.3.4",
+    "size": 3208,
+    "status": "started"
+  },
+  "75 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-import-resolver-node/0.3.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "76 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-react-hooks/4.3.0",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "eslint-plugin-react-hooks",
+      "rawSpec": "4.3.0"
+    }
+  },
+  "77 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-react-hooks/4.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "78 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-plugin-jsx-a11y/6.5.1",
+    "size": 108734,
+    "status": "started"
+  },
+  "79 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.entries/1.1.5",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "object.entries",
+      "rawSpec": "^1.1.5"
+    }
+  },
+  "80 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.entries/1.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "81 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/jsx-ast-utils/3.2.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "jsx-ast-utils",
+      "rawSpec": "^2.4.1 || ^3.0.0"
+    }
+  },
+  "82 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/jsx-ast-utils/3.2.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "83 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimatch/3.1.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.28.0",
+      "name": "minimatch",
+      "rawSpec": "^3.0.4"
+    }
+  },
+  "84 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/minimatch/3.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "85 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/parser/5.10.1",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "@typescript-eslint/parser",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "86 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/parser/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "87 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-plugin-react-hooks/4.3.0",
+    "size": 31223,
+    "status": "started"
+  },
+  "88 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-string/1.0.7",
+    "wanted": {
+      "dependentId": "/array-includes/3.1.4",
+      "name": "is-string",
+      "rawSpec": "^1.0.7"
+    }
+  },
+  "89 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-string/1.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "90 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/array-includes/3.1.4",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "91 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/call-bind/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "92 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/string.prototype.matchall/4.0.7",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "93 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/array-includes/3.1.4",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "94 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/define-properties/1.1.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "95 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/semver/6.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "96 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "wanted": {
+      "dependentId": "/array-includes/3.1.4",
+      "name": "get-intrinsic",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "97 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "98 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-import-resolver-typescript/2.4.0",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "eslint-import-resolver-typescript",
+      "rawSpec": "2.4.0"
+    }
+  },
+  "99 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-import-resolver-typescript/2.4.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "100 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-abstract/1.19.5",
+    "wanted": {
+      "dependentId": "/array-includes/3.1.4",
+      "name": "es-abstract",
+      "rawSpec": "^1.19.1"
+    }
+  },
+  "101 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/es-abstract/1.19.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "102 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/minimatch/3.1.2",
+    "size": 11940,
+    "status": "started"
+  },
+  "103 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/object.entries/1.1.5",
+    "size": 9913,
+    "status": "started"
+  },
+  "104 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/define-properties/1.1.4",
+    "size": 4301,
+    "status": "started"
+  },
+  "105 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/call-bind/1.0.2",
+    "size": 5365,
+    "status": "started"
+  },
+  "106 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/jsx-ast-utils/3.2.2",
+    "size": 32353,
+    "status": "started"
+  },
+  "107 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@typescript-eslint/parser/5.10.1",
+    "size": 9793,
+    "status": "started"
+  },
+  "108 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "size": 9903,
+    "status": "started"
+  },
+  "109 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/string.prototype.matchall/4.0.7",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "110 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-abstract/1.19.5",
+    "wanted": {
+      "dependentId": "/string.prototype.matchall/4.0.7",
+      "name": "es-abstract",
+      "rawSpec": "^1.19.1"
+    }
+  },
+  "111 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "wanted": {
+      "dependentId": "/string.prototype.matchall/4.0.7",
+      "name": "get-intrinsic",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "112 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-react-hooks/4.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "113 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@next/eslint-plugin-next/12.1.5",
+    "wanted": {
+      "dependentId": "/eslint-config-next/12.1.5",
+      "name": "@next/eslint-plugin-next",
+      "rawSpec": "12.1.5"
+    }
+  },
+  "114 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@next/eslint-plugin-next/12.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "115 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-string/1.0.7",
+    "size": 7090,
+    "status": "started"
+  },
+  "116 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/estraverse/5.3.0",
+    "size": 8052,
+    "status": "started"
+  },
+  "117 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/es-abstract/1.19.5",
+    "size": 108430,
+    "status": "started"
+  },
+  "118 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-import-resolver-typescript/2.4.0",
+    "size": 9563,
+    "status": "started"
+  },
+  "119 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-symbols/1.0.3",
+    "wanted": {
+      "dependentId": "/string.prototype.matchall/4.0.7",
+      "name": "has-symbols",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "120 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has-symbols/1.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "121 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/array.prototype.flatmap/1.3.0",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "122 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/array.prototype.flatmap/1.3.0",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "123 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-abstract/1.19.5",
+    "wanted": {
+      "dependentId": "/array.prototype.flatmap/1.3.0",
+      "name": "es-abstract",
+      "rawSpec": "^1.19.2"
+    }
+  },
+  "124 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/internal-slot/1.0.3",
+    "wanted": {
+      "dependentId": "/string.prototype.matchall/4.0.7",
+      "name": "internal-slot",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "125 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/internal-slot/1.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "126 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/regexp.prototype.flags/1.4.3",
+    "wanted": {
+      "dependentId": "/string.prototype.matchall/4.0.7",
+      "name": "regexp.prototype.flags",
+      "rawSpec": "^1.4.1"
+    }
+  },
+  "127 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/regexp.prototype.flags/1.4.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "128 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/side-channel/1.0.4",
+    "wanted": {
+      "dependentId": "/string.prototype.matchall/4.0.7",
+      "name": "side-channel",
+      "rawSpec": "^1.0.4"
+    }
+  },
+  "129 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/side-channel/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "130 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/minimatch/3.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "131 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/object.hasown/1.1.0",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "132 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-abstract/1.19.5",
+    "wanted": {
+      "dependentId": "/object.hasown/1.1.0",
+      "name": "es-abstract",
+      "rawSpec": "^1.19.1"
+    }
+  },
+  "133 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/define-properties/1.1.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "134 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/call-bind/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "135 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/esutils/2.0.3",
+    "wanted": {
+      "dependentId": "/doctrine/2.1.0",
+      "name": "esutils",
+      "rawSpec": "^2.0.2"
+    }
+  },
+  "136 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/esutils/2.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "137 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-shim-unscopables/1.0.0",
+    "wanted": {
+      "dependentId": "/array.prototype.flatmap/1.3.0",
+      "name": "es-shim-unscopables",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "138 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/es-shim-unscopables/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "139 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/has-symbols/1.0.3",
+    "size": 7067,
+    "status": "started"
+  },
+  "140 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/internal-slot/1.0.3",
+    "size": 5626,
+    "status": "started"
+  },
+  "141 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo/1.2.6",
+    "wanted": {
+      "dependentId": ".",
+      "name": "turbo",
+      "rawSpec": "latest"
+    }
+  },
+  "142 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "143 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/object.values/1.1.5",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "144 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/object.values/1.1.5",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "145 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/regexp.prototype.flags/1.4.3",
+    "size": 11537,
+    "status": "started"
+  },
+  "146 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "147 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.entries/1.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "148 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/parser/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "149 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-import-resolver-typescript/2.4.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "150 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-string/1.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "151 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/estraverse/5.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "152 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-react/7.29.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "153 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has-symbols/1.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "154 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/internal-slot/1.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "155 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/regexp.prototype.flags/1.4.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "156 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-import/2.25.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "157 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/loose-envify/1.4.0",
+    "wanted": {
+      "dependentId": "/prop-types/15.8.1",
+      "name": "loose-envify",
+      "rawSpec": "^1.4.0"
+    }
+  },
+  "158 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/loose-envify/1.4.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "159 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@rushstack/eslint-patch/1.0.8",
+    "size": 7386,
+    "status": "started"
+  },
+  "160 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/jsx-ast-utils/3.2.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "161 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/esutils/2.0.3",
+    "size": 9542,
+    "status": "started"
+  },
+  "162 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object-assign/4.1.1",
+    "wanted": {
+      "dependentId": "/prop-types/15.8.1",
+      "name": "object-assign",
+      "rawSpec": "^4.1.1"
+    }
+  },
+  "163 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object-assign/4.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "164 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/side-channel/1.0.4",
+    "size": 5638,
+    "status": "started"
+  },
+  "165 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/es-shim-unscopables/1.0.0",
+    "size": 4016,
+    "status": "started"
+  },
+  "166 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/turbo/1.2.6",
+    "size": 11952,
+    "status": "started"
+  },
+  "167 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/loose-envify/1.4.0",
+    "size": 2842,
+    "status": "started"
+  },
+  "168 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@rushstack/eslint-patch/1.0.8",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "169 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/object-assign/4.1.1",
+    "size": 2675,
+    "status": "started"
+  },
+  "170 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/side-channel/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "171 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/es-shim-unscopables/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "172 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-jsx-a11y/6.5.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "173 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/esutils/2.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "174 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/loose-envify/1.4.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "175 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "176 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object-assign/4.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "177 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-linux-32/1.2.6: wanted {\"cpu\":[\"ia32\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "178 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-linux-32/1.2.6: wanted {\"cpu\":[\"ia32\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-linux-32/1.2.6",
+      "name": "turbo-linux-32",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "179 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-linux-32/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-linux-32",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "180 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-linux-32/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "181 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-abstract/1.19.5",
+    "wanted": {
+      "dependentId": "/object.values/1.1.5",
+      "name": "es-abstract",
+      "rawSpec": "^1.19.1"
+    }
+  },
+  "182 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/object.fromentries/2.0.5",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "183 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/object.fromentries/2.0.5",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "184 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-abstract/1.19.5",
+    "wanted": {
+      "dependentId": "/object.fromentries/2.0.5",
+      "name": "es-abstract",
+      "rawSpec": "^1.19.1"
+    }
+  },
+  "185 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/es-abstract/1.19.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "186 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-darwin-arm64/1.2.6: wanted {\"cpu\":[\"arm64\"],\"os\":[\"darwin\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "187 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-darwin-arm64/1.2.6: wanted {\"cpu\":[\"arm64\"],\"os\":[\"darwin\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-darwin-arm64/1.2.6",
+      "name": "turbo-darwin-arm64",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "188 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-darwin-arm64/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-darwin-arm64",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "189 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-darwin-arm64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "190 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/object.entries/1.1.5",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "191 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/object.entries/1.1.5",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "192 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-abstract/1.19.5",
+    "wanted": {
+      "dependentId": "/object.entries/1.1.5",
+      "name": "es-abstract",
+      "rawSpec": "^1.19.1"
+    }
+  },
+  "193 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array-includes/3.1.4",
+    "wanted": {
+      "dependentId": "/jsx-ast-utils/3.2.2",
+      "name": "array-includes",
+      "rawSpec": "^3.1.4"
+    }
+  },
+  "194 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/path-parse/1.0.7",
+    "wanted": {
+      "dependentId": "/resolve/2.0.0-next.3",
+      "name": "path-parse",
+      "rawSpec": "^1.0.6"
+    }
+  },
+  "195 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/path-parse/1.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "196 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-windows-64/1.2.6: wanted {\"cpu\":[\"x64\"],\"os\":[\"win32\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "197 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-windows-64/1.2.6: wanted {\"cpu\":[\"x64\"],\"os\":[\"win32\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-windows-64/1.2.6",
+      "name": "turbo-windows-64",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "198 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-windows-64/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-windows-64",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "199 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-windows-64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "200 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier/2.6.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "201 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-core-module/2.9.0",
+    "wanted": {
+      "dependentId": "/resolve/2.0.0-next.3",
+      "name": "is-core-module",
+      "rawSpec": "^2.2.0"
+    }
+  },
+  "202 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-core-module/2.9.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "203 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve/1.22.0",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-node/0.3.4",
+      "name": "resolve",
+      "rawSpec": "^1.13.1"
+    }
+  },
+  "204 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/resolve/1.22.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "205 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array-includes/3.1.4",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "array-includes",
+      "rawSpec": "^3.1.4"
+    }
+  },
+  "206 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array.prototype.flatmap/1.3.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "array.prototype.flatmap",
+      "rawSpec": "^1.2.5"
+    }
+  },
+  "207 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/doctrine/2.1.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "doctrine",
+      "rawSpec": "^2.1.0"
+    }
+  },
+  "208 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/estraverse/5.3.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "estraverse",
+      "rawSpec": "^5.3.0"
+    }
+  },
+  "209 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/jsx-ast-utils/3.2.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "jsx-ast-utils",
+      "rawSpec": "^2.4.1 || ^3.0.0"
+    }
+  },
+  "210 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimatch/3.1.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "minimatch",
+      "rawSpec": "^3.1.2"
+    }
+  },
+  "211 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.entries/1.1.5",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "object.entries",
+      "rawSpec": "^1.1.5"
+    }
+  },
+  "212 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.fromentries/2.0.5",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "object.fromentries",
+      "rawSpec": "^2.0.5"
+    }
+  },
+  "213 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.hasown/1.1.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "object.hasown",
+      "rawSpec": "^1.1.0"
+    }
+  },
+  "214 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.values/1.1.5",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "object.values",
+      "rawSpec": "^1.1.5"
+    }
+  },
+  "215 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prop-types/15.8.1",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "prop-types",
+      "rawSpec": "^15.8.1"
+    }
+  },
+  "216 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve/2.0.0-next.3",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "resolve",
+      "rawSpec": "^2.0.0-next.3"
+    }
+  },
+  "217 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/semver/6.3.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "semver",
+      "rawSpec": "^6.3.0"
+    }
+  },
+  "218 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/string.prototype.matchall/4.0.7",
+    "wanted": {
+      "dependentId": "/eslint-plugin-react/7.29.1",
+      "name": "string.prototype.matchall",
+      "rawSpec": "^4.0.6"
+    }
+  },
+  "219 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.assign/4.1.2",
+    "wanted": {
+      "dependentId": "/jsx-ast-utils/3.2.2",
+      "name": "object.assign",
+      "rawSpec": "^4.1.2"
+    }
+  },
+  "220 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.assign/4.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "221 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/brace-expansion/1.1.11",
+    "wanted": {
+      "dependentId": "/minimatch/3.1.2",
+      "name": "brace-expansion",
+      "rawSpec": "^1.1.7"
+    }
+  },
+  "222 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/brace-expansion/1.1.11",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "223 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/path-parse/1.0.7",
+    "size": 2067,
+    "status": "started"
+  },
+  "224 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/debug/2.6.9",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-node/0.3.4",
+      "name": "debug",
+      "rawSpec": "^2.6.9"
+    }
+  },
+  "225 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/debug/2.6.9",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "226 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/aria-query/4.2.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "aria-query",
+      "rawSpec": "^4.2.2"
+    }
+  },
+  "227 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/aria-query/4.2.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "228 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/path-parse/1.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "229 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-core-module/2.9.0",
+    "size": 8321,
+    "status": "started"
+  },
+  "230 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/object.assign/4.1.2",
+    "size": 16372,
+    "status": "started"
+  },
+  "231 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/resolve/1.22.0",
+    "size": 27736,
+    "status": "started"
+  },
+  "232 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/brace-expansion/1.1.11",
+    "size": 4239,
+    "status": "started"
+  },
+  "233 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array-includes/3.1.4",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "array-includes",
+      "rawSpec": "^3.1.4"
+    }
+  },
+  "234 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@babel/runtime/7.17.9",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "@babel/runtime",
+      "rawSpec": "^7.16.3"
+    }
+  },
+  "235 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@babel/runtime/7.17.9",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "236 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-core-module/2.9.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "237 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/debug/2.6.9",
+    "size": 16514,
+    "status": "started"
+  },
+  "238 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/brace-expansion/1.1.11",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "239 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object.assign/4.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "240 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/ast-types-flow/0.0.7",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "ast-types-flow",
+      "rawSpec": "^0.0.7"
+    }
+  },
+  "241 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ast-types-flow/0.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "242 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/resolve/1.22.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "243 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/debug/2.6.9",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "244 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/axobject-query/2.2.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "axobject-query",
+      "rawSpec": "^2.2.0"
+    }
+  },
+  "245 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/axobject-query/2.2.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "246 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@babel/runtime/7.17.9",
+    "size": 37485,
+    "status": "started"
+  },
+  "247 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/ast-types-flow/0.0.7",
+    "size": 8565,
+    "status": "started"
+  },
+  "248 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/damerau-levenshtein/1.0.8",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "damerau-levenshtein",
+      "rawSpec": "^1.0.7"
+    }
+  },
+  "249 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/damerau-levenshtein/1.0.8",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "250 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ast-types-flow/0.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "251 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@babel/runtime/7.17.9",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "252 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/emoji-regex/9.2.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "emoji-regex",
+      "rawSpec": "^9.2.2"
+    }
+  },
+  "253 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/emoji-regex/9.2.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "254 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/jsx-ast-utils/3.2.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "jsx-ast-utils",
+      "rawSpec": "^3.2.1"
+    }
+  },
+  "255 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/axobject-query/2.2.0",
+    "size": 17839,
+    "status": "started"
+  },
+  "256 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/damerau-levenshtein/1.0.8",
+    "size": 4134,
+    "status": "started"
+  },
+  "257 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/react-is/16.13.1",
+    "wanted": {
+      "dependentId": "/prop-types/15.8.1",
+      "name": "react-is",
+      "rawSpec": "^16.13.1"
+    }
+  },
+  "258 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/react-is/16.13.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "259 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimatch/3.1.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "minimatch",
+      "rawSpec": "^3.0.4"
+    }
+  },
+  "260 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array-includes/3.1.4",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "array-includes",
+      "rawSpec": "^3.1.4"
+    }
+  },
+  "261 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/language-tags/1.0.5",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "language-tags",
+      "rawSpec": "^1.0.5"
+    }
+  },
+  "262 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/language-tags/1.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "263 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/debug/2.6.9",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "debug",
+      "rawSpec": "^2.6.9"
+    }
+  },
+  "264 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/doctrine/2.1.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "doctrine",
+      "rawSpec": "^2.1.0"
+    }
+  },
+  "265 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-import-resolver-node/0.3.6",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "eslint-import-resolver-node",
+      "rawSpec": "^0.3.6"
+    }
+  },
+  "266 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-import-resolver-node/0.3.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "267 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/damerau-levenshtein/1.0.8",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "268 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/axobject-query/2.2.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "269 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has/1.0.3",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "has",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "270 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has/1.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "271 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-freebsd-64/1.2.6: wanted {\"cpu\":[\"x64\"],\"os\":[\"freebsd\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "272 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-freebsd-64/1.2.6: wanted {\"cpu\":[\"x64\"],\"os\":[\"freebsd\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-freebsd-64/1.2.6",
+      "name": "turbo-freebsd-64",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "273 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-freebsd-64/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-freebsd-64",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "274 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-freebsd-64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "275 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/react-is/16.13.1",
+    "size": 5463,
+    "status": "started"
+  },
+  "276 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/react-is/16.13.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "277 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-darwin-64/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-darwin-64",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "278 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-darwin-64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "279 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has/1.0.3",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "has",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "280 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-core-module/2.9.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "is-core-module",
+      "rawSpec": "^2.7.0"
+    }
+  },
+  "281 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/emoji-regex/9.2.2",
+    "size": 11118,
+    "status": "started"
+  },
+  "282 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/language-tags/1.0.5",
+    "size": 10684,
+    "status": "started"
+  },
+  "283 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array.prototype.flat/1.3.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "array.prototype.flat",
+      "rawSpec": "^1.2.5"
+    }
+  },
+  "284 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/array.prototype.flat/1.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "285 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-import-resolver-node/0.3.6",
+    "size": 2514,
+    "status": "started"
+  },
+  "286 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimatch/3.1.2",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "minimatch",
+      "rawSpec": "^3.0.4"
+    }
+  },
+  "287 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.values/1.1.5",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "object.values",
+      "rawSpec": "^1.1.5"
+    }
+  },
+  "288 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve/1.22.0",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "resolve",
+      "rawSpec": "^1.20.0"
+    }
+  },
+  "289 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/language-tags/1.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "290 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-linux-mips64le/1.2.6: wanted {\"cpu\":[\"mips64el\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "291 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-linux-mips64le/1.2.6: wanted {\"cpu\":[\"mips64el\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-linux-mips64le/1.2.6",
+      "name": "turbo-linux-mips64le",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "292 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-linux-mips64le/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-linux-mips64le",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "293 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-linux-mips64le/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "294 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/emoji-regex/9.2.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "295 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-import-resolver-node/0.3.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "296 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-module-utils/2.7.3",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "eslint-module-utils",
+      "rawSpec": "^2.7.0"
+    }
+  },
+  "297 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-module-utils/2.7.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "298 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-linux-64/1.2.6: wanted {\"cpu\":[\"x64\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "299 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-linux-64/1.2.6: wanted {\"cpu\":[\"x64\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-linux-64/1.2.6",
+      "name": "turbo-linux-64",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "300 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-linux-64/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-linux-64",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "301 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-linux-64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "302 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/debug/4.3.4",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/parser/5.10.1",
+      "name": "debug",
+      "rawSpec": "^4.3.2"
+    }
+  },
+  "303 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/debug/4.3.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "304 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/debug/4.3.4",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-typescript/2.4.0",
+      "name": "debug",
+      "rawSpec": "^4.1.1"
+    }
+  },
+  "305 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-glob/4.0.3",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "is-glob",
+      "rawSpec": "^4.0.3"
+    }
+  },
+  "306 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-glob/4.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "307 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-glob/4.0.3",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-typescript/2.4.0",
+      "name": "is-glob",
+      "rawSpec": "^4.0.1"
+    }
+  },
+  "308 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve/1.22.0",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-typescript/2.4.0",
+      "name": "resolve",
+      "rawSpec": "^1.17.0"
+    }
+  },
+  "309 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/axe-core/4.4.1",
+    "wanted": {
+      "dependentId": "/eslint-plugin-jsx-a11y/6.5.1",
+      "name": "axe-core",
+      "rawSpec": "^4.3.5"
+    }
+  },
+  "310 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/axe-core/4.4.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "311 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/array.prototype.flat/1.3.0",
+    "size": 6050,
+    "status": "started"
+  },
+  "312 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/turbo-darwin-64/1.2.6",
+    "size": 4191709,
+    "status": "started"
+  },
+  "313 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tsconfig-paths/3.14.1",
+    "wanted": {
+      "dependentId": "/eslint-plugin-import/2.25.2",
+      "name": "tsconfig-paths",
+      "rawSpec": "^3.11.0"
+    }
+  },
+  "314 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tsconfig-paths/3.14.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "315 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tsconfig-paths/3.14.1",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-typescript/2.4.0",
+      "name": "tsconfig-paths",
+      "rawSpec": "^3.9.0"
+    }
+  },
+  "316 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/glob/7.2.0",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-typescript/2.4.0",
+      "name": "glob",
+      "rawSpec": "^7.1.6"
+    }
+  },
+  "317 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/glob/7.2.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "318 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/glob/7.1.7",
+    "wanted": {
+      "dependentId": "/@next/eslint-plugin-next/12.1.5",
+      "name": "glob",
+      "rawSpec": "7.1.7"
+    }
+  },
+  "319 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/glob/7.1.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "320 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/array.prototype.flat/1.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "321 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-glob/4.0.3",
+    "size": 4255,
+    "status": "started"
+  },
+  "322 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-glob/4.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "323 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/debug/4.3.4",
+    "size": 13252,
+    "status": "started"
+  },
+  "324 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/debug/4.3.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "325 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-module-utils/2.7.3",
+    "size": 10462,
+    "status": "started"
+  },
+  "326 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-tostringtag/1.0.0",
+    "wanted": {
+      "dependentId": "/is-string/1.0.7",
+      "name": "has-tostringtag",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "327 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has-tostringtag/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "328 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/axe-core/4.4.1",
+    "size": 374713,
+    "status": "started"
+  },
+  "329 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-linux-arm64/1.2.6: wanted {\"cpu\":[\"arm64\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "330 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-linux-arm64/1.2.6: wanted {\"cpu\":[\"arm64\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-linux-arm64/1.2.6",
+      "name": "turbo-linux-arm64",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "331 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-linux-arm64/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-linux-arm64",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "332 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-linux-arm64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "333 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "wanted": {
+      "dependentId": "/call-bind/1.0.2",
+      "name": "get-intrinsic",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "334 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-module-utils/2.7.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "335 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/glob/7.2.0",
+    "size": 15326,
+    "status": "started"
+  },
+  "336 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/glob/7.2.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "337 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/has-tostringtag/1.0.0",
+    "size": 4143,
+    "status": "started"
+  },
+  "338 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-property-descriptors/1.0.0",
+    "wanted": {
+      "dependentId": "/define-properties/1.1.4",
+      "name": "has-property-descriptors",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "339 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has-property-descriptors/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "340 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has-tostringtag/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "341 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object-keys/1.1.1",
+    "wanted": {
+      "dependentId": "/define-properties/1.1.4",
+      "name": "object-keys",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "342 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object-keys/1.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "343 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has/1.0.3",
+    "wanted": {
+      "dependentId": "/get-intrinsic/1.1.1",
+      "name": "has",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "344 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-symbols/1.0.3",
+    "wanted": {
+      "dependentId": "/get-intrinsic/1.1.1",
+      "name": "has-symbols",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "345 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "346 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/has-property-descriptors/1.0.0",
+    "size": 3854,
+    "status": "started"
+  },
+  "347 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-windows-32/1.2.6: wanted {\"cpu\":[\"ia32\"],\"os\":[\"win32\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "348 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-windows-32/1.2.6: wanted {\"cpu\":[\"ia32\"],\"os\":[\"win32\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-windows-32/1.2.6",
+      "name": "turbo-windows-32",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "349 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-windows-32/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-windows-32",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "350 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-windows-32/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "351 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has-property-descriptors/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "352 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/object-keys/1.1.1",
+    "size": 7677,
+    "status": "started"
+  },
+  "353 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "get-intrinsic",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "354 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object-keys/1.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "355 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has/1.0.3",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "has",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "356 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-symbols/1.0.3",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "has-symbols",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "357 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/internal-slot/1.0.3",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "internal-slot",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "358 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/axe-core/4.4.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "359 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/glob/7.1.7",
+    "size": 15782,
+    "status": "started"
+  },
+  "360 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-symbol-description/1.0.0",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "get-symbol-description",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "361 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/get-symbol-description/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "362 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-callable/1.2.4",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "is-callable",
+      "rawSpec": "^1.2.4"
+    }
+  },
+  "363 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-callable/1.2.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "364 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/glob/7.1.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "365 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-windows-arm64/1.2.6: wanted {\"cpu\":[\"arm64\"],\"os\":[\"win32\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "366 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-windows-arm64/1.2.6: wanted {\"cpu\":[\"arm64\"],\"os\":[\"win32\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-windows-arm64/1.2.6",
+      "name": "turbo-windows-arm64",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "367 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-windows-arm64/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-windows-arm64",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "368 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-windows-arm64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "369 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/has/1.0.3",
+    "size": 1553,
+    "status": "started"
+  },
+  "370 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has/1.0.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "371 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-negative-zero/2.0.2",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "is-negative-zero",
+      "rawSpec": "^2.0.2"
+    }
+  },
+  "372 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-negative-zero/2.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "373 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-string/1.0.7",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "is-string",
+      "rawSpec": "^1.0.7"
+    }
+  },
+  "374 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-regex/1.1.4",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "is-regex",
+      "rawSpec": "^1.1.4"
+    }
+  },
+  "375 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-regex/1.1.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "376 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-callable/1.2.4",
+    "size": 7001,
+    "status": "started"
+  },
+  "377 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/get-symbol-description/1.0.0",
+    "size": 4324,
+    "status": "started"
+  },
+  "378 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-shared-array-buffer/1.0.2",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "is-shared-array-buffer",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "379 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-shared-array-buffer/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "380 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-callable/1.2.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "381 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/get-symbol-description/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "382 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-weakref/1.0.2",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "is-weakref",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "383 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-weakref/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "384 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object-keys/1.1.1",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "object-keys",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "385 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object.assign/4.1.2",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "object.assign",
+      "rawSpec": "^4.1.2"
+    }
+  },
+  "386 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/scope-manager/5.10.1",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/parser/5.10.1",
+      "name": "@typescript-eslint/scope-manager",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "387 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/scope-manager/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "388 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-shared-array-buffer/1.0.2",
+    "size": 4683,
+    "status": "started"
+  },
+  "389 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/string.prototype.trimend/1.0.4",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "string.prototype.trimend",
+      "rawSpec": "^1.0.4"
+    }
+  },
+  "390 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/string.prototype.trimend/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "391 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-regex/1.1.4",
+    "size": 10555,
+    "status": "started"
+  },
+  "392 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-shared-array-buffer/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "393 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object-inspect/1.12.0",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "object-inspect",
+      "rawSpec": "^1.12.0"
+    }
+  },
+  "394 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object-inspect/1.12.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "395 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-regex/1.1.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "396 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-weakref/1.0.2",
+    "size": 4966,
+    "status": "started"
+  },
+  "397 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/string.prototype.trimstart/1.0.4",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "string.prototype.trimstart",
+      "rawSpec": "^1.0.4"
+    }
+  },
+  "398 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/string.prototype.trimstart/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "399 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "wanted": {
+      "dependentId": "/internal-slot/1.0.3",
+      "name": "get-intrinsic",
+      "rawSpec": "^1.1.0"
+    }
+  },
+  "400 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has/1.0.3",
+    "wanted": {
+      "dependentId": "/internal-slot/1.0.3",
+      "name": "has",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "401 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/side-channel/1.0.4",
+    "wanted": {
+      "dependentId": "/internal-slot/1.0.3",
+      "name": "side-channel",
+      "rawSpec": "^1.0.4"
+    }
+  },
+  "402 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/regexp.prototype.flags/1.4.3",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "403 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/regexp.prototype.flags/1.4.3",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "404 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/string.prototype.trimend/1.0.4",
+    "size": 6281,
+    "status": "started"
+  },
+  "405 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-to-primitive/1.2.1",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "es-to-primitive",
+      "rawSpec": "^1.2.1"
+    }
+  },
+  "406 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/es-to-primitive/1.2.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "407 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/unbox-primitive/1.0.2",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "unbox-primitive",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "408 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/unbox-primitive/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "409 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/side-channel/1.0.4",
+      "name": "call-bind",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "410 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "wanted": {
+      "dependentId": "/side-channel/1.0.4",
+      "name": "get-intrinsic",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "411 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object-inspect/1.12.0",
+    "wanted": {
+      "dependentId": "/side-channel/1.0.4",
+      "name": "object-inspect",
+      "rawSpec": "^1.9.0"
+    }
+  },
+  "412 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has/1.0.3",
+    "wanted": {
+      "dependentId": "/es-shim-unscopables/1.0.0",
+      "name": "has",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "413 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has/1.0.3",
+    "wanted": {
+      "dependentId": "/is-core-module/2.9.0",
+      "name": "has",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "414 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/object.assign/4.1.2",
+      "name": "call-bind",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "415 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/object.assign/4.1.2",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "416 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-symbols/1.0.3",
+    "wanted": {
+      "dependentId": "/object.assign/4.1.2",
+      "name": "has-symbols",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "417 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/object-keys/1.1.1",
+    "wanted": {
+      "dependentId": "/object.assign/4.1.2",
+      "name": "object-keys",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "418 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-weakref/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "419 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/string.prototype.trimend/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "420 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/object-inspect/1.12.0",
+    "size": 24697,
+    "status": "started"
+  },
+  "421 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@typescript-eslint/scope-manager/5.10.1",
+    "size": 94990,
+    "status": "started"
+  },
+  "422 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/functions-have-names/1.2.3",
+    "wanted": {
+      "dependentId": "/regexp.prototype.flags/1.4.3",
+      "name": "functions-have-names",
+      "rawSpec": "^1.2.2"
+    }
+  },
+  "423 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/functions-have-names/1.2.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "424 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/unbox-primitive/1.0.2",
+    "size": 5843,
+    "status": "started"
+  },
+  "425 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/balanced-match/1.0.2",
+    "wanted": {
+      "dependentId": "/brace-expansion/1.1.11",
+      "name": "balanced-match",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "426 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/balanced-match/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "427 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-core-module/2.9.0",
+    "wanted": {
+      "dependentId": "/resolve/1.22.0",
+      "name": "is-core-module",
+      "rawSpec": "^2.8.1"
+    }
+  },
+  "428 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/path-parse/1.0.7",
+    "wanted": {
+      "dependentId": "/resolve/1.22.0",
+      "name": "path-parse",
+      "rawSpec": "^1.0.7"
+    }
+  },
+  "429 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/object-inspect/1.12.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "430 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/unbox-primitive/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "431 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/functions-have-names/1.2.3",
+    "size": 6003,
+    "status": "started"
+  },
+  "432 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/concat-map/0.0.1",
+    "wanted": {
+      "dependentId": "/brace-expansion/1.1.11",
+      "name": "concat-map",
+      "rawSpec": "0.0.1"
+    }
+  },
+  "433 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/concat-map/0.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "434 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-negative-zero/2.0.2",
+    "size": 7706,
+    "status": "started"
+  },
+  "435 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/ms/2.0.0",
+    "wanted": {
+      "dependentId": "/debug/2.6.9",
+      "name": "ms",
+      "rawSpec": "2.0.0"
+    }
+  },
+  "436 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ms/2.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "437 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/supports-preserve-symlinks-flag/1.0.0",
+    "wanted": {
+      "dependentId": "/resolve/1.22.0",
+      "name": "supports-preserve-symlinks-flag",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "438 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/supports-preserve-symlinks-flag/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "439 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/functions-have-names/1.2.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "440 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-negative-zero/2.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "441 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/balanced-match/1.0.2",
+    "size": 2668,
+    "status": "started"
+  },
+  "442 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@babel/runtime/7.17.9",
+    "wanted": {
+      "dependentId": "/aria-query/4.2.2",
+      "name": "@babel/runtime",
+      "rawSpec": "^7.10.2"
+    }
+  },
+  "443 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-linux-arm/1.2.6: wanted {\"cpu\":[\"arm\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "444 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-linux-arm/1.2.6: wanted {\"cpu\":[\"arm\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-linux-arm/1.2.6",
+      "name": "turbo-linux-arm",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "445 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-linux-arm/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-linux-arm",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "446 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-linux-arm/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "447 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-freebsd-arm64/1.2.6: wanted {\"cpu\":[\"arm64\"],\"os\":[\"freebsd\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "448 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-freebsd-arm64/1.2.6: wanted {\"cpu\":[\"arm64\"],\"os\":[\"freebsd\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-freebsd-arm64/1.2.6",
+      "name": "turbo-freebsd-arm64",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "449 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-freebsd-arm64/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-freebsd-arm64",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "450 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-freebsd-arm64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "451 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/concat-map/0.0.1",
+    "size": 2263,
+    "status": "started"
+  },
+  "452 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/function-bind/1.1.1",
+    "wanted": {
+      "dependentId": "/call-bind/1.0.2",
+      "name": "function-bind",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "453 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/function-bind/1.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "454 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/function-bind/1.1.1",
+    "wanted": {
+      "dependentId": "/get-intrinsic/1.1.1",
+      "name": "function-bind",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "455 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/function-bind/1.1.1",
+    "wanted": {
+      "dependentId": "/es-abstract/1.19.5",
+      "name": "function-bind",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "456 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/function-bind/1.1.1",
+    "wanted": {
+      "dependentId": "/has/1.0.3",
+      "name": "function-bind",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "457 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/debug/3.2.7",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-node/0.3.6",
+      "name": "debug",
+      "rawSpec": "^3.2.7"
+    }
+  },
+  "458 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/debug/3.2.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "459 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/resolve/1.22.0",
+    "wanted": {
+      "dependentId": "/eslint-import-resolver-node/0.3.6",
+      "name": "resolve",
+      "rawSpec": "^1.20.0"
+    }
+  },
+  "460 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/array.prototype.flat/1.3.0",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "461 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/array.prototype.flat/1.3.0",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "462 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-abstract/1.19.5",
+    "wanted": {
+      "dependentId": "/array.prototype.flat/1.3.0",
+      "name": "es-abstract",
+      "rawSpec": "^1.19.2"
+    }
+  },
+  "463 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/es-shim-unscopables/1.0.0",
+    "wanted": {
+      "dependentId": "/array.prototype.flat/1.3.0",
+      "name": "es-shim-unscopables",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "464 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/debug/3.2.7",
+    "wanted": {
+      "dependentId": "/eslint-module-utils/2.7.3",
+      "name": "debug",
+      "rawSpec": "^3.2.7"
+    }
+  },
+  "465 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/ms/2.0.0",
+    "size": 2874,
+    "status": "started"
+  },
+  "466 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/js-tokens/4.0.0",
+    "wanted": {
+      "dependentId": "/loose-envify/1.4.0",
+      "name": "js-tokens",
+      "rawSpec": "^3.0.0 || ^4.0.0"
+    }
+  },
+  "467 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/js-tokens/4.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "468 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/supports-preserve-symlinks-flag/1.0.0",
+    "size": 3810,
+    "status": "started"
+  },
+  "469 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/regenerator-runtime/0.13.9",
+    "wanted": {
+      "dependentId": "/@babel/runtime/7.17.9",
+      "name": "regenerator-runtime",
+      "rawSpec": "^0.13.4"
+    }
+  },
+  "470 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/regenerator-runtime/0.13.9",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "471 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/language-subtag-registry/0.3.21",
+    "wanted": {
+      "dependentId": "/language-tags/1.0.5",
+      "name": "language-subtag-registry",
+      "rawSpec": "~0.3.2"
+    }
+  },
+  "472 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/language-subtag-registry/0.3.21",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "473 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-extglob/2.1.1",
+    "wanted": {
+      "dependentId": "/is-glob/4.0.3",
+      "name": "is-extglob",
+      "rawSpec": "^2.1.1"
+    }
+  },
+  "474 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-extglob/2.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "475 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/balanced-match/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "476 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/find-up/2.1.0",
+    "wanted": {
+      "dependentId": "/eslint-module-utils/2.7.3",
+      "name": "find-up",
+      "rawSpec": "^2.1.0"
+    }
+  },
+  "477 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/find-up/2.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "478 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/json5/1.0.1",
+    "wanted": {
+      "dependentId": "/tsconfig-paths/3.14.1",
+      "name": "json5",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "479 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/json5/1.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "480 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/json5/0.0.29",
+    "wanted": {
+      "dependentId": "/tsconfig-paths/3.14.1",
+      "name": "@types/json5",
+      "rawSpec": "^0.0.29"
+    }
+  },
+  "481 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/json5/0.0.29",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "482 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimist/1.2.6",
+    "wanted": {
+      "dependentId": "/tsconfig-paths/3.14.1",
+      "name": "minimist",
+      "rawSpec": "^1.2.6"
+    }
+  },
+  "483 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/minimist/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "484 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@babel/runtime-corejs3/7.17.9",
+    "wanted": {
+      "dependentId": "/aria-query/4.2.2",
+      "name": "@babel/runtime-corejs3",
+      "rawSpec": "^7.10.2"
+    }
+  },
+  "485 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@babel/runtime-corejs3/7.17.9",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "486 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/strip-bom/3.0.0",
+    "wanted": {
+      "dependentId": "/tsconfig-paths/3.14.1",
+      "name": "strip-bom",
+      "rawSpec": "^3.0.0"
+    }
+  },
+  "487 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/strip-bom/3.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "488 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/regenerator-runtime/0.13.9",
+    "size": 8437,
+    "status": "started"
+  },
+  "489 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/function-bind/1.1.1",
+    "size": 6301,
+    "status": "started"
+  },
+  "490 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/debug/3.2.7",
+    "size": 16872,
+    "status": "started"
+  },
+  "491 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/js-tokens/4.0.0",
+    "size": 6542,
+    "status": "started"
+  },
+  "492 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/language-subtag-registry/0.3.21",
+    "size": 209971,
+    "status": "started"
+  },
+  "493 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-extglob/2.1.1",
+    "size": 2663,
+    "status": "started"
+  },
+  "494 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/concat-map/0.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "495 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ms/2.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "496 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/find-up/2.1.0",
+    "size": 2234,
+    "status": "started"
+  },
+  "497 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/supports-preserve-symlinks-flag/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "498 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimatch/3.1.2",
+    "wanted": {
+      "dependentId": "/glob/7.2.0",
+      "name": "minimatch",
+      "rawSpec": "^3.0.4"
+    }
+  },
+  "499 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/json5/1.0.1",
+    "size": 25561,
+    "status": "started"
+  },
+  "500 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@types/json5/0.0.29",
+    "size": 1507,
+    "status": "started"
+  },
+  "501 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/fs.realpath/1.0.0",
+    "wanted": {
+      "dependentId": "/glob/7.2.0",
+      "name": "fs.realpath",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "502 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fs.realpath/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "503 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/fs.realpath/1.0.0",
+    "wanted": {
+      "dependentId": "/glob/7.1.7",
+      "name": "fs.realpath",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "504 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/inflight/1.0.6",
+    "wanted": {
+      "dependentId": "/glob/7.2.0",
+      "name": "inflight",
+      "rawSpec": "^1.0.4"
+    }
+  },
+  "505 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/inflight/1.0.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "506 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/inflight/1.0.6",
+    "wanted": {
+      "dependentId": "/glob/7.1.7",
+      "name": "inflight",
+      "rawSpec": "^1.0.4"
+    }
+  },
+  "507 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimatch/3.1.2",
+    "wanted": {
+      "dependentId": "/glob/7.1.7",
+      "name": "minimatch",
+      "rawSpec": "^3.0.4"
+    }
+  },
+  "508 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/inherits/2.0.4",
+    "wanted": {
+      "dependentId": "/glob/7.2.0",
+      "name": "inherits",
+      "rawSpec": "2"
+    }
+  },
+  "509 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/inherits/2.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "510 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/inherits/2.0.4",
+    "wanted": {
+      "dependentId": "/glob/7.1.7",
+      "name": "inherits",
+      "rawSpec": "2"
+    }
+  },
+  "511 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-symbols/1.0.3",
+    "wanted": {
+      "dependentId": "/has-tostringtag/1.0.0",
+      "name": "has-symbols",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "512 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "wanted": {
+      "dependentId": "/has-property-descriptors/1.0.0",
+      "name": "get-intrinsic",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "513 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/get-symbol-description/1.0.0",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "514 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/get-intrinsic/1.1.1",
+    "wanted": {
+      "dependentId": "/get-symbol-description/1.0.0",
+      "name": "get-intrinsic",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "515 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/is-regex/1.1.4",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "516 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-tostringtag/1.0.0",
+    "wanted": {
+      "dependentId": "/is-regex/1.1.4",
+      "name": "has-tostringtag",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "517 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/is-shared-array-buffer/1.0.2",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "518 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/is-weakref/1.0.2",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "519 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/string.prototype.trimend/1.0.4",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "520 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/string.prototype.trimend/1.0.4",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "521 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/string.prototype.trimstart/1.0.4",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "522 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/define-properties/1.1.4",
+    "wanted": {
+      "dependentId": "/string.prototype.trimstart/1.0.4",
+      "name": "define-properties",
+      "rawSpec": "^1.1.3"
+    }
+  },
+  "523 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-callable/1.2.4",
+    "wanted": {
+      "dependentId": "/es-to-primitive/1.2.1",
+      "name": "is-callable",
+      "rawSpec": "^1.1.4"
+    }
+  },
+  "524 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@babel/runtime-corejs3/7.17.9",
+    "size": 50633,
+    "status": "started"
+  },
+  "525 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/path-is-absolute/1.0.1",
+    "wanted": {
+      "dependentId": "/glob/7.2.0",
+      "name": "path-is-absolute",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "526 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/path-is-absolute/1.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "527 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/path-is-absolute/1.0.1",
+    "wanted": {
+      "dependentId": "/glob/7.1.7",
+      "name": "path-is-absolute",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "528 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/once/1.4.0",
+    "wanted": {
+      "dependentId": "/glob/7.2.0",
+      "name": "once",
+      "rawSpec": "^1.3.0"
+    }
+  },
+  "529 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/once/1.4.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "530 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/once/1.4.0",
+    "wanted": {
+      "dependentId": "/glob/7.1.7",
+      "name": "once",
+      "rawSpec": "^1.3.0"
+    }
+  },
+  "531 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/unbox-primitive/1.0.2",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "532 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/regenerator-runtime/0.13.9",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "533 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/function-bind/1.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "534 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/js-tokens/4.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "535 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/fs.realpath/1.0.0",
+    "size": 4434,
+    "status": "started"
+  },
+  "536 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/find-up/2.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "537 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-extglob/2.1.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "538 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/debug/3.2.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "539 warn pnpm:install-check": {
+    "message": "Unsupported platform for registry.npmjs.org/turbo-linux-ppc64le/1.2.6: wanted {\"cpu\":[\"ppc64\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "540 debug pnpm:skipped-optional-dependency": {
+    "details": "Error: Unsupported platform for registry.npmjs.org/turbo-linux-ppc64le/1.2.6: wanted {\"cpu\":[\"ppc64\"],\"os\":[\"linux\"]} (current: {\"os\":\"darwin\",\"cpu\":\"x64\"})",
+    "package": {
+      "id": "registry.npmjs.org/turbo-linux-ppc64le/1.2.6",
+      "name": "turbo-linux-ppc64le",
+      "version": "1.2.6"
+    },
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "reason": "unsupported_platform"
+  },
+  "541 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/turbo-linux-ppc64le/1.2.6",
+    "wanted": {
+      "dependentId": "/turbo/1.2.6",
+      "name": "turbo-linux-ppc64le",
+      "rawSpec": "1.2.6"
+    }
+  },
+  "542 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-linux-ppc64le/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "543 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-symbols/1.0.3",
+    "wanted": {
+      "dependentId": "/unbox-primitive/1.0.2",
+      "name": "has-symbols",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "544 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/inflight/1.0.6",
+    "size": 2041,
+    "status": "started"
+  },
+  "545 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-date-object/1.0.5",
+    "wanted": {
+      "dependentId": "/es-to-primitive/1.2.1",
+      "name": "is-date-object",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "546 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-date-object/1.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "547 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/ms/2.1.3",
+    "wanted": {
+      "dependentId": "/debug/3.2.7",
+      "name": "ms",
+      "rawSpec": "^2.1.1"
+    }
+  },
+  "548 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ms/2.1.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "549 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/inherits/2.0.4",
+    "size": 2030,
+    "status": "started"
+  },
+  "550 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/json5/0.0.29",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "551 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/scope-manager/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "552 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-symbol/1.0.4",
+    "wanted": {
+      "dependentId": "/es-to-primitive/1.2.1",
+      "name": "is-symbol",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "553 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-symbol/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "554 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/regenerator-runtime/0.13.9",
+    "wanted": {
+      "dependentId": "/@babel/runtime-corejs3/7.17.9",
+      "name": "regenerator-runtime",
+      "rawSpec": "^0.13.4"
+    }
+  },
+  "555 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/minimist/1.2.6",
+    "wanted": {
+      "dependentId": "/json5/1.0.1",
+      "name": "minimist",
+      "rawSpec": "^1.2.0"
+    }
+  },
+  "556 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/once/1.4.0",
+    "wanted": {
+      "dependentId": "/inflight/1.0.6",
+      "name": "once",
+      "rawSpec": "^1.3.0"
+    }
+  },
+  "557 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-bigints/1.0.2",
+    "wanted": {
+      "dependentId": "/unbox-primitive/1.0.2",
+      "name": "has-bigints",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "558 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has-bigints/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "559 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/path-is-absolute/1.0.1",
+    "size": 1882,
+    "status": "started"
+  },
+  "560 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/once/1.4.0",
+    "size": 1979,
+    "status": "started"
+  },
+  "561 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fs.realpath/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "562 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/ms/2.1.3",
+    "size": 2967,
+    "status": "started"
+  },
+  "563 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-date-object/1.0.5",
+    "size": 7499,
+    "status": "started"
+  },
+  "564 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/locate-path/2.0.0",
+    "wanted": {
+      "dependentId": "/find-up/2.1.0",
+      "name": "locate-path",
+      "rawSpec": "^2.0.0"
+    }
+  },
+  "565 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/locate-path/2.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "566 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/which-boxed-primitive/1.0.2",
+    "wanted": {
+      "dependentId": "/unbox-primitive/1.0.2",
+      "name": "which-boxed-primitive",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "567 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/which-boxed-primitive/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "568 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-tostringtag/1.0.0",
+    "wanted": {
+      "dependentId": "/is-date-object/1.0.5",
+      "name": "has-tostringtag",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "569 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-symbols/1.0.3",
+    "wanted": {
+      "dependentId": "/is-symbol/1.0.4",
+      "name": "has-symbols",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "570 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/wrappy/1.0.2",
+    "wanted": {
+      "dependentId": "/inflight/1.0.6",
+      "name": "wrappy",
+      "rawSpec": "1"
+    }
+  },
+  "571 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/wrappy/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "572 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/wrappy/1.0.2",
+    "wanted": {
+      "dependentId": "/once/1.4.0",
+      "name": "wrappy",
+      "rawSpec": "1"
+    }
+  },
+  "573 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/inflight/1.0.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "574 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/strip-bom/3.0.0",
+    "size": 1736,
+    "status": "started"
+  },
+  "575 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-symbol/1.0.4",
+    "size": 8086,
+    "status": "started"
+  },
+  "576 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/json5/1.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "577 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/inherits/2.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "578 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/core-js-pure/3.22.2",
+    "wanted": {
+      "dependentId": "/@babel/runtime-corejs3/7.17.9",
+      "name": "core-js-pure",
+      "rawSpec": "^3.20.2"
+    }
+  },
+  "579 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/core-js-pure/3.22.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "580 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/has-bigints/1.0.2",
+    "size": 5049,
+    "status": "started"
+  },
+  "581 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/p-locate/2.0.0",
+    "wanted": {
+      "dependentId": "/locate-path/2.0.0",
+      "name": "p-locate",
+      "rawSpec": "^2.0.0"
+    }
+  },
+  "582 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/p-locate/2.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "583 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/path-exists/3.0.0",
+    "wanted": {
+      "dependentId": "/locate-path/2.0.0",
+      "name": "path-exists",
+      "rawSpec": "^3.0.0"
+    }
+  },
+  "584 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/path-exists/3.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "585 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-string/1.0.7",
+    "wanted": {
+      "dependentId": "/which-boxed-primitive/1.0.2",
+      "name": "is-string",
+      "rawSpec": "^1.0.5"
+    }
+  },
+  "586 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-symbol/1.0.4",
+    "wanted": {
+      "dependentId": "/which-boxed-primitive/1.0.2",
+      "name": "is-symbol",
+      "rawSpec": "^1.0.3"
+    }
+  },
+  "587 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/which-boxed-primitive/1.0.2",
+    "size": 5674,
+    "status": "started"
+  },
+  "588 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/wrappy/1.0.2",
+    "size": 1676,
+    "status": "started"
+  },
+  "589 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/locate-path/2.0.0",
+    "size": 2019,
+    "status": "started"
+  },
+  "590 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-bigint/1.0.4",
+    "wanted": {
+      "dependentId": "/which-boxed-primitive/1.0.2",
+      "name": "is-bigint",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "591 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-bigint/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "592 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/path-is-absolute/1.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "593 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/once/1.4.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "594 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ms/2.1.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "595 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/string.prototype.trimstart/1.0.4",
+    "size": 6288,
+    "status": "started"
+  },
+  "596 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-date-object/1.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "597 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/strip-bom/3.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "598 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-symbol/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "599 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-number-object/1.0.7",
+    "wanted": {
+      "dependentId": "/which-boxed-primitive/1.0.2",
+      "name": "is-number-object",
+      "rawSpec": "^1.0.4"
+    }
+  },
+  "600 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-number-object/1.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "601 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/has-bigints/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "602 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/wrappy/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "603 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/locate-path/2.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "604 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/which-boxed-primitive/1.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "605 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-boolean-object/1.1.2",
+    "wanted": {
+      "dependentId": "/which-boxed-primitive/1.0.2",
+      "name": "is-boolean-object",
+      "rawSpec": "^1.1.0"
+    }
+  },
+  "606 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-boolean-object/1.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "607 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/p-limit/1.3.0",
+    "wanted": {
+      "dependentId": "/p-locate/2.0.0",
+      "name": "p-limit",
+      "rawSpec": "^1.1.0"
+    }
+  },
+  "608 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/p-limit/1.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "609 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-bigints/1.0.2",
+    "wanted": {
+      "dependentId": "/is-bigint/1.0.4",
+      "name": "has-bigints",
+      "rawSpec": "^1.0.1"
+    }
+  },
+  "610 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-tostringtag/1.0.0",
+    "wanted": {
+      "dependentId": "/is-number-object/1.0.7",
+      "name": "has-tostringtag",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "611 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/call-bind/1.0.2",
+    "wanted": {
+      "dependentId": "/is-boolean-object/1.1.2",
+      "name": "call-bind",
+      "rawSpec": "^1.0.2"
+    }
+  },
+  "612 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/has-tostringtag/1.0.0",
+    "wanted": {
+      "dependentId": "/is-boolean-object/1.1.2",
+      "name": "has-tostringtag",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "613 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/core-js-pure/3.22.2",
+    "size": 221935,
+    "status": "started"
+  },
+  "614 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/es-to-primitive/1.2.1",
+    "size": 8725,
+    "status": "started"
+  },
+  "615 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@next/eslint-plugin-next/12.1.5",
+    "size": 10790,
+    "status": "started"
+  },
+  "616 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/p-locate/2.0.0",
+    "size": 2580,
+    "status": "started"
+  },
+  "617 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/aria-query/4.2.2",
+    "size": 23429,
+    "status": "started"
+  },
+  "618 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/tsconfig-paths/3.14.1",
+    "size": 42074,
+    "status": "started"
+  },
+  "619 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/path-exists/3.0.0",
+    "size": 1891,
+    "status": "started"
+  },
+  "620 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/p-try/1.0.0",
+    "wanted": {
+      "dependentId": "/p-limit/1.3.0",
+      "name": "p-try",
+      "rawSpec": "^1.0.0"
+    }
+  },
+  "621 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/p-try/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "622 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/string.prototype.trimstart/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "623 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-number-object/1.0.7",
+    "size": 7885,
+    "status": "started"
+  },
+  "624 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-bigint/1.0.4",
+    "size": 5746,
+    "status": "started"
+  },
+  "625 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-boolean-object/1.1.2",
+    "size": 7852,
+    "status": "started"
+  },
+  "626 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/p-try/1.0.0",
+    "size": 1684,
+    "status": "started"
+  },
+  "627 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/p-limit/1.3.0",
+    "size": 2000,
+    "status": "started"
+  },
+  "628 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/minimist/1.2.6",
+    "size": 8363,
+    "status": "started"
+  },
+  "629 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@babel/runtime-corejs3/7.17.9",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "630 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/p-locate/2.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "631 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/path-exists/3.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "632 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/es-to-primitive/1.2.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "633 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@next/eslint-plugin-next/12.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "634 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-number-object/1.0.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "635 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-bigint/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "636 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-boolean-object/1.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "637 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/p-try/1.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "638 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/p-limit/1.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "639 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/minimist/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "640 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/aria-query/4.2.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "641 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tsconfig-paths/3.14.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "642 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/language-subtag-registry/0.3.21",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "643 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/typescript-estree/5.10.1",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/parser/5.10.1",
+      "name": "@typescript-eslint/typescript-estree",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "644 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/typescript-estree/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "645 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@typescript-eslint/typescript-estree/5.10.1",
+    "size": 87784,
+    "status": "started"
+  },
+  "646 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/types/5.10.1",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/parser/5.10.1",
+      "name": "@typescript-eslint/types",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "647 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/types/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "648 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/ms/2.1.2",
+    "wanted": {
+      "dependentId": "/debug/4.3.4",
+      "name": "ms",
+      "rawSpec": "2.1.2"
+    }
+  },
+  "649 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ms/2.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "650 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/types/5.10.1",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/scope-manager/5.10.1",
+      "name": "@typescript-eslint/types",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "651 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/types/5.10.1",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/typescript-estree/5.10.1",
+      "name": "@typescript-eslint/types",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "652 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/debug/4.3.4",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/typescript-estree/5.10.1",
+      "name": "debug",
+      "rawSpec": "^4.3.2"
+    }
+  },
+  "653 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-glob/4.0.3",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/typescript-estree/5.10.1",
+      "name": "is-glob",
+      "rawSpec": "^4.0.3"
+    }
+  },
+  "654 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/semver/7.3.7",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/typescript-estree/5.10.1",
+      "name": "semver",
+      "rawSpec": "^7.3.5"
+    }
+  },
+  "655 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/semver/7.3.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "656 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/typescript-estree/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "657 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/ms/2.1.2",
+    "size": 3017,
+    "status": "started"
+  },
+  "658 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/semver/7.3.7",
+    "size": 25007,
+    "status": "started"
+  },
+  "659 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/globby/11.1.0",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/typescript-estree/5.10.1",
+      "name": "globby",
+      "rawSpec": "^11.0.4"
+    }
+  },
+  "660 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/globby/11.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "661 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tsutils/3.21.0",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/typescript-estree/5.10.1",
+      "name": "tsutils",
+      "rawSpec": "^3.21.0"
+    }
+  },
+  "662 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tsutils/3.21.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "663 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/globby/11.1.0",
+    "size": 6381,
+    "status": "started"
+  },
+  "664 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/tsutils/3.21.0",
+    "size": 71426,
+    "status": "started"
+  },
+  "665 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ms/2.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "666 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@typescript-eslint/types/5.10.1",
+    "size": 21516,
+    "status": "started"
+  },
+  "667 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/globby/11.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "668 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/semver/7.3.7",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "669 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tsutils/3.21.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "670 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/visitor-keys/5.10.1",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/scope-manager/5.10.1",
+      "name": "@typescript-eslint/visitor-keys",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "671 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/visitor-keys/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "672 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/visitor-keys/5.10.1",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/typescript-estree/5.10.1",
+      "name": "@typescript-eslint/visitor-keys",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "673 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@typescript-eslint/types/5.10.1",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/visitor-keys/5.10.1",
+      "name": "@typescript-eslint/types",
+      "rawSpec": "5.10.1"
+    }
+  },
+  "674 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-visitor-keys/3.3.0",
+    "wanted": {
+      "dependentId": "/@typescript-eslint/visitor-keys/5.10.1",
+      "name": "eslint-visitor-keys",
+      "rawSpec": "^3.0.0"
+    }
+  },
+  "675 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-visitor-keys/3.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "676 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/fast-glob/3.2.11",
+    "wanted": {
+      "dependentId": "/globby/11.1.0",
+      "name": "fast-glob",
+      "rawSpec": "^3.2.9"
+    }
+  },
+  "677 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fast-glob/3.2.11",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "678 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/lru-cache/6.0.0",
+    "wanted": {
+      "dependentId": "/semver/7.3.7",
+      "name": "lru-cache",
+      "rawSpec": "^6.0.0"
+    }
+  },
+  "679 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/lru-cache/6.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "680 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/array-union/2.1.0",
+    "wanted": {
+      "dependentId": "/globby/11.1.0",
+      "name": "array-union",
+      "rawSpec": "^2.1.0"
+    }
+  },
+  "681 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/array-union/2.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "682 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/dir-glob/3.0.1",
+    "wanted": {
+      "dependentId": "/globby/11.1.0",
+      "name": "dir-glob",
+      "rawSpec": "^3.0.1"
+    }
+  },
+  "683 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/dir-glob/3.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "684 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/slash/3.0.0",
+    "wanted": {
+      "dependentId": "/globby/11.1.0",
+      "name": "slash",
+      "rawSpec": "^3.0.0"
+    }
+  },
+  "685 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/slash/3.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "686 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/merge2/1.4.1",
+    "wanted": {
+      "dependentId": "/globby/11.1.0",
+      "name": "merge2",
+      "rawSpec": "^1.4.1"
+    }
+  },
+  "687 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/merge2/1.4.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "688 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/yallist/4.0.0",
+    "wanted": {
+      "dependentId": "/lru-cache/6.0.0",
+      "name": "yallist",
+      "rawSpec": "^4.0.0"
+    }
+  },
+  "689 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/yallist/4.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "690 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/types/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "691 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/lru-cache/6.0.0",
+    "size": 5788,
+    "status": "started"
+  },
+  "692 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@typescript-eslint/visitor-keys/5.10.1",
+    "size": 5072,
+    "status": "started"
+  },
+  "693 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/eslint-visitor-keys/3.3.0",
+    "size": 7910,
+    "status": "started"
+  },
+  "694 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/fast-glob/3.2.11",
+    "size": 23036,
+    "status": "started"
+  },
+  "695 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tslib/1.14.1",
+    "wanted": {
+      "dependentId": "/tsutils/3.21.0",
+      "name": "tslib",
+      "rawSpec": "^1.8.1"
+    }
+  },
+  "696 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tslib/1.14.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "697 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/array-union/2.1.0",
+    "size": 1606,
+    "status": "started"
+  },
+  "698 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/dir-glob/3.0.1",
+    "size": 2258,
+    "status": "started"
+  },
+  "699 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/merge2/1.4.1",
+    "size": 3409,
+    "status": "started"
+  },
+  "700 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/slash/3.0.0",
+    "size": 1840,
+    "status": "started"
+  },
+  "701 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/yallist/4.0.0",
+    "size": 4494,
+    "status": "started"
+  },
+  "702 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/tslib/1.14.1",
+    "size": 7605,
+    "status": "started"
+  },
+  "703 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/array-union/2.1.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "704 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/dir-glob/3.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "705 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/merge2/1.4.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "706 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/lru-cache/6.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "707 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@typescript-eslint/visitor-keys/5.10.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "708 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-visitor-keys/3.3.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "709 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/slash/3.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "710 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/yallist/4.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "711 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fast-glob/3.2.11",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "712 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tslib/1.14.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "713 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/core-js-pure/3.22.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "714 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/turbo-darwin-64/1.2.6",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "715 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/ignore/5.2.0",
+    "wanted": {
+      "dependentId": "/globby/11.1.0",
+      "name": "ignore",
+      "rawSpec": "^5.2.0"
+    }
+  },
+  "716 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ignore/5.2.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "717 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/merge2/1.4.1",
+    "wanted": {
+      "dependentId": "/fast-glob/3.2.11",
+      "name": "merge2",
+      "rawSpec": "^1.3.0"
+    }
+  },
+  "718 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/path-type/4.0.0",
+    "wanted": {
+      "dependentId": "/dir-glob/3.0.1",
+      "name": "path-type",
+      "rawSpec": "^4.0.0"
+    }
+  },
+  "719 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/path-type/4.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "720 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/ignore/5.2.0",
+    "size": 13830,
+    "status": "started"
+  },
+  "721 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/glob-parent/5.1.2",
+    "wanted": {
+      "dependentId": "/fast-glob/3.2.11",
+      "name": "glob-parent",
+      "rawSpec": "^5.1.2"
+    }
+  },
+  "722 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/glob-parent/5.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "723 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/micromatch/4.0.5",
+    "wanted": {
+      "dependentId": "/fast-glob/3.2.11",
+      "name": "micromatch",
+      "rawSpec": "^4.0.4"
+    }
+  },
+  "724 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/micromatch/4.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "725 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@nodelib/fs.walk/1.2.8",
+    "wanted": {
+      "dependentId": "/fast-glob/3.2.11",
+      "name": "@nodelib/fs.walk",
+      "rawSpec": "^1.2.3"
+    }
+  },
+  "726 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@nodelib/fs.walk/1.2.8",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "727 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/ignore/5.2.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "728 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/path-type/4.0.0",
+    "size": 2018,
+    "status": "started"
+  },
+  "729 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/path-type/4.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "730 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/glob-parent/5.1.2",
+    "size": 4853,
+    "status": "started"
+  },
+  "731 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/micromatch/4.0.5",
+    "size": 14433,
+    "status": "started"
+  },
+  "732 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/glob-parent/5.1.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "733 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/micromatch/4.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "734 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@nodelib/fs.walk/1.2.8",
+    "size": 7360,
+    "status": "started"
+  },
+  "735 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@nodelib/fs.walk/1.2.8",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "736 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@nodelib/fs.stat/2.0.5",
+    "wanted": {
+      "dependentId": "/fast-glob/3.2.11",
+      "name": "@nodelib/fs.stat",
+      "rawSpec": "^2.0.2"
+    }
+  },
+  "737 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@nodelib/fs.stat/2.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "738 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-glob/4.0.3",
+    "wanted": {
+      "dependentId": "/glob-parent/5.1.2",
+      "name": "is-glob",
+      "rawSpec": "^4.0.1"
+    }
+  },
+  "739 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/fastq/1.13.0",
+    "wanted": {
+      "dependentId": "/@nodelib/fs.walk/1.2.8",
+      "name": "fastq",
+      "rawSpec": "^1.6.0"
+    }
+  },
+  "740 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fastq/1.13.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "741 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/picomatch/2.3.1",
+    "wanted": {
+      "dependentId": "/micromatch/4.0.5",
+      "name": "picomatch",
+      "rawSpec": "^2.3.1"
+    }
+  },
+  "742 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/picomatch/2.3.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "743 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/braces/3.0.2",
+    "wanted": {
+      "dependentId": "/micromatch/4.0.5",
+      "name": "braces",
+      "rawSpec": "^3.0.2"
+    }
+  },
+  "744 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/braces/3.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "745 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@nodelib/fs.stat/2.0.5",
+    "size": 4182,
+    "status": "started"
+  },
+  "746 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/fastq/1.13.0",
+    "size": 8539,
+    "status": "started"
+  },
+  "747 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@nodelib/fs.stat/2.0.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "748 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fastq/1.13.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "749 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/braces/3.0.2",
+    "size": 15637,
+    "status": "started"
+  },
+  "750 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/picomatch/2.3.1",
+    "size": 24289,
+    "status": "started"
+  },
+  "751 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/braces/3.0.2",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "752 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/picomatch/2.3.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "753 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/fill-range/7.0.1",
+    "wanted": {
+      "dependentId": "/braces/3.0.2",
+      "name": "fill-range",
+      "rawSpec": "^7.0.1"
+    }
+  },
+  "754 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fill-range/7.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "755 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/fill-range/7.0.1",
+    "size": 5567,
+    "status": "started"
+  },
+  "756 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/fill-range/7.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "757 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/to-regex-range/5.0.1",
+    "wanted": {
+      "dependentId": "/fill-range/7.0.1",
+      "name": "to-regex-range",
+      "rawSpec": "^5.0.1"
+    }
+  },
+  "758 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/to-regex-range/5.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "759 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/to-regex-range/5.0.1",
+    "size": 7479,
+    "status": "started"
+  },
+  "760 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/to-regex-range/5.0.1",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "761 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/is-number/7.0.0",
+    "wanted": {
+      "dependentId": "/to-regex-range/5.0.1",
+      "name": "is-number",
+      "rawSpec": "^7.0.0"
+    }
+  },
+  "762 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-number/7.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "763 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/is-number/7.0.0",
+    "size": 3730,
+    "status": "started"
+  },
+  "764 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/is-number/7.0.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "765 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@nodelib/fs.scandir/2.1.5",
+    "wanted": {
+      "dependentId": "/@nodelib/fs.walk/1.2.8",
+      "name": "@nodelib/fs.scandir",
+      "rawSpec": "2.1.5"
+    }
+  },
+  "766 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@nodelib/fs.scandir/2.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "767 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@nodelib/fs.stat/2.0.5",
+    "wanted": {
+      "dependentId": "/@nodelib/fs.scandir/2.1.5",
+      "name": "@nodelib/fs.stat",
+      "rawSpec": "2.0.5"
+    }
+  },
+  "768 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/reusify/1.0.4",
+    "wanted": {
+      "dependentId": "/fastq/1.13.0",
+      "name": "reusify",
+      "rawSpec": "^1.0.4"
+    }
+  },
+  "769 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/reusify/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "770 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/run-parallel/1.2.0",
+    "wanted": {
+      "dependentId": "/@nodelib/fs.scandir/2.1.5",
+      "name": "run-parallel",
+      "rawSpec": "^1.1.9"
+    }
+  },
+  "771 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/run-parallel/1.2.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "772 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/@nodelib/fs.scandir/2.1.5",
+    "size": 6586,
+    "status": "started"
+  },
+  "773 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/reusify/1.0.4",
+    "size": 4117,
+    "status": "started"
+  },
+  "774 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/reusify/1.0.4",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "775 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@nodelib/fs.scandir/2.1.5",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "776 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/run-parallel/1.2.0",
+    "size": 2813,
+    "status": "started"
+  },
+  "777 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/queue-microtask/1.2.3",
+    "wanted": {
+      "dependentId": "/run-parallel/1.2.0",
+      "name": "queue-microtask",
+      "rawSpec": "^1.2.2"
+    }
+  },
+  "778 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/queue-microtask/1.2.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "resolved"
+  },
+  "779 debug pnpm:package-manifest": {
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "updated": {
+      "name": "app-services-components",
+      "version": "0.0.0",
+      "private": true,
+      "scripts": {
+        "docs:dev": "npx docsify serve docs",
+        "build": "turbo run build --force",
+        "dev": "turbo run dev --parallel",
+        "lint": "turbo run lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+      },
+      "devDependencies": {
+        "prettier": "latest",
+        "turbo": "latest"
+      },
+      "engines": {
+        "npm": ">=7.0.0",
+        "node": "14"
+      }
+    }
+  },
+  "780 debug pnpm:package-manifest": {
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components/packages/config",
+    "updated": {
+      "name": "config",
+      "version": "0.0.0",
+      "main": "index.js",
+      "license": "MIT",
+      "files": [
+        "eslint-preset.js"
+      ],
+      "dependencies": {
+        "eslint-config-next": "^12.0.8",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-react": "7.28.0"
+      }
+    }
+  },
+  "781 debug pnpm:package-manifest": {
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components/packages/tsconfig",
+    "updated": {
+      "name": "tsconfig",
+      "version": "0.0.0",
+      "private": true,
+      "main": "index.js",
+      "files": [
+        "base.json",
+        "nextjs.json",
+        "react-library.json"
+      ]
+    }
+  },
+  "782 debug pnpm:stage": {
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "stage": "resolution_done"
+  },
+  "783 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/queue-microtask/1.2.3",
+    "size": 3676,
+    "status": "started"
+  },
+  "784 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/run-parallel/1.2.0",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "785 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/queue-microtask/1.2.3",
+    "requester": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "status": "fetched"
+  },
+  "786 debug pnpm:stage": {
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components",
+    "stage": "importing_done"
+  },
+  "787 debug pnpm:summary": {
+    "prefix": "/Users/ahwelgemoed/Documents/repos/app-services-components"
+  },
+  "788 error pnpm": {
+    "code": "ERR_PNPM_PEER_DEP_ISSUES",
+    "issuesByProjects": {
+      "packages/config": {
+        "bad": {},
+        "missing": {
+          "supports-color": [
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "@typescript-eslint/parser",
+                  "version": "5.10.1"
+                },
+                {
+                  "name": "@typescript-eslint/typescript-estree",
+                  "version": "5.10.1"
+                },
+                {
+                  "name": "debug",
+                  "version": "4.3.4"
+                }
+              ],
+              "optional": true,
+              "wantedRange": "*"
+            }
+          ],
+          "typescript": [
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "@typescript-eslint/parser",
+                  "version": "5.10.1"
+                },
+                {
+                  "name": "@typescript-eslint/typescript-estree",
+                  "version": "5.10.1"
+                },
+                {
+                  "name": "tsutils",
+                  "version": "3.21.0"
+                }
+              ],
+              "optional": false,
+              "wantedRange": ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "@typescript-eslint/parser",
+                  "version": "5.10.1"
+                },
+                {
+                  "name": "@typescript-eslint/typescript-estree",
+                  "version": "5.10.1"
+                }
+              ],
+              "optional": true,
+              "wantedRange": "*"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "@typescript-eslint/parser",
+                  "version": "5.10.1"
+                }
+              ],
+              "optional": true,
+              "wantedRange": "*"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                }
+              ],
+              "optional": true,
+              "wantedRange": ">=3.3.1"
+            }
+          ],
+          "eslint": [
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "@typescript-eslint/parser",
+                  "version": "5.10.1"
+                }
+              ],
+              "optional": false,
+              "wantedRange": "^6.0.0 || ^7.0.0 || ^8.0.0"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "eslint-import-resolver-typescript",
+                  "version": "2.4.0"
+                }
+              ],
+              "optional": false,
+              "wantedRange": "*"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "eslint-plugin-import",
+                  "version": "2.25.2"
+                }
+              ],
+              "optional": false,
+              "wantedRange": "^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "eslint-plugin-jsx-a11y",
+                  "version": "6.5.1"
+                }
+              ],
+              "optional": false,
+              "wantedRange": "^3 || ^4 || ^5 || ^6 || ^7 || ^8"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "eslint-plugin-react",
+                  "version": "7.29.1"
+                }
+              ],
+              "optional": false,
+              "wantedRange": "^3 || ^4 || ^5 || ^6 || ^7 || ^8"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                },
+                {
+                  "name": "eslint-plugin-react-hooks",
+                  "version": "4.3.0"
+                }
+              ],
+              "optional": false,
+              "wantedRange": "^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                }
+              ],
+              "optional": false,
+              "wantedRange": "^7.23.0 || ^8.0.0"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-prettier",
+                  "version": "8.5.0"
+                }
+              ],
+              "optional": false,
+              "wantedRange": ">=7.0.0"
+            },
+            {
+              "parents": [
+                {
+                  "name": "eslint-plugin-react",
+                  "version": "7.28.0"
+                }
+              ],
+              "optional": false,
+              "wantedRange": "^3 || ^4 || ^5 || ^6 || ^7 || ^8"
+            }
+          ],
+          "next": [
+            {
+              "parents": [
+                {
+                  "name": "eslint-config-next",
+                  "version": "12.1.5"
+                }
+              ],
+              "optional": false,
+              "wantedRange": ">=10.2.0"
+            }
+          ]
+        },
+        "conflicts": [],
+        "intersections": {
+          "typescript": ">=3.3.1",
+          "eslint": ">=7.23.0 <8.0.0 || >=8.0.0-0 <8.0.0 || >=8.0.0 <9.0.0",
+          "next": ">=10.2.0"
+        }
+      }
+    },
+    "err": {
+      "name": "pnpm",
+      "message": "Unmet peer dependencies",
+      "code": "ERR_PNPM_PEER_DEP_ISSUES",
+      "stack": "pnpm: Unmet peer dependencies\n    at default_1 (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:118910:15)\n    at _installInContext (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:119621:48)\n    at async installInContext (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:119664:16)\n    at async _install (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:119267:25)\n    at async mutateModules (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:119056:23)\n    at async recursive (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:120252:29)\n    at async Object.handler [as import] (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:167816:11)\n    at async /usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:175391:21\n    at async run (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:175365:34)\n    at async runPnpm (/usr/local/Cellar/pnpm/7.0.0/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:175583:5)"
+    }
+  }
+}

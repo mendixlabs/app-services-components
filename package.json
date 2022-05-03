@@ -5,7 +5,11 @@
   "workspaces": {
     "packages": [
       "apps/**/*",
-      "packages/*"
+      "packages/**/*"
+    ],
+    "nohoist": [
+      "*/@mendix",
+      "**/@mendix/**"
     ]
   },
   "scripts": {
@@ -17,7 +21,8 @@
   },
   "devDependencies": {
     "prettier": "latest",
-    "turbo": "latest"
+    "turbo": "latest",
+    "rollup-plugin-typescript2": "^0.31.2"
   },
   "engines": {
     "npm": ">=7.0.0",

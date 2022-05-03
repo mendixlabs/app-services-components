@@ -1,10 +1,10 @@
 import { Component, ReactNode, createElement } from "react";
-import { TextStyle, ViewStyle, View, Text } from "react-native";
+import { TextStyle, View, ViewStyle, Text } from "react-native";
 
 import { Style } from "@mendix/pluggable-widgets-tools";
 
-import CalendarInit from "./components/CalendarInit";
 import { CalendarNativeWidgetProps } from "../typings/CalendarNativeWidgetProps";
+import CalendarInit from "./components/CalendarInit";
 
 export interface CustomStyle extends Style {
     container: ViewStyle;
@@ -12,22 +12,23 @@ export interface CustomStyle extends Style {
 }
 
 export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<CustomStyle>> {
-    componentDidUpdate() {}
     render(): ReactNode {
         const {
             date,
             dotColor,
             buttonText,
+            onLeftArrow,
             initialDate,
             startOfWeek,
+            onRightArrow,
             isActiveDate,
             propertyName,
             volatileDate,
+            dateDotColor,
             dynamicOffset,
             incomingDates,
             selectedColor,
             darkModeOption,
-            dateDotColor,
             dateSelectColor,
             activeSwipeDown,
             disableWeekends,
@@ -43,11 +44,12 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                     <CalendarInit
                         date={date}
                         dotColor={dotColor}
-                        dateDotColor={dateDotColor}
-                        dateSelectColor={dateSelectColor}
                         buttonText={buttonText}
+                        onLeftArrow={onLeftArrow}
                         startOfWeek={startOfWeek}
                         initialDate={initialDate}
+                        onRightArrow={onRightArrow}
+                        dateDotColor={dateDotColor}
                         isActiveDate={isActiveDate}
                         volatileDate={volatileDate}
                         propertyName={propertyName}
@@ -55,6 +57,7 @@ export class CalendarNativeWidget extends Component<CalendarNativeWidgetProps<Cu
                         dynamicOffset={dynamicOffset}
                         incomingDates={incomingDates}
                         darkModeOption={darkModeOption}
+                        dateSelectColor={dateSelectColor}
                         activeSwipeDown={activeSwipeDown}
                         disableWeekends={disableWeekends}
                         disablePastDates={disablePastDates}
