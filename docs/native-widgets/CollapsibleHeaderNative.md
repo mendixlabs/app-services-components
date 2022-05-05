@@ -1,1 +1,1 @@
-[ReadME](https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/native-widgets/collapsible-native-header/README.md ':include')
+[ReadME](https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/collapsible-native-header/README.md ":include")

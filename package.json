@@ -9,7 +9,11 @@
     ],
     "nohoist": [
       "*/@mendix",
-      "**/@mendix/**"
+      "**/@mendix/**",
+      "*/jspdf",
+      "**/jspdf/**",
+      "**/html-to-image/**",
+      "*/html-to-image"
     ]
   },
   "scripts": {
