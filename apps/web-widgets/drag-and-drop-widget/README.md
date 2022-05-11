@@ -34,21 +34,25 @@ and the Examples [here](https://dnd-lts-sandbox.mxapps.io/p/example_1?profile=Re
             <th>Name</th>
             <th>Docs</th>
             <th>Demo</th>
+            <th>Preview</th>
         </tr>
         <tr>
             <td>Example 1</td>
             <td><a target="_blank" href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example1">Simple List</a></td>
             <td><a target="_blank" href="https://dnd-lts-sandbox.mxapps.io/p/example_1?profile=Responsive">Demo</a></td>
+            <td><img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example1/exm1demo.gif'/></td>
         </tr>
         <tr>
             <td>Example 2</td>
             <td><a target="_blank" href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example2">Nested List</a></td>
             <td><a target="_blank" href="https://dnd-lts-sandbox.mxapps.io/p/example_2?profile=Responsive">Demo</a></td>
+                        <td><img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example2/ex2demo.gif'/></td>
         </tr>
         <tr>
             <td>Example 3</td>
             <td><a target="_blank" href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example3">Enum List</a></td>
             <td><a target="_blank" href="https://dnd-lts-sandbox.mxapps.io/p/example_3?profile=Responsive">Demo</a></td>
+                        <td><img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example3/ex3demo.gif'/></td>
         </tr>
 
 </table>
@@ -176,7 +180,7 @@ So lets see some practical examples
 }
 ```
 
-<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/hover.gif'/>
+<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/hover.gif'/>
 
 ```scss
 //  Space Created Above on Drag Over
@@ -189,7 +193,7 @@ So lets see some practical examples
 }
 ```
 
-<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/above-below.gif'/>
+<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/above-below.gif'/>
 
 **Dragging Event**
 
@@ -199,6 +203,5 @@ So lets see some practical examples
 }
 ```
 
-<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/dragging.gif'/>
-
+<img src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/dragging.gif'/>
 </detail>
