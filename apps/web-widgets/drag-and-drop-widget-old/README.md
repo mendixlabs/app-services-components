@@ -3,11 +3,11 @@
 <h1 align="center">Drag and Drop Widget for Mendix</h1>
 
 Demo Projects for Mendix 8 and Mendix 9
-[here](https://github.com/mendixlabs/app-services-components/tree/main/packages/web-widgets/drag-and-drop-widget/testProjects)
+[here](https://github.com/mendixlabs/app-services-components/tree/main/apps/web-widgets/drag-and-drop-widget/testProjects)
 or in the latest release.
 
 <p align="center">
-    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/dnd.png" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/dnd.png" target="_blank" />
     <br>
     <br>
    A Drag and Drop Widget for Mendix (with Touch Support for Mobile Devices)
@@ -35,15 +35,15 @@ or in the latest release.
 
 </p>
 <p align="center">
-    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/simpleList.gif" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/simpleList.gif" target="_blank" />
         <br>
         <p>Ordering List</p>
         <br>
-    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/widgetToWidget.gif" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/widgetToWidget.gif" target="_blank" />
         <br>
         <p>Enum Filtered List</p>
         <br>
-    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/2ds.gif" target="_blank" />
+    <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/2ds.gif" target="_blank" />
         <br>
         <p>2 Entities in Domain Model</p>
         <hr>
@@ -66,8 +66,8 @@ column and vertically (drag between one widget and another).
 
 <p align="center">
 <h3>Usage</h3>
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/p1.png" target="_blank" />
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/p2.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/p1.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/p2.png" target="_blank" />
 </p>
 
 | Object list group     | List         | List of items to Show cards for                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -157,18 +157,18 @@ The Widget exposes 3 Classnames you can use to style the list items:
 
 <p align="center">
  <h4>Modeler Look</h4>
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/mxOverview.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/mxOverview.png" target="_blank" />
  <br>
  <h4>Web Look</h4>
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/widgetToWidget.gif" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/widgetToWidget.gif" target="_blank" />
  <h4>Incoming Data (Nano- or microflow )</h4>
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/get_mf.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/get_mf.png" target="_blank" />
  <h4>Create Non Persistable Data (Nano- or microflow )</h4>
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/non_state.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/non_state.png" target="_blank" />
  <h4>Same Column Drop (nanoflow)</h4>
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/Same_Col_Drop_NF.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/Same_Col_Drop_NF.png" target="_blank" />
  <h4>Different Column Drop (nanoflow)</h4>
- <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget-old/assets/Diff_Col_Drop_NF.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget-old/assets/Diff_Col_Drop_NF.png" target="_blank" />
 </p>
 
 ## Issues || Track Features

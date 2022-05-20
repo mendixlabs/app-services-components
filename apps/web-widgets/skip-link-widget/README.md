@@ -1,6 +1,6 @@
 # Skip links | Skip Navigation | Skip to Content
 
-<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/skip-link-widget/assets/SkipLink.png" target="_blank" />
+<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/skip-link-widget/assets/SkipLink.png" target="_blank" />
 
 An Implementation of Skip links for Mendix.
 
@@ -18,10 +18,10 @@ Read more about A11Y and Skip links [here](https://webaim.org/techniques/skipnav
     </tr>
   <tr>
     <td  >
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/skip-link-widget/assets/Before.gif" target="_blank" />
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/skip-link-widget/assets/Before.gif" target="_blank" />
     </td>
     <td>
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/skip-link-widget/assets/After.gif" target="_blank" />
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/skip-link-widget/assets/After.gif" target="_blank" />
     
 </td>
   </tr>
@@ -34,7 +34,7 @@ class names, but should you need some customizability please continue.
 
 The widget works best when added to your main layout page:
 
-<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/skip-link-widget/assets/ex1.png" target="_blank" />
+<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/skip-link-widget/assets/ex1.png" target="_blank" />
 <br/>
 <br/>
 The widget adds some HTML in the dom - This is known as the skip link itself.
@@ -43,7 +43,7 @@ The widget adds some HTML in the dom - This is known as the skip link itself.
 
 <table style="width:100%">
   <tr>
-    <td  style="width:50%"><img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/skip-link-widget/assets/ex2.png" target="_blank" /></td>
+    <td  style="width:50%"><img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/skip-link-widget/assets/ex2.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>

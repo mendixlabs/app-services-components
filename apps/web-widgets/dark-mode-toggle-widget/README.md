@@ -1,7 +1,7 @@
 <h1 align="center">Dark Mode Toggle</h1>
 
 <p align="center">
- <img  align="center" alt="headerIMG"  width="600" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/dark-mode-toggle-widget/assets/ThemeToggle.png" target="_blank" />
+ <img  align="center" alt="headerIMG"  width="600" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/dark-mode-toggle-widget/assets/ThemeToggle.png" target="_blank" />
 </p>
 
 <p align="center">
@@ -37,7 +37,7 @@ Currently recommended to use it on Page Templates/ Layout Pages
 
 ## Usage
 
- <img  align="center" alt="headerIMG"  width="600" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/dark-mode-toggle-widget/assets/ds1.png" target="_blank" />
+ <img  align="center" alt="headerIMG"  width="600" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/dark-mode-toggle-widget/assets/ds1.png" target="_blank" />
 
 |            | Type     | Info                             |
 | ---------- | -------- | -------------------------------- |

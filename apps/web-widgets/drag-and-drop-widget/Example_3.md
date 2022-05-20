@@ -16,7 +16,7 @@ Get a ☕️ and lets go...
 <table style="width:100%">
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example3/ex3demo.gif" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example3/ex3demo.gif" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -26,7 +26,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example3/ex3page.png" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example3/ex3page.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -36,7 +36,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example3/ex3db.png" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example3/ex3db.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -46,7 +46,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example3/ex3smc.png" target="_blank" /></td>
+            <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example3/ex3smc.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -56,7 +56,7 @@ Get a ☕️ and lets go...
     </tr>
     <tr>
         <td  style="width:50%">
-       <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example3/ex3dpc.png" target="_blank" /></td>
+       <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example3/ex3dpc.png" target="_blank" /></td>
         <td>
         <table style="width:100%">
             <tr>
@@ -81,7 +81,7 @@ List 2.
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example3/pl1s.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example3/pl1s.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -98,7 +98,7 @@ List 2.
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/drag-and-drop-widget/assets/example3/pl2s.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/drag-and-drop-widget/assets/example3/pl2s.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>

@@ -1,6 +1,6 @@
 <h1>Screen Shot | Print Screen</h1>
 
-<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/screen-shot-mx/assets/header.png" target="_blank" />
+<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/screen-shot-mx/assets/header.png" target="_blank" />
 
 <p align="center">
 
@@ -37,7 +37,7 @@ give the button any action as the widget will take control of the Click action.
 <table style="width:100%">
   <tr>
     <td  style="width:50%">
-    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/screen-shot-mx/assets/screenshot.png" target="_blank" /></td>
+    <img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/screen-shot-mx/assets/screenshot.png" target="_blank" /></td>
     <td>
     <table style="width:100%">
         <tr>
@@ -69,7 +69,7 @@ give the button any action as the widget will take control of the Click action.
 
 A moving Picture is worth a 1001 words
 
-<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/packages/web-widgets/screen-shot-mx/assets/screenshot_demo.gif" target="_blank" />
+<img align="center" width="550" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/screen-shot-mx/assets/screenshot_demo.gif" target="_blank" />
 
 ### Issues / Limitations
 
