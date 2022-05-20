@@ -23,8 +23,7 @@ This read me is for Developing on this repo. If you are looking for documentatio
 
 After cloning the repo, in the Root file run `yarn` - That will install the all the dependencies
 
-The repos uses [Terborepo](https://turborepo.org/) under the hood, the migration from [lerna](https://github.com/lerna/lerna) to Terborepo is still WIP
-
+The repos uses [Turborepo](https://turborepo.org/) under the hood, the migration from [lerna](https://github.com/lerna/lerna) to Terborepo is still WIP
 
 ---
 
