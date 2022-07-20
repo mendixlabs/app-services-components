@@ -1,15 +1,13 @@
-import { createElement, useMemo, useRef, useState, CSSProperties } from "react";
+import { createElement, useMemo, useRef, useState, CSSProperties, FunctionComponent } from "react";
 import { DropTargetMonitor, useDrag, useDrop } from "react-dnd";
-import { Type_Card_Props } from "../userTypes";
 import { findOrder, getClassNames } from "../utils/general";
-
 import SpaceOnHover from "./SpaceOnHover";
 
-const DroppableItem = (props: Type_Card_Props) => {
+import type { Type_Card_Props } from "../userTypes";
+
+const DroppableItem: FunctionComponent<Type_Card_Props> = props => {
     const ref = useRef<HTMLDivElement>(null);
-
     const [mouseOver, setMouseOver] = useState(false);
-
     const classNames = useMemo(() => getClassNames(props.item.uuidContainer), [props.item.uuidContainer]);
     const containerFlex = useMemo(() => {
         return { display: "flex", flexDirection: props.isColumn ? "column" : "row" };
@@ -97,6 +95,8 @@ const DroppableItem = (props: Type_Card_Props) => {
 
     return (
         <div
+            data-containing-uuid={props.droppedOnUUID}
+            data-uuid={props.item.uuidCurrent}
             ref={ref}
             draggable="true"
             aria-label={props.item.ariaTitle + " inside " + props.item.ariaOfParent}

@@ -1,20 +1,19 @@
-import { createElement, Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createElement, Fragment, FunctionComponent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { nanoid } from "nanoid";
 
 import DroppableItem from "./components/DroppableItem";
 import DroppableArea from "./components/DroppableArea";
-
-import { getClassNames } from "./utils/general";
-import { ValueStatus } from "mendix";
-
-import { DraganddropwidgetContainerProps } from "../typings/DraganddropwidgetProps";
-import { OnDropTypes, Type_Parsed_Incoming_Data } from "./userTypes";
-import DragPreview from "./components/DragPreview";
+import ScrollHelper from "./components/ScrollHelper";
 import MyDragProvider from "./components/MyDragProvider";
+import DragPreview from "./components/DragPreview";
 
 import "./ui/DndWidget.scss";
 
-const DndWidget = (props: DraganddropwidgetContainerProps) => {
+import { ValueStatus } from "mendix";
+import type { OnDropTypes, Type_Parsed_Incoming_Data } from "./userTypes";
+import type { DraganddropwidgetContainerProps } from "../typings/DraganddropwidgetProps";
+
+const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
     // Sort Incoming Data
     props.incomingData.setSortOrder([[props.sortOn.id, props.sort]]);
 
@@ -31,12 +30,26 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
             : props.uuidStringParent?.value;
     }, [props.uuidStringParentExpression]);
 
-    const htmlElRef = useRef<HTMLDivElement>(null);
+    const htmlElRef = useRef<HTMLDivElement | null>(null);
+    const parentContainerName = useRef<HTMLDivElement | null>(null);
     const [allData, setAllData] = useState<Type_Parsed_Incoming_Data[]>([]);
-    const [isLoaded, setIsLoaded] = useState<boolean>(true); // Is used to reset Widget on Keyboard use to prevent fallover ove a11y backend
+    const [isLoaded, setIsLoaded] = useState<boolean>(true); // Is used to reset Widget on Keyboard use to prevent fallover  a11y backend
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [isOverIndex, setIsOverIndex] = useState<null | number>(null);
-    const classNames = useMemo(() => getClassNames(props.uuidStringContainer), [props.uuidStringContainer]);
+
+    /**
+     * We give a Child comp a way to get its parents parent. NOTE: This will only ever work 2n
+     */
+    useEffect(() => {
+        if (uuidParent) {
+            const myParent = document.querySelectorAll(`[data-uuid="${uuidParent}"]`);
+            // @ts-ignore
+            const containerName = myParent[0] && myParent[0].attributes["data-containing-uuid"].value;
+            if (containerName) {
+                parentContainerName.current = document.getElementById(containerName) as HTMLDivElement;
+            }
+        }
+    }, [uuidParent]);
 
     function setUpData() {
         if (props.incomingData.status === ValueStatus.Available) {
@@ -58,6 +71,10 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
             setAllData(allData);
         }
     }
+
+    /**
+     * To Help with A11y
+     */
     const ent = () => {
         if (htmlElRef && htmlElRef.current) {
             const isFocusInDiv = htmlElRef.current.contains(document.activeElement);
@@ -121,24 +138,18 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
         return <div>Loading..</div>;
     }
     return (
-        <div className={`${props.uuidStringContainer}`} style={{ flex: 1 }} ref={htmlElRef} role="region">
-            <MyDragProvider parent={props.isParent} uuidStringContainer={props.uuidStringContainer}>
-                <div
-                    style={{
-                        height: "100%",
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: props.isColumn ? "column" : "row"
-                    }}
-                    className={`
-                     ${
-                         isDragging
-                             ? classNames.dnd_draggable_container_dragging
-                             : classNames.dnd_draggable_container_not_dragging
-                     }
-                    `}
-                >
+        <MyDragProvider uuidStringContainer={props.uuidStringContainer}>
+            <ScrollHelper
+                parentContainerName={parentContainerName}
+                isDragging={isDragging}
+                isColumn={props.isColumn}
+                acceptedUUids={arrayOfAcceptedUUids}
+                droppedOnUUID={props.uuidStringContainer}
+                uuidStringParent={uuidParent as string}
+            >
+                <Fragment>
                     <div
+                        ref={htmlElRef}
                         style={{
                             display: "flex",
                             width: "100%",
@@ -185,10 +196,10 @@ const DndWidget = (props: DraganddropwidgetContainerProps) => {
                     >
                         {!allData.length && props.hasNoDataContent}
                     </DroppableArea>
-                </div>
-                <DragPreview displayItem={props.hasDataContent} {...props} />
-            </MyDragProvider>
-        </div>
+                </Fragment>
+            </ScrollHelper>
+            <DragPreview displayItem={props.hasDataContent} {...props} />
+        </MyDragProvider>
     );
 };
 

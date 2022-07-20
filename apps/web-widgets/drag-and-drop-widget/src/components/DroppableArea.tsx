@@ -1,10 +1,10 @@
-import { createElement, useMemo } from "react";
+import { createElement, FunctionComponent, useMemo } from "react";
+import { getClassNames } from "../utils/general";
 import { useDrop } from "react-dnd";
 
-import { getClassNames } from "../utils/general";
-import { Custom_DragObject, Type_Content_Area_Props } from "../userTypes";
+import type { Custom_DragObject, Type_Content_Area_Props } from "../userTypes";
 
-const DroppableArea = (props: Type_Content_Area_Props) => {
+const DroppableArea: FunctionComponent<Type_Content_Area_Props> = props => {
     const classNames = useMemo(() => getClassNames(props.droppedOnUUID), [props.droppedOnUUID]);
 
     const [{ isOver }, drop] = useDrop({
@@ -38,7 +38,8 @@ const DroppableArea = (props: Type_Content_Area_Props) => {
                 isOver ? classNames.dnd_at_end_over : classNames.dnd_at_end_not_over
             }`}
             style={{
-                flex: 1
+                flex: 1,
+                height: "100%"
             }}
         >
             {props.children}

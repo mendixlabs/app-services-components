@@ -1,0 +1,11 @@
+{
+    "folders": [
+        {
+            "name": "Draganddropwidget",
+            "path": "/Users/ahwelgemoed/Documents/repos/app-services-components/apps/web-widgets/drag-and-drop-widget",
+            "type": "mainWidget"
+        },
+        { "name": "Mendix Project", "path": "/Users/ahwelgemoed/Documents/MendixApps/dnd-lts-main", "type": "mendix" }
+    ],
+    "settings": {}
+}

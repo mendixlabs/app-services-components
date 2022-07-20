@@ -42,11 +42,13 @@ export interface DraganddropwidgetContainerProps {
 }
 
 export interface DraganddropwidgetPreviewProps {
-    class: string;
+    className: string;
     style: string;
+    styleObject?: CSSProperties;
+    readOnly: boolean;
     widgetJsonState: string;
-    hasDataContent: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
-    hasNoDataContent: { widgetCount: number; renderer: ComponentType<{caption?: string}> };
+    hasDataContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    hasNoDataContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     newParentAction: {} | null;
     sameParentAction: {} | null;
     uuidStringContainer: string;

@@ -1,5 +1,5 @@
 import { ObjectItem, GUID, ListWidgetValue } from "mendix";
-import { ReactNode } from "react";
+import { MutableRefObject, ReactNode } from "react";
 import { DragObjectWithType } from "react-dnd";
 
 export type Type_Card_Props = {
@@ -89,3 +89,13 @@ export type Enum_DND_ClassNames = {
 export interface Custom_DragObject extends DragObjectWithType {
     item: Type_Card_Props;
 }
+
+export type Type_Scroll_Helper = {
+    children: JSX.Element;
+    isColumn: boolean;
+    droppedOnUUID: string;
+    acceptedUUids: string[];
+    isDragging: boolean;
+    uuidStringParent: string;
+    parentContainerName: MutableRefObject<HTMLDivElement | null>;
+};

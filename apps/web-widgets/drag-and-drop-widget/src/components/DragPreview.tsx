@@ -1,15 +1,16 @@
-import { createElement, useMemo } from "react";
+import { createElement, FunctionComponent, useMemo } from "react";
 import { usePreview } from "react-dnd-preview";
-
-import { Type_Card_Props, Type_DragPreview_Props } from "../userTypes";
 import { getClassNames } from "../utils/general";
 
-const DragPreview = (props: Type_DragPreview_Props) => {
+import type { Type_Card_Props, Type_DragPreview_Props } from "../userTypes";
+
+const DragPreview: FunctionComponent<Type_DragPreview_Props> = props => {
     const { display, item, style } = usePreview();
 
-    const classNames = useMemo(() => getClassNames((item?.item as Type_Card_Props)?.item.uuidContainer), [
-        (item?.item as Type_Card_Props)?.item.uuidContainer
-    ]);
+    const classNames = useMemo(
+        () => getClassNames((item?.item as Type_Card_Props)?.item.uuidContainer),
+        [(item?.item as Type_Card_Props)?.item.uuidContainer]
+    );
 
     if (!display) {
         return null;

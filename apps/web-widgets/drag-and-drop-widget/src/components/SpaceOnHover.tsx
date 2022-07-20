@@ -1,8 +1,9 @@
-import { createElement, Fragment } from "react";
+import { createElement, Fragment, FunctionComponent } from "react";
 import { motion } from "framer-motion";
 
 import { Type_SpaceOnHover_Props } from "../userTypes";
-const SpaceOnHover = (props: Type_SpaceOnHover_Props) => {
+
+const SpaceOnHover: FunctionComponent<Type_SpaceOnHover_Props> = props => {
     return (
         <Fragment>
             <motion.div
