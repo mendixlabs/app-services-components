@@ -38,15 +38,17 @@ const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
     const [isOverIndex, setIsOverIndex] = useState<null | number>(null);
 
     /**
-     * We give a Child comp a way to get its parents parent. NOTE: This will only ever work 2n
+     * We give a Child comp a way to get its parents parent. NOTE: This will only ever work 2n and does not recalculate on Window resize
      */
     useEffect(() => {
         if (uuidParent) {
             const myParent = document.querySelectorAll(`[data-uuid="${uuidParent}"]`);
-            // @ts-ignore
-            const containerName = myParent[0] && myParent[0].attributes["data-containing-uuid"].value;
-            if (containerName) {
-                parentContainerName.current = document.getElementById(containerName) as HTMLDivElement;
+            if (myParent.length) {
+                // @ts-ignore
+                const containerName = myParent[0]?.attributes["data-containing-uuid"].value;
+                if (containerName) {
+                    parentContainerName.current = document.getElementById(containerName) as HTMLDivElement;
+                }
             }
         }
     }, [uuidParent]);

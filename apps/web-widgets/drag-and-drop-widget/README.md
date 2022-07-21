@@ -22,9 +22,9 @@ We have a playable Demo [here](https://dnd-lts-sandbox.mxapps.io/index.html?prof
 ## How to use the Widget via examples
 
 To show how to use the widget I will be using the examples in the test project. You can find the Example Project
-[here](https://github.com/mendixlabs/app-services-components/releases/download/draganddropwidget%403.0.0/dnd_lts.mpk) or
+[here](https://github.com/mendixlabs/app-services-components/releases/download/draganddropwidget%403.0.2/dnd_lts.mpk) or
 if you only want the Helpers
-[here](https://github.com/mendixlabs/app-services-components/releases/download/draganddropwidget%403.0.0/DnD_HelpersModule.mpk)
+[here](https://github.com/mendixlabs/app-services-components/releases/download/draganddropwidget%403.0.2/DnD_HelpersModule.mpk)
 and the Examples [here](https://dnd-lts-sandbox.mxapps.io/p/example_1?profile=Responsive)
 
 ## Examples
