@@ -17,10 +17,11 @@ const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
     // Sort Incoming Data
     props.incomingData.setSortOrder([[props.sortOn.id, props.sort]]);
 
+    console.log("props", props.uuidStringContainer, props);
     const IF_NO_PARENT_UUID = useMemo(() => nanoid(), []);
     const END_ID = useMemo(() => nanoid(), []);
 
-    const arrayOfAcceptedUUids = useMemo(() => props.acceptedUuid.flatMap(x => [x.uuids]), [props.acceptedUuid]);
+    const arrayOfAcceptedUUids = useMemo(() => props.acceptedUuid.flatMap(x => [x.uuids.trim()]), [props.acceptedUuid]);
 
     const uuidParent = useMemo(() => {
         return props.isParent
@@ -108,6 +109,7 @@ const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
             });
 
             if (params.currentParentUUID === params.droppedOnParentUUID) {
+                console.log("1params", params);
                 // We update the Display state independently from calling Mendix otherwise it causes odd Visual issues
                 const result = Array.from(allData);
                 const [removed] = result.splice(findCurrentArray, 1);
@@ -122,6 +124,7 @@ const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
             }
 
             if (params.currentParentUUID !== params.droppedOnParentUUID) {
+                console.log("2params", params);
                 const stringifyJson = JSON.stringify(params);
                 props.widgetJsonState.setValue(stringifyJson);
                 if (props.newParentAction?.canExecute) {
