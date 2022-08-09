@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget
+    id="mendix.lottienative.LottieNative"
+    pluginWidget="true"
+    needsEntityContext="true"
+    offlineCapable="true"
+    supportedPlatform="Native"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd"
+>
+    <name>Lottie Native</name>
+    <description>My widget description</description>
+    <icon />
+    <properties>
+        <propertyGroup caption="General">
+            <property key="animationJson" type="string" required="true">
+                <caption>Animation JSON</caption>
+                <description />
+            </property>
+            <property key="sectionsToPlay" type="expression" defaultValue="'all'">
+                <caption>Section To Play</caption>
+                <description />
+                <returnType type="String" />
+            </property>
+            <property key="height" type="string" defaultValue="full">
+                <caption>Height of Animation</caption>
+                <description />
+            </property>
+            <property key="width" type="string" defaultValue="full">
+                <caption>Width</caption>
+                <description />
+            </property>
+            <property key="isBackground" type="boolean" defaultValue="false">
+                <caption>Use as Background</caption>
+                <description />
+            </property>
+            <property key="loopAnimation" type="boolean" defaultValue="true">
+                <caption>Loop Animation</caption>
+                <description />
+            </property>
+            <property key="autoPlayAnimation" type="boolean" defaultValue="true">
+                <caption>Auto Play Animation</caption>
+                <description />
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>
