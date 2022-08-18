@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td>Animation JSON</td>
-            <td>String version of your JSON animation. You can use <a target="_blank" href="https://mendixlabs.github.io/app-services-components/#/web-widgets/dndExamples/example1">this</a> app to just drop your animation <code>.json</code> and get the correct <code>string</code> back</td>
+            <td>String version of your JSON animation. You can use <a target="_blank" href="https://afl.welgemoed.io/">this</a> app to just drop your animation <code>.json</code> and get the correct <code>string</code> back</td>
         </tr>
         <tr>
             <td>Height</td>
@@ -112,6 +112,13 @@
             <td>An attribute that will play or pause the animation, this wont immediately pause the animation, but it will finish its current section, and pause once it reaches its End Frame</td>
         </tr>
 </table>
+
+### JSON to String
+
+You can use this app we built to help convert a `json` file to a string that Mendix can use, below is a gif demo of the
+app and a [link](https://afl.welgemoed.io/) to the site
+
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/demo-afl.gif'/>
 
 ### Extra Info
 
