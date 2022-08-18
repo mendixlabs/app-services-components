@@ -10,8 +10,8 @@
             <th>iOS</th>
         </tr>
         <tr>
-            <td><img width='500' src='./assets/androind-demo.gif'/></td>
-            <td><img width='500' src='./assets/ios-demo.gif'/></td>
+            <td><img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/androind-demo.gif'/></td>
+            <td><img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/ios-demo.gif'/></td>
         </tr>
        
 </table>
@@ -20,8 +20,8 @@
 
 -   ### General
 
-<img width='500' src='./assets/studio-setup.png'/>
-<img width='500' src='./assets/Sequential-General.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/studio-setup.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/Sequential-General.png'/>
 
 <table style="width:100%">
         <tr>
@@ -55,8 +55,8 @@
 
 -   ### Uncontrolled (Sequential)
 
-<img width='500' src='./assets/Sequential-Setup.png'/>
-<img width='500' src='./assets/Sequential-Details.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/Sequential-Setup.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/Sequential-Details.png'/>
 
 <table style="width:100%">
         <tr>
@@ -86,8 +86,8 @@
 
 <b>Note:</b> This has to be used in a data view with a corresponding Data Model
 
-<img width='500' src='./assets/Controlled-DM.png'/>
-<img width='500' src='./assets/Controlled-Setup.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/Controlled-DM.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/Controlled-Setup.png'/>
 
 <table style="width:100%">
         <tr>

@@ -23,7 +23,7 @@
 
 </p>
 <p align="center">
- <img  align="center" alt="headerIMG" src="./assets/Calendar.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/Calendar.png" target="_blank" />
 
   <br>
 
@@ -38,19 +38,19 @@ You can track current status and add feature requests on the
 
 Add a Date
 
- <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/SaveDate.gif" target="_blank" />
+ <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/SaveDate.gif" target="_blank" />
 
 <p>Swipe Down for More</p>
 
- <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/SwipeDown.gif" target="_blank" />
+ <img align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/SwipeDown.gif" target="_blank" />
 
 <p>Display Modes</p>
 <p>Light</p>
  <a href="#">
- <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Light.png" target="_blank" /></a>
+ <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/Light.png" target="_blank" /></a>
 <p>Dark</p>
   <a href="#">
- <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Dark.png" target="_blank" /></a>
+ <img  align="center" width="250" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/Dark.png" target="_blank" /></a>
 
 <h2>Usage</h2>
 In its current form the Calendar put most of the Power in the Mendix Developers hands. The Widget tries to be a Minimal as possible while staying powerful.
@@ -65,7 +65,7 @@ The Idea at a higher level :
 
 <h3>Data</h3>
 
- <img  align="center"  width="450"  alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Data.png" target="_blank" />
+ <img  align="center"  width="450"  alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/Data.png" target="_blank" />
 
 |                | Type        | Info                                                                                                                                                       |
 | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -79,7 +79,7 @@ The Idea at a higher level :
 
 <h3>Settings</h3>
 
- <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Settings.png" target="_blank" />
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/Settings.png" target="_blank" />
 
 |                             | Type    | Info                                                                                                                                                       |
 | --------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -97,7 +97,7 @@ The Idea at a higher level :
 
 <h3>Appearance</h3>
 
- <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/Appearance.png" target="_blank" />
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/Appearance.png" target="_blank" />
 
 |                          | Type   | Info                                     |
 | ------------------------ | ------ | ---------------------------------------- |
@@ -108,12 +108,12 @@ The Idea at a higher level :
 <h3>Screenshots</h3>
 
  <p >Add Date Page</p>
- <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/add-date-screen.png" target="_blank" />
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/add-date-screen.png" target="_blank" />
  <br>
  <p>On Press Date</p>
- <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/on-Press-Date.png" target="_blank" />
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/on-Press-Date.png" target="_blank" />
  <br>
  <p>Create State</p>
 
- <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/ahwelgemoed/calendar-native-widget/main/assets/create_state.png" target="_blank" />
+ <img  align="center" width="450" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/calendar-native-widget-old/assets/create_state.png" target="_blank" />
  <br>
