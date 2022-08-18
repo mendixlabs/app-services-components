@@ -2,7 +2,10 @@
     "extends": "@mendix/pluggable-widgets-tools/configs/tsconfig.base",
     "compilerOptions": {
         "baseUrl": "./",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "jsx": "react",
+        "jsxFactory": "createElement"
     },
     "include": ["./src", "./typings"]
 }

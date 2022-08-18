@@ -14,34 +14,86 @@
     <icon />
     <properties>
         <propertyGroup caption="General">
-            <property key="animationJson" type="string" required="true">
-                <caption>Animation JSON</caption>
-                <description />
+            <propertyGroup caption="View Type">
+                <property key="animationJson" type="string" required="true">
+                    <caption>Animation JSON</caption>
+                    <description>String Version of Json Animation</description>
+                </property>
+                <property key="height" type="string" defaultValue="full">
+                    <caption>Height</caption>
+                    <description>Height of Animation (Use full for Device Height)</description>
+                </property>
+                <property key="width" type="string" defaultValue="full">
+                    <caption>Width</caption>
+                    <description>Width of Animation (Use full for Device Width)</description>
+                </property>
+                <property key="isBackground" type="boolean" defaultValue="false">
+                    <caption>Use as Background</caption>
+                    <description>Is animation a Background?</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Controll Type">
+                <property key="playMode" type="enumeration" defaultValue="sequential">
+                    <caption>Control Type</caption>
+                    <description>
+                        Sequential: Follow the path you define || Controlled: You control the animation with
+                        Non-Persistabile Values
+                    </description>
+                    <enumerationValues>
+                        <enumerationValue key="sequential">Sequence</enumerationValue>
+                        <enumerationValue key="controlled">Controlled</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Controlled Selection">
+            <property key="frameToStart" type="expression" defaultValue="0">
+                <caption>Frame To Start</caption>
+                <description>If Start and End the same | Play whole Animation</description>
+                <returnType type="Integer" />
             </property>
-            <property key="sectionsToPlay" type="expression" defaultValue="'all'">
-                <caption>Section To Play</caption>
-                <description />
-                <returnType type="String" />
+            <property key="frameToEnd" type="expression" defaultValue="0">
+                <caption>Frame To End</caption>
+                <description>If Start and End the same | Play whole Animation</description>
+                <returnType type="Integer" />
             </property>
-            <property key="height" type="string" defaultValue="full">
-                <caption>Height of Animation</caption>
+            <property key="loopAnimation" type="expression" defaultValue="true">
+                <caption>Loop</caption>
                 <description />
+                <returnType type="Boolean" />
             </property>
-            <property key="width" type="string" defaultValue="full">
-                <caption>Width</caption>
-                <description />
+            <property key="pausePlay" type="attribute">
+                <caption>Play/Pause</caption>
+                <description>Play = True || Pause = False</description>
+                <attributeTypes>
+                    <attributeType name="Boolean" />
+                </attributeTypes>
             </property>
-            <property key="isBackground" type="boolean" defaultValue="false">
-                <caption>Use as Background</caption>
+        </propertyGroup>
+        <propertyGroup caption="Sequence Selection">
+            <property key="sequence" type="object" isList="true" required="false">
+                <caption>Sequence List</caption>
                 <description />
-            </property>
-            <property key="loopAnimation" type="boolean" defaultValue="true">
-                <caption>Loop Animation</caption>
-                <description />
-            </property>
-            <property key="autoPlayAnimation" type="boolean" defaultValue="true">
-                <caption>Auto Play Animation</caption>
-                <description />
+                <properties>
+                    <propertyGroup caption="Sequence list">
+                        <property key="startFrame" type="integer" defaultValue="0">
+                            <caption>Start Frame</caption>
+                            <description>If Start and End the same | Play whole Animation</description>
+                        </property>
+                        <property key="endFrame" type="integer" defaultValue="0">
+                            <caption>End Frame</caption>
+                            <description>If Start and End the same | Play whole Animation</description>
+                        </property>
+                        <property key="loop" type="boolean" defaultValue="false">
+                            <caption>Loop</caption>
+                            <description>Only loop Last Animation</description>
+                        </property>
+                        <property key="onDoneAction" type="action">
+                            <caption>When Done</caption>
+                            <description>Action to call when Segment is done</description>
+                        </property>
+                    </propertyGroup>
+                </properties>
             </property>
         </propertyGroup>
     </properties>

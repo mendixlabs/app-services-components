@@ -1,44 +1,37 @@
 /* eslint-disable radix */
-import { ReactElement, createElement, useRef } from "react";
-import { TextStyle, ViewStyle, View, useWindowDimensions } from "react-native";
-import LottieView from "lottie-react-native";
-import { Style } from "@mendix/pluggable-widgets-tools";
-import { LottieNativeProps } from "typings/LottieNativeProps";
+import { ReactElement, createElement, Fragment } from "react";
 
-export interface CustomStyle extends Style {
-    container: ViewStyle;
-    label: TextStyle;
-}
+import LottieViewContainer from "./components/LottieViewContainer";
+import SequentialPlaying from "./components/SequentialPlaying";
+import ControlledPlaying from "./components/ControlledPlaying";
+
+import type { LottieNativeProps } from "typings/LottieNativeProps";
+import type { AnimationObject, CustomStyle } from "./utils/Types";
+
 export function LottieNative(props: LottieNativeProps<CustomStyle>): ReactElement {
-    const { height, width } = useWindowDimensions();
+    const parsedAnimation: AnimationObject = JSON.parse(props.animationJson);
 
-    const animation = useRef<LottieView>(null);
-    const parsedAnimation = JSON.parse(props.animationJson);
-
-    return (
-        <View
-            testID="lottieContainerView"
-            style={{
-                padding: 0,
-                margin: 0,
-                width: props.width === "full" ? width : parseInt(props.width),
-                height: props.height === "full" ? height : parseInt(props.height),
-                position: props.isBackground ? "absolute" : "relative"
-            }}
-        >
-            <LottieView
-                testID="lottieAnimaterView"
-                ref={animation}
-                resizeMode="cover"
-                source={parsedAnimation}
-                loop={props.loopAnimation}
-                autoPlay={props.autoPlayAnimation}
-                style={{
-                    flex: 1,
-                    padding: 0,
-                    margin: 0
-                }}
-            />
-        </View>
-    );
+    if (props.playMode === "sequential") {
+        return (
+            <LottieViewContainer width={props.width} height={props.height} isBackground={props.isBackground}>
+                <SequentialPlaying sequence={props.sequence} parsedAnimation={parsedAnimation} />
+            </LottieViewContainer>
+        );
+    }
+    if (props.playMode === "controlled") {
+        return (
+            <LottieViewContainer width={props.width} height={props.height} isBackground={props.isBackground}>
+                <ControlledPlaying
+                    parsedAnimation={parsedAnimation}
+                    frameToStart={props.frameToStart}
+                    frameToEnd={props.frameToEnd}
+                    loopAnimation={props.loopAnimation}
+                    pausePlay={props.pausePlay}
+                />
+            </LottieViewContainer>
+        );
+    }
+    return <Fragment></Fragment>;
 }
+
+// ::TODO:: change loopAnimation and autoPlayAnimation to dynamic values
