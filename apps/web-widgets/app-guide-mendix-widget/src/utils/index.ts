@@ -10,14 +10,16 @@ const _formatTarget = (target: string): string => {
 };
 
 export const reFormattedList = (listOfSteps: ListOfStepsType[]): [] => {
-    const _reFormattedList = listOfSteps.reduce((a: any, c: any) => {
+    const _reFormattedList = listOfSteps.reduce((a: any, c: ListOfStepsType) => {
         if (a.length === 0) {
             return [
                 ...a,
                 {
                     ...c,
                     disableBeacon: true,
-                    target: _formatTarget(c.target)
+                    title: c.title.value,
+                    content: c.content.value,
+                    target: _formatTarget(c.target.value as string)
                 }
             ];
         } else {
@@ -26,7 +28,9 @@ export const reFormattedList = (listOfSteps: ListOfStepsType[]): [] => {
                 {
                     ...c,
                     disableBeacon: false,
-                    target: _formatTarget(c.target)
+                    title: c.title.value,
+                    content: c.content.value,
+                    target: _formatTarget(c.target.value as string)
                 }
             ];
         }
@@ -35,16 +39,7 @@ export const reFormattedList = (listOfSteps: ListOfStepsType[]): [] => {
 };
 
 export const findAndTriggerScroll = (target: string): any => {
-    console.log("target", target);
     const sanitizedTarget = target.replace(/\./g, "");
     const element = document.getElementsByClassName(sanitizedTarget);
     return element && element[0].scrollIntoView({ block: "center" });
 };
-
-// console.log("listOfSteps", listOfSteps);
-// var stringToHTML = function(str: string) {
-//     var dom = document.createElement("div");
-//     dom.innerHTML = str;
-//     console.log("dom", dom);
-//     return dom;
-// };

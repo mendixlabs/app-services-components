@@ -1,0 +1,11 @@
+{
+    "folders": [
+        { "name": "AppGuide", "path": "/Users/ahwelgemoed/Documents/repos/appguide", "type": "mainWidget" },
+        {
+            "name": "Mendix Project",
+            "path": "/Users/ahwelgemoed/Documents/MendixApps/app-guide-mendix-widget-main",
+            "type": "mendix"
+        }
+    ],
+    "settings": {}
+}

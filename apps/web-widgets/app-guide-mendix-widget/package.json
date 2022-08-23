@@ -1,19 +1,18 @@
 {
     "name": "appguide",
     "widgetName": "AppGuide",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "My widget description",
-    "copyright": "2020 Mendix Technology BV",
+    "copyright": "2022 Mendix Technology BV",
     "author": "Arno Welgemoed",
     "config": {
         "projectPath": "./tests/testProject/",
-        "mendixHost": "http://10.211.55.3:8080",
+        "mendixHost": "http://localhost:8080",
         "developmentPort": "3000"
     },
     "packagePath": "mendix",
     "scripts": {
-        "start": "pluggable-widgets-tools start:server --open",
-        "dev": "pluggable-widgets-tools start:web",
+        "start": "pluggable-widgets-tools start:web",
         "build": "pluggable-widgets-tools build:web",
         "lint": "pluggable-widgets-tools lint",
         "lint:fix": "pluggable-widgets-tools lint:fix",
@@ -22,7 +21,7 @@
     },
     "license": "Apache-2.0",
     "devDependencies": {
-        "@mendix/pluggable-widgets-tools": "^8.12.0",
+        "@mendix/pluggable-widgets-tools": "^9.0.0",
         "@types/big.js": "^4.0.5",
         "@types/classnames": "^2.2.4",
         "@types/react": "~16.9.0",
@@ -31,6 +30,6 @@
     "dependencies": {
         "@types/react-joyride": "^2.0.5",
         "classnames": "^2.2.6",
-        "react-joyride": "^2.2.1"
+        "react-joyride": "2.5.1"
     }
 }

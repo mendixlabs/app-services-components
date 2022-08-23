@@ -7,9 +7,6 @@ export function playAnimationSegments(
     frameToStartValue: number,
     animation: React.RefObject<LottieView>
 ): void {
-    console.log(frameToEndValue);
-    console.log("frameToStartValue", frameToStartValue);
-
     if (frameToEndValue === frameToStartValue) {
         // cant Use `reset` as that causes inf loop
         // animation.current?.play(0, -1);

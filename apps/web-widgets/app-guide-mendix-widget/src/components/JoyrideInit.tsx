@@ -1,4 +1,4 @@
-import { createElement, useState, ReactElement } from "react";
+import { createElement, useState, ReactElement, useEffect, Fragment } from "react";
 import Joyride, { STATUS } from "react-joyride";
 import { ReactAppGuideContainerProps } from "../../typings/ReactAppGuideProps";
 import { reFormattedList, findAndTriggerScroll } from "../utils";
@@ -8,7 +8,7 @@ const JoyrideInit = ({
     listOfSteps,
     showSkipButton,
     showProgress,
-    userWelcome,
+    onUserWelcomeChange,
     isPageCall,
     arrowColor,
     overlayColor,
@@ -16,16 +16,23 @@ const JoyrideInit = ({
     primaryColor,
     backgroundColor
 }: ExcludedReactAppGuideContainerProps): ReactElement => {
+    const [isLoading, setIsLoading] = useState(true); // DOM
     const formattedList = reFormattedList(listOfSteps);
     const [stepCounter, setStepCounter] = useState<number>(0);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 100);
+    }, []);
+
     const _areYouDone = (data: any): void => {
         const { status, action, index, lifecycle } = data;
 
         if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
-            userWelcome.setValue(!userWelcome.value);
-            setTimeout(() => {
-                userWelcome.setValue(userWelcome.value);
-            }, 10);
+            if (onUserWelcomeChange?.canExecute) {
+                onUserWelcomeChange.execute();
+            }
         }
 
         if (action === "next" && index === stepCounter && lifecycle === "complete") {
@@ -46,13 +53,17 @@ const JoyrideInit = ({
             }
         }
     };
+    if (isLoading) {
+        return <Fragment></Fragment>;
+    }
     return (
         <div>
             <Joyride
+                run
+                steps={formattedList}
+                scrollOffset={250}
                 stepIndex={stepCounter}
                 callback={_areYouDone}
-                steps={formattedList}
-                run
                 continuous
                 disableScrollParentFix
                 disableScrolling={false}

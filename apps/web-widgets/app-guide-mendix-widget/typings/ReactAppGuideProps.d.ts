@@ -4,14 +4,14 @@
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
-import { ActionValue, EditableValue } from "mendix";
+import { ActionValue, EditableValue, DynamicValue } from "mendix";
 
 export type PlacementEnum = "auto" | "top" | "bottom" | "left" | "right";
 
 export interface ListOfStepsType {
-    target: string;
-    title: string;
-    content: string;
+    target: DynamicValue<string>;
+    title: DynamicValue<string>;
+    content: DynamicValue<string>;
     placement: PlacementEnum;
 }
 

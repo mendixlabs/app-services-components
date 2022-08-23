@@ -26,7 +26,7 @@ export interface SequencePreviewType {
 export interface LottieNativeProps<Style> {
     name: string;
     style: Style[];
-    animationJson: string;
+    animationJson: DynamicValue<string>;
     height: string;
     width: string;
     isBackground: boolean;

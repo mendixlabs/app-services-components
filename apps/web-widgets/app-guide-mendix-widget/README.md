@@ -1,25 +1,11 @@
 <h1 align="center">App Guide For Mendix</h1>
 
-<p align="center">
-  <a href="">
-    <img alt="License: MIT" src="https://img.shields.io/github/issues/ahwelgemoed/app-guide-mendix-widget" target="_blank" />
-  </a>
-  <a href="">
-    <img alt="GitHub issues" src="https://img.shields.io/github/release/ahwelgemoed/app-guide-mendix-widget" target="_blank" />
-  </a>
-  <a href="https://appstore.home.mendix.com/link/modeler/">
-    <img alt="GitHub issues" src="https://img.shields.io/badge/Studio%20version-8.0%2B-blue.svg" target="_blank" />
-  </a>
-  <a href="https://docs.mendix.com/developerportal/app-store/app-store-content-support">
-    <img alt="GitHub issues" src="https://img.shields.io/badge/Support-Community%20(no%20active%20support)-orange.svg" target="_blank" />
-  </a>
-  <a href="/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/license-Apache%202.0-orange.svg" target="_blank" />
-  </a>
-  <br>
-  
-</p>
- <img  align="center" alt="headerIMG" src="./assets/AppGuide.png" target="_blank" />
+ <img  align="center" alt="headerIMG" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/app-guide-mendix-widget/assets/AppGuide.png" target="_blank" />
+<br/>
+<br/>
+ <img  align="center" alt="demo" src="https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/app-guide-mendix-widget/assets/demo.gif" target="_blank" />
+<br/>
+<br/>
 
 ### A Widget to Showcase new Features in your App, or created a Guided tour in your app.
 
@@ -55,7 +41,7 @@ There are Various Options Available with some caveat's:
 
 |                        | Type    | Desc                                                                                                                                                                                                                                                         |
 | ---------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Welcome attribute      | Boolean | Attribute from the data model to either Show or hide app guide. _Recommended Naming Convention_ `hasSeen_xxx` as false will SHOW the Widget and true will HIDE it                                                                                            |
+| Has Seen               | Boolean | Attribute from the data model to either Show or hide app guide. _Recommended Naming Convention_ `hasSeen_xxx` as false will SHOW the Widget and true will HIDE it                                                                                            |
 | On Complete            | Action  | Usually a Microflow to change the Welcome Attribute, is shows that the user has completed the App Guide. Changes the Welcome attribute from truthy to falsy. Can also be a Page Call, as you can implement the guide on multiple pages and "connect" them to |
 | On Complete Page Call? | Boolean | If the guide is Navigating to a different page, this must be set to True.                                                                                                                                                                                    |
 | Show Skip Button       | Boolean | Show the skip button in the floating card                                                                                                                                                                                                                    |
@@ -73,11 +59,11 @@ There are Various Options Available with some caveat's:
 
 ### Screen Shots
 
-![datasource](./assets/SS1.png)
+![datasource](https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/app-guide-mendix-widget/assets/SS1.png)
 
-![datasource](./assets/SS2.png)
+![datasource](https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/app-guide-mendix-widget/assets/SS2.png)
 
-![datasource](./assets/SS3.png)
+![datasource](https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/web-widgets/app-guide-mendix-widget/assets/SS3.png)
 
 -   Hex values to change card settings
 
