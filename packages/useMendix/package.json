@@ -1,5 +1,5 @@
 {
-  "name": "@appservicescomponents/useMendix",
+  "name": "@appservicescomponents/usemendix",
   "description": "This is only published to prevent duplicate or malicious  code ",
   "version": "0.0.1",
   "main": "./dist/cjs/index.js",
@@ -27,5 +27,15 @@
   },
   "dependencies": {
     "is-builtin-module": "^3.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mendixlabs/app-services-components.git"
+  },
+  "author": "ahwelgemoed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mendixlabs/app-services-components/issues"
+  },
+  "homepage": "https://github.com/mendixlabs/app-services-components#readme"
 }
