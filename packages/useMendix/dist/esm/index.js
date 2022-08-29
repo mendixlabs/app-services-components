@@ -1,4 +1,4 @@
 import { useDynamicValue } from "./hooks/useDynamicValue";
-export { useDynamicValue };
-// export const useDynamicValue: any = (s: any) => "sd" + s;
+import { useEditableValue } from "./hooks/useEditableValue";
+export { useDynamicValue, useEditableValue };
 //# sourceMappingURL=index.js.map

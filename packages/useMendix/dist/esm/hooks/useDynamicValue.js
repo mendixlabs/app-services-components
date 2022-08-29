@@ -1,8 +1,8 @@
 import { useMemo, useRef } from "react";
 /**
- * A Custom Hook to make working with loadings states in Mendix Widget a bit more consistent
+ * A Custom Hook to make working with DynamicValue in Mendix Widget a bit more consistent
  *
- * @param inComingValue - Non destructed prop coming from Mendix
+ * @param inComingValue - Non destructed prop coming from Mendix (`DynamicValue<>`)
  *
  *  @returns The arithmetic mean of `Value` and State Object `{ isLoading }`
  *

@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-exports.useDynamicValue = void 0;
+exports.useEditableValue = exports.useDynamicValue = void 0;
 var useDynamicValue_1 = require("./hooks/useDynamicValue");
 exports.useDynamicValue = useDynamicValue_1.useDynamicValue;
-// export const useDynamicValue: any = (s: any) => "sd" + s;
+var useEditableValue_1 = require("./hooks/useEditableValue");
+exports.useEditableValue = useEditableValue_1.useEditableValue;
 //# sourceMappingURL=index.js.map

@@ -7,7 +7,6 @@ const LottieViewContainer: FC<LottieViewContainerTypes> = (props): ReactElement 
     const { height, width } = useWindowDimensions();
     return (
         <Fragment>
-            {/* @ts-ignore */}
             <View
                 testID="lottieContainerView"
                 style={{

@@ -1,5 +1,5 @@
 import { LottieNativePreviewProps } from "../typings/LottieNativeProps";
-import { hidePropertiesIn } from "chore";
+import { hidePropertiesIn } from "@appservicescomponents/chore";
 
 type Properties = PropertyGroup[];
 

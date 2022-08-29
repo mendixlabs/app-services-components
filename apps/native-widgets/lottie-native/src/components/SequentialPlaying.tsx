@@ -38,7 +38,6 @@ const SequentialPlaying = (props: SequentialPlayingTypes): ReactElement => {
     };
     return (
         <Fragment>
-            {/* @ts-ignore */}
             <LottieView
                 testID="lottieAnimaterView"
                 ref={animation}

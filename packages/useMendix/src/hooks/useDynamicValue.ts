@@ -1,16 +1,15 @@
 import { useMemo, useRef } from "react";
 import { DynamicValue, ValueStatus } from "mendix";
-import Big from "big.js";
-
-export type AttributeValue = undefined | string | boolean | Date | Big; // I no want to do this
+import { Big } from "../types";
 
 export interface DynamicState {
   isLoading: boolean;
 }
+
 /**
- * A Custom Hook to make working with loadings states in Mendix Widget a bit more consistent
+ * A Custom Hook to make working with DynamicValue in Mendix Widget a bit more consistent
  *
- * @param inComingValue - Non destructed prop coming from Mendix
+ * @param inComingValue - Non destructed prop coming from Mendix (`DynamicValue<>`)
  *
  *  @returns The arithmetic mean of `Value` and State Object `{ isLoading }`
  *
@@ -18,7 +17,7 @@ export interface DynamicState {
  *
  */
 
-export function useDynamicValue<T extends string | number>(
+export function useDynamicValue<T extends string | number | Big | boolean>(
   inComingValue: DynamicValue<T>
 ): [T, DynamicState] {
   const renderCounter = useRef(0);

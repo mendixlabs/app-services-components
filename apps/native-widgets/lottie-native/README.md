@@ -2,6 +2,8 @@
 
 <h2><b>Only works with a Custom Mendix Make it Native App</b></h2>
 
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/lottie-native-head.png'/>
+
 ## Example
 
 <table style="width:100%">

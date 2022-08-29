@@ -1,2 +1,3 @@
 import { useDynamicValue } from "./hooks/useDynamicValue";
-export { useDynamicValue };
+import { useEditableValue } from "./hooks/useEditableValue";
+export { useDynamicValue, useEditableValue };

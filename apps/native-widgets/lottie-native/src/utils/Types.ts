@@ -1,22 +1,9 @@
-import { EditableValue, DynamicValue, GUID } from "mendix";
+import { EditableValue, DynamicValue } from "mendix";
 import React from "react";
 
 import type { Style } from "@mendix/pluggable-widgets-tools";
 import type { Big } from "big.js";
 import type { TextStyle, ViewStyle } from "react-native";
-
-export type AttributeValue = undefined | string | boolean | Date | GUID | GUID[] | Big; // I no want to do this
-
-export interface EditableState {
-    isLoading: boolean;
-    canEdit: boolean;
-}
-export interface DynamicState {
-    isLoading: boolean;
-}
-export interface EditableMethods<T> {
-    setValue: (value: T) => void;
-}
 
 export type ControlledPlayingTypes = {
     parsedAnimation: AnimationObject;

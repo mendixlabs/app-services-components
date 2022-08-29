@@ -4,18 +4,16 @@ import LottieView from "lottie-react-native";
 import { View } from "react-native";
 import { playAnimationSegments } from "../utils/helpers";
 // Hooks
-import { useDynamicValue } from "./useDynamicValue";
-import { useEditableValue } from "./useEditableValue";
+import { useDynamicValue, useEditableValue } from "@appservicescomponents/useMendix";
 
 // TYPES
-import type { Big } from "big.js";
 import type { ControlledPlayingTypes } from "src/utils/Types";
 
 const ControlledPlaying = (props: ControlledPlayingTypes): ReactElement => {
-    const [frameToStartValue, frameToStartState] = useDynamicValue<Big>(props.frameToStart);
-    const [frameToEndValue, frameToEndState] = useDynamicValue<Big>(props.frameToEnd);
-    const [loopAnimationValue, loopAnimationState] = useDynamicValue<boolean>(props.loopAnimation);
-    const [playPauseValue, playPauseState, playPauseMethods] = useEditableValue<boolean>(props.pausePlay);
+    const [frameToStartValue, frameToStartState] = useDynamicValue<number>(props.frameToStart as any);
+    const [frameToEndValue, frameToEndState] = useDynamicValue<number>(props.frameToEnd as any);
+    const [loopAnimationValue, loopAnimationState] = useDynamicValue<boolean>(props.loopAnimation as any);
+    const [playPauseValue, playPauseState, playPauseMethods] = useEditableValue<boolean>(props.pausePlay as any);
 
     const animation = useRef<LottieView>(null);
 

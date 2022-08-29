@@ -1,5 +1,4 @@
 import { useDynamicValue } from "./hooks/useDynamicValue";
+import { useEditableValue } from "./hooks/useEditableValue";
 
-export { useDynamicValue };
-
-// export const useDynamicValue: any = (s: any) => "sd" + s;
+export { useDynamicValue, useEditableValue };
