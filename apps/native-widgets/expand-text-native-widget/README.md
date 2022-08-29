@@ -1,6 +1,6 @@
 # Expand Text Native (Read More)
 
-<img width='500' src='./assets/read-more-head.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/read-more-head.png'/>
 
 <p>A Native widget that allows you to truncate text in your native app and when pressed on will expand</p>
 
@@ -16,8 +16,8 @@
             <th>iOS</th>
         </tr>
         <tr>
-            <td><img width='500' src='./assets/android-demo.gif'/></td>
-            <td><img width='500' src='./assets/ios-demo.gif'/></td>
+            <td><img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/android-demo.gif'/></td>
+            <td><img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/ios-demo.gif'/></td>
         </tr>
        
 </table>

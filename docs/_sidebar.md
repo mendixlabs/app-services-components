@@ -8,6 +8,7 @@
   - [Radio Buttons Native](/native-widgets/RadioButtonNativeWidget.md)
   - [Calendar Native](/native-widgets/calendar-native-widget.md)
   - [Lottie Native](/native-widgets/lottie-native-widget.md)
+  - [Expand Text Native (Rad More)](/native-widgets/expand-text-native-widget.md)
 
 * **[Web Widgets](/web-widgets/index.md)**
 
