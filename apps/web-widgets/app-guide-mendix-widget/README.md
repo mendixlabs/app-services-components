@@ -22,7 +22,7 @@ user on a step by step journey through the App.
 ## Reasons to Use
 
 Currently there is another Widget available ([Guided Tour](https://appstore.home.mendix.com/link/app/115336/)) it uses
-the same underling React Lib, the difference between this Widget and that is as follows:
+the same underlying React Lib, the difference between this Widget and that is as follows:
 
 |                                | App Guide | Guided Tour                       |
 | ------------------------------ | --------- | --------------------------------- |
@@ -32,7 +32,7 @@ the same underling React Lib, the difference between this Widget and that is as 
 
 This widget also solves a Race condition when Mendix app is loading and the Widget is initializing.
 
-_\* As most Mendix apps use a fixed window hight and scrolls a containing div, this causes issues when the desired
+_\* As most Mendix apps use a fixed window height and scrolls a containing div, this causes issues when the desired
 highlighted point is not in the Viewport on page load._
 
 ## Usage

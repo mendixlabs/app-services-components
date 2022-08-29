@@ -9,6 +9,12 @@
     ],
     "nohoist": [
       "*/@mendix",
+      "*/react",
+      "**/react/**",
+      "*/react-native",
+      "**/react-native/**",
+      "*/enzyme",
+      "**/enzyme/**",
       "**/@mendix/**",
       "*/jspdf",
       "**/jspdf/**",
@@ -27,6 +33,9 @@
     "prettier": "latest",
     "turbo": "latest",
     "rollup-plugin-typescript2": "^0.31.2"
+  },
+  "resolutions": {
+    "mendix": "^9.12.50423"
   },
   "engines": {
     "npm": ">=7.0.0",

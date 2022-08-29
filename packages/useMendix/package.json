@@ -1,0 +1,32 @@
+{
+  "name": "@appservicescomponents/useMendix",
+  "description": "This is only published to prevent duplicate or malicious  code ",
+  "version": "0.0.1",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "scripts": {
+    "build:esm": "tsc",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts  --external --sourcemap",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/big.js": "^6.1.5",
+    "@types/react": "^18.0.14",
+    "@types/react-native": "^0.67.7",
+    "tsconfig": "*",
+    "tsup": "^6.0.1",
+    "typescript": "^4.7.4"
+  },
+  "resolutions": {
+    "mendix": "^9.12.50423",
+    "big.js": "^5.2.2",
+    "react": "^17.0.2",
+    "react-native": "^0.68.2"
+  },
+  "dependencies": {
+    "is-builtin-module": "^3.2.0"
+  }
+}
