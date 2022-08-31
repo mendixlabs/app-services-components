@@ -6,7 +6,7 @@
 
 <h4><bold>Note</bold></h4>
 
-<p> This widnget is not based on the 'famous' React Native widget <a href='https://github.com/fawaz-ahmed/react-native-read-more#readme'>@fawazahmed/react-native-read-more</a> as an implementation of that lead to some performance issues, and it was decided to do a more simplistic implementation.
+<p> This widget is not based on the 'famous' React Native widget <a href='https://github.com/fawaz-ahmed/react-native-read-more#readme'>@fawazahmed/react-native-read-more</a> as an implementation of that led to some performance issues, and it was decided to do a more simplistic implementation.
 
 ## Example
 
