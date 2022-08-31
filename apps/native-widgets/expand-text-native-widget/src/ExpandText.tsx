@@ -17,7 +17,6 @@ export function ExpandText({
     readLess,
     longText,
     readMore,
-    textAlign,
     toAnimate,
     showReadMore,
     showReadLess,
@@ -96,7 +95,6 @@ export function ExpandText({
                             reaLess={readLess}
                             readMore={readMore}
                             textState={textState}
-                            textAlign={textAlign}
                             displayText={textValue}
                             showReadMore={showReadMore}
                             showReadLess={showReadLess}
@@ -139,7 +137,6 @@ export function ExpandText({
                         reaLess={readLess}
                         readMore={readMore}
                         textState={textState}
-                        textAlign={textAlign}
                         displayText={textValue}
                         showReadMore={showReadMore}
                         showReadLess={showReadLess}

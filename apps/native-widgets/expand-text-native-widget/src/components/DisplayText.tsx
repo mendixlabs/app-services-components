@@ -1,25 +1,23 @@
 import React, { ReactElement, createElement, Fragment } from "react";
 
 import { Text, View } from "react-native";
-import { TextAlignEnum } from "typings/ExpandTextProps";
 
 type DisplyTextType = {
     textState: Ran_State;
     lineNumbers: number;
-    readMore: string;
-    reaLess: string;
+    readMore: React.ReactNode;
+    reaLess: React.ReactNode;
     displayText: string;
     showReadMore: boolean;
     showReadLess: boolean;
     disableReadMore: boolean;
-    textAlign: TextAlignEnum;
     setDisableReadMore: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type ConDis_DisplyType = {
     lineNumber: number;
     showText: boolean;
-    displayText: string;
+    displayText: React.ReactNode;
 };
 
 export enum Ran_State {
@@ -51,7 +49,7 @@ export const DisplayText = (props: DisplyTextType): ReactElement => {
                 <Fragment></Fragment>
             ) : (
                 <View>
-                    <Text style={{ fontWeight: "bold", textAlign: props.textAlign }}>{textState().displayText}</Text>
+                    <Text>{textState().displayText}</Text>
                 </View>
             )}
         </Fragment>

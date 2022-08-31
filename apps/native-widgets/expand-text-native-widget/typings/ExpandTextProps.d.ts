@@ -3,11 +3,9 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { CSSProperties } from "react";
+import { ComponentType, CSSProperties, ReactNode } from "react";
 import { DynamicValue } from "mendix";
 import { Big } from "big.js";
-
-export type TextAlignEnum = "left" | "right";
 
 export interface ExpandTextProps<Style> {
     name: string;
@@ -15,11 +13,10 @@ export interface ExpandTextProps<Style> {
     toAnimate: boolean;
     numberOfLines: DynamicValue<Big>;
     longText: DynamicValue<string>;
-    readMore: string;
+    readMore?: ReactNode;
     showReadMore: boolean;
-    readLess: string;
     showReadLess: boolean;
-    textAlign: TextAlignEnum;
+    readLess?: ReactNode;
 }
 
 export interface ExpandTextPreviewProps {
@@ -30,9 +27,8 @@ export interface ExpandTextPreviewProps {
     toAnimate: boolean;
     numberOfLines: string;
     longText: string;
-    readMore: string;
+    readMore: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     showReadMore: boolean;
-    readLess: string;
     showReadLess: boolean;
-    textAlign: TextAlignEnum;
+    readLess: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
 }

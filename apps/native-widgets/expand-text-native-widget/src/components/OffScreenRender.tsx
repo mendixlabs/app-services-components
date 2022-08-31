@@ -3,7 +3,7 @@ import React, { ReactElement, createElement, Fragment, useCallback } from "react
 import { Text, View, useWindowDimensions } from "react-native";
 
 type OffScreenRender = {
-    readMore: string;
+    readMore: React.ReactNode;
     lineNumbers: number;
     displayText: string;
     showReadMore: boolean;

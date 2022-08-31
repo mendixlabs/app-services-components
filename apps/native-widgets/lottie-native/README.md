@@ -1,8 +1,9 @@
 # Lottie Native Widget for Mendix
 
 <h2><b>Only works with a Custom Mendix Make it Native App</b></h2>
+<p> Read more about that <a href='https://docs.mendix.com/refguide/mobile/distributing-mobile-apps/building-native-apps/native-build-locally/'>here</a>
 
-<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/lottie-native-head.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/lottie-native/assets/lottie-native-head.png'/>
 
 ## Example
 
@@ -49,7 +50,7 @@
         <tr>
             <td>Control Type</td>
             <td><b>Uncontrolled (Sequential):</b> You define the frames to play, the animation will sequentially follow the animation path you define. <br/> <br/>
-            <b>Controlled:</b> You define the frames to play, the animation will sequentially follow the animation path you define
+            <b>Controlled:</b> You control the Frames by changing parameters on the fly
             </td>
         </tr>
 </table>
@@ -101,7 +102,7 @@
             <td>Frame to start section at</td>
         </tr>
         <tr>
-            <td>End Frame<code>expression</code></td>
+            <td>End Frame <code>expression</code></td>
             <td>Frame to End section at</td>
         </tr>
         <tr>

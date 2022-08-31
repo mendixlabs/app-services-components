@@ -33,7 +33,7 @@
                 <returnType type="String" />
             </property>
 
-            <property key="readMore" type="string" defaultValue="Read More">
+            <property key="readMore" type="widgets" required="false">
                 <caption>Read More Text</caption>
                 <description>Read More Text</description>
             </property>
@@ -43,23 +43,14 @@
                 <description />
             </property>
 
-            <property key="readLess" type="string" defaultValue="Read Less">
-                <caption>Read Less Text</caption>
-                <description>Read More Text</description>
-            </property>
-
             <property key="showReadLess" type="boolean" defaultValue="false">
                 <caption>Show Read Less</caption>
                 <description />
             </property>
 
-            <property key="textAlign" type="enumeration" defaultValue="left">
-                <caption>Read More/Less Text Align</caption>
-                <description />
-                <enumerationValues>
-                    <enumerationValue key="left">Left</enumerationValue>
-                    <enumerationValue key="right">Right</enumerationValue>
-                </enumerationValues>
+            <property key="readLess" type="widgets" required="false">
+                <caption>Read Less Text</caption>
+                <description>Read More Text</description>
             </property>
         </propertyGroup>
     </properties>

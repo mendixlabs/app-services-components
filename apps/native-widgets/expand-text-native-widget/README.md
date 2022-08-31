@@ -2,7 +2,7 @@
 
 <img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/read-more-head.png'/>
 
-<p>A Native widget that allows you to truncate text in your native app and when pressed on will expand</p>
+<p>A Native widget that allows you to truncate text in your native app and when pressed will expand</p>
 
 <h4><bold>Note</bold></h4>
 
@@ -25,7 +25,9 @@
 
 ## Setup of In Mendix
 
-<img width='500' src='./assets/exm1.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/exm1.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/exm2.png'/>
+<img width='500' src='https://raw.githubusercontent.com/mendixlabs/app-services-components/main/apps/native-widgets/expand-text-native-widget/assets/exm3.png'/>
 <table style="width:100%">
         <tr>
             <th>Property</th>
@@ -44,10 +46,6 @@
             <td>Text to truncate</td>
         </tr>
         <tr>
-            <td>Read More Text</td>
-            <td>"Read More" Text to display</td>
-        </tr>
-        <tr>
             <td>Show Read More</td>
             <td>Show Read More Button to user</td>
         </tr>
@@ -55,14 +53,15 @@
             <td>Show Read Less</td>
             <td>Show Read Less Button to user</td>
         </tr>
-        <tr>
-            <td>Read More/Less Text Align</td>
-            <td>Choose between Left and Right Text Align</td>
-        </tr>
-       
+
 </table>
+
+<h3>Read more and Read Less Section</h3>
+
+<p>Only place text here as a too big element could break the display</p>
+
 <br/>
 <h3> Technically Note</h3>
 
 The widget calculates the height of the closed text and open height by rendering it off screen and using that as as
-closed and open heights
+closed and open heights. Adding a lot to a page on a slow device could have a performance hit `(O(n))`
