@@ -1,7 +1,7 @@
 {
   "name": "@appservicescomponents/usemendix",
   "description": "This is only published to prevent duplicate or malicious  code ",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",

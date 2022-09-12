@@ -10,10 +10,10 @@ import { useDynamicValue, useEditableValue } from "@appservicescomponents/useMen
 import type { ControlledPlayingTypes } from "src/utils/Types";
 
 const ControlledPlaying = (props: ControlledPlayingTypes): ReactElement => {
-    const [frameToStartValue, frameToStartState] = useDynamicValue<number>(props.frameToStart as any);
-    const [frameToEndValue, frameToEndState] = useDynamicValue<number>(props.frameToEnd as any);
-    const [loopAnimationValue, loopAnimationState] = useDynamicValue<boolean>(props.loopAnimation as any);
-    const [playPauseValue, playPauseState, playPauseMethods] = useEditableValue<boolean>(props.pausePlay as any);
+    const [frameToStartValue, frameToStartState] = useDynamicValue(props.frameToStart);
+    const [frameToEndValue, frameToEndState] = useDynamicValue(props.frameToEnd);
+    const [loopAnimationValue, loopAnimationState] = useDynamicValue(props.loopAnimation);
+    const [playPauseValue, playPauseState, playPauseMethods] = useEditableValue<boolean>(props.pausePlay);
 
     const animation = useRef<LottieView>(null);
 

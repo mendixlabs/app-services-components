@@ -33,7 +33,7 @@ export function ExpandText({
 
     const [textState, setTextState] = useState<Ran_State>(Ran_State.NEVER_RAN);
 
-    const [textValue, { isLoading }] = useDynamicValue<string>(longText as any);
+    const [textValue, { isLoading }] = useDynamicValue(longText);
 
     const fadeAnim = useRef(new Animated.Value(0)).current;
 

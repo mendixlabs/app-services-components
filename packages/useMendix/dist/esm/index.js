@@ -1,4 +1,3 @@
-import { useDynamicValue } from "./hooks/useDynamicValue";
-import { useEditableValue } from "./hooks/useEditableValue";
-export { useDynamicValue, useEditableValue };
+export { useDynamicValue } from "./hooks/useDynamicValue";
+export { useEditableValue } from "./hooks/useEditableValue";
 //# sourceMappingURL=index.js.map
