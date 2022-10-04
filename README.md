@@ -79,7 +79,6 @@ For details on the Action see [here](https://github.com/ahwelgemoed/widget-build
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/ahwelgemoed"><img src="https://avatars.githubusercontent.com/u/29273599?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arno Welgemoed</b></sub></a><br />🤔💻⚠️📖💡🚧</td>
     <td align="center"><a href="https://github.com/justinroy-mx"><img src="https://avatars.githubusercontent.com/u/81809936?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Justin Roy Tamaela</b></sub></a><br />🤔</td>
   </tr>
 
@@ -92,7 +91,8 @@ For details on the Action see [here](https://github.com/ahwelgemoed/widget-build
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/JelteMX"><img src="https://avatars.githubusercontent.com/u/14937393?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jelte Lagendijk</b></sub></a><br />🤔💻⚠️📖💡🚧</td>
+    <td align="center"><a href="https://github.com/j3lte"><img src="https://avatars.githubusercontent.com/u/14937393?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jelte Lagendijk</b></sub></a><br />🤔💻⚠️📖💡🚧</td>
+    <td align="center"><a href="https://github.com/ahwelgemoed"><img src="https://avatars.githubusercontent.com/u/29273599?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arno Welgemoed</b></sub></a><br />🤔💻⚠️📖💡🚧</td>
   </tr>
 
 </table>
