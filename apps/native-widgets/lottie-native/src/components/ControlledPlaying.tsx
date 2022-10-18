@@ -4,7 +4,7 @@ import LottieView from "lottie-react-native";
 import { View } from "react-native";
 import { playAnimationSegments } from "../utils/helpers";
 // Hooks
-import { useDynamicValue, useEditableValue } from "@appservicescomponents/useMendix";
+import { useDynamicValue, useEditableValue } from "@appservicescomponents/usemendix";
 
 // TYPES
 import type { ControlledPlayingTypes } from "src/utils/Types";

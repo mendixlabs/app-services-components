@@ -1,7 +1,7 @@
 {
     "name": "draganddropwidget",
     "widgetName": "Draganddropwidget",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "My widget description",
     "copyright": "2022 Mendix Technology BV",
     "author": "ahwelgemoed",
@@ -28,7 +28,8 @@
         "@types/big.js": "^6.0.2",
         "@types/classnames": "^2.2.4",
         "@types/react": "~17.0.1",
-        "@types/react-dom": "~17.0.1"
+        "@types/react-dom": "~17.0.1",
+        "@types/ua-parser-js": "^0.7.36"
     },
     "dependencies": {
         "@types/react-dnd-multi-backend": "^6.0.1",
@@ -45,6 +46,7 @@
         "react-dnd-preview": "^6.0.2",
         "react-dnd-scrolling": "^1.2.4",
         "react-dnd-touch-backend": "^14.1.1",
-        "react-transition-group": "^4.4.2"
+        "react-transition-group": "^4.4.2",
+        "ua-parser-js": "^1.0.32"
     }
 }

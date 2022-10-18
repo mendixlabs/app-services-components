@@ -13,11 +13,12 @@ import { ValueStatus } from "mendix";
 import type { OnDropTypes, Type_Parsed_Incoming_Data } from "./userTypes";
 import type { DraganddropwidgetContainerProps } from "../typings/DraganddropwidgetProps";
 
+const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
 const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
     // Sort Incoming Data
     props.incomingData.setSortOrder([[props.sortOn.id, props.sort]]);
 
-    console.log("props", props.uuidStringContainer, props);
     const IF_NO_PARENT_UUID = useMemo(() => nanoid(), []);
     const END_ID = useMemo(() => nanoid(), []);
 
@@ -143,7 +144,7 @@ const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
         return <div>Loading..</div>;
     }
     return (
-        <MyDragProvider uuidStringContainer={props.uuidStringContainer}>
+        <MyDragProvider uuidStringContainer={props.uuidStringContainer} isFirefox={isFirefox}>
             <ScrollHelper
                 parentContainerName={parentContainerName}
                 isDragging={isDragging}
@@ -203,7 +204,7 @@ const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
                     </DroppableArea>
                 </Fragment>
             </ScrollHelper>
-            <DragPreview displayItem={props.hasDataContent} {...props} />
+            {!isFirefox ? <DragPreview displayItem={props.hasDataContent} {...props} /> : ""}
         </MyDragProvider>
     );
 };

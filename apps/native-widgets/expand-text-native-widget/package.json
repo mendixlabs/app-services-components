@@ -35,6 +35,6 @@
         "@types/react-native": "~0.63.52"
     },
     "dependencies": {
-        "@appservicescomponents/useMendix": "*"
+        "@appservicescomponents/usemendix": "*"
     }
 }

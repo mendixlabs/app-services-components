@@ -35,7 +35,7 @@
         "@types/react-native": "~0.63.52"
     },
     "dependencies": {
-        "@appservicescomponents/useMendix": "*",
+        "@appservicescomponents/usemendix": "*",
         "@appservicescomponents/chore": "*",
         "@testing-library/react-native": "^11.0.0",
         "lottie-ios": "^3.2.3",

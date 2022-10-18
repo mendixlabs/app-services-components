@@ -4,7 +4,7 @@ import { TextStyle, ViewStyle, Animated, View, TouchableWithoutFeedback } from "
 import { Style } from "@mendix/pluggable-widgets-tools";
 
 import { ExpandTextProps } from "../typings/ExpandTextProps";
-import { useDynamicValue } from "@appservicescomponents/useMendix";
+import { useDynamicValue } from "@appservicescomponents/usemendix";
 import { OffScreenRender } from "./components/OffScreenRender";
 import { DisplayText, Ran_State } from "./components/DisplayText";
 
