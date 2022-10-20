@@ -76,6 +76,7 @@ const DroppableItem: FunctionComponent<Type_Card_Props> = props => {
             type: props.droppedOnUUID,
             item: { ...props, ref }
         },
+        canDrag: !props.canDrag,
         begin: () => {
             props.setIsDragging(true);
         },

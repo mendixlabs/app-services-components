@@ -34,6 +34,7 @@ export interface DraganddropwidgetContainerProps {
     sort: SortEnum;
     isColumn: boolean;
     uuidStringParent?: EditableValue<string>;
+    disableDrag: DynamicValue<boolean>;
     acceptedUuid: AcceptedUuidType[];
     uuidStringParentExpression?: DynamicValue<string>;
     uuidStringCurrent: ListAttributeValue<string>;
@@ -58,6 +59,7 @@ export interface DraganddropwidgetPreviewProps {
     sort: SortEnum;
     isColumn: boolean;
     uuidStringParent: string;
+    disableDrag: string;
     acceptedUuid: AcceptedUuidPreviewType[];
     uuidStringParentExpression: string;
     uuidStringCurrent: string;

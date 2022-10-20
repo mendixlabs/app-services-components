@@ -8,6 +8,7 @@ export type Type_Card_Props = {
     isColumn: boolean;
     children: ReactNode;
     isDragging: boolean;
+    canDrag: boolean;
     droppedOnUUID: string;
     acceptedUUids: string[];
     uuidStringParent: string;

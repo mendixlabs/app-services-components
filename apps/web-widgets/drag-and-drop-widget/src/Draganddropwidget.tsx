@@ -174,6 +174,7 @@ const DndWidget: FunctionComponent<DraganddropwidgetContainerProps> = props => {
                                             onDrop={onDrop}
                                             allData={allData}
                                             isOverIndex={isOverIndex}
+                                            canDrag={props.disableDrag.value as boolean}
                                             isDragging={isDragging}
                                             isColumn={props.isColumn}
                                             setIsDragging={setIsDragging}
