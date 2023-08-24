@@ -10,7 +10,7 @@
     xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd"
 >
     <name>Advanced Radio Buttons</name>
-    <description>My widget description</description>
+    <description>Radio buttons with additional features</description>
     <icon />
     <properties>
         <propertyGroup caption="General">

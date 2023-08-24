@@ -1,8 +1,8 @@
 {
   "name": "advancedradiobuttons",
   "widgetName": "AdvancedRadioButtons",
-  "version": "1.1.0",
-  "description": "My widget description",
+  "version": "1.0.0",
+  "description": "Radio buttons with additional features",
   "copyright": "2023 Mendix Technology BV",
   "author": "Oleksii Abdulin",
   "engines": {
@@ -10,7 +10,7 @@
   },
   "license": "Apache-2.0",
   "config": {
-    "projectPath": "./../../Mx Projects/RadioButtonsTestApp",
+    "projectPath": "./tests/testProject",
     "mendixHost": "http://localhost:8080",
     "developmentPort": 3000
   },
