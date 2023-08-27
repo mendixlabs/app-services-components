@@ -15,8 +15,10 @@ export function AdvancedRadioButtons(props: AdvancedRadioButtonsContainerProps):
             readOnlyAsText={props.readOnlyStyle === "text"}
             readOnly={props.attributeValue.readOnly}
             tabIndex={props.tabIndex}
+            formOrientation={props.formOrientation}
+            labelWidth={props.formOrientation === "horizontal" ? props.labelWidth : undefined}
             orientation={props.orientation}
-            showLabel={props.showLabel}
+            showLabel={props.showLabel && props.labelCaption !== undefined}
             labelCaption={props.labelCaption?.value}
             ariaRequired={props.ariaRequired}
             useCustomLabels={props.useCustomLabels}

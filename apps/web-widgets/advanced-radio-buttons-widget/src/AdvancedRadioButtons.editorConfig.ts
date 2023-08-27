@@ -109,6 +109,9 @@ export function getProperties(
     defaultProperties: Properties /* , target: Platform */
 ): Properties {
     // Do the values manipulation here to control the visibility of properties in Studio and Studio Pro conditionally.
+    if (_values.formOrientation === "vertical") {
+        hidePropertyIn(defaultProperties, _values, "labelWidth");
+    }
     if (!_values.showLabel) {
         hidePropertyIn(defaultProperties, _values, "labelCaption");
     }
@@ -121,6 +124,17 @@ export function getProperties(
 
 export function check(_values: AdvancedRadioButtonsPreviewProps): Problem[] {
     const errors: Problem[] = [];
+    if (
+        _values.labelWidth !== null &&
+        _values.labelWidth !== undefined &&
+        (_values.labelWidth > 11 || _values.labelWidth < 1)
+    ) {
+        errors.push({
+            property: `labelWidth`,
+            message: `Label width should be between 1 and 11`,
+            url: "https://github.com/3loader/mx-advanced-radio-buttons"
+        });
+    }
     if (_values.useCustomLabels && _values.customLabels.length === 0) {
         errors.push({
             property: `customLabels`,

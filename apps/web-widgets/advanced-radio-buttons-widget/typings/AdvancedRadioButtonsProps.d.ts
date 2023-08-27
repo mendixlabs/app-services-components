@@ -6,6 +6,8 @@
 import { CSSProperties } from "react";
 import { DynamicValue, EditableValue } from "mendix";
 
+export type FormOrientationEnum = "horizontal" | "vertical";
+
 export type OrientationEnum = "horizontal" | "vertical";
 
 export type ReadOnlyStyleEnum = "control" | "text";
@@ -25,6 +27,8 @@ export interface AdvancedRadioButtonsContainerProps {
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
+    formOrientation: FormOrientationEnum;
+    labelWidth: number;
     orientation: OrientationEnum;
     attributeValue: EditableValue<boolean | string>;
     readOnlyStyle: ReadOnlyStyleEnum;
@@ -45,6 +49,8 @@ export interface AdvancedRadioButtonsPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
+    formOrientation: FormOrientationEnum;
+    labelWidth: number | null;
     orientation: OrientationEnum;
     attributeValue: string;
     readOnlyStyle: ReadOnlyStyleEnum;

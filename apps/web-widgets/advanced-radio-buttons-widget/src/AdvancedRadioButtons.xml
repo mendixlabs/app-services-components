@@ -15,6 +15,18 @@
     <properties>
         <propertyGroup caption="General">
             <propertyGroup caption="General">
+                <property key="formOrientation" type="enumeration" defaultValue="vertical">
+                    <caption>Form orientation</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="horizontal">Horizontal</enumerationValue>
+                        <enumerationValue key="vertical">Vertical</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="labelWidth" type="integer" defaultValue="3" required="true">
+                    <caption>Label width (weight)</caption>
+                    <description />
+                </property>
                 <property key="orientation" type="enumeration" defaultValue="horizontal">
                     <caption>Orientation</caption>
                     <description />

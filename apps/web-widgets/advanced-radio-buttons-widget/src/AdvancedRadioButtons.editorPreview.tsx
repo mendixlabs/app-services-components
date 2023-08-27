@@ -9,8 +9,10 @@ export function preview(props: AdvancedRadioButtonsPreviewProps): ReactElement {
             style={props.styleObject}
             readOnlyAsText={props.readOnlyStyle === "text"}
             readOnly={props.readOnly}
+            formOrientation={props.formOrientation}
+            labelWidth={props.formOrientation === "horizontal" && props.labelWidth ? props.labelWidth : undefined}
             orientation={props.orientation}
-            showLabel={props.showLabel}
+            showLabel={props.showLabel && props.labelCaption !== undefined}
             labelCaption={props.labelCaption}
             previewValueAsText={`[${props.attributeValue ? props.attributeValue : "No attribute selected"}]`}
             ariaRequired={props.ariaRequired}
