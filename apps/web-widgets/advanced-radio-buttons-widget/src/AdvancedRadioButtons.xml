@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget
+    id="mendix.advancedradiobuttons.AdvancedRadioButtons"
+    pluginWidget="true"
+    needsEntityContext="true"
+    offlineCapable="true"
+    supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd"
+>
+    <name>Advanced Radio Buttons</name>
+    <description>Radio buttons with additional features</description>
+    <icon />
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="General">
+                <property key="formOrientation" type="enumeration" defaultValue="vertical">
+                    <caption>Form orientation</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="horizontal">Horizontal</enumerationValue>
+                        <enumerationValue key="vertical">Vertical</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="labelWidth" type="integer" defaultValue="3" required="true">
+                    <caption>Label width (weight)</caption>
+                    <description />
+                </property>
+                <property key="orientation" type="enumeration" defaultValue="horizontal">
+                    <caption>Orientation</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="horizontal">Horizontal</enumerationValue>
+                        <enumerationValue key="vertical">Vertical</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Data source">
+                <property key="attributeValue" type="attribute" onChange="onChangeAction">
+                    <caption>Attribute</caption>
+                    <description />
+                    <attributeTypes>
+                        <attributeType name="Boolean" />
+                        <attributeType name="Enum" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Editability">
+                <systemProperty key="Editability" />
+                <property key="readOnlyStyle" type="enumeration" defaultValue="control">
+                    <caption>Read-only style</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="control">Control</enumerationValue>
+                        <enumerationValue key="text">Text</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Visibility">
+                <systemProperty key="Visibility" />
+            </propertyGroup>
+            <propertyGroup caption="Accessibility">
+                <property key="ariaRequired" type="boolean" defaultValue="false">
+                    <caption>Aria required</caption>
+                    <description>Used by assistive technologies to indicate that a field is required</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Label">
+            <propertyGroup caption="Label">
+                <property key="showLabel" type="boolean" defaultValue="true">
+                    <caption>Show label</caption>
+                    <description />
+                </property>
+                <property key="labelCaption" type="textTemplate" required="false">
+                    <caption>Label caption</caption>
+                    <description />
+                </property>
+                <property key="useCustomLabels" type="boolean" defaultValue="false">
+                    <caption>Use custom option labels</caption>
+                    <description />
+                </property>
+                <property key="customLabels" type="object" isList="true" required="false">
+                    <caption>Custom option labels</caption>
+                    <description />
+                    <properties>
+                        <propertyGroup caption="Option label customization">
+                            <property key="attributeValueKey" type="string">
+                                <caption>Key to identify old label</caption>
+                                <description>Enumeration key if attribute is enumeration. "true" or "false" if attribute is boolean</description>
+                            </property>
+                            <property key="attributeValueNewCaption" type="string">
+                                <caption>New caption</caption>
+                                <description />
+                            </property>
+                        </propertyGroup>
+                    </properties>
+                </property>
+                <property key="removeOtherOptions" type="boolean" defaultValue="false">
+                    <caption>Remove missing options</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Common">
+            <propertyGroup caption="Common">
+                <systemProperty key="Name" />
+                <systemProperty key="TabIndex" />
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Events">
+            <propertyGroup caption="Events">
+                <property key="onChangeAction" type="action" required="false">
+                    <caption>On change</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>
