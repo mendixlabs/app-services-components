@@ -88,10 +88,7 @@
                         <propertyGroup caption="Option label customization">
                             <property key="attributeValueKey" type="string">
                                 <caption>Key to identify old label</caption>
-                                <description>
-                                    Enumeration value if attribute is enumeration. "true" or "false" if attribute is
-                                    boolean
-                                </description>
+                                <description>Enumeration key if attribute is enumeration. "true" or "false" if attribute is boolean</description>
                             </property>
                             <property key="attributeValueNewCaption" type="string">
                                 <caption>New caption</caption>
