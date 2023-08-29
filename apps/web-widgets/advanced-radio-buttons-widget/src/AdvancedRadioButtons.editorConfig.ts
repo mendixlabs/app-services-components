@@ -149,13 +149,6 @@ export function getPreview(
     _values: AdvancedRadioButtonsPreviewProps,
     isDarkMode: boolean /* , version: number[] */
 ): PreviewProps {
-    // Customize your pluggable widget appearance for Studio Pro.
-    // function textBlock(textValue: string): TextProps {
-    //     return {
-    //         type: "Text",
-    //         content: textValue
-    //     }
-    // }
     const circleFill = isDarkMode ? "transparent" : "rgb(234,241,247)";
     const circleStroke = isDarkMode ? "rgb(86, 86, 86)" : "rgb(210,210,210)";
     const disabledCircleColor = isDarkMode ? "rgb(86, 86, 86)" : "rgb(210,210,210)";
@@ -191,7 +184,7 @@ export function getPreview(
         };
     }
     const parentContainer: PreviewProps = {
-        type: "Container",
+        type: _values.formOrientation === "horizontal" ? "RowLayout" : "Container",
         children: []
     };
     const attributeNameBlock: ContainerProps = {
@@ -200,14 +193,15 @@ export function getPreview(
             {
                 type: "Text",
                 fontSize: 8.5,
-                fontColor: "#4473C4",
+                fontColor: "#569CF9",
                 content: `[${_values.attributeValue ? _values.attributeValue : "No attribute selected"}]`
             }
         ]
     };
     if (_values.showLabel && _values.labelCaption && _values.labelCaption.length > 0) {
         const labelProp: ContainerProps = {
-            type: "Container",
+            type: _values.formOrientation === "horizontal" ? "RowLayout" : "Container",
+            grow: _values.labelWidth || 1,
             children: [
                 {
                     type: "Text",
@@ -220,6 +214,7 @@ export function getPreview(
     if (_values.orientation === "horizontal") {
         parentContainer.children.push({
             type: "RowLayout",
+            grow: _values.labelWidth ? 12 - _values.labelWidth : 1,
             columnSize: "grow",
             children: [
                 valueCircle(),
@@ -234,6 +229,7 @@ export function getPreview(
     if (_values.orientation === "vertical") {
         parentContainer.children.push({
             type: "Container",
+            grow: _values.labelWidth ? 12 - _values.labelWidth : 1,
             children: [
                 {
                     type: "Container",
