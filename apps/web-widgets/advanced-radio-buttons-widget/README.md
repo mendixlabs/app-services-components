@@ -25,9 +25,6 @@ This widget is a mirror of default Mendix radio buttons widget with some additio
 * Read-only style does not have "Based on data view" option
 * Validation "Type" dropdown is missing
 * No "On enter" and "On change" events (They are useless in radio-buttons)
-* Preview in both Structure and Design modes always will show two pre-defined radio-button options
-  * [Option 1]
-  * [Option 2] ...
 
 **New features:**
 * Possibility to change captions for each selection option
