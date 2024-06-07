@@ -172,7 +172,18 @@ export function getPreview(
             ]
         };
     }
-    function valueText(val: string): ContainerProps {
+    function valueLabelByKey(key: boolean, _values: AdvancedRadioButtonsPreviewProps): ContainerProps {
+        const valueList = ["No", "Yes"];
+        let val: string = valueList[Number(key)];
+        if (_values.useCustomLabels && _values.customLabels.length > 0) {
+            const customValueMappingForGivenKey = _values.customLabels.find(l => l.attributeValueKey == key.toString());
+            if (customValueMappingForGivenKey) {
+                val = customValueMappingForGivenKey.attributeValueNewCaption;
+            }
+        }
+        return valueLabel(val);
+    }
+    function valueLabel(val: string): ContainerProps {
         return {
             type: "Container",
             children: [
@@ -182,6 +193,23 @@ export function getPreview(
                 }
             ]
         };
+    }
+    function verticalLabelValuePair(key: boolean, withAttributeNameBlock: boolean) : PreviewProps {
+        let rowLayoutChildren = [valueCircle(), valueLabelByKey(key, _values)];
+        if (withAttributeNameBlock) {
+            rowLayoutChildren.push(attributeNameBlock);
+        }
+        rowLayoutChildren.push({ type: "Container", grow: 2, children: [] });
+        return {
+            type: "Container",
+            children: [
+                {
+                    type: "RowLayout",
+                    columnSize: "grow",
+                    children: rowLayoutChildren
+                }
+            ]
+        }
     }
     const parentContainer: PreviewProps = {
         type: _values.formOrientation === "horizontal" ? "RowLayout" : "Container",
@@ -211,57 +239,52 @@ export function getPreview(
         };
         parentContainer.children.push(labelProp);
     }
-    if (_values.orientation === "horizontal") {
+    if (!_values.attributeValue) {
         parentContainer.children.push({
             type: "RowLayout",
             grow: _values.labelWidth ? 12 - _values.labelWidth : 1,
             columnSize: "grow",
             children: [
                 valueCircle(),
-                valueText("[Option 1]"),
-                valueCircle(),
-                valueText("[Option 2] ..."),
+                valueLabel(""),
                 attributeNameBlock,
                 { type: "Container", grow: 2, children: [] }
             ]
         });
-    }
-    if (_values.orientation === "vertical") {
-        parentContainer.children.push({
-            type: "Container",
-            grow: _values.labelWidth ? 12 - _values.labelWidth : 1,
-            children: [
-                {
-                    type: "Container",
-                    children: [
-                        {
-                            type: "RowLayout",
-                            columnSize: "grow",
-                            children: [
-                                valueCircle(),
-                                valueText("[Option 1]"),
-                                attributeNameBlock,
-                                { type: "Container", grow: 2, children: [] }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    type: "Container",
-                    children: [
-                        {
-                            type: "RowLayout",
-                            columnSize: "grow",
-                            children: [
-                                valueCircle(),
-                                valueText("[Option 2] ..."),
-                                { type: "Container", grow: 2, children: [] }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        });
+    } else {
+        let parentContainerGrandChildren: PreviewProps[] = [];
+        let withAttributeNameBlock = true;
+        if (_values.orientation === "horizontal") {
+            if (!_values.useCustomLabels || !_values.removeOtherOptions || _values.customLabels.find(l => l.attributeValueKey == 'true')) {
+                parentContainerGrandChildren.push(valueCircle());
+                parentContainerGrandChildren.push(valueLabelByKey(true, _values));
+            }
+            if (!_values.useCustomLabels || !_values.removeOtherOptions || _values.customLabels.find(l => l.attributeValueKey == 'false')) {
+                parentContainerGrandChildren.push(valueCircle());
+                parentContainerGrandChildren.push(valueLabelByKey(false, _values));
+            }
+            parentContainerGrandChildren.push(attributeNameBlock);
+            parentContainerGrandChildren.push({ type: "Container", grow: 2, children: [] });
+            parentContainer.children.push({
+                type: "RowLayout",
+                grow: _values.labelWidth ? 12 - _values.labelWidth : 1,
+                columnSize: "grow",
+                children: parentContainerGrandChildren
+            });
+        } else {
+            if (!_values.useCustomLabels || !_values.removeOtherOptions || _values.customLabels.find(l => l.attributeValueKey == 'true')) {
+                parentContainerGrandChildren.push(verticalLabelValuePair(true, withAttributeNameBlock));
+                withAttributeNameBlock = false;
+            }
+            if (!_values.useCustomLabels || !_values.removeOtherOptions || _values.customLabels.find(l => l.attributeValueKey == 'false')) {
+                parentContainerGrandChildren.push(verticalLabelValuePair(false, withAttributeNameBlock));
+            }
+            parentContainer.children.push({
+                type: "Container",
+                grow: _values.labelWidth ? 12 - _values.labelWidth : 1,
+                children: parentContainerGrandChildren
+            });
+        }
     }
     return parentContainer;
 }
