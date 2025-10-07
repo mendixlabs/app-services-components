@@ -79,7 +79,7 @@ For details on the Action see [here](https://github.com/ahwelgemoed/widget-build
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/justinroy-mx"><img src="https://avatars.githubusercontent.com/u/81809936?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Justin Roy Tamaela</b></sub></a><br />🤔</td>
+    <td align="center"><a href="https://github.com/jr-tamaela"><img src="https://avatars.githubusercontent.com/u/81809936?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Justin Roy Tamaela</b></sub></a><br />🤔</td>
   </tr>
 
 </table>
